@@ -1,0 +1,458 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AE66B903201C58E7002E3FFF /* UITabBarController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE66B902201C58E7002E3FFF /* UITabBarController+.swift */; };
+		AE66B907201C5ED5002E3FFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE66B906201C5ED5002E3FFF /* LaunchScreen.storyboard */; };
+		AE66B909201F1DCA002E3FFF /* XTITool.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE66B908201F1DCA002E3FFF /* XTITool.swift */; };
+		AE66B90B201F5E61002E3FFF /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE66B90A201F5E61002E3FFF /* Storyboard.storyboard */; };
+		AE66B90D201F6DE9002E3FFF /* XTINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE66B90C201F6DE9002E3FFF /* XTINavigationController.swift */; };
+		AE8D70A02012F4CD002E3580 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D709F2012F4CD002E3580 /* AppDelegate.swift */; };
+		AE8D70A22012F4CD002E3580 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70A12012F4CD002E3580 /* ViewController.swift */; };
+		AE8D70A72012F4CD002E3580 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE8D70A62012F4CD002E3580 /* Assets.xcassets */; };
+		AE8D70CB2012F4EA002E3580 /* XTIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B42012F4EA002E3580 /* XTIView+.swift */; };
+		AE8D70CC2012F4EA002E3580 /* XTIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B52012F4EA002E3580 /* XTIButton+.swift */; };
+		AE8D70CD2012F4EA002E3580 /* XTIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B62012F4EA002E3580 /* XTIColor+.swift */; };
+		AE8D70CE2012F4EA002E3580 /* XTIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B72012F4EA002E3580 /* XTIImage+.swift */; };
+		AE8D70CF2012F4EA002E3580 /* XTIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B82012F4EA002E3580 /* XTIViewController+.swift */; };
+		AE8D70D02012F4EA002E3580 /* XTINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B92012F4EA002E3580 /* XTINavigationController+.swift */; };
+		AE8D70D12012F4EA002E3580 /* XTIString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70BB2012F4EA002E3580 /* XTIString+.swift */; };
+		AE8D70D22012F4EA002E3580 /* XTIDate+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70BC2012F4EA002E3580 /* XTIDate+.swift */; };
+		AE8D70D32012F4EA002E3580 /* XTIDevice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70BD2012F4EA002E3580 /* XTIDevice+.swift */; };
+		AE8D70D42012F4EA002E3580 /* XTIDispatchQueue+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70BE2012F4EA002E3580 /* XTIDispatchQueue+.swift */; };
+		AE8D70D52012F4EA002E3580 /* XTIBaseNameNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70BF2012F4EA002E3580 /* XTIBaseNameNamespace.swift */; };
+		AE8D70D62012F4EA002E3580 /* XTILoger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70C12012F4EA002E3580 /* XTILoger.swift */; };
+		AE8D70D72012F4EA002E3580 /* XTIMacros.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70C32012F4EA002E3580 /* XTIMacros.swift */; };
+		AE8D70D82012F4EA002E3580 /* XTIObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70C42012F4EA002E3580 /* XTIObserver.swift */; };
+		AE8D70D92012F4EA002E3580 /* XTIViewController+.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70C82012F4EA002E3580 /* XTIViewController+.m */; };
+		AE8D70DA2012F4EA002E3580 /* XTINavigationController+.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70C92012F4EA002E3580 /* XTINavigationController+.m */; };
+		AECEFFC8201C2C6300B96754 /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEFFC7201C2C6300B96754 /* NSObject+.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AE66B902201C58E7002E3FFF /* UITabBarController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+.swift"; sourceTree = "<group>"; };
+		AE66B906201C5ED5002E3FFF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AE66B908201F1DCA002E3FFF /* XTITool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITool.swift; sourceTree = "<group>"; };
+		AE66B90A201F5E61002E3FFF /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		AE66B90C201F6DE9002E3FFF /* XTINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTINavigationController.swift; sourceTree = "<group>"; };
+		AE8D709C2012F4CD002E3580 /* XTInputKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XTInputKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE8D709F2012F4CD002E3580 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AE8D70A12012F4CD002E3580 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AE8D70A62012F4CD002E3580 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AE8D70AB2012F4CD002E3580 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE8D70B42012F4EA002E3580 /* XTIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIView+.swift"; sourceTree = "<group>"; };
+		AE8D70B52012F4EA002E3580 /* XTIButton+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIButton+.swift"; sourceTree = "<group>"; };
+		AE8D70B62012F4EA002E3580 /* XTIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIColor+.swift"; sourceTree = "<group>"; };
+		AE8D70B72012F4EA002E3580 /* XTIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIImage+.swift"; sourceTree = "<group>"; };
+		AE8D70B82012F4EA002E3580 /* XTIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIViewController+.swift"; sourceTree = "<group>"; };
+		AE8D70B92012F4EA002E3580 /* XTINavigationController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTINavigationController+.swift"; sourceTree = "<group>"; };
+		AE8D70BB2012F4EA002E3580 /* XTIString+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIString+.swift"; sourceTree = "<group>"; };
+		AE8D70BC2012F4EA002E3580 /* XTIDate+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIDate+.swift"; sourceTree = "<group>"; };
+		AE8D70BD2012F4EA002E3580 /* XTIDevice+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIDevice+.swift"; sourceTree = "<group>"; };
+		AE8D70BE2012F4EA002E3580 /* XTIDispatchQueue+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIDispatchQueue+.swift"; sourceTree = "<group>"; };
+		AE8D70BF2012F4EA002E3580 /* XTIBaseNameNamespace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIBaseNameNamespace.swift; sourceTree = "<group>"; };
+		AE8D70C12012F4EA002E3580 /* XTILoger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTILoger.swift; sourceTree = "<group>"; };
+		AE8D70C32012F4EA002E3580 /* XTIMacros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIMacros.swift; sourceTree = "<group>"; };
+		AE8D70C42012F4EA002E3580 /* XTIObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIObserver.swift; sourceTree = "<group>"; };
+		AE8D70C62012F4EA002E3580 /* XTIViewController+.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XTIViewController+.h"; sourceTree = "<group>"; };
+		AE8D70C72012F4EA002E3580 /* XTINavigationController+.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XTINavigationController+.h"; sourceTree = "<group>"; };
+		AE8D70C82012F4EA002E3580 /* XTIViewController+.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XTIViewController+.m"; sourceTree = "<group>"; };
+		AE8D70C92012F4EA002E3580 /* XTINavigationController+.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XTINavigationController+.m"; sourceTree = "<group>"; };
+		AE8D70CA2012F4EA002E3580 /* XTInputKit-ObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XTInputKit-ObjC.h"; sourceTree = "<group>"; };
+		AECEFFC7201C2C6300B96754 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AE8D70992012F4CD002E3580 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AE8D70932012F4CD002E3580 = {
+			isa = PBXGroup;
+			children = (
+				AE8D70B12012F4EA002E3580 /* Source */,
+				AE8D709E2012F4CD002E3580 /* XTInputKitDemo */,
+				AE8D709D2012F4CD002E3580 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AE8D709D2012F4CD002E3580 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AE8D709C2012F4CD002E3580 /* XTInputKitDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AE8D709E2012F4CD002E3580 /* XTInputKitDemo */ = {
+			isa = PBXGroup;
+			children = (
+				AE8D709F2012F4CD002E3580 /* AppDelegate.swift */,
+				AE8D70A12012F4CD002E3580 /* ViewController.swift */,
+				AE66B90C201F6DE9002E3FFF /* XTINavigationController.swift */,
+				AE8D70A62012F4CD002E3580 /* Assets.xcassets */,
+				AE8D70AB2012F4CD002E3580 /* Info.plist */,
+				AE66B906201C5ED5002E3FFF /* LaunchScreen.storyboard */,
+				AE66B90A201F5E61002E3FFF /* Storyboard.storyboard */,
+			);
+			path = XTInputKitDemo;
+			sourceTree = "<group>";
+		};
+		AE8D70B12012F4EA002E3580 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				AE8D70B22012F4EA002E3580 /* Extension */,
+				AE8D70C02012F4EA002E3580 /* XTILoger */,
+				AE8D70C22012F4EA002E3580 /* Class */,
+				AE8D70C52012F4EA002E3580 /* ObjC */,
+				AE8D70CA2012F4EA002E3580 /* XTInputKit-ObjC.h */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = "<group>";
+		};
+		AE8D70B22012F4EA002E3580 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AE8D70B32012F4EA002E3580 /* UIKit */,
+				AE8D70BA2012F4EA002E3580 /* Foundation */,
+				AE8D70BF2012F4EA002E3580 /* XTIBaseNameNamespace.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		AE8D70B32012F4EA002E3580 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				AE8D70B42012F4EA002E3580 /* XTIView+.swift */,
+				AE8D70B52012F4EA002E3580 /* XTIButton+.swift */,
+				AE8D70B62012F4EA002E3580 /* XTIColor+.swift */,
+				AE8D70B72012F4EA002E3580 /* XTIImage+.swift */,
+				AE8D70B82012F4EA002E3580 /* XTIViewController+.swift */,
+				AE66B902201C58E7002E3FFF /* UITabBarController+.swift */,
+				AE8D70B92012F4EA002E3580 /* XTINavigationController+.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		AE8D70BA2012F4EA002E3580 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				AE8D70BB2012F4EA002E3580 /* XTIString+.swift */,
+				AE8D70BC2012F4EA002E3580 /* XTIDate+.swift */,
+				AE8D70BD2012F4EA002E3580 /* XTIDevice+.swift */,
+				AE8D70BE2012F4EA002E3580 /* XTIDispatchQueue+.swift */,
+				AECEFFC7201C2C6300B96754 /* NSObject+.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		AE8D70C02012F4EA002E3580 /* XTILoger */ = {
+			isa = PBXGroup;
+			children = (
+				AE8D70C12012F4EA002E3580 /* XTILoger.swift */,
+			);
+			path = XTILoger;
+			sourceTree = "<group>";
+		};
+		AE8D70C22012F4EA002E3580 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				AE8D70C32012F4EA002E3580 /* XTIMacros.swift */,
+				AE8D70C42012F4EA002E3580 /* XTIObserver.swift */,
+				AE66B908201F1DCA002E3FFF /* XTITool.swift */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		AE8D70C52012F4EA002E3580 /* ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				AE8D70C62012F4EA002E3580 /* XTIViewController+.h */,
+				AE8D70C82012F4EA002E3580 /* XTIViewController+.m */,
+				AE8D70C72012F4EA002E3580 /* XTINavigationController+.h */,
+				AE8D70C92012F4EA002E3580 /* XTINavigationController+.m */,
+			);
+			path = ObjC;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AE8D709B2012F4CD002E3580 /* XTInputKitDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE8D70AE2012F4CD002E3580 /* Build configuration list for PBXNativeTarget "XTInputKitDemo" */;
+			buildPhases = (
+				AE8D70982012F4CD002E3580 /* Sources */,
+				AE8D70992012F4CD002E3580 /* Frameworks */,
+				AE8D709A2012F4CD002E3580 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XTInputKitDemo;
+			productName = XTInputKitDemo;
+			productReference = AE8D709C2012F4CD002E3580 /* XTInputKitDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AE8D70942012F4CD002E3580 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = XTI;
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = input;
+				TargetAttributes = {
+					AE8D709B2012F4CD002E3580 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = AE8D70972012F4CD002E3580 /* Build configuration list for PBXProject "XTInputKitDemo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AE8D70932012F4CD002E3580;
+			productRefGroup = AE8D709D2012F4CD002E3580 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AE8D709B2012F4CD002E3580 /* XTInputKitDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AE8D709A2012F4CD002E3580 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE8D70A72012F4CD002E3580 /* Assets.xcassets in Resources */,
+				AE66B907201C5ED5002E3FFF /* LaunchScreen.storyboard in Resources */,
+				AE66B90B201F5E61002E3FFF /* Storyboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AE8D70982012F4CD002E3580 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE8D70A22012F4CD002E3580 /* ViewController.swift in Sources */,
+				AE8D70D42012F4EA002E3580 /* XTIDispatchQueue+.swift in Sources */,
+				AE8D70D52012F4EA002E3580 /* XTIBaseNameNamespace.swift in Sources */,
+				AE8D70D62012F4EA002E3580 /* XTILoger.swift in Sources */,
+				AE8D70D22012F4EA002E3580 /* XTIDate+.swift in Sources */,
+				AE8D70CC2012F4EA002E3580 /* XTIButton+.swift in Sources */,
+				AE66B90D201F6DE9002E3FFF /* XTINavigationController.swift in Sources */,
+				AE8D70D92012F4EA002E3580 /* XTIViewController+.m in Sources */,
+				AE8D70DA2012F4EA002E3580 /* XTINavigationController+.m in Sources */,
+				AE8D70A02012F4CD002E3580 /* AppDelegate.swift in Sources */,
+				AE8D70D02012F4EA002E3580 /* XTINavigationController+.swift in Sources */,
+				AE8D70D72012F4EA002E3580 /* XTIMacros.swift in Sources */,
+				AE8D70D82012F4EA002E3580 /* XTIObserver.swift in Sources */,
+				AE8D70CF2012F4EA002E3580 /* XTIViewController+.swift in Sources */,
+				AE66B909201F1DCA002E3FFF /* XTITool.swift in Sources */,
+				AECEFFC8201C2C6300B96754 /* NSObject+.swift in Sources */,
+				AE8D70CD2012F4EA002E3580 /* XTIColor+.swift in Sources */,
+				AE8D70D12012F4EA002E3580 /* XTIString+.swift in Sources */,
+				AE8D70D32012F4EA002E3580 /* XTIDevice+.swift in Sources */,
+				AE66B903201C58E7002E3FFF /* UITabBarController+.swift in Sources */,
+				AE8D70CB2012F4EA002E3580 /* XTIView+.swift in Sources */,
+				AE8D70CE2012F4EA002E3580 /* XTIImage+.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AE8D70AC2012F4CD002E3580 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AE8D70AD2012F4CD002E3580 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AE8D70AF2012F4CD002E3580 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZZ2Q79GEK8;
+				INFOPLIST_FILE = XTInputKitDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.07coding.XTKitDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/../Source/XTInputKit-ObjC.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AE8D70B02012F4CD002E3580 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZZ2Q79GEK8;
+				INFOPLIST_FILE = XTInputKitDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.07coding.XTKitDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/../Source/XTInputKit-ObjC.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AE8D70972012F4CD002E3580 /* Build configuration list for PBXProject "XTInputKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE8D70AC2012F4CD002E3580 /* Debug */,
+				AE8D70AD2012F4CD002E3580 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE8D70AE2012F4CD002E3580 /* Build configuration list for PBXNativeTarget "XTInputKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE8D70AF2012F4CD002E3580 /* Debug */,
+				AE8D70B02012F4CD002E3580 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AE8D70942012F4CD002E3580 /* Project object */;
+}

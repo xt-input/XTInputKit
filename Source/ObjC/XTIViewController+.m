@@ -1,0 +1,80 @@
+//
+//  XTIViewController+.m
+//  XTInputKit
+//
+//  Created by Input on 2018/1/19.
+//  Copyright © 2018年 Input. All rights reserved.
+//
+
+#import "XTIViewController+.h"
+#import <objc/runtime.h>
+
+@implementation UIViewController (xtiExtension)
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Method originalMethod = class_getInstanceMethod(self, @selector(viewWillAppear:));
+        Method swizzledMethod = class_getInstanceMethod(self, @selector(xti_viewWillAppear:));
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+        
+        Method originalDidLoadMethod = class_getInstanceMethod(self, @selector(viewDidLoad));
+        Method swizzledDidLoadMethod = class_getInstanceMethod(self, @selector(xti_viewDidLoad));
+        method_exchangeImplementations(originalDidLoadMethod, swizzledDidLoadMethod);
+            
+        Method viewWillDisappear_originalMethod = class_getInstanceMethod(self, @selector(viewWillDisappear:));
+        Method viewWillDisappear_swizzledMethod = class_getInstanceMethod(self, @selector(xti_viewWillDisappear:));
+        method_exchangeImplementations(viewWillDisappear_originalMethod, viewWillDisappear_swizzledMethod);
+    });
+}
+
+- (void)xti_viewDidLoad {
+    [self xti_viewDidLoad];
+}
+
+- (void)xti_viewWillAppear:(BOOL)animated {
+    [self xti_viewWillAppear:animated];
+    if (self.willAppearBlock) {
+        self.willAppearBlock(self, animated);
+    }
+}
+
+- (void)xti_viewWillDisappear:(BOOL)animated {
+    [self xti_viewWillDisappear:animated];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        UIViewController *viewController = self.navigationController.viewControllers.lastObject;
+        if (viewController && !viewController.xti_navigationBarHidden) {
+            [self.navigationController setNavigationBarHidden:NO animated:NO];
+        }
+    });
+}
+
+- (XTIVCWillAppearBlock)willAppearBlock {
+    return (XTIVCWillAppearBlock)objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setWillAppearBlock:(XTIVCWillAppearBlock)willAppearBlock {
+    objc_setAssociatedObject(self, @selector(willAppearBlock), willAppearBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void)setXti_disabledBackGesture:(BOOL)xti_disabledBackGesture {
+    objc_setAssociatedObject(self, @selector(xti_disabledBackGesture), @(xti_disabledBackGesture), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (BOOL)xti_disabledBackGesture {
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
+- (void)setXti_navigationBarHidden:(BOOL)xti_navigationBarHidden {
+    objc_setAssociatedObject(self, @selector(xti_navigationBarHidden), @(xti_navigationBarHidden), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)xti_navigationBarHidden {
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
+- (BOOL)clickBackIsPop {
+    return YES;
+}
+
+@end
+
