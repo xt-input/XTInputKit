@@ -1,6 +1,6 @@
-# README
+# XTInputKit
 
-XTKit是一套swift版的代码集，暂时有：
+XTInputKit是一套swift版的代码集，暂时有：
 
 - [XTILoger](#xtiloger)
 - [XTIMacros](#xtimacros)
@@ -88,25 +88,25 @@ override func xti_openBackGesture() -> Bool {
 >
 >    xti_setBarButtonItem(_:title:img:titleColor:action:)
 >
->  2. 跳转到其它控制器，根据当前控制器的跳转模式(push、present)自动选择跳转模式，动画参数默认是true
+> 2. 跳转到其它控制器，根据当前控制器的跳转模式(push、present)自动选择跳转模式，动画参数默认是true
 >
->      xti_pushOrPresentVC(_:animated:)
+>    xti_pushOrPresentVC(_:animated:)
 >
->  3.  关闭当前控制器，和跳转其它控制器方法对应，动画参数默认是true，`completion`参数默认为nil
+> 3. 关闭当前控制器，和跳转其它控制器方法对应，动画参数默认是true，`completion`参数默认为nil
 >
->      xti_popOrDismiss(_:completion:)
+>    xti_popOrDismiss(_:completion:)
 >
->  4.   通过StoryBoard初始化控制器，该方法如果不传`withIdentifier`默认使用控制器类名，也就是说如果在StoryBoard里面将控制器的StoryBoard ID设置成类名就只要StoryBoard文件名一个参数就可以了
+> 4. 通过StoryBoard初始化控制器，该方法如果不传`withIdentifier`默认使用控制器类名，也就是说如果在StoryBoard里面将控制器的StoryBoard ID设置成类名就只要StoryBoard文件名一个参数就可以了
 >
->       initwithstoryboard(_:withIdentifier:)
+>    initwithstoryboard(_:withIdentifier:)
 >
->  5.   设置展示在下一级界面导航栏返回按钮的文案和颜色，系统默认是显示该控制器的标题，颜色是蓝色
+> 5. 设置展示在下一级界面导航栏返回按钮的文案和颜色，系统默认是显示该控制器的标题，颜色是蓝色
 >
->       xti_nextBackTitle、xti_nextBackColor
+>    xti_nextBackTitle、xti_nextBackColor
 >
-> 6.  设置不同的tabbar标题和navigation标题
+> 6. 设置不同的tabbar标题和navigation标题
 >
->      xti_tabbarTitle、xti_navigationTitle
+>    xti_tabbarTitle、xti_navigationTitle
 
 使用方法：
 
@@ -137,3 +137,5 @@ self.xti_popOrDismiss()
 ## 最后
 
 有些功能扩展没有写上来，代码里有部分注释，请参考注释。
+
+还有一些其他开发笔记之类的可以到我的博客上查看：[小唐朝的blog](http://blog.07coding.com)
