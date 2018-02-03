@@ -8,7 +8,7 @@
 
 #import "XTIViewController+.h"
 #import <objc/runtime.h>
-
+#import "XTIColor+.h"
 @implementation UIViewController (xtiExtension)
 
 + (void)load {
@@ -17,6 +17,10 @@
         Method originalMethod = class_getInstanceMethod(self, @selector(viewWillAppear:));
         Method swizzledMethod = class_getInstanceMethod(self, @selector(xti_viewWillAppear:));
         method_exchangeImplementations(originalMethod, swizzledMethod);
+        
+        Method originalDidMethod = class_getInstanceMethod(self, @selector(viewDidAppear:));
+        Method swizzledDidMethod = class_getInstanceMethod(self, @selector(xti_viewDidAppear:));
+        method_exchangeImplementations(originalDidMethod, swizzledDidMethod);
         
         Method originalDidLoadMethod = class_getInstanceMethod(self, @selector(viewDidLoad));
         Method swizzledDidLoadMethod = class_getInstanceMethod(self, @selector(xti_viewDidLoad));
@@ -37,14 +41,23 @@
     if (self.willAppearBlock) {
         self.willAppearBlock(self, animated);
     }
+
+}
+- (void)xti_viewDidAppear:(BOOL)animated {
+    [self xti_viewDidAppear:animated];
+    if (self.xti_navigationBarBackgroundColor) {
+        self.navigationController.navigationBar.barTintColor = self.xti_navigationBarBackgroundColor;
+    }
 }
 
 - (void)xti_viewWillDisappear:(BOOL)animated {
     [self xti_viewWillDisappear:animated];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         UIViewController *viewController = self.navigationController.viewControllers.lastObject;
-        if (viewController && !viewController.xti_navigationBarHidden) {
-            [self.navigationController setNavigationBarHidden:NO animated:NO];
+        if (viewController) {
+            if (!viewController.xti_navigationBarHidden) {
+                [self.navigationController setNavigationBarHidden:NO animated:NO];
+            }
         }
     });
 }
@@ -55,6 +68,13 @@
 
 - (void)setWillAppearBlock:(XTIVCWillAppearBlock)willAppearBlock {
     objc_setAssociatedObject(self, @selector(willAppearBlock), willAppearBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void)setXti_navigationBarBackgroundColor:(UIColor *)xti_navigationBarBackgroundColor {
+    objc_setAssociatedObject(self, @selector(xti_navigationBarBackgroundColor), xti_navigationBarBackgroundColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (UIColor *)xti_navigationBarBackgroundColor {
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 - (void)setXti_disabledBackGesture:(BOOL)xti_disabledBackGesture {

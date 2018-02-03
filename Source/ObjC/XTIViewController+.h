@@ -15,6 +15,11 @@ typedef void (^XTIVCWillAppearBlock) (UIViewController *viewController, BOOL ani
 @property (nonatomic, copy) XTIVCWillAppearBlock willAppearBlock;
 
 /**
+ 导航栏颜色，不支持透明通道
+ */
+@property (nonatomic, copy) UIColor *xti_navigationBarBackgroundColor;
+
+/**
  隐藏导航栏，默认为NO
  */
 @property (nonatomic, assign) BOOL xti_navigationBarHidden;

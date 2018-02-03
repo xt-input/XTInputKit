@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE5EACAD20256FB6002FDD91 /* XTIColor+.m in Sources */ = {isa = PBXBuildFile; fileRef = AE5EACAC20256FB6002FDD91 /* XTIColor+.m */; };
 		AE66B903201C58E7002E3FFF /* UITabBarController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE66B902201C58E7002E3FFF /* UITabBarController+.swift */; };
 		AE66B907201C5ED5002E3FFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE66B906201C5ED5002E3FFF /* LaunchScreen.storyboard */; };
 		AE66B909201F1DCA002E3FFF /* XTITool.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE66B908201F1DCA002E3FFF /* XTITool.swift */; };
@@ -35,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE5EACAB20256FB6002FDD91 /* XTIColor+.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XTIColor+.h"; sourceTree = "<group>"; };
+		AE5EACAC20256FB6002FDD91 /* XTIColor+.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "XTIColor+.m"; sourceTree = "<group>"; };
 		AE66B902201C58E7002E3FFF /* UITabBarController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+.swift"; sourceTree = "<group>"; };
 		AE66B906201C5ED5002E3FFF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE66B908201F1DCA002E3FFF /* XTITool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITool.swift; sourceTree = "<group>"; };
@@ -183,6 +186,8 @@
 				AE8D70C82012F4EA002E3580 /* XTIViewController+.m */,
 				AE8D70C72012F4EA002E3580 /* XTINavigationController+.h */,
 				AE8D70C92012F4EA002E3580 /* XTINavigationController+.m */,
+				AE5EACAB20256FB6002FDD91 /* XTIColor+.h */,
+				AE5EACAC20256FB6002FDD91 /* XTIColor+.m */,
 			);
 			path = ObjC;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 				AE8D70D52012F4EA002E3580 /* XTIBaseNameNamespace.swift in Sources */,
 				AE8D70D62012F4EA002E3580 /* XTILoger.swift in Sources */,
 				AE8D70D22012F4EA002E3580 /* XTIDate+.swift in Sources */,
+				AE5EACAD20256FB6002FDD91 /* XTIColor+.m in Sources */,
 				AE8D70CC2012F4EA002E3580 /* XTIButton+.swift in Sources */,
 				AE66B90D201F6DE9002E3FFF /* XTINavigationController.swift in Sources */,
 				AE8D70D92012F4EA002E3580 /* XTIViewController+.m in Sources */,

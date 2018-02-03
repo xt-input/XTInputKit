@@ -107,6 +107,10 @@ override func xti_openBackGesture() -> Bool {
 > 6. 设置不同的tabbar标题和navigation标题
 >
 >    xti_tabbarTitle、xti_navigationTitle
+>
+> 7. 设置导航栏背景色，不支持透明通道，每一个控制器都可以设定不一样的颜色
+>
+>    xti_navigationBarBackgroundColor
 
 使用方法：
 
@@ -123,6 +127,8 @@ self.xti_tabbarTitle = "tabbar标题"	//设置标签栏标题，当导航栏标�
 self.xti_pushOrPresentVC(ViewController.initwithstoryboard("Storyboard"))
 //关闭当前控制器
 self.xti_popOrDismiss()
+//设置导航栏背景颜色
+self.xti_navigationBarBackgroundColor = UIColor.red
 ```
 ## UITabBarController
 

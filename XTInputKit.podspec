@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XTInputKit"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "一些常用的iOS开发代码及扩展集合"
   s.description  = <<-DESC
                     平时开发积累的代码整合起来的。
