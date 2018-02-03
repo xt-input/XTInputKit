@@ -8,7 +8,7 @@
 
 #import "XTIViewController+.h"
 #import <objc/runtime.h>
-#import "XTIColor+.h"
+
 @implementation UIViewController (xtiExtension)
 
 + (void)load {

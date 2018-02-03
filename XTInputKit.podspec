@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name         = "XTInputKit"
   s.version      = "0.0.3"
-  s.summary      = "一些常用的iOS开发代码及扩展集合"
+  s.summary      = "一些常用的iOS开发代码及扩展集合，例如打印日志的工具XTILoger，用16进制取颜色···"
   s.description  = <<-DESC
-                    平时开发积累的代码整合起来的。
+                    平时开发积累的代码整合起来的。包括且不限于UINavigationController、UIViewController、UITabBarController的扩展，以及String、Date、DispatchQueue的扩展。
                    DESC
   s.homepage     = "https://github.com/xt-input/XTInputKit"
   s.license      = "MIT"

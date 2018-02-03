@@ -7,6 +7,7 @@
 //	参考：https://github.com/forkingdog/FDFullscreenPopGesture
 
 #import <UIKit/UIKit.h>
+#import "XTIColor+.h"
 
 typedef void (^XTIVCWillAppearBlock) (UIViewController *viewController, BOOL animated);
 
@@ -35,6 +36,7 @@ typedef void (^XTIVCWillAppearBlock) (UIViewController *viewController, BOOL ani
 /**
  用于系统导航控制器自带的返回按钮点击是否响应(不拦截手势)
  如果需要拦截手势请禁用右划返回
+ 如果在该函数里调用关闭控制器请返回NO(false)
  */
 - (BOOL)clickBackIsPop;
 
