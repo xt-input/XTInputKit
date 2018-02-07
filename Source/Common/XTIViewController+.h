@@ -7,7 +7,6 @@
 //	参考：https://github.com/forkingdog/FDFullscreenPopGesture
 
 #import <UIKit/UIKit.h>
-#import "XTIColor+.h"
 
 typedef void (^XTIVCWillAppearBlock) (UIViewController *viewController, BOOL animated);
 

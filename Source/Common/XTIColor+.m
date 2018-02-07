@@ -8,7 +8,7 @@
 
 #import "XTIColor+.h"
 
-@implementation UIColor (xtiExtension)
+@implementation UIColor (xtiCommonExtension)
 - (UIColor *)toColor:(UIColor *)color progress:(CGFloat)progress {
     if (progress >= 1) {
         return color;

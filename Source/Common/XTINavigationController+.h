@@ -8,8 +8,12 @@
 
 #import "XTIViewController+.h"
 
-@interface UINavigationController (xtExtension)
+/**
+ 右划动作结束后的位移量的通知，userInfo参数：@{@"moveX":@(moveX)}
+ */
+#define XTINotificationNameNavigationTransitionMoveX @"XTINotificationNameNavigationTransitionMoveX"
 
+@interface UINavigationController (xtExtension)
 
 /**
  是否开启全屏右划返回手势，默认取类属性xti_openBackGesture

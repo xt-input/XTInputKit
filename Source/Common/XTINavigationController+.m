@@ -157,8 +157,7 @@
             [self.xti_PanGesture addTarget:internalTarget action:internalAction];
             self.interactivePopGestureRecognizer.enabled = NO;
         }
-    } else {
-        [self.interactivePopGestureRecognizer addTarget:internalTarget action:internalAction];
+    } else if (![[internalTargets.lastObject valueForKey:@"target"] isEqual:self]){
         [self.interactivePopGestureRecognizer addTarget:self action:internalAction];
     }
     self.delegate = self.xtiDelegate;
@@ -201,6 +200,7 @@
         }
             break;
         default:
+            [NSNotificationCenter.defaultCenter postNotificationName:XTINotificationNameNavigationTransitionMoveX object:nil userInfo:@{@"moveX":@(moveX)}];
             break;
     }
 }

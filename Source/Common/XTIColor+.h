@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor (xtiExtension)
+@interface UIColor (xtiCommonExtension)
 - (UIColor *)toColor:(UIColor *)color progress:(CGFloat)progress;
 - (BOOL)isEqualColor:(UIColor *)color;
 @end
