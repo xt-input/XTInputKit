@@ -12,4 +12,4 @@
 #import "XTIColor+.h"
 #import "XTINavigationController+.h"
 
-#endif /* Common_h */
+#endif

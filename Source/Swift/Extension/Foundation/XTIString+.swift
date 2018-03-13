@@ -7,11 +7,12 @@
 //
 
 import Foundation
-extension String: XTIBaseNameNamespace { }
+extension String: XTIBaseNameNamespace {}
 
 public extension XTITypeWrapperProtocol where WrappedType == String {
 
-    // MARK:获取字符串的长度
+    // MARK: 获取字符串的长度
+
     public var length: Int {
         return (wrappedValue as NSString).length
     }
@@ -22,7 +23,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// - Returns: true or false
     public func hasSubstring(_ sub: String) -> Bool {
         let range = wrappedValue.range(of: sub)
-        if range == nil || (range?.isEmpty)!{
+        if range == nil || (range?.isEmpty)! {
             return false
         }
         return true
@@ -30,7 +31,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
 
     public func substringIndex(_ sub: String) -> String.Index {
         let range = wrappedValue.range(of: sub)
-        if range == nil{
+        if range == nil {
             return wrappedValue.endIndex
         }
         return (range?.lowerBound)!
@@ -41,7 +42,8 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
         str = str.suffix(from: (wrappedValue.range(of: startString)?.upperBound)!)
         return "\(str)"
     }
-    // MARK:字符串的截取
+
+    // MARK: 字符串的截取
 
     /// 字符串的截取
     /// 从startPosition截取到endPosition，如果endPosition超出字符串长度就取最长
@@ -100,7 +102,8 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
         return self.substring(startPosition: self.length - length + 1, endPosition: self.length)
     }
 
-    // MARK:字符串的range相关
+    // MARK: 字符串的range相关
+
     /// 获取字符串指定范围
     ///
     /// - Parameters:
@@ -119,7 +122,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     ///   - startPosition: 开始位置
     ///   - rangeLength: 长度
     /// - Returns: 符合条件的范围
-    public func range(startPosition start: Int,rangeLength length: Int) -> Range<String.Index> {
+    public func range(startPosition start: Int, rangeLength length: Int) -> Range<String.Index> {
         let temp = length + start
         return self.range(startPosition: start, endPosition: temp)
     }
@@ -133,7 +136,8 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
         return wrappedValue.index(wrappedValue.startIndex, offsetBy: temp)
     }
 
-    //MARK: - 正则验证
+    // MARK: - 正则验证
+
     public var isPhone: Bool {
         let phone = wrappedValue.replacingOccurrences(of: "-", with: "")
         if phone.xti.length != 11 {
@@ -151,17 +155,17 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
          */
         let mobile = "^1[34578]\\d{9}$"
 
-        let regexMobile = NSPredicate(format: "SELF MATCHES %@",mobile)
+        let regexMobile = NSPredicate(format: "SELF MATCHES %@", mobile)
         if regexMobile.evaluate(with: phone) {
             return true
-        }else {
+        } else {
             return false
         }
     }
+
     /// 字符串的Md5
     public var md5: String {
         if let data = wrappedValue.data(using: .utf8, allowLossyConversion: true) {
-
             let message = data.withUnsafeBytes { bytes -> [UInt8] in
                 return Array(UnsafeBufferPointer(start: bytes, count: data.count))
             }
@@ -221,16 +225,13 @@ extension Int {
     func bytes(_ totalBytes: Int = MemoryLayout<Int>.size) -> [UInt8] {
         return arrayOfBytes(self, length: totalBytes)
     }
-
 }
 
 extension NSMutableData {
-
     /** Convenient way to append bytes */
     func appendBytes(_ arrayOfBytes: [UInt8]) {
         append(arrayOfBytes, length: arrayOfBytes.count)
     }
-
 }
 
 protocol HashProtocol {
@@ -241,7 +242,6 @@ protocol HashProtocol {
 }
 
 extension HashProtocol {
-
     func prepare(_ len: Int) -> Array<UInt8> {
         var tmpMessage = message
 
@@ -279,7 +279,6 @@ func toUInt32Array(_ slice: ArraySlice<UInt8>) -> Array<UInt32> {
 }
 
 struct BytesIterator: IteratorProtocol {
-
     let chunkSize: Int
     let data: [UInt8]
 
@@ -303,20 +302,19 @@ struct BytesSequence: Sequence {
     let data: [UInt8]
 
     func makeIterator() -> BytesIterator {
-        return BytesIterator(chunkSize: chunkSize, data: data)
+        return BytesIterator(chunkSize: self.chunkSize, data: self.data)
     }
 }
 
 func rotateLeft(_ value: UInt32, bits: UInt32) -> UInt32 {
-    return ((value << bits) & 0xFFFFFFFF) | (value >> (32 - bits))
+    return ((value << bits) & 0xffffffff) | (value >> (32 - bits))
 }
 
 class MD5: HashProtocol {
-
     static let size = 16 // 128 / 8
     let message: [UInt8]
 
-    init (_ message: [UInt8]) {
+    init(_ message: [UInt8]) {
         self.message = message
     }
 
@@ -375,7 +373,7 @@ class MD5: HashProtocol {
             var dTemp: UInt32 = 0
 
             // Main loop
-            for j in 0 ..< sines.count {
+            for j in 0..<self.sines.count {
                 var g = 0
                 var F: UInt32 = 0
 
@@ -402,7 +400,7 @@ class MD5: HashProtocol {
                 dTemp = D
                 D = C
                 C = B
-                B = B &+ rotateLeft((A &+ F &+ sines[j] &+ M[g]), bits: shifts[j])
+                B = B &+ rotateLeft((A &+ F &+ self.sines[j] &+ M[g]), bits: self.shifts[j])
                 A = dTemp
             }
 
@@ -426,4 +424,3 @@ class MD5: HashProtocol {
         return result
     }
 }
-

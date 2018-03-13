@@ -18,15 +18,15 @@
         Method originalMethod = class_getInstanceMethod(self, @selector(viewWillAppear:));
         Method swizzledMethod = class_getInstanceMethod(self, @selector(xti_viewWillAppear:));
         method_exchangeImplementations(originalMethod, swizzledMethod);
-        
+
         Method originalDidMethod = class_getInstanceMethod(self, @selector(viewDidAppear:));
         Method swizzledDidMethod = class_getInstanceMethod(self, @selector(xti_viewDidAppear:));
         method_exchangeImplementations(originalDidMethod, swizzledDidMethod);
-        
+
         Method originalDidLoadMethod = class_getInstanceMethod(self, @selector(viewDidLoad));
         Method swizzledDidLoadMethod = class_getInstanceMethod(self, @selector(xti_viewDidLoad));
         method_exchangeImplementations(originalDidLoadMethod, swizzledDidLoadMethod);
-            
+
         Method viewWillDisappear_originalMethod = class_getInstanceMethod(self, @selector(viewWillDisappear:));
         Method viewWillDisappear_swizzledMethod = class_getInstanceMethod(self, @selector(xti_viewWillDisappear:));
         method_exchangeImplementations(viewWillDisappear_originalMethod, viewWillDisappear_swizzledMethod);
@@ -42,7 +42,6 @@
     if (self.willAppearBlock) {
         self.willAppearBlock(self, animated);
     }
-
 }
 - (void)xti_viewDidAppear:(BOOL)animated {
     [self xti_viewDidAppear:animated];
@@ -53,6 +52,7 @@
 
 - (void)xti_viewWillDisappear:(BOOL)animated {
     [self xti_viewWillDisappear:animated];
+    //    一定要加多线程处理导航栏的显示，不然手势一开始导航栏就显示了，原因是(迷)。
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         UIViewController *viewController = self.navigationController.viewControllers.lastObject;
         if (viewController) {
@@ -64,7 +64,7 @@
 }
 
 - (XTIVCWillAppearBlock)willAppearBlock {
-    return (XTIVCWillAppearBlock)objc_getAssociatedObject(self, _cmd);
+    return (XTIVCWillAppearBlock) objc_getAssociatedObject(self, _cmd);
 }
 
 - (void)setWillAppearBlock:(XTIVCWillAppearBlock)willAppearBlock {

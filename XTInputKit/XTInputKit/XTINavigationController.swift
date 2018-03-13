@@ -11,9 +11,8 @@ import UIKit
 var i = 0
 
 class XTINavigationController: UINavigationController {
-    
     var j: Int! = i
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -24,10 +23,11 @@ class XTINavigationController: UINavigationController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     override func xti_openBackGesture() -> Bool {
         return j % 2 == 0
     }
+
     /*
     // MARK: - Navigation
 
@@ -37,5 +37,4 @@ class XTINavigationController: UINavigationController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

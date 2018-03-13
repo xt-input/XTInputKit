@@ -8,10 +8,9 @@
 
 import UIKit
 
-extension UIImage: XTIBaseNameNamespace { }
+extension UIImage: XTIBaseNameNamespace {}
 
 public extension XTITypeWrapperProtocol where WrappedType == UIImage {
-    
     /// 通过颜色和大小获取图片
     ///
     /// - Parameters:
@@ -22,15 +21,15 @@ public extension XTITypeWrapperProtocol where WrappedType == UIImage {
         let rect = CGRect(origin: CGPoint.zero, size: size)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
-        if (context != nil) {
-            context!.setFillColor(color.cgColor);
-            context!.fill(rect);
+        if context != nil {
+            context!.setFillColor(color.cgColor)
+            context!.fill(rect)
         }
-        let image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        return image == nil ? UIImage() : image!;
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image == nil ? UIImage() : image!
     }
-    
+
     /// 图片中心拉伸，适用于设置圆角渐变的边框
     ///
     /// - Returns: 生成的图片
@@ -39,7 +38,7 @@ public extension XTITypeWrapperProtocol where WrappedType == UIImage {
         let point = CGPoint(x: imageSize.width / 2, y: imageSize.height / 2)
         return stretchAtPoint(point)
     }
-    
+
     /// 图片从指定的点拉伸
     ///
     /// - Parameter point: 拉伸的点
@@ -48,5 +47,4 @@ public extension XTITypeWrapperProtocol where WrappedType == UIImage {
         let edgeInsets = UIEdgeInsetsMake(point.y, point.x, wrappedValue.size.height - point.y, wrappedValue.size.width - point.x)
         return wrappedValue.resizableImage(withCapInsets: edgeInsets, resizingMode: UIImageResizingMode.stretch)
     }
-    
 }

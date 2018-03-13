@@ -1,8 +1,8 @@
 //
 //  XTILoger.swift
 //  XTInputKit
-//	参考代码：https://github.com/honghaoz/Loggerithm
-//	(仿写)
+//    参考代码：https://github.com/honghaoz/Loggerithm
+//    (仿写)
 //  Created by Input on 2018/1/3.
 //  Copyright © 2018年 Input. All rights reserved.
 //
@@ -10,46 +10,41 @@
 import UIKit
 
 public enum XTILogerLevel: Int {
-    
     public typealias RawValue = Int
     
-    case all        = 	0
-    case info		=	1
-    case debug		=	2
-    case warning	=	3
-    case error		=	4
-    case off		=	5
+    case all = 0
+    case info = 1
+    case debug = 2
+    case warning = 3
+    case error = 4
+    case off = 5
 }
 
 extension XTILogerLevel: Comparable {
-    static public func <(lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
+    public static func <(lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
     
-    static public func <=(lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
+    public static func <=(lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
         return lhs.rawValue <= rhs.rawValue
     }
     
-    static public func >=(lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
+    public static func >=(lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
         return lhs.rawValue >= rhs.rawValue
     }
 }
 
-
 /// 请在 "Swift Compiler - Custom Flags" 选项查找 "Other Swift Flags" 然后在DEBUG配置那里添加"-D DEBUG".
 
 public struct XTILoger {
-    
     private static var _default: XTILoger!
     public static var `default`: XTILoger {
-        get{
-            if _default == nil {
-               _default = XTILoger()
-            }
-            return _default!
-    	}
+        if _default == nil {
+            _default = XTILoger()
+        }
+        return _default!
     }
-
+    
     let dateFormatter = DateFormatter()
     
     /// 是否打印时间戳
@@ -74,71 +69,63 @@ public struct XTILoger {
     public var isShowLineNumber = true
     
     private var logLevel: XTILogerLevel! {
-        get{
-            #if DEBUG
-            	return debugLogLevel
-            #else
-                return releaseLogLevel
-            #endif
-        }
+        #if DEBUG
+            return debugLogLevel
+        #else
+            return self.releaseLogLevel
+        #endif
     }
     
     init() {
-    	dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-        debugLogLevel = XTILogerLevel.all
-        releaseLogLevel = XTILogerLevel.error
+        self.dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        self.debugLogLevel = XTILogerLevel.all
+        self.releaseLogLevel = XTILogerLevel.error
     }
     
     @discardableResult public func info(format: String,
                                         args: CVarArg...,
-                						function: String = #function,
+                                        function: String = #function,
                                         file: String = #file,
-                                        line: Int = #line) -> String
-    {
-        if (self.logLevel <= .info) {
-            return self.log(.info, function:function, file:file, line:line, format:format,args:args)
+                                        line: Int = #line) -> String {
+        if self.logLevel <= .info {
+            return self.log(.info, function: function, file: file, line: line, format: format, args: args)
         }
         return ""
     }
     
     @discardableResult public func info<T>(_ value: T,
-                                        function: String = #function,
-                                        file: String = #file,
-                                        line: Int = #line) -> String
-    {
-        return self.info(format:"\(value)", function:function, file:file, line:line)
+                                           function: String = #function,
+                                           file: String = #file,
+                                           line: Int = #line) -> String {
+        return self.info(format: "\(value)", function: function, file: file, line: line)
     }
-
-
+    
     @discardableResult public func debug(format: String,
-                                        args: CVarArg...,
-        function: String = #function,
-        file: String = #file,
-        line: Int = #line) -> String
-    {
-        if (self.logLevel <= .debug) {
-            return self.log(.debug, function:function, file:file, line:line, format:format,args:args)
+                                         args: CVarArg...,
+                                         function: String = #function,
+                                         file: String = #file,
+                                         line: Int = #line) -> String {
+        if self.logLevel <= .debug {
+            return self.log(.debug, function: function, file: file, line: line, format: format, args: args)
         }
         return ""
     }
     
     @discardableResult public func debug<T>(_ value: T,
-                                           function: String = #function,
-                                           file: String = #file,
-                                           line: Int = #line) -> String
-    {
-        return self.debug(format:"\(value)", function:function, file:file, line:line)
+                                            function: String = #function,
+                                            file: String = #file,
+                                            line: Int = #line) -> String {
+        return self.debug(format: "\(value)", function: function, file: file, line: line)
     }
     
     @discardableResult public func warning(format: String,
                                            args: CVarArg...,
-        function: String = #function,
-        file: String = #file,
-        line: Int = #line) -> String
-    {
-        if (self.logLevel <= .warning) {
-            return self.log(.warning, function:function, file:file, line:line, format:format,args:args)
+                                           function: String = #function,
+                                           file: String = #file,
+                                           line: Int = #line) -> String {
+        if self.logLevel <= .warning {
+            return self.log(.warning, function: function, file: file, line: line, format: format, args: args)
         }
         return ""
     }
@@ -146,29 +133,26 @@ public struct XTILoger {
     @discardableResult public func warning<T>(_ value: T,
                                               function: String = #function,
                                               file: String = #file,
-                                              line: Int = #line) -> String
-    {
-        return self.warning(format:"\(value)", function:function, file:file, line:line)
+                                              line: Int = #line) -> String {
+        return self.warning(format: "\(value)", function: function, file: file, line: line)
     }
     
     @discardableResult public func error(format: String,
-                                        args: CVarArg...,
-        function: String = #function,
-        file: String = #file,
-        line: Int = #line) -> String
-    {
-        if (self.logLevel <= .error) {
-            return self.log(.error, function:function, file:file, line:line, format:format,args:args)
+                                         args: CVarArg...,
+                                         function: String = #function,
+                                         file: String = #file,
+                                         line: Int = #line) -> String {
+        if self.logLevel <= .error {
+            return self.log(.error, function: function, file: file, line: line, format: format, args: args)
         }
         return ""
     }
     
     @discardableResult public func error<T>(_ value: T,
-                                           function: String = #function,
-                                           file: String = #file,
-                                           line: Int = #line) -> String
-    {
-        return self.error(format:"\(value)", function:function, file:file, line:line)
+                                            function: String = #function,
+                                            file: String = #file,
+                                            line: Int = #line) -> String {
+        return self.error(format: "\(value)", function: function, file: file, line: line)
     }
     
     /// 打印日志
@@ -183,8 +167,7 @@ public struct XTILoger {
                                             file: String = #file,
                                             line: Int = #line,
                                             format: String,
-                                            args: [CVarArg]) -> String
-    {
+                                            args: [CVarArg]) -> String {
         let dateTime = isShowTime ? "\(dateFormatter.string(from: Date())) " : ""
         var levelString = ""
         switch level {
@@ -199,12 +182,12 @@ public struct XTILoger {
         default:
             break
         }
-        levelString = isShowLevel ? levelString : ""
+        levelString = self.isShowLevel ? levelString : ""
         
         var fileString = ""
-        if isShowFileName {
+        if self.isShowFileName {
             fileString += "[" + (file as NSString).lastPathComponent
-            if isShowLineNumber {
+            if self.isShowLineNumber {
                 fileString += ":\(line)"
             }
             fileString += "] "
@@ -219,7 +202,7 @@ public struct XTILoger {
             message = String(format: format, arguments: args)
         }
         
-        let threadId = String.init(unsafeBitCast(Thread.current, to: Int.self), radix: 16, uppercase: false)
+        let threadId = String(unsafeBitCast(Thread.current, to: Int.self), radix: 16, uppercase: false)
         let isMain = Thread.current.isMainThread ? "[Main] " : "[Global]<0x\(threadId)> "
         let infoString = "\(dateTime)\(levelString)\(fileString)\(isMain)\(functionString)".trimmingCharacters(in: CharacterSet(charactersIn: " "))
         let logString = infoString + (infoString.isEmpty ? "" : " => ") + "\(message)"
@@ -230,8 +213,7 @@ public struct XTILoger {
     
     fileprivate func xt_print(_ string: String) {
         #if DEBUG
-        print(string)
+            print(string)
         #endif
     }
-
 }

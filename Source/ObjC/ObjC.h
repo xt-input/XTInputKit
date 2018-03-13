@@ -11,4 +11,4 @@
 
 #import "Common.h"
 
-#endif /* ObjC_h */
+#endif

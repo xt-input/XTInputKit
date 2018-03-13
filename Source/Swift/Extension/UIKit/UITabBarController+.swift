@@ -9,7 +9,6 @@
 import UIKit
 
 public extension UITabBarController {
-    
     /// 添加tabbar的子控制器
     ///
     /// - Parameters:
@@ -26,7 +25,6 @@ public extension UITabBarController {
         }
         viewController.tabBarItem.image = image
         viewController.tabBarItem.selectedImage = selectedImage == nil ? image : selectedImage
-    	self.addChildViewController(viewController)
+        self.addChildViewController(viewController)
     }
-    
 }

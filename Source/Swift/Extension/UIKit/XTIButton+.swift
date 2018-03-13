@@ -8,9 +8,9 @@
 
 import UIKit
 
-extension UIButton: XTIBaseNameNamespace { }
+extension UIButton: XTIBaseNameNamespace {}
 
-//font
+// font
 public extension XTITypeWrapperProtocol where WrappedType == UIButton {
     /// 设置按钮字体
     public func titleFont(_ font: UIFont) {

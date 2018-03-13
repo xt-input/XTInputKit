@@ -4,11 +4,11 @@
 //
 //  Created by Input on 2018/1/19.
 //  Copyright © 2018年 Input. All rights reserved.
-//	参考：https://github.com/forkingdog/FDFullscreenPopGesture
+//    参考：https://github.com/forkingdog/FDFullscreenPopGesture
 
 #import <UIKit/UIKit.h>
 
-typedef void (^XTIVCWillAppearBlock) (UIViewController *viewController, BOOL animated);
+typedef void (^XTIVCWillAppearBlock)(UIViewController *viewController, BOOL animated);
 
 @interface UIViewController (xtiExtension)
 

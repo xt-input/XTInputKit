@@ -22,36 +22,35 @@ public extension UIView {
     }
 }
 
-//layer
+// layer
 public extension UIView {
-    
     /// 边框宽度
     @IBInspectable public var xt_borderWidth: CGFloat {
-        set{
+        set {
             self.layer.borderWidth = newValue
         }
-        get{
+        get {
             return self.layer.borderWidth
         }
     }
-    
+
     /// 边框颜色
     @IBInspectable public var xt_borderColor: UIColor {
-        set{
+        set {
             self.layer.borderColor = newValue.cgColor
         }
-        get{
-            return  self.layer.borderColor == nil ? UIColor.clear : UIColor.init(cgColor: self.layer.borderColor!)
+        get {
+            return self.layer.borderColor == nil ? UIColor.clear : UIColor.init(cgColor: self.layer.borderColor!)
         }
     }
-    
-    ///设置圆角
-    @IBInspectable public var xt_cornerRadius: CGFloat{
-        set{
+
+    /// 设置圆角
+    @IBInspectable public var xt_cornerRadius: CGFloat {
+        set {
             self.layer.masksToBounds = true
             self.layer.cornerRadius = newValue
         }
-        get{
+        get {
             return self.layer.cornerRadius
         }
     }

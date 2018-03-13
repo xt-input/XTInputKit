@@ -8,13 +8,12 @@
 
 import Foundation
 
-extension DispatchQueue: XTIBaseNameNamespace { }
+extension DispatchQueue: XTIBaseNameNamespace {}
 
 /// 用来保存onceSync的labelName
 private var labelArray = [String]()
 
 public extension XTITypeWrapperProtocol where WrappedType == DispatchQueue {
-    
     /// 在主队列延时异步执行闭包
     ///
     /// - Parameters:
@@ -34,14 +33,14 @@ public extension XTITypeWrapperProtocol where WrappedType == DispatchQueue {
     public static func globalAsyncAfter(_ qos: DispatchQoS.QoSClass = .default, time: Float, block: @escaping () -> Swift.Void) {
         WrappedType.global(qos: qos).asyncAfter(deadline: DispatchTime.now() + .milliseconds(Int(time * 1000)), execute: block)
     }
-    
+
     /// 在应用生命周期里同步执行一次闭包
     ///
     /// - Parameters:
     ///   - label: 闭包的标记，一定要保证其唯一性
     ///   - block: 闭包
     public static func onceSync(_ label: String, block: () -> Swift.Void) {
-		objc_sync_enter(self)
+        objc_sync_enter(self)
         defer {
             objc_sync_exit(self)
         }

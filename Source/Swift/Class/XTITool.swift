@@ -9,43 +9,38 @@
 import UIKit
 
 public class XTITool {
-    
     /// 获取当前活动的控制器(忽略tabbar和navigaction)
     public static var currentVC: UIViewController! {
-        get {
-            var current: UIViewController! = keyWindow.rootViewController
-            while (current.isKind(of: UITabBarController.self) || current.isKind(of: UINavigationController.self)) {
-                if let tab = current as? UITabBarController {
-                    current = tab.selectedViewController
-                }
-                if let nav = current as? UINavigationController {
-                    current = nav.topViewController
-                }
+        var current: UIViewController! = keyWindow.rootViewController
+        while current.isKind(of: UITabBarController.self) || current.isKind(of: UINavigationController.self) {
+            if let tab = current as? UITabBarController {
+                current = tab.selectedViewController
             }
-            while (current.presentedViewController != nil){
-                current = current.presentedViewController
+            if let nav = current as? UINavigationController {
+                current = nav.topViewController
             }
-            return current
         }
+        while current.presentedViewController != nil {
+            current = current.presentedViewController
+        }
+        return current
     }
+
     /// 获取rootVC
     public static var rootVC: UIViewController! {
-        get{
-            return keyWindow.rootViewController
-        }
+        return keyWindow.rootViewController
     }
+
     /// 获取当前应用活动的窗口
     public static var keyWindow: UIWindow! {
-        get{
-            var keyWindow = UIApplication.shared.keyWindow
-            if keyWindow?.windowLevel == UIWindowLevelNormal {
-                UIApplication.shared.windows.forEach({ (window) in
-                    if window.windowLevel == UIWindowLevelNormal {
-                        keyWindow = window
-                    }
-                })
+        var keyWindow = UIApplication.shared.keyWindow
+        if keyWindow?.windowLevel == UIWindowLevelNormal {
+            UIApplication.shared.windows.forEach { window in
+                if window.windowLevel == UIWindowLevelNormal {
+                    keyWindow = window
+                }
             }
-            return keyWindow
         }
+        return keyWindow
     }
 }

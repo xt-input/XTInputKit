@@ -18,17 +18,17 @@
 @implementation XTIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer {
-    
+
     UIViewController *topViewController = [self.navigationController topViewController];
     if (topViewController.xti_disabledBackGesture ||
         self.navigationController.viewControllers.count <= 1 ||
         [[self.navigationController valueForKey:@"isTransitioning"] boolValue]) {
         return NO;
     }
-    
+
     CGPoint translation = [gestureRecognizer translationInView:gestureRecognizer.view];
     BOOL isLeftToRight = [UIApplication sharedApplication].userInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionLeftToRight;
-    CGFloat multiplier = isLeftToRight ? 1 : - 1;
+    CGFloat multiplier = isLeftToRight ? 1 : -1;
     if ((translation.x * multiplier) <= 0) {
         return NO;
     }
@@ -36,7 +36,7 @@
 }
 @end
 
-@interface XTINavigationControllerDelegate: NSObject<UINavigationControllerDelegate>
+@interface XTINavigationControllerDelegate : NSObject <UINavigationControllerDelegate>
 @property (nonatomic, weak) id<UINavigationControllerDelegate> delegate;
 @end
 
@@ -53,25 +53,22 @@
     [self.delegate navigationController:navigationController didShowViewController:viewController animated:animated];
 }
 
-- (UIInterfaceOrientationMask)navigationControllerSupportedInterfaceOrientations:(UINavigationController *)navigationController NS_AVAILABLE_IOS(7_0) __TVOS_PROHIBITED {
+- (UIInterfaceOrientationMask)navigationControllerSupportedInterfaceOrientations:(UINavigationController *)navigationController NS_AVAILABLE_IOS(7_0)__TVOS_PROHIBITED {
     return [self.delegate navigationControllerSupportedInterfaceOrientations:navigationController];
-    
 }
-- (UIInterfaceOrientation)navigationControllerPreferredInterfaceOrientationForPresentation:(UINavigationController *)navigationController NS_AVAILABLE_IOS(7_0) __TVOS_PROHIBITED {
+- (UIInterfaceOrientation)navigationControllerPreferredInterfaceOrientationForPresentation:(UINavigationController *)navigationController NS_AVAILABLE_IOS(7_0)__TVOS_PROHIBITED {
     return [self.delegate navigationControllerPreferredInterfaceOrientationForPresentation:navigationController];
-
 }
 
-- (nullable id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
-                                   interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController NS_AVAILABLE_IOS(7_0) {
+- (nullable id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                                  interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController NS_AVAILABLE_IOS(7_0) {
     return [self.delegate navigationController:navigationController interactionControllerForAnimationController:animationController];
-
 }
 
-- (nullable id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
-                                            animationControllerForOperation:(UINavigationControllerOperation)operation
-                                                         fromViewController:(UIViewController *)fromVC
-                                                           toViewController:(UIViewController *)toVC  NS_AVAILABLE_IOS(7_0) {
+- (nullable id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                           animationControllerForOperation:(UINavigationControllerOperation)operation
+                                                        fromViewController:(UIViewController *)fromVC
+                                                          toViewController:(UIViewController *)toVC NS_AVAILABLE_IOS(7_0) {
     return [self.delegate navigationController:navigationController
                animationControllerForOperation:operation
                             fromViewController:fromVC
@@ -80,7 +77,7 @@
 
 @end
 
-@interface UINavigationController()
+@interface UINavigationController ()
 
 @property (nonatomic, strong, readonly) UIPanGestureRecognizer *xti_PanGesture;
 @property (nonatomic, assign) CGFloat startX;
@@ -89,7 +86,7 @@
 
 @end
 
-@implementation UINavigationController(xtiExtension)
+@implementation UINavigationController (xtiExtension)
 
 + (void)load {
     static dispatch_once_t onceToken;
@@ -97,7 +94,7 @@
         Method originalPushMethod = class_getInstanceMethod(self, @selector(pushViewController:animated:));
         Method swizzledPushMethod = class_getInstanceMethod(self, @selector(xti_objc_pushViewController:animated:));
         method_exchangeImplementations(originalPushMethod, swizzledPushMethod);
-        
+
         Method originalPopMethod = class_getInstanceMethod(self, @selector(popViewControllerAnimated:));
         Method swizzledPopMethod = class_getInstanceMethod(self, @selector(xti_objc_popViewControllerAnimated:));
         method_exchangeImplementations(originalPopMethod, swizzledPopMethod);
@@ -105,24 +102,25 @@
 }
 
 - (BOOL)navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
-    if([self.viewControllers count] < [navigationBar.items count]) {
+    if ([self.viewControllers count] < [navigationBar.items count]) {
         return YES;
     }
 
     BOOL shouldPop = YES;
-    UIViewController* vc = [self topViewController];
+    UIViewController *vc = [self topViewController];
     shouldPop = [vc clickBackIsPop];
-    if(shouldPop) {
+    if (shouldPop) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self popViewControllerAnimated:YES];
         });
     } else {
         // 取消 pop 后，复原返回按钮的状态
-        for(UIView *subview in [navigationBar subviews]) {
-            if(0. < subview.alpha && subview.alpha < 1.) {
-                [UIView animateWithDuration:.25 animations:^{
-                    subview.alpha = 1.;
-                }];
+        for (UIView *subview in [navigationBar subviews]) {
+            if (0. < subview.alpha && subview.alpha < 1.) {
+                [UIView animateWithDuration:.25
+                                 animations:^{
+                                     subview.alpha = 1.;
+                                 }];
             }
         }
     }
@@ -132,13 +130,14 @@
 - (UIViewController *)xti_objc_popViewControllerAnimated:(BOOL)animated {
     UIViewController *vc = [self xti_objc_popViewControllerAnimated:animated];
     CGFloat duration = 0.001;
-    if (animated){
+    if (animated) {
         duration = 0.2;
     }
     if (!self.topViewController.xti_navigationBarHidden) {
-        [UIView animateWithDuration:duration animations:^{
-            self.navigationBar.barTintColor = self.topViewController.xti_navigationBarBackgroundColor;
-        }];
+        [UIView animateWithDuration:duration
+                         animations:^{
+                             self.navigationBar.barTintColor = self.topViewController.xti_navigationBarBackgroundColor;
+                         }];
     }
     return vc;
 }
@@ -157,7 +156,7 @@
             [self.xti_PanGesture addTarget:internalTarget action:internalAction];
             self.interactivePopGestureRecognizer.enabled = NO;
         }
-    } else if (![[internalTargets.lastObject valueForKey:@"target"] isEqual:self]){
+    } else if (![[internalTargets.lastObject valueForKey:@"target"] isEqual:self]) {
         [self.interactivePopGestureRecognizer addTarget:self action:internalAction];
     }
     self.delegate = self.xtiDelegate;
@@ -169,7 +168,7 @@
 
 - (UIPanGestureRecognizer *)xti_PanGesture {
     UIPanGestureRecognizer *panGestureRecognizer = objc_getAssociatedObject(self, _cmd);
-    
+
     if (!panGestureRecognizer) {
         panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
         panGestureRecognizer.maximumNumberOfTouches = 1;
@@ -185,22 +184,20 @@
         case UIGestureRecognizerStateBegan: {
             self.startX = pointX;
             self.popViewController = self.topViewController;
-        }
-            break;
+        } break;
         case UIGestureRecognizerStateChanged: {
             UIColor *color;
             if (moveX >= 0) {
-                color = [self.topViewController.xti_navigationBarBackgroundColor toColor: self.popViewController.xti_navigationBarBackgroundColor progress:moveX / self.view.bounds.size.width];
+                color = [self.topViewController.xti_navigationBarBackgroundColor toColor:self.popViewController.xti_navigationBarBackgroundColor progress:moveX / self.view.bounds.size.width];
             } else {
-                color = [self.popViewController.xti_navigationBarBackgroundColor toColor:self.topViewController.xti_navigationBarBackgroundColor progress: moveX / self.view.bounds.size.width];
+                color = [self.popViewController.xti_navigationBarBackgroundColor toColor:self.topViewController.xti_navigationBarBackgroundColor progress:moveX / self.view.bounds.size.width];
             }
             if (!self.topViewController.xti_navigationBarHidden && !self.popViewController.xti_navigationBarHidden) {
                 self.navigationBar.barTintColor = color;
             }
-        }
-            break;
+        } break;
         default:
-            [NSNotificationCenter.defaultCenter postNotificationName:XTINotificationNameNavigationTransitionMoveX object:nil userInfo:@{@"moveX":@(moveX)}];
+            [NSNotificationCenter.defaultCenter postNotificationName:XTINotificationNameNavigationTransitionMoveX object:nil userInfo:@{ @"moveX": @(moveX) }];
             break;
     }
 }
@@ -218,7 +215,7 @@
 }
 
 - (void)setDelegate:(id<UINavigationControllerDelegate>)delegate {
-    if (self.xtiDelegate != delegate){
+    if (self.xtiDelegate != delegate) {
         self.xtiDelegate.delegate = delegate;
     }
 }
@@ -271,8 +268,8 @@
 }
 
 - (BOOL)xti_openBackGesture {
-    NSNumber *openBackGesture = objc_getAssociatedObject(self, _cmd) ;
-    if (openBackGesture){
+    NSNumber *openBackGesture = objc_getAssociatedObject(self, _cmd);
+    if (openBackGesture) {
         return [openBackGesture boolValue];
     }
     self.xti_openBackGesture = UINavigationController.xti_openBackGesture;
@@ -284,8 +281,8 @@
 }
 
 + (BOOL)xti_openBackGesture {
-    NSNumber *openBackGesture = objc_getAssociatedObject(self, _cmd) ;
-    if (openBackGesture){
+    NSNumber *openBackGesture = objc_getAssociatedObject(self, _cmd);
+    if (openBackGesture) {
         return [openBackGesture boolValue];
     }
     self.xti_openBackGesture = YES;
@@ -298,7 +295,7 @@
 
 - (BOOL)xti_hiddenTabbarIfNonRootViewController {
     NSNumber *hiddenTabbar = objc_getAssociatedObject(self, _cmd);
-    if (hiddenTabbar){
+    if (hiddenTabbar) {
         return [hiddenTabbar boolValue];
     }
     self.xti_hiddenTabbarIfNonRootViewController = YES;

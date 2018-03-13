@@ -9,18 +9,13 @@
 import UIKit
 
 public extension NSObject {
-	
     /// 取类名
     public var className: String {
-        get{
-            return "\(self.classForCoder)"
-        }
+        return "\(self.classForCoder)"
     }
-    
+
     /// 取类名
     public static var className: String {
-        get{
-            return "\(self)"
-        }
+        return "\(self)"
     }
 }

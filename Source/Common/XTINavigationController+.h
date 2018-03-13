@@ -4,7 +4,7 @@
 //
 //  Created by Input on 2018/1/19.
 //  Copyright © 2018年 Input. All rights reserved.
-//	参考：https://github.com/forkingdog/FDFullscreenPopGesture
+//    参考：https://github.com/forkingdog/FDFullscreenPopGesture
 
 #import "XTIViewController+.h"
 
