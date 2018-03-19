@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		98D7F97AA80D4AEB6361E077 /* Pods_XTInputKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF3F3A44C5356F8767A272F /* Pods_XTInputKit.framework */; };
+		AE58C780205B67A600A45B29 /* XTINetWorkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C77F205B67A600A45B29 /* XTINetWorkConfig.swift */; };
+		AE58C783205B6E4400A45B29 /* XTIBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C782205B6E4400A45B29 /* XTIBaseRequest.swift */; };
+		AE58C78C205BCDDF00A45B29 /* XTIKeyChainTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C78B205BCDDF00A45B29 /* XTIKeyChainTool.swift */; };
+		AE58C790205E597700A45B29 /* XTIKeyChainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C78F205E597700A45B29 /* XTIKeyChainViewController.swift */; };
 		AE5DC3AE202A9C4100F2D8B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5DC3A7202A9C4100F2D8B7 /* ViewController.swift */; };
 		AE5DC3AF202A9C4100F2D8B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE5DC3A8202A9C4100F2D8B7 /* LaunchScreen.storyboard */; };
 		AE5DC3B0202A9C4100F2D8B7 /* XTINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5DC3A9202A9C4100F2D8B7 /* XTINavigationController.swift */; };
@@ -36,6 +41,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2AF3F3A44C5356F8767A272F /* Pods_XTInputKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XTInputKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A600A70D7327E7F9503916A /* Pods-XTInputKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKit.release.xcconfig"; path = "../Pods/Target Support Files/Pods-XTInputKit/Pods-XTInputKit.release.xcconfig"; sourceTree = "<group>"; };
+		AE58C77F205B67A600A45B29 /* XTINetWorkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTINetWorkConfig.swift; sourceTree = "<group>"; };
+		AE58C782205B6E4400A45B29 /* XTIBaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIBaseRequest.swift; sourceTree = "<group>"; };
+		AE58C78A205BCD5E00A45B29 /* XTInputKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XTInputKit.entitlements; sourceTree = "<group>"; };
+		AE58C78B205BCDDF00A45B29 /* XTIKeyChainTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIKeyChainTool.swift; sourceTree = "<group>"; };
+		AE58C78F205E597700A45B29 /* XTIKeyChainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIKeyChainViewController.swift; sourceTree = "<group>"; };
 		AE5DC3A7202A9C4100F2D8B7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AE5DC3A8202A9C4100F2D8B7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE5DC3A9202A9C4100F2D8B7 /* XTINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTINavigationController.swift; sourceTree = "<group>"; };
@@ -70,6 +82,7 @@
 		AE8D70C92012F4EA002E3580 /* XTINavigationController+.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XTINavigationController+.m"; sourceTree = "<group>"; };
 		AE8D70CA2012F4EA002E3580 /* XTInputKit-ObjC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XTInputKit-ObjC.h"; sourceTree = "<group>"; };
 		AECEFFC7201C2C6300B96754 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
+		EEB07AFBD8A4CCF7B477ADE4 /* Pods-XTInputKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKit.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-XTInputKit/Pods-XTInputKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,15 +90,52 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98D7F97AA80D4AEB6361E077 /* Pods_XTInputKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8BEE0E5ED7C9F0D797D2A410 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EEB07AFBD8A4CCF7B477ADE4 /* Pods-XTInputKit.debug.xcconfig */,
+				6A600A70D7327E7F9503916A /* Pods-XTInputKit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A7A7AAC10B401D5CECB2EE94 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2AF3F3A44C5356F8767A272F /* Pods_XTInputKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AE58C77E205B670D00A45B29 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AE58C77F205B67A600A45B29 /* XTINetWorkConfig.swift */,
+				AE58C782205B6E4400A45B29 /* XTIBaseRequest.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		AE58C781205B683200A45B29 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				AE58C78F205E597700A45B29 /* XTIKeyChainViewController.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		AE5DC3A6202A9C4100F2D8B7 /* XTInputKit */ = {
 			isa = PBXGroup;
 			children = (
+				AE58C78A205BCD5E00A45B29 /* XTInputKit.entitlements */,
+				AE58C781205B683200A45B29 /* Test */,
 				AE5DC3A7202A9C4100F2D8B7 /* ViewController.swift */,
 				AE5DC3A8202A9C4100F2D8B7 /* LaunchScreen.storyboard */,
 				AE5DC3A9202A9C4100F2D8B7 /* XTINavigationController.swift */,
@@ -114,6 +164,7 @@
 		AE5DC3B8202A9DAC00F2D8B7 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				AE58C77E205B670D00A45B29 /* Network */,
 				AE8D70B22012F4EA002E3580 /* Extension */,
 				AE8D70C02012F4EA002E3580 /* XTILoger */,
 				AE8D70C22012F4EA002E3580 /* Class */,
@@ -127,6 +178,8 @@
 				AE8D70B12012F4EA002E3580 /* Source */,
 				AE5DC3A6202A9C4100F2D8B7 /* XTInputKit */,
 				AE8D709D2012F4CD002E3580 /* Products */,
+				8BEE0E5ED7C9F0D797D2A410 /* Pods */,
+				A7A7AAC10B401D5CECB2EE94 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -200,6 +253,7 @@
 				AE8D70C32012F4EA002E3580 /* XTIMacros.swift */,
 				AE8D70C42012F4EA002E3580 /* XTIObserver.swift */,
 				AE66B908201F1DCA002E3FFF /* XTITool.swift */,
+				AE58C78B205BCDDF00A45B29 /* XTIKeyChainTool.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -219,9 +273,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE8D70AE2012F4CD002E3580 /* Build configuration list for PBXNativeTarget "XTInputKit" */;
 			buildPhases = (
+				731DBC6DCD60ADA0E2E638AC /* [CP] Check Pods Manifest.lock */,
 				AE8D70982012F4CD002E3580 /* Sources */,
 				AE8D70992012F4CD002E3580 /* Frameworks */,
 				AE8D709A2012F4CD002E3580 /* Resources */,
+				05C9A0FC2C91E472C6C3EEEC /* [CP] Embed Pods Frameworks */,
+				4BDC2E94381F0A6DCCA57AC0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -246,6 +303,11 @@
 					AE8D709B2012F4CD002E3580 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -280,12 +342,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		05C9A0FC2C91E472C6C3EEEC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-XTInputKit/Pods-XTInputKit-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-XTInputKit/Pods-XTInputKit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4BDC2E94381F0A6DCCA57AC0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-XTInputKit/Pods-XTInputKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		731DBC6DCD60ADA0E2E638AC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-XTInputKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AE8D70982012F4CD002E3580 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				AE8D70D42012F4EA002E3580 /* XTIDispatchQueue+.swift in Sources */,
+				AE58C783205B6E4400A45B29 /* XTIBaseRequest.swift in Sources */,
 				AE8D70D52012F4EA002E3580 /* XTIBaseNameNamespace.swift in Sources */,
 				AE8D70D62012F4EA002E3580 /* XTILoger.swift in Sources */,
 				AE8D70D22012F4EA002E3580 /* XTIDate+.swift in Sources */,
@@ -297,6 +416,7 @@
 				AE8D70D72012F4EA002E3580 /* XTIMacros.swift in Sources */,
 				AE8D70D82012F4EA002E3580 /* XTIObserver.swift in Sources */,
 				AE5DC3B0202A9C4100F2D8B7 /* XTINavigationController.swift in Sources */,
+				AE58C780205B67A600A45B29 /* XTINetWorkConfig.swift in Sources */,
 				AE8D70CF2012F4EA002E3580 /* XTIViewController+.swift in Sources */,
 				AE66B909201F1DCA002E3FFF /* XTITool.swift in Sources */,
 				AECEFFC8201C2C6300B96754 /* NSObject+.swift in Sources */,
@@ -304,8 +424,10 @@
 				AE8D70D12012F4EA002E3580 /* XTIString+.swift in Sources */,
 				AE8D70D32012F4EA002E3580 /* XTIDevice+.swift in Sources */,
 				AE66B903201C58E7002E3FFF /* UITabBarController+.swift in Sources */,
+				AE58C790205E597700A45B29 /* XTIKeyChainViewController.swift in Sources */,
 				AE5DC3AE202A9C4100F2D8B7 /* ViewController.swift in Sources */,
 				AE8D70CB2012F4EA002E3580 /* XTIView+.swift in Sources */,
+				AE58C78C205BCDDF00A45B29 /* XTIKeyChainTool.swift in Sources */,
 				AE8D70CE2012F4EA002E3580 /* XTIImage+.swift in Sources */,
 				AE5DC3B2202A9C4100F2D8B7 /* AppDelegate.swift in Sources */,
 			);
@@ -423,9 +545,11 @@
 		};
 		AE8D70AF2012F4CD002E3580 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEB07AFBD8A4CCF7B477ADE4 /* Pods-XTInputKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = XTInputKit/XTInputKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZZ2Q79GEK8;
 				INFOPLIST_FILE = "$(SRCROOT)/XTInputKit/Info.plist";
@@ -441,9 +565,11 @@
 		};
 		AE8D70B02012F4CD002E3580 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A600A70D7327E7F9503916A /* Pods-XTInputKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = XTInputKit/XTInputKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZZ2Q79GEK8;
 				INFOPLIST_FILE = "$(SRCROOT)/XTInputKit/Info.plist";

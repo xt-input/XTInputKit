@@ -41,9 +41,6 @@ class ViewController: UIViewController {
     @objc func xti_toucheRightBarButtonItem() {
         loger.debug("点击了导航栏右边的按钮")
         loger.debug(self.xti_nextBackTitle)
-//        XTITool.keyWindow.rootViewController = ViewController.initwithstoryboard("Storyboard")
-//        let s = UISlider()或者用UISlider也可以实现
-//        s.
     }
 
     @IBAction func clickPushBtn(_ sender: UIButton) {

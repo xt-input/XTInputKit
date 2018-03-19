@@ -25,10 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func initRootViewController() {
         let vc = UITabBarController()
-        for i in 0...4 {
-            let navc = XTINavigationController(rootViewController: ViewController.initwithstoryboard("Storyboard"))
-            vc.xti_addChildViewController(navc, tabbarTitle: "Tabbar\(i)", image: UIImage.XTI.imageWithColor(UIColor.red, size: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysOriginal), selectedImage: UIImage.XTI.imageWithColor(UIColor.black, size: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysOriginal))
-        }
+        let navc1 = XTINavigationController(rootViewController: ViewController.initwithstoryboard("Storyboard"))
+        vc.xti_addChildViewController(navc1, tabbarTitle: "测试", image: UIImage.XTI.imageWithColor(UIColor.green, size: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysOriginal), selectedImage: nil)
+        let navc2 = XTINavigationController(rootViewController: XTIKeyChainViewController.initwithstoryboard("Storyboard"))
+        vc.xti_addChildViewController(navc2, tabbarTitle: "KeyChain", image: UIImage.XTI.imageWithColor(UIColor.red, size: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysOriginal), selectedImage: nil)
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
     }

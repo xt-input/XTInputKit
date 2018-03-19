@@ -192,4 +192,27 @@ public extension UIViewController {
             self.dismiss(animated: animated, completion: completion)
         }
     }
+    
+    // MARK: - 弹窗alertController
+    
+    public func showMessage(title: String! = "提示", message: String! = nil, cancelTitle: String! = nil, confirmTitle: String! = "确认", action: ((_ index: Int) -> Void)! = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        if cancelTitle != nil {
+            alertController.addAction(UIAlertAction(title: confirmTitle, style: .cancel) { _ in
+                if action != nil {
+                    action(1)
+                }
+            })
+        }
+        alertController.addAction(UIAlertAction(title: confirmTitle, style: .default) { _ in
+            var index = 1
+            if cancelTitle != nil {
+                index = 2
+            }
+            if action != nil {
+                action(index)
+            }
+        })
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
