@@ -8,11 +8,11 @@
 
 import HandyJSON
 
-extension HandyJSON {
+public extension HandyJSON {
     /// 判断对象是否为空，不能和nil做比较
     ///
     /// - Returns: 结果
-    func isEmpty() -> Bool {
+    public func isEmpty() -> Bool {
         guard let string = self.toJSONString() else{
             return true
         }
