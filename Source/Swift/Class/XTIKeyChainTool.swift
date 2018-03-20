@@ -9,6 +9,7 @@
 import Foundation
 import Security
 
+/// KeyChain的封装，需要开启项目配置的Capabilities->Keychain Sharing
 public class XTIKeyChainTool {
     /// 是否同步到iCloud
     public var synchronizable: Bool!
@@ -20,12 +21,18 @@ public class XTIKeyChainTool {
     public static let iCloud = XTIKeyChainTool(synchronizable: true)
 
     fileprivate var bundleNmae = Bundle.main.bundleIdentifier == nil ? "com.07coding.XTInputKit" : Bundle.main.bundleIdentifier!
+    /// 初始化
+    ///
+    /// - Parameters:
+    ///   - synchronizable: 是否同步到iCloud
+    ///   - accessGroup: 应用分组，如果需要使用应用分组可以使用它
     public init(synchronizable: Bool = false, accessGroup: String! = nil) {
         self.synchronizable = synchronizable
         self.accessGroup = accessGroup
     }
 
     fileprivate var _keyChainUuid: String!
+    /// 保存在KeyChain里面的UUID，如果不还原手机数据及设置不会被清理掉，可以用来代替openudid
     public var keyChainUuid: String! {
         guard let tempUuid = _keyChainUuid else {
             let key = "\(bundleNmae)-uuid"
@@ -39,6 +46,12 @@ public class XTIKeyChainTool {
         return tempUuid
     }
 
+    /// 将value保存到KeyChain里面去
+    ///
+    /// - Parameters:
+    ///   - value: 值
+    ///   - key: 键
+    /// - Returns: 操作结果
     @discardableResult public func set<ValueType: DataConvertible>(_ value: ValueType, forKey key: String) -> Bool {
         var keyChainItem = self.initKeyChainDictionary()
         keyChainItem[kSecAttrAccount] = key
@@ -53,6 +66,12 @@ public class XTIKeyChainTool {
         }
     }
 
+    /// 获取保存在KeyChain里面的值
+    ///
+    /// - Parameters:
+    ///   - valueTpye: 值的类型
+    ///   - key: 键
+    /// - Returns: 值 or nil
     public func get<ValueType: DataConvertible>(valueTpye: ValueType.Type, forKey key: String) -> ValueType! {
         var keyChainItem = self.initKeyChainDictionary()
         keyChainItem[kSecAttrAccount] = key
@@ -74,6 +93,10 @@ public class XTIKeyChainTool {
         }
     }
 
+    /// 删除KeyChain里面的数据
+    ///
+    /// - Parameter key: 键，如果没有键则将该应用保存在KeyChain里所以的值都清理掉(不包括keyChainUuid)
+    /// - Returns: 操作结果
     @discardableResult public func delete(_ key: String! = nil) -> Bool {
         var keyChainItem = self.initKeyChainDictionary()
 

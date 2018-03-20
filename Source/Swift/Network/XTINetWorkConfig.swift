@@ -19,7 +19,7 @@ public enum XTIHttpScheme: String {
 /// 网络请求相关的配置，例如：打印网络请求、host(eg: "design.07coding.com")、HttpScheme、网络超时时间、Content-Type、最大允许并发、公共参数(eg: bundelID、appVersion、systemVersion、UDID<伪造，真实UDID苹果不允许获取>，取idfv)
 public struct XTINetWorkConfig {
     /// 是否打印网络请求原始数据
-    public static var iSLogRawData = false
+    public static var iSLogRawData = true
     public static var defaultHostName: String!
     public static var defaultHttpScheme = XTIHttpScheme.http
     public static var defaultContentType = "multipart/form-data; charset=utf-8"
@@ -27,6 +27,7 @@ public struct XTINetWorkConfig {
     public static var defaultHttpMaximumConnectionsPerHost = 10
 
     fileprivate static var _defaultPublicHttpHeader: XTIHTTPHeaders!
+    /// 公共参数，放置在请求头里
     public static var defaultPublicHttpHeader: XTIHTTPHeaders! {
         get {
             if _defaultPublicHttpHeader == nil {
@@ -37,15 +38,21 @@ public struct XTINetWorkConfig {
             if _defaultPublicHttpHeader["bundelID"] == nil {
                 _defaultPublicHttpHeader["bundelID"] = bundleInfo?["CFBundleIdentifier"] as? String
             }
+            if _defaultPublicHttpHeader["UUID"] == nil {
+                _defaultPublicHttpHeader["UUID"] = XTIKeyChainTool.default.keyChainUuid
+            }
             if _defaultPublicHttpHeader["appVersion"] == nil {
                 _defaultPublicHttpHeader["appVersion"] = bundleInfo?["CFBundleShortVersionString"] as? String
             }
             if _defaultPublicHttpHeader["systemVersion"] == nil {
-                _defaultPublicHttpHeader["systemVersion"] =  UIDevice.current.systemVersion
+                _defaultPublicHttpHeader["systemVersion"] = UIDevice.current.systemVersion
             }
             return _defaultPublicHttpHeader
         } set {
             _defaultPublicHttpHeader = newValue
         }
     }
+
+    /// 网络请求签名，如果设置了该属性，所有的网络请求都会调用，如果某一个网络请求不需要可以继承XTIBaseRequest，然后重写signature方法
+    public static var defaultSignature: ((_ parameters: XTIParameters) -> String)!
 }

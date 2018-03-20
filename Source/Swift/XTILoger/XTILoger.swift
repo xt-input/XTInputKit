@@ -46,13 +46,15 @@ public struct XTILoger {
     }
     
     let dateFormatter = DateFormatter()
+    let dateShortFormatter = DateFormatter()
     
     /// 是否打印时间戳
-    public var isShowTime = true
+    public var isShowLongTime = true
     
     /// 是否打印日志等级
     public var isShowLevel = true
-    
+    /// 是否打印线程
+    public var isShowThread = true
     /// release模式下默认打印日志的等级
     public var releaseLogLevel: XTILogerLevel!
     
@@ -79,6 +81,8 @@ public struct XTILoger {
     init() {
         self.dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        self.dateShortFormatter.locale = Locale(identifier: "en_US_POSIX")
+        self.dateShortFormatter.dateFormat = "HH:mm:ss.SSS"
         self.debugLogLevel = XTILogerLevel.all
         self.releaseLogLevel = XTILogerLevel.error
     }
@@ -168,7 +172,7 @@ public struct XTILoger {
                                             line: Int = #line,
                                             format: String,
                                             args: [CVarArg]) -> String {
-        let dateTime = isShowTime ? "\(dateFormatter.string(from: Date())) " : ""
+        let dateTime = isShowLongTime ? "\(dateFormatter.string(from: Date())) " : "\(dateShortFormatter.string(from: Date())) "
         var levelString = ""
         switch level {
         case .info:
@@ -192,7 +196,9 @@ public struct XTILoger {
             }
             fileString += "] "
         }
-        
+        if fileString.isEmpty && self.isShowLineNumber {
+            fileString = "line:\(line) "
+        }
         var functionString = isShowFunctionName ? function : ""
         functionString = functionString + " "
         let message: String
@@ -203,7 +209,7 @@ public struct XTILoger {
         }
         
         let threadId = String(unsafeBitCast(Thread.current, to: Int.self), radix: 16, uppercase: false)
-        let isMain = Thread.current.isMainThread ? "[Main] " : "[Global]<0x\(threadId)> "
+        let isMain = isShowThread ? Thread.current.isMainThread ? "[Main] " : "[Global]<0x\(threadId)> " : ""
         let infoString = "\(dateTime)\(levelString)\(fileString)\(isMain)\(functionString)".trimmingCharacters(in: CharacterSet(charactersIn: " "))
         let logString = infoString + (infoString.isEmpty ? "" : " => ") + "\(message)"
         

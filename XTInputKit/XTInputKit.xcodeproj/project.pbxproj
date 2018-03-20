@@ -12,6 +12,11 @@
 		AE58C783205B6E4400A45B29 /* XTIBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C782205B6E4400A45B29 /* XTIBaseRequest.swift */; };
 		AE58C78C205BCDDF00A45B29 /* XTIKeyChainTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C78B205BCDDF00A45B29 /* XTIKeyChainTool.swift */; };
 		AE58C790205E597700A45B29 /* XTIKeyChainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C78F205E597700A45B29 /* XTIKeyChainViewController.swift */; };
+		AE58C7932060031E00A45B29 /* XTINetWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C7922060031E00A45B29 /* XTINetWorkViewController.swift */; };
+		AE58C7962060E56600A45B29 /* XTITestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C7952060E56600A45B29 /* XTITestResult.swift */; };
+		AE58C7982060E57C00A45B29 /* XTITest1Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C7972060E57C00A45B29 /* XTITest1Request.swift */; };
+		AE58C79C2060E59300A45B29 /* XTITestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C79B2060E59300A45B29 /* XTITestRequest.swift */; };
+		AE58C7A02060F7F400A45B29 /* XTIHandyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C79F2060F7F400A45B29 /* XTIHandyJSON.swift */; };
 		AE5DC3AE202A9C4100F2D8B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5DC3A7202A9C4100F2D8B7 /* ViewController.swift */; };
 		AE5DC3AF202A9C4100F2D8B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE5DC3A8202A9C4100F2D8B7 /* LaunchScreen.storyboard */; };
 		AE5DC3B0202A9C4100F2D8B7 /* XTINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5DC3A9202A9C4100F2D8B7 /* XTINavigationController.swift */; };
@@ -48,6 +53,11 @@
 		AE58C78A205BCD5E00A45B29 /* XTInputKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XTInputKit.entitlements; sourceTree = "<group>"; };
 		AE58C78B205BCDDF00A45B29 /* XTIKeyChainTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIKeyChainTool.swift; sourceTree = "<group>"; };
 		AE58C78F205E597700A45B29 /* XTIKeyChainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIKeyChainViewController.swift; sourceTree = "<group>"; };
+		AE58C7922060031E00A45B29 /* XTINetWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTINetWorkViewController.swift; sourceTree = "<group>"; };
+		AE58C7952060E56600A45B29 /* XTITestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITestResult.swift; sourceTree = "<group>"; };
+		AE58C7972060E57C00A45B29 /* XTITest1Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITest1Request.swift; sourceTree = "<group>"; };
+		AE58C79B2060E59300A45B29 /* XTITestRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITestRequest.swift; sourceTree = "<group>"; };
+		AE58C79F2060F7F400A45B29 /* XTIHandyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIHandyJSON.swift; sourceTree = "<group>"; };
 		AE5DC3A7202A9C4100F2D8B7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AE5DC3A8202A9C4100F2D8B7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE5DC3A9202A9C4100F2D8B7 /* XTINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTINavigationController.swift; sourceTree = "<group>"; };
@@ -119,6 +129,7 @@
 			children = (
 				AE58C77F205B67A600A45B29 /* XTINetWorkConfig.swift */,
 				AE58C782205B6E4400A45B29 /* XTIBaseRequest.swift */,
+				AE58C79F2060F7F400A45B29 /* XTIHandyJSON.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -126,9 +137,21 @@
 		AE58C781205B683200A45B29 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				AE58C7942060E53800A45B29 /* NetWork */,
 				AE58C78F205E597700A45B29 /* XTIKeyChainViewController.swift */,
+				AE58C7922060031E00A45B29 /* XTINetWorkViewController.swift */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		AE58C7942060E53800A45B29 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				AE58C7952060E56600A45B29 /* XTITestResult.swift */,
+				AE58C79B2060E59300A45B29 /* XTITestRequest.swift */,
+				AE58C7972060E57C00A45B29 /* XTITest1Request.swift */,
+			);
+			path = NetWork;
 			sourceTree = "<group>";
 		};
 		AE5DC3A6202A9C4100F2D8B7 /* XTInputKit */ = {
@@ -410,18 +433,23 @@
 				AE8D70D22012F4EA002E3580 /* XTIDate+.swift in Sources */,
 				AE5EACAD20256FB6002FDD91 /* XTIColor+.m in Sources */,
 				AE8D70CC2012F4EA002E3580 /* XTIButton+.swift in Sources */,
+				AE58C7932060031E00A45B29 /* XTINetWorkViewController.swift in Sources */,
 				AE8D70D92012F4EA002E3580 /* XTIViewController+.m in Sources */,
 				AE8D70DA2012F4EA002E3580 /* XTINavigationController+.m in Sources */,
 				AE8D70D02012F4EA002E3580 /* XTINavigationController+.swift in Sources */,
 				AE8D70D72012F4EA002E3580 /* XTIMacros.swift in Sources */,
 				AE8D70D82012F4EA002E3580 /* XTIObserver.swift in Sources */,
+				AE58C79C2060E59300A45B29 /* XTITestRequest.swift in Sources */,
 				AE5DC3B0202A9C4100F2D8B7 /* XTINavigationController.swift in Sources */,
 				AE58C780205B67A600A45B29 /* XTINetWorkConfig.swift in Sources */,
+				AE58C7A02060F7F400A45B29 /* XTIHandyJSON.swift in Sources */,
 				AE8D70CF2012F4EA002E3580 /* XTIViewController+.swift in Sources */,
 				AE66B909201F1DCA002E3FFF /* XTITool.swift in Sources */,
+				AE58C7982060E57C00A45B29 /* XTITest1Request.swift in Sources */,
 				AECEFFC8201C2C6300B96754 /* NSObject+.swift in Sources */,
 				AE8D70CD2012F4EA002E3580 /* XTIColor+.swift in Sources */,
 				AE8D70D12012F4EA002E3580 /* XTIString+.swift in Sources */,
+				AE58C7962060E56600A45B29 /* XTITestResult.swift in Sources */,
 				AE8D70D32012F4EA002E3580 /* XTIDevice+.swift in Sources */,
 				AE66B903201C58E7002E3FFF /* UITabBarController+.swift in Sources */,
 				AE58C790205E597700A45B29 /* XTIKeyChainViewController.swift in Sources */,
