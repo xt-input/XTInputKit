@@ -40,6 +40,8 @@ public class XTIBaseRequest {
             _iSLogRawData = newValue
         }
     }
+    /// 是否需要签名
+    public var isNeedSign: Bool! = true
     
     fileprivate var _httpMethod: HTTPMethod!
     /// HttpMethod，仅支持post or get
@@ -129,7 +131,7 @@ public class XTIBaseRequest {
     /// 公共参数放置在请求头里面
     /// - Returns: 返回签名，格式："sign=sign"
     public func signature(_ parameters: XTIParameters!) -> String {
-        if XTINetWorkConfig.defaultSignature != nil {
+        if XTINetWorkConfig.defaultSignature != nil && isNeedSign {
             return XTINetWorkConfig.defaultSignature(parameters)
         }
         return ""
@@ -292,6 +294,10 @@ public class XTIBaseRequest {
                        completed completedCallback: XTIRequestCompletedCallback! = nil,
                        error errorCallback: XTIRequestErrorCallback! = nil) {
         let sign = signature(parameters)
+        var tempHeaders = XTINetWorkConfig.defaultPublicHttpHeader!
+        if sign != "" {
+            tempHeaders["sign"] = sign
+        }
         httpManager.upload(multipartFormData: { [weak self] data in
             if let strongSelf = self {
                 parameters.forEach { key, value in
@@ -302,7 +308,8 @@ public class XTIBaseRequest {
                     }
                 }
             }
-        }, to: url + (sign == "" ? "" : "?" + sign)) { [weak self] encodingResult in
+        }, usingThreshold: SessionManager.multipartFormDataEncodingMemoryThreshold,
+           to: url, method: .post, headers: tempHeaders) { [weak self] encodingResult in
             switch encodingResult {
             case .success(let upload, _, _):
                 upload.uploadProgress(closure: { progress in
