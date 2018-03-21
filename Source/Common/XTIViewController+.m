@@ -43,6 +43,7 @@
         self.willAppearBlock(self, animated);
     }
 }
+
 - (void)xti_viewDidAppear:(BOOL)animated {
     [self xti_viewDidAppear:animated];
     if (self.xti_navigationBarBackgroundColor) {
@@ -74,6 +75,7 @@
 - (void)setXti_navigationBarBackgroundColor:(UIColor *)xti_navigationBarBackgroundColor {
     objc_setAssociatedObject(self, @selector(xti_navigationBarBackgroundColor), xti_navigationBarBackgroundColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
 - (UIColor *)xti_navigationBarBackgroundColor {
     return objc_getAssociatedObject(self, _cmd);
 }
@@ -81,6 +83,7 @@
 - (void)setXti_disabledBackGesture:(BOOL)xti_disabledBackGesture {
     objc_setAssociatedObject(self, @selector(xti_disabledBackGesture), @(xti_disabledBackGesture), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
 - (BOOL)xti_disabledBackGesture {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }

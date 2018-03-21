@@ -19,24 +19,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Le-bI-EGt">
-                                <rect key="frame" x="164" y="69" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Le-bI-EGt">
+                                <rect key="frame" x="136.5" y="60" width="47" height="26"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
                                 <state key="normal" title="跳转"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="xt_borderColor">
+                                        <color key="value" red="0.62745098040000002" green="0.87058823529999996" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="xt_borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="xt_cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="clickPushBtn:" destination="QAg-so-iFI" eventType="touchUpInside" id="39W-XO-pYb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wpZ-EL-eCs">
-                                <rect key="frame" x="164" y="119" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wpZ-EL-eCs">
+                                <rect key="frame" x="136.5" y="106" width="47" height="26"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
                                 <state key="normal" title="关闭"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="xt_borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="xt_borderColor">
+                                        <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="xt_cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="clickDismissBtn:" destination="QAg-so-iFI" eventType="touchUpInside" id="gwa-dg-PeI"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wpZ-EL-eCs" firstAttribute="centerX" secondItem="c4g-2d-v8W" secondAttribute="centerX" id="hk0-Fh-HQx"/>
+                            <constraint firstItem="wpZ-EL-eCs" firstAttribute="top" secondItem="0Le-bI-EGt" secondAttribute="bottom" constant="20" id="jgn-x1-zMX"/>
+                            <constraint firstItem="0Le-bI-EGt" firstAttribute="top" secondItem="y7w-Fe-Cny" secondAttribute="top" constant="40" id="rU4-JB-pSm"/>
+                            <constraint firstItem="0Le-bI-EGt" firstAttribute="centerX" secondItem="c4g-2d-v8W" secondAttribute="centerX" id="xcV-eU-XAo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="y7w-Fe-Cny"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

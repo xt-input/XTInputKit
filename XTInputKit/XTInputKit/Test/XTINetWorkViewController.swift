@@ -30,6 +30,12 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
             return "signature=signature"
         }
         resultTextView.delegate = self
+        loger.debug(XTITool.compareAppVersion("2.1.0"))
+        loger.debug(XTITool.compareAppVersion("1.12.0"))
+        loger.debug(XTITool.compareAppVersion("1.21.1"))
+        loger.debug(XTITool.compareAppVersion("1.1.1"))
+        loger.debug(XTITool.compareAppVersion("1.1"))
+        loger.debug(XTITool.compareAppVersion("1.1.0"))
     }
 
     override func didReceiveMemoryWarning() {

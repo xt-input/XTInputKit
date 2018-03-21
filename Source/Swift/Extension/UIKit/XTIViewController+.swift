@@ -16,16 +16,15 @@ public enum WTNAVPOSITION {
     case right
 }
 
-/// UnsafeRawPointer
-private struct XTIViewControllerKey {
-    static var nextBackTitle: Void?
-    static var nextBackColor: Void?
-    static var navigationTitle: Void?
-    static var tabbarTitle: Void?
-}
-
 public extension UIViewController {
-
+    /// UnsafeRawPointer
+    fileprivate struct XTIViewControllerKey {
+        static var nextBackTitle = "XTInextBackTitle"
+        static var nextBackColor = "XTInextBackColor"
+        static var navigationTitle = "XTInavigationTitle"
+        static var tabbarTitle = "XTItabbarTitle"
+    }
+    
     // MARK: - 设置下一界面的导航栏back按钮文案和颜色
     
     /// 下一级控制器导航栏返回按钮文案
@@ -113,7 +112,7 @@ public extension UIViewController {
         }
     }
     
-    private var navTitleColor: UIColor {
+    fileprivate var navTitleColor: UIColor {
         return self.navigationController?.navigationBar.tintColor == nil ? UIColor.black : self.navigationController!.navigationBar.tintColor
     }
     

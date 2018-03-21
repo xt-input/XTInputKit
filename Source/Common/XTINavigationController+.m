@@ -141,6 +141,7 @@
     }
     return vc;
 }
+
 - (void)xti_objc_pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if (self.viewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = self.xti_hiddenTabbarIfNonRootViewController;
@@ -219,7 +220,6 @@
         self.xtiDelegate.delegate = delegate;
     }
 }
-
 - (id<UINavigationControllerDelegate>)delegate {
     return self.xtiDelegate;
 }
@@ -266,7 +266,6 @@
 - (void)setXti_openBackGesture:(BOOL)xti_openBackGesture {
     objc_setAssociatedObject(self, @selector(xti_openBackGesture), @(xti_openBackGesture), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-
 - (BOOL)xti_openBackGesture {
     NSNumber *openBackGesture = objc_getAssociatedObject(self, _cmd);
     if (openBackGesture) {
@@ -279,7 +278,6 @@
 + (void)setXti_openBackGesture:(BOOL)xti_openBackGesture {
     objc_setAssociatedObject(self, @selector(xti_openBackGesture), @(xti_openBackGesture), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-
 + (BOOL)xti_openBackGesture {
     NSNumber *openBackGesture = objc_getAssociatedObject(self, _cmd);
     if (openBackGesture) {
@@ -292,7 +290,6 @@
 - (void)setXti_hiddenTabbarIfNonRootViewController:(BOOL)xti_hiddenTabbarIfNonRootViewController {
     objc_setAssociatedObject(self, _cmd, @(xti_hiddenTabbarIfNonRootViewController), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-
 - (BOOL)xti_hiddenTabbarIfNonRootViewController {
     NSNumber *hiddenTabbar = objc_getAssociatedObject(self, _cmd);
     if (hiddenTabbar) {

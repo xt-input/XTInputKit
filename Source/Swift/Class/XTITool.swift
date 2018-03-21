@@ -8,6 +8,12 @@
 
 import UIKit
 
+public enum XTIVersionCompareResult {
+    case equal // 等于当前版本
+    case greater // 大于当前版本
+    case less // 小于当前版本
+}
+
 public class XTITool {
     /// 获取当前活动的控制器(忽略tabbar和navigaction)
     public static var currentVC: UIViewController! {
@@ -42,5 +48,39 @@ public class XTITool {
             }
         }
         return keyWindow
+    }
+
+    /// 版本号比较，一般的项目版本号用float类型不能满足要求，而字符串直接比较当版本号某一块大于9的时候就不能直接用字符串比较
+    ///
+    /// - Parameter version: 需要比较的版本号，用"."分割版本号 1.12.3 > 1.2.3
+    /// - Returns: 比较结果
+    public static func compareAppVersion(_ version: String) -> XTIVersionCompareResult {
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            if appVersion == version {
+                return .equal
+            }
+
+            var versions = version.components(separatedBy: ".")
+            var appVersions = appVersion.components(separatedBy: ".")
+            let count = max(appVersions.count, versions.count)
+            for _ in 0 ..< count {
+                if versions.count < count {
+                    versions.append("0")
+                }
+                if appVersions.count < count {
+                    appVersions.append("0")
+                }
+            }
+
+            for i in 0 ..< count {
+                if versions[i] < appVersions[i] {
+                    return .less
+                }
+                if versions[i] > appVersions[i] {
+                    return .greater
+                }
+            }
+        }
+        return .equal
     }
 }

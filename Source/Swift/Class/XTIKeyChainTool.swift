@@ -135,9 +135,11 @@ public class XTIKeyChainTool {
             }
         }
     }
+
     fileprivate var _query: [AnyHashable: Any]!
+
     fileprivate func initKeyChainDictionary() -> [AnyHashable: Any] {
-        if self._query == nil{
+        if self._query == nil {
             var query: [AnyHashable: Any]
             query = [AnyHashable: Any]()
             query[kSecClass] = kSecClassGenericPassword
