@@ -32,6 +32,10 @@ extension XTILogerLevel: Comparable {
     public static func >=(lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
         return lhs.rawValue >= rhs.rawValue
     }
+    
+    public static func >(lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
+        return lhs.rawValue > rhs.rawValue
+    }
 }
 
 /// 请在 "Swift Compiler - Custom Flags" 选项查找 "Other Swift Flags" 然后在DEBUG配置那里添加"-D DEBUG".
@@ -48,6 +52,10 @@ public struct XTILoger {
     let dateFormatter = DateFormatter()
     let dateShortFormatter = DateFormatter()
     
+    /// 保存到日志文件的等级
+    public var saveFileLevel = XTILogerLevel.warning
+    /// 文件名字格式，支持Y(year)、WY(weekOfYear)、M(month)、D(day) 例如，以2018/3/21为例 "Y-WY"=>2018Y-12WY "Y-M-D"=>2018Y-3M-21D "Y-M"=>2018Y-3M，通过这类的组合可以构成一个日志文件保存一天、一周、一个月、一年等方式。建议使用"Y-WY" or "Y-M"，一定要用"-"隔开
+    public var fileFormatter = "Y-WY"
     /// 是否打印时间戳
     public var isShowLongTime = true
     
@@ -78,13 +86,13 @@ public struct XTILoger {
         #endif
     }
     
-    init() {
+    public init() {
         self.dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
         self.dateShortFormatter.locale = Locale(identifier: "en_US_POSIX")
         self.dateShortFormatter.dateFormat = "HH:mm:ss.SSS"
         self.debugLogLevel = XTILogerLevel.all
-        self.releaseLogLevel = XTILogerLevel.error
+        self.releaseLogLevel = XTILogerLevel.warning
     }
     
     @discardableResult public func info(format: String,
@@ -166,10 +174,10 @@ public struct XTILoger {
     ///   - format: 要打印的数据的结构
     ///   - args: 要打印的数据数组
     /// - Returns: 打印的内容
-    @discardableResult fileprivate func log(_ level: XTILogerLevel,
-                                            function: String = #function,
-                                            file: String = #file,
-                                            line: Int = #line,
+    fileprivate func log(_ level: XTILogerLevel,
+                                            function: String,
+                                            file: String,
+                                            line: Int,
                                             format: String,
                                             args: [CVarArg]) -> String {
         let dateTime = isShowLongTime ? "\(dateFormatter.string(from: Date())) " : "\(dateShortFormatter.string(from: Date())) "
@@ -214,12 +222,109 @@ public struct XTILoger {
         let logString = infoString + (infoString.isEmpty ? "" : " => ") + "\(message)"
         
         self.xt_print(logString)
+        self.printToFile(level, log: logString)
         return logString + "\n"
+    }
+    
+    /// 通过日志等级获取当前日志文件的路径
+    ///
+    /// - Parameter level: 日志等级
+    /// - Returns: 文件路径
+    public func getCurrentLogFilePath(_ level: XTILogerLevel) -> String {
+        let fileName = self.returnFileName(level)
+        let logFilePath = self.getLogDirectory() + fileName
+        if !FileManager.default.fileExists(atPath: logFilePath){
+            FileManager.default.createFile(atPath: logFilePath, contents: nil, attributes: nil)
+        }
+        return logFilePath
+    }
+    
+    /// 获取日志文件夹的路径，没有该文件夹就创建
+    ///
+    /// - Returns: 日志文件夹的路径
+    public func getLogDirectory() -> String {
+        let logDirectoryPath = NSHomeDirectory() + "/Documents/XTILoger/"
+        if !FileManager.default.fileExists(atPath: logDirectoryPath) {
+            try? FileManager.default.createDirectory(atPath: logDirectoryPath, withIntermediateDirectories: true, attributes: nil)
+        }
+        return logDirectoryPath
+    }
+    
+    /// 获取所有日志文件的路径
+    ///
+    /// - Returns: 所有日志文件的路径
+    public func getLogFilesPath() -> [String] {
+        var filesPath = [String]()
+        do {
+            filesPath = try FileManager.default.contentsOfDirectory(atPath: self.getLogDirectory())
+        } catch {}
+        return filesPath
+    }
+    
+    /// 清理日志文件
+    ///
+    /// - Returns: 操作结果
+    @discardableResult public func cleanLogFiles() -> Bool {
+        self.getLogFilesPath().forEach { path in
+            do { try FileManager.default.removeItem(atPath: path) } catch {}
+        }
+        return self.getLogFilesPath().isEmpty
     }
     
     fileprivate func xt_print(_ string: String) {
         #if DEBUG
             print(string)
         #endif
+    }
+    
+    fileprivate func printToFile(_ level: XTILogerLevel, log string: String) {
+        if self.logLevel > level {
+            return
+        }
+        let logFilePath = self.getCurrentLogFilePath(level)
+        if FileManager.default.fileExists(atPath: logFilePath) {
+            let writeHandler = FileHandle(forWritingAtPath: logFilePath)
+            writeHandler?.seekToEndOfFile()
+            if let data = ("\n" + string).data(using: String.Encoding.utf8) {
+                writeHandler?.write(data)
+            }
+            writeHandler?.closeFile()
+        } else {
+            FileManager.default.createFile(atPath: logFilePath, contents: string.data(using: String.Encoding.utf8), attributes: nil)
+        }
+    }
+    
+    fileprivate func returnFileName(_ level: XTILogerLevel) -> String {
+        var fileNameString = ""
+        switch level {
+        case .info:
+            fileNameString = "info"
+        case .debug:
+            fileNameString = "debug"
+        case .warning:
+            fileNameString = "warning"
+        case .error:
+            fileNameString = "error"
+        default:
+            break
+        }
+        let dateComponents = Calendar.current.dateComponents(Set<Calendar.Component>.init(arrayLiteral: .year, .month, .day, .weekOfYear), from: Date())
+        let fileFormatters = fileFormatter.components(separatedBy: "-")
+        fileFormatters.forEach { string in
+            switch string {
+            case "D":
+                fileNameString += "-\(dateComponents.day!)d"
+            case "WY":
+                fileNameString += "-\(dateComponents.weekOfYear!)wy"
+            case "M":
+                fileNameString += "-\(dateComponents.month!)m"
+            case "Y":
+                fileNameString += "-\(dateComponents.year!)y"
+            default:
+                break
+            }
+        }
+        fileNameString += ".log"
+        return fileNameString
     }
 }

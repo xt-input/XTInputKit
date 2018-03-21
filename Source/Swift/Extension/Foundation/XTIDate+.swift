@@ -16,7 +16,7 @@ private let XTI_MONTH = 2592000.0
 private let XTI_YEAR = 31556926.0
 
 private let XTI_COMPONENT = Calendar.Component.self
-private let XTI_COMPONENTS = Set<Calendar.Component>.init(arrayLiteral: XTI_COMPONENT.year, XTI_COMPONENT.day, XTI_COMPONENT.month, XTI_COMPONENT.weekday, XTI_COMPONENT.weekOfYear, XTI_COMPONENT.weekdayOrdinal, XTI_COMPONENT.hour, XTI_COMPONENT.minute, XTI_COMPONENT.second)
+private let XTI_COMPONENTS = Set<Calendar.Component>.init(arrayLiteral: .era, .year, .month, .day, .hour, .minute, .second, .weekday, .weekdayOrdinal, .quarter, .weekOfMonth, .weekOfYear, .yearForWeekOfYear, .nanosecond, .calendar, .timeZone)
 private let XTI_CURRENT = Calendar.current
 
 extension DateFormatter: XTIBaseNameNamespace {}
