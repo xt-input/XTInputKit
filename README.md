@@ -8,12 +8,15 @@ XTInputKit是一套swift版的代码集，暂时有：
 - [UINavigationController](#uinavigationcontroller)
 - [UIViewController](#uiviewcontroller)
 - [UITabBarController](#uitabbarcontroller)
+- [XTINerWork](doc/XTINetwork.md)
 
 ## XTILoger
 
 > 来自：[Loggerithm](https://github.com/honghaoz/Loggerithm) 感谢[honghaoz](https://github.com/honghaoz)
 
-> 打印日志工具，在debug模式下会在终端窗口打印，release模式下返回构造的好的日志，可以将其保存在指定的文件上传到自己的服务器做数据分析
+> 打印日志工具，在debug模式下会在终端窗口打印，release模式下返回构造的好的日志，~~可以将其保存在指定的文件上传到自己的服务器做数据分析~~
+>
+> 2018/3/21：添加保存日志到文件功能
 
 示例：
 
@@ -49,6 +52,8 @@ XTInputKit是一套swift版的代码集，暂时有：
 ## XTITool
 
 > 获取rootVC、currentVC、keyWindow
+>
+> 2018/3/21：添加通过版本号字符串比较版本号的函数
 
 ```swift
 XTITool.keyWindow.rootViewController = ViewController()	//修改根控制器
