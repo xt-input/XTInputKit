@@ -106,7 +106,7 @@ public struct XTILoger {
         return ""
     }
     
-    @discardableResult public func info<T>(_ value: T,
+    @discardableResult public func info(_ value: Any!,
                                            function: String = #function,
                                            file: String = #file,
                                            line: Int = #line) -> String {
@@ -124,7 +124,7 @@ public struct XTILoger {
         return ""
     }
     
-    @discardableResult public func debug<T>(_ value: T,
+    @discardableResult public func debug(_ value: Any!,
                                             function: String = #function,
                                             file: String = #file,
                                             line: Int = #line) -> String {
@@ -142,7 +142,7 @@ public struct XTILoger {
         return ""
     }
     
-    @discardableResult public func warning<T>(_ value: T,
+    @discardableResult public func warning(_ value: Any!,
                                               function: String = #function,
                                               file: String = #file,
                                               line: Int = #line) -> String {
@@ -160,7 +160,7 @@ public struct XTILoger {
         return ""
     }
     
-    @discardableResult public func error<T>(_ value: T,
+    @discardableResult public func error(_ value: Any!,
                                             function: String = #function,
                                             file: String = #file,
                                             line: Int = #line) -> String {

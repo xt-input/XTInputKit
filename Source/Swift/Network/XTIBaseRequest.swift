@@ -40,6 +40,7 @@ public class XTIBaseRequest {
             _iSLogRawData = newValue
         }
     }
+    
     /// 是否需要签名
     public var isNeedSign: Bool! = true
     
@@ -308,8 +309,11 @@ public class XTIBaseRequest {
                     }
                 }
             }
-        }, usingThreshold: SessionManager.multipartFormDataEncodingMemoryThreshold,
-           to: url, method: .post, headers: tempHeaders) { [weak self] encodingResult in
+        },
+        usingThreshold: SessionManager.multipartFormDataEncodingMemoryThreshold,
+        to: url,
+        method: .post,
+        headers: tempHeaders) { [weak self] encodingResult in
             switch encodingResult {
             case .success(let upload, _, _):
                 upload.uploadProgress(closure: { progress in
@@ -402,5 +406,9 @@ public class XTIBaseRequest {
                 }
             }
         }
+    }
+    
+    deinit {
+        XTILoger.default.info(self)
     }
 }

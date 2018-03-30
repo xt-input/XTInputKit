@@ -53,8 +53,8 @@
 
 - (void)xti_viewWillDisappear:(BOOL)animated {
     [self xti_viewWillDisappear:animated];
-    //    一定要加多线程处理导航栏的显示，不然手势一开始导航栏就显示了，原因是(迷)。
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    //    一定要加多线程处理导航栏的显示，不然手势一开始导航栏就显示了，原因是需要系统的viewWillDisappear执行完成之后再设置导航栏。原理是任务的执行顺序，在viewWillDisappear方法里系统做了很多其他的工作，系统的工作做完之后再操作导航栏
+    dispatch_async(dispatch_get_main_queue(), ^{
         UIViewController *viewController = self.navigationController.viewControllers.lastObject;
         if (viewController) {
             if (!viewController.xti_navigationBarHidden) {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 var count = 0
 
@@ -18,7 +19,6 @@ class ViewController: UIViewController {
         }
         return _testcolor
     }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -32,15 +32,23 @@ class ViewController: UIViewController {
         self.xti_tabbarTitle = "tabbar标题"
         if let navigaVC = self.navigationController {
             if navigaVC.viewControllers.count % 2 == 0 {
-//                self.xti_navigationBarHidden = true
+                self.xti_navigationBarHidden = true
             }
         }
-        self.xti_navigationBarBackgroundColor = self.testcolor
+//        self.xti_navigationBarBackgroundColor = self.testcolor
+//        let configuration = WKWebViewConfiguration()
+//        let webView = WKWebView(frame: CGRect(x: 0, y: self.xti_navigationBarHidden ? 0 : XTIMacros.NAVBAR_HEIGHT, width: XTIMacros.SCREEN_WIDTH, height: XTIMacros.SCREEN_HEIGHT - (self.xti_navigationBarHidden ? 0 : XTIMacros.NAVBAR_HEIGHT)), configuration: configuration)
+//        webView.load(URLRequest(url: URL(string: "http://123123.07coding.com")!))
+//        if #available(iOS 11.0, *) {
+//            webView.scrollView.contentInsetAdjustmentBehavior = .never
+//        }
+//        self.view.addSubview(webView)
     }
 
     @objc func xti_toucheRightBarButtonItem() {
         loger.debug("点击了导航栏右边的按钮")
         loger.debug(self.xti_nextBackTitle)
+        self.xti_pushOrPresentVC(XTINetWorkViewController.initwithstoryboard("Storyboard"))
     }
 
     @IBAction func clickPushBtn(_ sender: UIButton) {

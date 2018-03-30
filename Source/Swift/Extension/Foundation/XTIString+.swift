@@ -153,7 +153,8 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
          虚拟运营商:
          170
          */
-        let mobile = "^1[34578]\\d{9}$"
+
+        let mobile = "^(13[0-9]|14[579]|15[012356789]|16[6]|17[0135678]|18[0-9]|19[89])\\d{8}$"
 
         let regexMobile = NSPredicate(format: "SELF MATCHES %@", mobile)
         if regexMobile.evaluate(with: phone) {
