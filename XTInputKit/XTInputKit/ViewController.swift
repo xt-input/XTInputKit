@@ -13,6 +13,7 @@ var count = 0
 
 class ViewController: UIViewController {
     private var _testcolor: UIColor!
+    
     var testcolor: UIColor! {
         if _testcolor == nil {
             _testcolor = UIColor.XTI.random
@@ -27,14 +28,21 @@ class ViewController: UIViewController {
 
         self.xti_navigationTitle = "navigation标题"
         self.xti_setBarButtonItem(.right, title: "测试")
-        self.xti_nextBackTitle = "返回"
+        self.xti_nextBackTitle = ""
         self.xti_nextBackColor = UIColor.XTI.random
         self.xti_tabbarTitle = "tabbar标题"
         if let navigaVC = self.navigationController {
             if navigaVC.viewControllers.count % 2 == 0 {
-                self.xti_navigationBarHidden = true
+//                self.xti_navigationBarHidden = true
             }
         }
+        let bar = self.navigationController?.navigationBar;
+        bar?.subviews.forEach({ (view) in
+            loger.debug(view);
+            if view.isKind(of: NSClassFromString("_UIBarBackground")!){
+                view.backgroundColor = self.testcolor;
+            }
+        })
 //        self.xti_navigationBarBackgroundColor = self.testcolor
 //        let configuration = WKWebViewConfiguration()
 //        let webView = WKWebView(frame: CGRect(x: 0, y: self.xti_navigationBarHidden ? 0 : XTIMacros.NAVBAR_HEIGHT, width: XTIMacros.SCREEN_WIDTH, height: XTIMacros.SCREEN_HEIGHT - (self.xti_navigationBarHidden ? 0 : XTIMacros.NAVBAR_HEIGHT)), configuration: configuration)
@@ -43,6 +51,7 @@ class ViewController: UIViewController {
 //            webView.scrollView.contentInsetAdjustmentBehavior = .never
 //        }
 //        self.view.addSubview(webView)
+        
     }
 
     @objc func xti_toucheRightBarButtonItem() {

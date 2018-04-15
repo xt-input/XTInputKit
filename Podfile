@@ -9,7 +9,7 @@ target 'XTInputKit' do
   use_frameworks!
 
   # Pods for XTInputKit
-  pod 'HandyJSON', '~> 4.0.0-beta.1'
-  pod 'Alamofire', '~> 4.6.0'
+  pod 'HandyJSON', '~> 4.1.1'
+  pod 'Alamofire', '~> 4.7.1'
 
 end

@@ -10,16 +10,16 @@ import Alamofire
 import HandyJSON
 
 /// 网络请求成功的回调
-public typealias XTIRequestCompletedCallback = ((_ requset: XTIBaseRequest?, _ result: Any?) -> ())
+public typealias XTIRequestCompletedCallback = (_ requset: XTIBaseRequest?, _ result: Any?) -> ()
 
 /// 网络请求失败的回调
-public typealias XTIRequestErrorCallback = ((_ requset: XTIBaseRequest?, _ error: Error?) -> ())
+public typealias XTIRequestErrorCallback = (_ requset: XTIBaseRequest?, _ error: Error?) -> ()
 
 /// 文件上传下载进度的回调
-public typealias XTIProgressCallback = ((_ progress: Progress) -> ())
+public typealias XTIProgressCallback = (_ progress: Progress) -> ()
 
 /// 文件下载成功的回调
-public typealias XTIDownloadCompletedCallback = ((_ filePath: URL?) -> ())
+public typealias XTIDownloadCompletedCallback = (_ filePath: URL?) -> ()
 
 public class XTIBaseRequest {
     fileprivate static var _default = XTIBaseRequest()
