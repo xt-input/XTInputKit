@@ -7,16 +7,17 @@
 //
 
 import UIKit
+extension UIView: XTIBaseNameNamespace {}
 
-public extension UIView {
+public extension XTITypeWrapperProtocol where WrappedType == UIView {
     /// 将View转换成img
     ///
     /// - Returns: 转换的结果
     public func xt_convertViewToImage() -> UIImage! {
         let scale = UIScreen.main.scale
-        let size = __CGSizeApplyAffineTransform(self.bounds.size, CGAffineTransform(scaleX: scale, y: scale))
+        let size = __CGSizeApplyAffineTransform(wrappedValue.bounds.size, CGAffineTransform(scaleX: scale, y: scale))
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        self.drawHierarchy(in: CGRect(origin: CGPoint.zero, size: size), afterScreenUpdates: true)
+        wrappedValue.drawHierarchy(in: CGRect(origin: CGPoint.zero, size: size), afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         return image
     }

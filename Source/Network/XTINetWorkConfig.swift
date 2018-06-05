@@ -47,6 +47,7 @@ public struct XTINetWorkConfig {
             if _defaultPublicHttpHeader["systemVersion"] == nil {
                 _defaultPublicHttpHeader["systemVersion"] = UIDevice.current.systemVersion
             }
+            _defaultPublicHttpHeader["Content-Type"] = defaultContentType
             return _defaultPublicHttpHeader
         } set {
             _defaultPublicHttpHeader = newValue
@@ -55,4 +56,5 @@ public struct XTINetWorkConfig {
 
     /// 网络请求签名，如果设置了该属性，所有的网络请求都会调用，如果某一个网络请求不需要可以继承XTIBaseRequest，然后重写signature方法
     public static var defaultSignature: ((_ parameters: XTIParameters) -> String)!
+//    public static var defaultSignature: ((_ parameters: XTIParameters) -> String)!
 }

@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: XTIMacros.SCREEN_BOUNDS)
-        UINavigationController.xti_openBackGesture = false
+//        UINavigationController.xti_openBackGesture = false
         self.initRootViewController()
         loger.debug("应用完成启动前的准备")
         return true

@@ -10,6 +10,6 @@ target 'XTInputKit' do
 
   # Pods for XTInputKit
   pod 'HandyJSON', '~> 4.1.1'
-  pod 'Alamofire', '~> 4.7.1'
+  pod 'Alamofire', '~> 4.7.2'
 
 end

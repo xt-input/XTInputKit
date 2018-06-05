@@ -10,16 +10,16 @@ import Alamofire
 import HandyJSON
 
 /// 网络请求成功的回调
-public typealias XTIRequestCompletedCallback = (_ requset: XTIBaseRequest?, _ result: Any?) -> ()
+public typealias XTIRequestCompletedCallback = (XTIBaseRequest?, Any?) -> ()
 
 /// 网络请求失败的回调
-public typealias XTIRequestErrorCallback = (_ requset: XTIBaseRequest?, _ error: Error?) -> ()
+public typealias XTIRequestErrorCallback = (XTIBaseRequest?, Error?) -> ()
 
 /// 文件上传下载进度的回调
-public typealias XTIProgressCallback = (_ progress: Progress) -> ()
+public typealias XTIProgressCallback = (Progress) -> ()
 
 /// 文件下载成功的回调
-public typealias XTIDownloadCompletedCallback = (_ filePath: URL?) -> ()
+public typealias XTIDownloadCompletedCallback = (URL?) -> ()
 
 public class XTIBaseRequest {
     fileprivate static var _default = XTIBaseRequest()
@@ -100,7 +100,6 @@ public class XTIBaseRequest {
     public init() {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
-        configuration.httpAdditionalHeaders!["Content-Type"] = XTINetWorkConfig.defaultContentType
         configuration.timeoutIntervalForRequest = XTINetWorkConfig.defaultTimeoutInterval
         configuration.httpMaximumConnectionsPerHost = XTINetWorkConfig.defaultHttpMaximumConnectionsPerHost
         httpManager = SessionManager(configuration: configuration)
@@ -299,6 +298,7 @@ public class XTIBaseRequest {
         if sign != "" {
             tempHeaders["sign"] = sign
         }
+        tempHeaders["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
         httpManager.upload(multipartFormData: { [weak self] data in
             if let strongSelf = self {
                 parameters.forEach { key, value in
@@ -341,9 +341,7 @@ public class XTIBaseRequest {
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
     fileprivate func requestCallback(_ result: DataResponse<String>, resultClass resultType: HandyJSON.Type!, completed completedCallback: XTIRequestCompletedCallback!, error errorCallback: XTIRequestErrorCallback!) {
-        if iSLogRawData {
-            XTILoger.default.info(result)
-        }
+        outRawData(result)
         if result.result.isSuccess {
             if completedCallback != nil {
                 var resultValue: Any!
@@ -405,6 +403,15 @@ public class XTIBaseRequest {
                     errorCallback(nil, res.result.error)
                 }
             }
+        }
+    }
+    
+    /// 打印原始数据，可以在该函数里面读取Cookie的值
+    ///
+    /// - Parameter result: 原始数据
+    public func outRawData(_ result: DataResponse<String>) {
+        if iSLogRawData {
+            XTILoger.default.info(result)
         }
     }
     

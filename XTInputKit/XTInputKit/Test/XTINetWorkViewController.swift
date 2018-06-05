@@ -57,7 +57,6 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
                 }
             }
         }
-        
 //        let p1: [String: Any] = ["bundelID": "11111"]
 //        XTITest1Request.sharedInstance.get(serviceName:"/rxswift/Login/index", parameters: p1, resultClass: XTITestResult.self, completed: { [weak self] _, result in
 //            if let res = result as? XTITestResult {

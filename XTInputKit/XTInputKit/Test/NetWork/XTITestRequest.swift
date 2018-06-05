@@ -20,7 +20,7 @@ class XTITestRequest: XTIBaseRequest {
 
     override func buildParameters() -> XTIParameters {
         var parameters = super.buildParameters()
-        parameters["bundelID"] = bundelID
+        parameters["bundelId"] = bundelID
         return parameters
     }
     deinit {

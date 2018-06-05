@@ -8,8 +8,6 @@
 
 import UIKit
 
-extension UIButton: XTIBaseNameNamespace {}
-
 // font
 public extension XTITypeWrapperProtocol where WrappedType == UIButton {
     /// 设置按钮字体

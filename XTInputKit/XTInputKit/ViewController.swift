@@ -6,58 +6,75 @@
 //  Copyright © 2018年 input. All rights reserved.
 //
 
+import Alamofire
 import UIKit
 import WebKit
 
 var count = 0
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     private var _testcolor: UIColor!
-    
+
     var testcolor: UIColor! {
-        if _testcolor == nil {
-            _testcolor = UIColor.XTI.random
+        if self._testcolor == nil {
+            self._testcolor = UIColor.XTI.random
         }
-        return _testcolor
+        return self._testcolor
     }
+
+    var tableView: UITableView!
+//    var timer: Timer!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        self.view.backgroundColor = UIColor.XTI.random
         self.view.backgroundColor = UIColor.white
-
         self.xti_navigationTitle = "navigation标题"
         self.xti_setBarButtonItem(.right, title: "测试")
         self.xti_nextBackTitle = ""
         self.xti_nextBackColor = UIColor.XTI.random
         self.xti_tabbarTitle = "tabbar标题"
-        if let navigaVC = self.navigationController {
-            if navigaVC.viewControllers.count % 2 == 0 {
-//                self.xti_navigationBarHidden = true
-            }
-        }
-        let bar = self.navigationController?.navigationBar;
-        bar?.subviews.forEach({ (view) in
-            loger.debug(view);
-            if view.isKind(of: NSClassFromString("_UIBarBackground")!){
-                view.backgroundColor = self.testcolor;
-            }
-        })
-//        self.xti_navigationBarBackgroundColor = self.testcolor
-//        let configuration = WKWebViewConfiguration()
-//        let webView = WKWebView(frame: CGRect(x: 0, y: self.xti_navigationBarHidden ? 0 : XTIMacros.NAVBAR_HEIGHT, width: XTIMacros.SCREEN_WIDTH, height: XTIMacros.SCREEN_HEIGHT - (self.xti_navigationBarHidden ? 0 : XTIMacros.NAVBAR_HEIGHT)), configuration: configuration)
-//        webView.load(URLRequest(url: URL(string: "http://123123.07coding.com")!))
-//        if #available(iOS 11.0, *) {
-//            webView.scrollView.contentInsetAdjustmentBehavior = .never
+        XTITimer.defualt.addObserver(self, repeating: 1, sum: 20)
+
+        self.tableView = UITableView(frame: self.view.bounds, style: .plain)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: UITableViewCell.className)
+//        self.view.addSubview(self.tableView)
+//        if #available(iOS 10.0, *) {
+//            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+//                loger.debug(self)
+//            }
+//        } else {
+//            // Fallback on earlier versions
 //        }
-//        self.view.addSubview(webView)
-        
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+//        XTIObserverTest.default.removeObserver(self)
     }
 
     @objc func xti_toucheRightBarButtonItem() {
-        loger.debug("点击了导航栏右边的按钮")
-        loger.debug(self.xti_nextBackTitle)
+//        loger.debug("点击了导航栏右边的按钮")
+//        loger.debug(self.xti_nextBackTitle)
         self.xti_pushOrPresentVC(XTINetWorkViewController.initwithstoryboard("Storyboard"))
+    }
+
+    @objc func countdown(_ item: XTITimerItem) {
+        loger.debug(item.count)
+        if item.count == 12 {
+//            item.isCancel = true
+        }
+    }
+
+    // MARK: - UITableViewDelegate, UITableViewDataSource
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 100
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
     }
 
     @IBAction func clickPushBtn(_ sender: UIButton) {
@@ -70,6 +87,16 @@ class ViewController: UIViewController {
         self.xti_popOrDismiss()
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        XTITimer.defualt.removeObserver(self);
+        let labelName: Int = Int(arc4random())
+        XTITimer.defualt.addObserver(self, labelName: "\(labelName)", repeating: 1.0, sum: labelName) { (item) in
+            if item?.count == 12 {
+                item?.isCancel = true;
+            }
+            loger.debug(item?.count)
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -77,5 +104,6 @@ class ViewController: UIViewController {
 
     deinit {
         count -= 1
+        loger.debug(count)
     }
 }
