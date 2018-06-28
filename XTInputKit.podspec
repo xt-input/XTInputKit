@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
   ss.dependency 'XTInputKit/XTILoger'
   ss.dependency 'XTInputKit/XTITool'
   ss.dependency 'HandyJSON', '~> 4.1.1'
-  ss.dependency 'SSZipArchive', '~> 4.7.2'
+  ss.dependency 'Alamofire', '~> 4.7.2'
   end
 
   s.requires_arc  = true

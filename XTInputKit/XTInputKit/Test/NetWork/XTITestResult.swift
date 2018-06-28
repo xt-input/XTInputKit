@@ -10,14 +10,26 @@ import HandyJSON
 import UIKit
 
 /// 判断是否为空请使用isEmpty()
+
 struct XTITestResult: HandyJSON {
-    var result1: XTITestResult1?
-    var result2: [XTITestResult1]?
+    var code: String?
+    var message: String?
+    var result: Result?
 }
 
-struct XTITestResult1: HandyJSON {
-    var int: Int?
-    var float: Float?
-    var string: String?
-    var bool: Bool?
+struct Result: HandyJSON {
+    var currentPage: Int?
+    var pageSize: Int?
+    var resultList: [ResultList]?
+    var totalCount: Int?
+    var totalPage: Int?
+}
+
+struct ResultList: HandyJSON {
+    var multimediaId: Int?
+    var multimediaPath: String?
+    var multimediaTitle: String?
+    var picturePath: String?
+    var screenshotPath: String?
+    var subscribeId: Int?
 }
