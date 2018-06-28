@@ -13,9 +13,14 @@ var loger = XTILoger.default
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-
+    var view: UIView?
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
-        loger.debug("应用即将启动")
+//        loger.saveFileLevel = .all
+//        loger.debug("应用即将启动")
+        //将广告追加在应用启动后主队列里
+        DispatchQueue.XTI.mainAsyncAfter(0) {
+            self.test()
+        }
         return true
     }
 
@@ -56,6 +61,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         loger.debug("应用即将回到前台<成为第一响应者>")
+        self.test()
+    }
+
+    func test() {
+        self.view?.removeFromSuperview()
+        self.view = UIView(frame: (self.window?.frame)!)
+        self.view?.backgroundColor = UIColor.red
+        let label = UILabel()
+        label.frame = CGRect(x: 0, y: 0, width: 50, height: 20)
+        label.center = (self.view?.center)!
+        self.view?.addSubview(label)
+        self.window?.addSubview(self.view!)
+        label.text = "3"
+        XTITimer.defualt.addObserver(self, repeating: 1, sum: 3) { item in
+            loger.debug(item?.count)
+            label.text = "\(item!.sum - item!.count)"
+            if (item?.isEnd())! {
+                self.view?.removeFromSuperview()
+            }
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -66,5 +91,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         loger.debug("应用即将被杀死")
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+        return true
+    }
+
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
     }
 }

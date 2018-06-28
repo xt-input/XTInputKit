@@ -47,7 +47,7 @@ public class XTITimerItem: XTIObserverItem {
         super.init(item)
         self._sum = sum
         self._labelName = name
-        self.timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.global())
+        self.timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.global(qos: .background))
         self.timer.schedule(wallDeadline: DispatchWallTime.now() + interval, repeating: interval)
         self.timer.setEventHandler { [weak self] in
             if self?.observerItem == nil || (self?.isEnd() != nil && (self?.isEnd())!) {
@@ -74,7 +74,7 @@ public class XTITimerItem: XTIObserverItem {
         self._count += 1
     }
 
-    fileprivate func isEnd() -> Bool {
+    public func isEnd() -> Bool {
         return self.sum == 0 ? false : self.count == self.sum
     }
 
@@ -113,7 +113,7 @@ public class XTITimer: XTIObserver {
                 self.addObserver(XTITimerItem(object, sum: sum, interval: interval, block: block))
             }
         }
-        //去除被释放了的的观察者的任务
+        // 去除被释放了的的观察者的任务
         let keyArray = observers.filter { (_, item) -> Bool in
             item.observerItem == nil
         }

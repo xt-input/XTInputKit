@@ -42,7 +42,7 @@ Pod::Spec.new do |s|
   ss.dependency 'XTInputKit/XTILoger'
   ss.dependency 'XTInputKit/XTITool'
   ss.dependency 'HandyJSON', '~> 4.0.0-beta.1'
-  ss.dependency 'Alamofire', '~> 4.6.0'
+  ss.dependency 'SSZipArchive', '~> 4.6.0'
   end
   
   s.subspec 'Swift' do |ss|
