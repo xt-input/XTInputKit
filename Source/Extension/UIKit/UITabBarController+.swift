@@ -25,6 +25,6 @@ public extension UITabBarController {
         }
         viewController.tabBarItem.image = image
         viewController.tabBarItem.selectedImage = selectedImage == nil ? image : selectedImage
-        self.addChildViewController(viewController)
+        self.addChild(viewController)
     }
 }

@@ -6,7 +6,10 @@
 //  Copyright © 2018年 input. All rights reserved.
 //
 
+import OpenUDID
+import SimulateIDFA
 import UIKit
+import UserNotifications
 
 var loger = XTILoger.default
 
@@ -14,17 +17,29 @@ var loger = XTILoger.default
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var view: UIView?
-    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
 //        loger.saveFileLevel = .all
 //        loger.debug("应用即将启动")
-        //将广告追加在应用启动后主队列里
+        // 将广告追加在应用启动后主队列里
         DispatchQueue.XTI.mainAsyncAfter(0) {
             self.test()
         }
+        UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
+
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
+                loger.debug("通知授权")
+                loger.debug(granted)
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        loger.debug("SimulateIDFA==>" + SimulateIDFA.createSimulateIDFA())
+        loger.debug("OpenUDID==>" + OpenUDID.value())
         return true
     }
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: XTIMacros.SCREEN_BOUNDS)
 //        UINavigationController.xti_openBackGesture = false
@@ -42,6 +57,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let navc3 = XTINavigationController(rootViewController: XTINetWorkViewController.initwithstoryboard("Storyboard"))
         vc.xti_addChildViewController(navc3, tabbarTitle: "NetWork", image: UIImage.XTI.imageWithColor(UIColor.red, size: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysOriginal), selectedImage: nil)
+        let navc4 = XTINavigationController(rootViewController: XTIDivViewController())
+        vc.xti_addChildViewController(navc4, tabbarTitle: "嵌套", image: UIImage.XTI.imageWithColor(UIColor.red, size: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysOriginal), selectedImage: nil)
+        
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
     }
@@ -93,10 +111,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         loger.debug("应用即将被杀死")
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         return true
     }
 
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
     }
+
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        loger.debug("收到通知")
+        loger.debug(notification.userInfo)
+    }
 }
+

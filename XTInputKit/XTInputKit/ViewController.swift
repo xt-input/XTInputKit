@@ -8,6 +8,7 @@
 
 import Alamofire
 import UIKit
+import UserNotifications
 import WebKit
 
 var count = 0
@@ -87,16 +88,41 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.xti_popOrDismiss()
     }
 
+    @IBAction func clickNotificationBtn(_ sender: UIButton) {
+        if #available(iOS 10.0, *) {
+            let notification = UNMutableNotificationContent()
+            // 通知上显示的主题内容
+            notification.body = "通知上显示的提示内容"
+            notification.subtitle = "通知上显示的提示内容1"
+
+            // 收到通知时播放的声音，默认消息声音
+            notification.sound = UNNotificationSound.default
+            // 通知上绑定的其他信息，为键值对
+            notification.userInfo = ["id": "1", "name": "xxxx"]
+            notification.title = "测试"
+            notification.categoryIdentifier = "UNNotificationRequestUNNotificationRequest"
+            loger.debug("发送通知")
+            //        UIApplication.shared.presentLocalNotificationNow(notification)
+            let request = UNNotificationRequest(identifier: "UNNotificationRequestUNNotificationRequest", content: notification, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false))
+            UNUserNotificationCenter.current().add(request) { error in
+                loger.debug(error)
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        XTITimer.defualt.removeObserver(self);
+        XTITimer.defualt.removeObserver(self)
         let labelName: Int = Int(arc4random())
-        XTITimer.defualt.addObserver(self, labelName: "\(labelName)", repeating: 1.0, sum: labelName) { (item) in
+        XTITimer.defualt.addObserver(self, labelName: "\(labelName)", repeating: 1.0, sum: labelName) { item in
             if item?.count == 12 {
-                item?.isCancel = true;
+                item?.isCancel = true
             }
             loger.debug(item?.count)
         }
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

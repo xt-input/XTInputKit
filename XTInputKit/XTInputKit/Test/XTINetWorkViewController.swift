@@ -25,6 +25,7 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
         xti_navigationTitle = "网络请求"
 //        XTINetWorkConfig.iSLogRawData = false
         XTINetWorkConfig.defaultHostName = "design.07coding.com" // 设置默认的网络请求域名
+        XTINetWorkConfig.defaultHttpScheme = .https
         XTINetWorkConfig.defaultSignature = { (parameters) -> String in // 设置所有的接口的签名方法
             loger.debug(parameters)
             return "signature=signature"
@@ -57,18 +58,18 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
                 }
             }
         }
-//        let p1: [String: Any] = ["bundelID": "11111"]
-//        XTITest1Request.sharedInstance.get(serviceName:"/rxswift/Login/index", parameters: p1, resultClass: XTITestResult.self, completed: { [weak self] _, result in
-//            if let res = result as? XTITestResult {
-//                if let strongSelf = self {
-//                    strongSelf.resultString = loger.debug(res.toJSON()!)
-//                }
-//            }
-//        }) { [weak self] _, error in
-//            if let strongSelf = self {
-//                strongSelf.resultString = loger.warning(error?.localizedDescription)
-//            }
-//        }
+        let p1: [String: Any] = ["bundelID": "11111"]
+        XTITest1Request.sharedInstance.get(serviceName:"/rxswift/Login/index", parameters: p1, resultClass: XTITestResult.self, completed: { [weak self] _, result in
+            if let res = result as? XTITestResult {
+                if let strongSelf = self {
+                    strongSelf.resultString = loger.debug(res.toJSON()!)
+                }
+            }
+        }) { [weak self] _, error in
+            if let strongSelf = self {
+                strongSelf.resultString = loger.warning(error?.localizedDescription)
+            }
+        }
 //
 //        let p2: [String: Any] = ["bundelID": "22222"]
 //

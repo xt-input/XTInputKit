@@ -40,9 +40,9 @@ public class XTITool {
     /// 获取当前应用活动的窗口
     public static var keyWindow: UIWindow! {
         var keyWindow = UIApplication.shared.keyWindow
-        if keyWindow?.windowLevel == UIWindowLevelNormal {
+        if keyWindow?.windowLevel == UIWindow.Level.normal {
             UIApplication.shared.windows.forEach { window in
-                if window.windowLevel == UIWindowLevelNormal {
+                if window.windowLevel == UIWindow.Level.normal {
                     keyWindow = window
                 }
             }

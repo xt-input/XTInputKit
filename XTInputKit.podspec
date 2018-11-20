@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
                    DESC
   s.homepage     = "https://github.com/xt-input/XTInputKit"
   s.license      = "MIT"
-  s.authors      = {"input" => "input@07coding.com"}
+  s.authors      = {"xt-input" => "input@07coding.com"}
   s.platform     = :ios, "9.0"
   s.source       = { :git => "https://github.com/xt-input/XTInputKit.git",
                      :tag => s.version }

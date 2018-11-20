@@ -24,20 +24,20 @@ public extension UIViewController {
         static var navigationTitle = "XTInavigationTitle"
         static var tabbarTitle = "XTItabbarTitle"
     }
-    
+
     // MARK: - 设置下一界面的导航栏back按钮文案和颜色
-    
+
     /// 下一级控制器导航栏返回按钮文案
     public var xti_nextBackTitle: String! {
         set {
-            if self.xti_nextBackTitle != newValue {
+            if xti_nextBackTitle != newValue {
                 objc_setAssociatedObject(self, &XTIViewControllerKey.nextBackTitle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
-                var backItem = self.navigationItem.backBarButtonItem
+                var backItem = navigationItem.backBarButtonItem
                 if backItem == nil {
                     backItem = UIBarButtonItem()
                 }
                 backItem?.title = newValue
-                self.navigationItem.backBarButtonItem = backItem
+                navigationItem.backBarButtonItem = backItem
             }
         }
         get {
@@ -45,19 +45,19 @@ public extension UIViewController {
             return title as? String
         }
     }
-    
+
     /// 下一级控制器导航栏返回按钮颜色
     public var xti_nextBackColor: UIColor! {
         set {
-            if self.xti_nextBackColor != newValue {
+            if xti_nextBackColor != newValue {
                 objc_setAssociatedObject(self, &XTIViewControllerKey.nextBackColor, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
-                var backItem = self.navigationItem.backBarButtonItem
+                var backItem = navigationItem.backBarButtonItem
                 if backItem == nil {
                     backItem = UIBarButtonItem()
-                    backItem?.title = self.xti_navigationTitle
+                    backItem?.title = xti_navigationTitle
                 }
                 backItem?.tintColor = newValue
-                self.navigationItem.backBarButtonItem = backItem
+                navigationItem.backBarButtonItem = backItem
             }
         }
         get {
@@ -65,15 +65,15 @@ public extension UIViewController {
             return color as? UIColor
         }
     }
-    
+
     // MARK: - 设置tabbar和navigation的标题
-    
+
     /// 用于tabbar标题和navigation标题不一致的时候设置tabbar的标题，需要在viewDidLoad之前设置
     public var xti_tabbarTitle: String! {
         set {
-            if self.xti_tabbarTitle != newValue {
+            if xti_tabbarTitle != newValue {
                 objc_setAssociatedObject(self, &XTIViewControllerKey.tabbarTitle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
-                self.tabBarItem.title = newValue
+                tabBarItem.title = newValue
             }
         }
         get {
@@ -81,15 +81,15 @@ public extension UIViewController {
             return (title == nil ? self.title : title) as? String
         }
     }
-    
+
     /**
      用于tabbar标题和navigation标题不一致的时候设置navigation的标题
      */
     public var xti_navigationTitle: String! {
         set {
-            if self.xti_navigationTitle != newValue {
+            if xti_navigationTitle != newValue {
                 objc_setAssociatedObject(self, &XTIViewControllerKey.navigationTitle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
-                self.navigationItem.title = newValue
+                navigationItem.title = newValue
             }
         }
         get {
@@ -97,27 +97,27 @@ public extension UIViewController {
             return (title == nil ? self.title : title) as? String
         }
     }
-    
+
     // MARK: - 通过StoryBoard初始化控制器
-    
+
     ///    通过storyboard文件名字初始化控制器
     ///
     /// - Parameter storyboardName:storyboard文件的名字
     /// - Returns:
     public static func initwithstoryboard(_ name: String, withIdentifier: String! = nil) -> UIViewController {
         if withIdentifier == nil {
-            return UIStoryboard(name: name, bundle: nil).instantiateViewController(withIdentifier: self.className)
+            return UIStoryboard(name: name, bundle: nil).instantiateViewController(withIdentifier: className)
         } else {
             return UIStoryboard(name: name, bundle: nil).instantiateViewController(withIdentifier: withIdentifier)
         }
     }
-    
+
     fileprivate var navTitleColor: UIColor {
-        return self.navigationController?.navigationBar.tintColor == nil ? UIColor.black : self.navigationController!.navigationBar.tintColor
+        return navigationController?.navigationBar.tintColor == nil ? UIColor.black : navigationController!.navigationBar.tintColor
     }
-    
+
     // MARK: - 设置导航栏的左右两个按钮
-    
+
     /// 设置导航栏左右两边的按钮
     ///     图片和文字两个参数至少需要一个
     /// - Parameters:
@@ -132,40 +132,40 @@ public extension UIViewController {
                                      titleColor: UIColor! = nil,
                                      action: Selector! = nil) {
         let color = titleColor == nil ? navTitleColor : titleColor
-        let navItem = self.navigationItem
+        let navItem = navigationItem
         let navBtn = UIButton(type: .custom)
-        
+
         navBtn.setTitle(title, for: .normal)
         navBtn.setTitle(title, for: .highlighted)
-        
+
         navBtn.setTitleColor(color, for: .normal)
         navBtn.setTitleColor(color, for: .highlighted)
-        
+
         navBtn.xti.titleFont(UIFont.systemFont(ofSize: 15))
-        
+
         navBtn.setImage(img, for: .normal)
         navBtn.setImage(img, for: .highlighted)
-        navBtn.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0)
+        navBtn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         navBtn.sizeToFit()
         let btnItem = UIBarButtonItem(customView: navBtn)
         var sel: Selector!
         if position == .left {
-            sel = Selector.init(("xti_toucheLeftBarButtonItem"))
+            sel = Selector(("xti_toucheLeftBarButtonItem"))
             navItem.leftBarButtonItem = btnItem
         } else {
-            sel = Selector.init(("xti_toucheRightBarButtonItem"))
+            sel = Selector(("xti_toucheRightBarButtonItem"))
             navItem.rightBarButtonItem = btnItem
         }
         if action != nil {
             sel = action
         }
-        if self.responds(to: sel) {
+        if responds(to: sel) {
             navBtn.addTarget(self, action: sel, for: .touchUpInside)
         }
     }
-    
+
     // MARK: - ViewController (push、present, pop、dismiss)
-    
+
     /// 跳转到VC，自动选择push或present
     /// 如果能push，就使用push
     /// - Parameters:
@@ -175,10 +175,10 @@ public extension UIViewController {
         if let navVC = self.navigationController {
             navVC.pushViewController(VC, animated: animated)
         } else {
-            self.present(VC, animated: animated, completion: nil)
+            present(VC, animated: animated, completion: nil)
         }
     }
-    
+
     /// 关闭当前控制器，无需考虑当前控制器出现的方式(push or present)
     ///
     /// - Parameters:
@@ -188,14 +188,14 @@ public extension UIViewController {
         if let navVC = self.navigationController {
             navVC.popViewController(animated: animated)
         } else {
-            self.dismiss(animated: animated, completion: completion)
+            dismiss(animated: animated, completion: completion)
         }
     }
-    
+
     // MARK: - 弹窗alertController
-    
+
     public func showMessage(title: String! = "提示", message: String! = nil, cancelTitle: String! = nil, confirmTitle: String! = "确认", action: ((_ index: Int) -> Void)! = nil) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         if cancelTitle != nil {
             alertController.addAction(UIAlertAction(title: confirmTitle, style: .cancel) { _ in
                 if action != nil {
@@ -212,6 +212,6 @@ public extension UIViewController {
                 action(index)
             }
         })
-        self.present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
 }

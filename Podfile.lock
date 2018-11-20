@@ -1,20 +1,46 @@
 PODS:
-  - Alamofire (4.7.2)
-  - HandyJSON (4.1.1)
+  - Alamofire (4.7.3)
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - HandyJSON (4.2.0)
+  - OpenUDID (1.0.0)
+  - SimulateIDFA (0.0.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.7.2)
-  - HandyJSON (~> 4.1.1)
+  - Alamofire (~> 4.7.3)
+  - BlocksKit (~> 2.2.5)
+  - HandyJSON (~> 4.2.0)
+  - OpenUDID (~> 1.0.0)
+  - SimulateIDFA (~> 0.0.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - BlocksKit
     - HandyJSON
+    - OpenUDID
+    - SimulateIDFA
 
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  HandyJSON: 3a3de917c4118767ffe41c29b5acba23409649f4
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  HandyJSON: 9dfc026c7d7adc1f0f8ba8b181495f0e0763b0f4
+  OpenUDID: e7cb6984c7304906ad20f3a36bf087b025896b6b
+  SimulateIDFA: 3b7dc99085eaf79deacb27a0bdc34277ee89075f
 
-PODFILE CHECKSUM: 492955b56451b8d50dbdc690f6343055c1f0890f
+PODFILE CHECKSUM: c12acac8965b448e7ecfb118e0fad841be4e3b41
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.6.0.beta.1

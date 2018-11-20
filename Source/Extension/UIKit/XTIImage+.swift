@@ -44,7 +44,7 @@ public extension XTITypeWrapperProtocol where WrappedType == UIImage {
     /// - Parameter point: 拉伸的点
     /// - Returns: 生成的图片
     public func stretchAtPoint(_ point: CGPoint) -> UIImage {
-        let edgeInsets = UIEdgeInsetsMake(point.y, point.x, wrappedValue.size.height - point.y, wrappedValue.size.width - point.x)
-        return wrappedValue.resizableImage(withCapInsets: edgeInsets, resizingMode: UIImageResizingMode.stretch)
+        let edgeInsets = UIEdgeInsets.init(top: point.y, left: point.x, bottom: wrappedValue.size.height - point.y, right: wrappedValue.size.width - point.x)
+        return wrappedValue.resizableImage(withCapInsets: edgeInsets, resizingMode: UIImage.ResizingMode.stretch)
     }
 }

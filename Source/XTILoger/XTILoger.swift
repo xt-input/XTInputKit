@@ -110,7 +110,7 @@ public struct XTILoger {
                                            function: String = #function,
                                            file: String = #file,
                                            line: Int = #line) -> String {
-        return self.info(format: "\(value)", function: function, file: file, line: line)
+        return self.info(format: String(describing: value), function: function, file: file, line: line)
     }
     
     @discardableResult public func debug(format: String,
@@ -128,7 +128,7 @@ public struct XTILoger {
                                             function: String = #function,
                                             file: String = #file,
                                             line: Int = #line) -> String {
-        return self.debug(format: "\(value)", function: function, file: file, line: line)
+        return self.debug(format: String(describing: value), function: function, file: file, line: line)
     }
     
     @discardableResult public func warning(format: String,
@@ -146,7 +146,7 @@ public struct XTILoger {
                                               function: String = #function,
                                               file: String = #file,
                                               line: Int = #line) -> String {
-        return self.warning(format: "\(value)", function: function, file: file, line: line)
+        return self.warning(format: String(describing: value), function: function, file: file, line: line)
     }
     
     @discardableResult public func error(format: String,
@@ -164,7 +164,7 @@ public struct XTILoger {
                                             function: String = #function,
                                             file: String = #file,
                                             line: Int = #line) -> String {
-        return self.error(format: "\(value)", function: function, file: file, line: line)
+        return self.error(format: String(describing: value), function: function, file: file, line: line)
     }
     
     /// 打印日志

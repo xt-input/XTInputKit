@@ -20,13 +20,12 @@
 		AE58C7A02060F7F400A45B29 /* XTIHandyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C79F2060F7F400A45B29 /* XTIHandyJSON.swift */; };
 		AE5BAB352085E89000702DC4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE5BAB342085E89000702DC4 /* CoreTelephony.framework */; };
 		AE5DC3AE202A9C4100F2D8B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5DC3A7202A9C4100F2D8B7 /* ViewController.swift */; };
-		AE5DC3AF202A9C4100F2D8B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE5DC3A8202A9C4100F2D8B7 /* LaunchScreen.storyboard */; };
 		AE5DC3B0202A9C4100F2D8B7 /* XTINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5DC3A9202A9C4100F2D8B7 /* XTINavigationController.swift */; };
 		AE5DC3B1202A9C4100F2D8B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE5DC3AA202A9C4100F2D8B7 /* Assets.xcassets */; };
 		AE5DC3B2202A9C4100F2D8B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5DC3AB202A9C4100F2D8B7 /* AppDelegate.swift */; };
-		AE5DC3B3202A9C4100F2D8B7 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE5DC3AC202A9C4100F2D8B7 /* Storyboard.storyboard */; };
 		AE66B903201C58E7002E3FFF /* UITabBarController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE66B902201C58E7002E3FFF /* UITabBarController+.swift */; };
 		AE66B909201F1DCA002E3FFF /* XTITool.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE66B908201F1DCA002E3FFF /* XTITool.swift */; };
+		AE67416E219E985100499FE6 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE674170219E985100499FE6 /* Storyboard.storyboard */; };
 		AE8D70CB2012F4EA002E3580 /* XTIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B42012F4EA002E3580 /* XTIView+.swift */; };
 		AE8D70CC2012F4EA002E3580 /* XTIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B52012F4EA002E3580 /* XTIButton+.swift */; };
 		AE8D70CD2012F4EA002E3580 /* XTIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B62012F4EA002E3580 /* XTIColor+.swift */; };
@@ -43,7 +42,9 @@
 		AE8D70D82012F4EA002E3580 /* XTIObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70C42012F4EA002E3580 /* XTIObserver.swift */; };
 		AEAFA9F620930C99007613B8 /* XTIObserverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAFA9F520930C99007613B8 /* XTIObserverTest.swift */; };
 		AEAFA9F820932244007613B8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AEAFA9F720932244007613B8 /* README.md */; };
+		AEB42894214FB399003483CD /* XTIDivViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB42893214FB399003483CD /* XTIDivViewController.swift */; };
 		AECEFFC8201C2C6300B96754 /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEFFC7201C2C6300B96754 /* NSObject+.swift */; };
+		AECFC9892170DD22006C0A35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AECFC9882170DD22006C0A35 /* LaunchScreen.storyboard */; };
 		AED82BE42099DA2F00AACF24 /* XTIOperator+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED82BE32099DA2F00AACF24 /* XTIOperator+.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,14 +64,15 @@
 		AE58C79F2060F7F400A45B29 /* XTIHandyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIHandyJSON.swift; sourceTree = "<group>"; };
 		AE5BAB342085E89000702DC4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		AE5DC3A7202A9C4100F2D8B7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AE5DC3A8202A9C4100F2D8B7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE5DC3A9202A9C4100F2D8B7 /* XTINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTINavigationController.swift; sourceTree = "<group>"; };
 		AE5DC3AA202A9C4100F2D8B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE5DC3AB202A9C4100F2D8B7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AE5DC3AC202A9C4100F2D8B7 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		AE5DC3AD202A9C4100F2D8B7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE66B902201C58E7002E3FFF /* UITabBarController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+.swift"; sourceTree = "<group>"; };
 		AE66B908201F1DCA002E3FFF /* XTITool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITool.swift; sourceTree = "<group>"; };
+		AE67416A219E983300499FE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
+		AE67416C219E983700499FE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Info.plist; sourceTree = "<group>"; };
+		AE67416F219E985100499FE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
+		AE67417A219E997B00499FE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Storyboard.strings; sourceTree = "<group>"; };
 		AE8D709C2012F4CD002E3580 /* XTInputKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XTInputKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE8D70B42012F4EA002E3580 /* XTIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIView+.swift"; sourceTree = "<group>"; };
 		AE8D70B52012F4EA002E3580 /* XTIButton+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIButton+.swift"; sourceTree = "<group>"; };
@@ -88,7 +90,9 @@
 		AE8D70C42012F4EA002E3580 /* XTIObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIObserver.swift; sourceTree = "<group>"; };
 		AEAFA9F520930C99007613B8 /* XTIObserverTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIObserverTest.swift; sourceTree = "<group>"; };
 		AEAFA9F720932244007613B8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		AEB42893214FB399003483CD /* XTIDivViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIDivViewController.swift; sourceTree = "<group>"; };
 		AECEFFC7201C2C6300B96754 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
+		AECFC9882170DD22006C0A35 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AED82BE32099DA2F00AACF24 /* XTIOperator+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XTIOperator+.swift"; sourceTree = "<group>"; };
 		EEB07AFBD8A4CCF7B477ADE4 /* Pods-XTInputKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKit.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-XTInputKit/Pods-XTInputKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,6 +145,7 @@
 				AE58C78F205E597700A45B29 /* XTIKeyChainViewController.swift */,
 				AE58C7922060031E00A45B29 /* XTINetWorkViewController.swift */,
 				AEAFA9F520930C99007613B8 /* XTIObserverTest.swift */,
+				AEB42893214FB399003483CD /* XTIDivViewController.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -161,12 +166,12 @@
 				AE58C78A205BCD5E00A45B29 /* XTInputKit.entitlements */,
 				AE58C781205B683200A45B29 /* Test */,
 				AE5DC3A7202A9C4100F2D8B7 /* ViewController.swift */,
-				AE5DC3A8202A9C4100F2D8B7 /* LaunchScreen.storyboard */,
 				AE5DC3A9202A9C4100F2D8B7 /* XTINavigationController.swift */,
 				AE5DC3AA202A9C4100F2D8B7 /* Assets.xcassets */,
 				AE5DC3AB202A9C4100F2D8B7 /* AppDelegate.swift */,
-				AE5DC3AC202A9C4100F2D8B7 /* Storyboard.storyboard */,
-				AE5DC3AD202A9C4100F2D8B7 /* Info.plist */,
+				AE674170219E985100499FE6 /* Storyboard.storyboard */,
+				AE67416B219E983300499FE6 /* Info.plist */,
+				AECFC9882170DD22006C0A35 /* LaunchScreen.storyboard */,
 			);
 			path = XTInputKit;
 			sourceTree = "<group>";
@@ -295,6 +300,7 @@
 				TargetAttributes = {
 					AE8D709B2012F4CD002E3580 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -328,9 +334,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE5DC3B1202A9C4100F2D8B7 /* Assets.xcassets in Resources */,
-				AE5DC3AF202A9C4100F2D8B7 /* LaunchScreen.storyboard in Resources */,
+				AECFC9892170DD22006C0A35 /* LaunchScreen.storyboard in Resources */,
 				AEAFA9F820932244007613B8 /* README.md in Resources */,
-				AE5DC3B3202A9C4100F2D8B7 /* Storyboard.storyboard in Resources */,
+				AE67416E219E985100499FE6 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,18 +349,24 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-XTInputKit/Pods-XTInputKit-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-XTInputKit/Pods-XTInputKit-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/OpenUDID/OpenUDID.framework",
+				"${BUILT_PRODUCTS_DIR}/SimulateIDFA/SimulateIDFA.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlocksKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenUDID.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimulateIDFA.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-XTInputKit/Pods-XTInputKit-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XTInputKit/Pods-XTInputKit-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		731DBC6DCD60ADA0E2E638AC /* [CP] Check Pods Manifest.lock */ = {
@@ -393,6 +405,7 @@
 				AE8D70D72012F4EA002E3580 /* XTIMacros.swift in Sources */,
 				AE8D70D82012F4EA002E3580 /* XTIObserver.swift in Sources */,
 				AE58C79C2060E59300A45B29 /* XTITestRequest.swift in Sources */,
+				AEB42894214FB399003483CD /* XTIDivViewController.swift in Sources */,
 				AE5DC3B0202A9C4100F2D8B7 /* XTINavigationController.swift in Sources */,
 				AE58C780205B67A600A45B29 /* XTINetWorkConfig.swift in Sources */,
 				AE58C7A02060F7F400A45B29 /* XTIHandyJSON.swift in Sources */,
@@ -419,11 +432,33 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		AE67416B219E983300499FE6 /* Info.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE67416A219E983300499FE6 /* Base */,
+				AE67416C219E983700499FE6 /* en */,
+			);
+			name = Info.plist;
+			sourceTree = "<group>";
+		};
+		AE674170219E985100499FE6 /* Storyboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE67416F219E985100499FE6 /* Base */,
+				AE67417A219E997B00499FE6 /* en */,
+			);
+			name = Storyboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		AE8D70AC2012F4CD002E3580 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -483,6 +518,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -536,18 +572,17 @@
 			baseConfigurationReference = EEB07AFBD8A4CCF7B477ADE4 /* Pods-XTInputKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = XTInputKit/XTInputKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZZ2Q79GEK8;
+				DEVELOPMENT_TEAM = 6C4663ZX2Y;
 				INFOPLIST_FILE = "$(SRCROOT)/XTInputKit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.07coding.XTInputKit;
+				PRODUCT_BUNDLE_IDENTIFIER = I.XTInputKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -556,18 +591,17 @@
 			baseConfigurationReference = 6A600A70D7327E7F9503916A /* Pods-XTInputKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = XTInputKit/XTInputKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZZ2Q79GEK8;
+				DEVELOPMENT_TEAM = 6C4663ZX2Y;
 				INFOPLIST_FILE = "$(SRCROOT)/XTInputKit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.07coding.XTInputKit;
+				PRODUCT_BUNDLE_IDENTIFIER = I.XTInputKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

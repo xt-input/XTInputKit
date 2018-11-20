@@ -1,0 +1,30 @@
+
+/* Class = "UIButton"; normalTitle = "跳转"; ObjectID = "0Le-bI-EGt"; */
+"0Le-bI-EGt.normalTitle" = "跳转";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "64u-3S-8hh"; */
+"64u-3S-8hh.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "读取"; ObjectID = "9J7-BL-rG0"; */
+"9J7-BL-rG0.normalTitle" = "读取";
+
+/* Class = "UIButton"; normalTitle = "删除"; ObjectID = "AcJ-uV-TQY"; */
+"AcJ-uV-TQY.normalTitle" = "删除";
+
+/* Class = "UIButton"; normalTitle = "推送"; ObjectID = "DvY-Z2-EDh"; */
+"DvY-Z2-EDh.normalTitle" = "推送";
+
+/* Class = "UIButton"; normalTitle = "删除全部"; ObjectID = "Ldh-te-nb5"; */
+"Ldh-te-nb5.normalTitle" = "删除全部";
+
+/* Class = "UIButton"; normalTitle = "删除全部1"; ObjectID = "RTf-c1-8wr"; */
+"RTf-c1-8wr.normalTitle" = "删除全部1";
+
+/* Class = "UIButton"; normalTitle = "保存"; ObjectID = "Zfk-Nz-Kpp"; */
+"Zfk-Nz-Kpp.normalTitle" = "保存";
+
+/* Class = "UIButton"; normalTitle = "网络请求"; ObjectID = "tSu-co-WCa"; */
+"tSu-co-WCa.normalTitle" = "网络请求";
+
+/* Class = "UIButton"; normalTitle = "关闭"; ObjectID = "wpZ-EL-eCs"; */
+"wpZ-EL-eCs.normalTitle" = "关闭";

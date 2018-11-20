@@ -62,7 +62,7 @@ public class XTITimerItem: XTIObserverItem {
                     let sel = Selector(("countdown:"))
                     let isResponds = self?.observerItem?.responds(to: sel)
                     if isResponds != nil && isResponds! { // 判断观察者有没有实现计时器处理函数
-                        self?.observerItem?.performSelector(onMainThread: sel, with: self, waitUntilDone: true, modes: [RunLoopMode.commonModes.rawValue])
+                        self?.observerItem?.performSelector(onMainThread: sel, with: self, waitUntilDone: true, modes: [RunLoop.Mode.common.rawValue])
                     }
                 }
             }

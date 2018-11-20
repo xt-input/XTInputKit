@@ -10,7 +10,6 @@ import Foundation
 extension String: XTIBaseNameNamespace {}
 
 public extension XTITypeWrapperProtocol where WrappedType == String {
-
     // MARK: 获取字符串的长度
 
     public var length: Int {
@@ -38,7 +37,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     }
 
     public func substringBetween(_ startString: String, endString endStr: String) -> String {
-        var str = wrappedValue.prefix(upTo: self.substringIndex(endStr))
+        var str = wrappedValue.prefix(upTo: substringIndex(endStr))
         str = str.suffix(from: (wrappedValue.range(of: startString)?.upperBound)!)
         return "\(str)"
     }
@@ -53,18 +52,18 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// - Returns: 截取后的string字符串
 
     public func substring(startPosition start: Int, endPosition end: Int) -> String {
-        var tempstart = start > self.length ? self.length : start - 1
+        var tempstart = start > length ? length : start - 1
         if tempstart <= 1 {
             tempstart = 0
         }
-        var tempend = end > self.length ? self.length : end
+        var tempend = end > length ? length : end
         tempend = tempend - tempstart
         if tempend < 1 {
             tempend = 0
         }
         var str = wrappedValue
-        str = "\(str.suffix(from: self.index(toPosition: tempstart)))"
-        str = "\(str.prefix(upTo: self.index(toPosition: tempend)))"
+        str = "\(str.suffix(from: index(toPosition: tempstart)))"
+        str = "\(str.prefix(upTo: index(toPosition: tempend)))"
         return str
     }
 
@@ -73,7 +72,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// - Parameter to: 结束位置
     /// - Returns: 截取后的string字符串
     public func substring(toPosition to: Int) -> String {
-        return self.substring(startPosition: 1, endPosition: to)
+        return substring(startPosition: 1, endPosition: to)
     }
 
     /// 字符串的截取
@@ -81,7 +80,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// - Parameter fromPosition: 开始位置
     /// - Returns: 截取后的string字符串
     public func substring(fromPosition from: Int) -> String {
-        return self.substring(startPosition: from, endPosition: self.length)
+        return substring(startPosition: from, endPosition: length)
     }
 
     /// 字符串的截取
@@ -91,7 +90,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     ///   - length: 子串长度
     /// - Returns: 截取后的string字符串
     public func substring(startPosition start: Int, rangeLength length: Int) -> String {
-        return self.substring(startPosition: start, endPosition: start + length - 1)
+        return substring(startPosition: start, endPosition: start + length - 1)
     }
 
     /// 字符串的截取
@@ -99,7 +98,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// - Parameter length: 子串长度
     /// - Returns:
     public func substringIndexToEnd(rangeLength length: Int) -> String {
-        return self.substring(startPosition: self.length - length + 1, endPosition: self.length)
+        return substring(startPosition: self.length - length + 1, endPosition: self.length)
     }
 
     // MARK: 字符串的range相关
@@ -111,9 +110,9 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     ///   - endPosition: 结束位置（最大为字符串结束位置）
     /// - Returns: 符合条件的范围
     public func range(startPosition start: Int, endPosition end: Int) -> Range<String.Index> {
-        let tempstart = start > self.length ? self.length : start
-        let tempend = end > self.length ? self.length : end
-        return self.index(toPosition: tempstart)..<self.index(toPosition: tempend)
+        let tempstart = start > length ? length : start
+        let tempend = end > length ? length : end
+        return index(toPosition: tempstart) ..< index(toPosition: tempend)
     }
 
     /// 获取字符串指定范围
@@ -124,7 +123,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// - Returns: 符合条件的范围
     public func range(startPosition start: Int, rangeLength length: Int) -> Range<String.Index> {
         let temp = length + start
-        return self.range(startPosition: start, endPosition: temp)
+        return range(startPosition: start, endPosition: temp)
     }
 
     /// 获取字符串指定位置的index
@@ -132,7 +131,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// - Parameter toPosition: 位置
     /// - Returns: 相对于startIndex的位置
     public func index(toPosition to: Int) -> String.Index {
-        let temp = to > self.length ? self.length : to
+        let temp = to > length ? length : to
         return wrappedValue.index(wrappedValue.startIndex, offsetBy: temp)
     }
 
@@ -209,7 +208,7 @@ func arrayOfBytes<T>(_ value: T, length: Int? = nil) -> [UInt8] {
 
     let bytes = valuePointer.withMemoryRebound(to: UInt8.self, capacity: totalBytes) { (bytesPointer) -> [UInt8] in
         var bytes = [UInt8](repeating: 0, count: totalBytes)
-        for j in 0..<min(MemoryLayout<T>.size, totalBytes) {
+        for j in 0 ..< min(MemoryLayout<T>.size, totalBytes) {
             bytes[totalBytes - 1 - j] = (bytesPointer + j).pointee
         }
         return bytes
@@ -292,7 +291,7 @@ struct BytesIterator: IteratorProtocol {
 
     mutating func next() -> ArraySlice<UInt8>? {
         let end = min(chunkSize, data.count - offset)
-        let result = data[offset..<offset + end]
+        let result = data[offset ..< offset + end]
         offset += result.count
         return result.count > 0 ? result : nil
     }
@@ -303,12 +302,12 @@ struct BytesSequence: Sequence {
     let data: [UInt8]
 
     func makeIterator() -> BytesIterator {
-        return BytesIterator(chunkSize: self.chunkSize, data: self.data)
+        return BytesIterator(chunkSize: chunkSize, data: data)
     }
 }
 
 func rotateLeft(_ value: UInt32, bits: UInt32) -> UInt32 {
-    return ((value << bits) & 0xffffffff) | (value >> (32 - bits))
+    return ((value << bits) & 0xFFFFFFFF) | (value >> (32 - bits))
 }
 
 class MD5: HashProtocol {
@@ -326,24 +325,24 @@ class MD5: HashProtocol {
                                     6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21]
 
     /** binary integer part of the sines of integers (Radians) */
-    private let sines: [UInt32] = [0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
-                                   0xf57c0faf, 0x4787c62a, 0xa8304613, 0xfd469501,
-                                   0x698098d8, 0x8b44f7af, 0xffff5bb1, 0x895cd7be,
-                                   0x6b901122, 0xfd987193, 0xa679438e, 0x49b40821,
-                                   0xf61e2562, 0xc040b340, 0x265e5a51, 0xe9b6c7aa,
-                                   0xd62f105d, 0x02441453, 0xd8a1e681, 0xe7d3fbc8,
-                                   0x21e1cde6, 0xc33707d6, 0xf4d50d87, 0x455a14ed,
-                                   0xa9e3e905, 0xfcefa3f8, 0x676f02d9, 0x8d2a4c8a,
-                                   0xfffa3942, 0x8771f681, 0x6d9d6122, 0xfde5380c,
-                                   0xa4beea44, 0x4bdecfa9, 0xf6bb4b60, 0xbebfbc70,
-                                   0x289b7ec6, 0xeaa127fa, 0xd4ef3085, 0x4881d05,
-                                   0xd9d4d039, 0xe6db99e5, 0x1fa27cf8, 0xc4ac5665,
-                                   0xf4292244, 0x432aff97, 0xab9423a7, 0xfc93a039,
-                                   0x655b59c3, 0x8f0ccc92, 0xffeff47d, 0x85845dd1,
-                                   0x6fa87e4f, 0xfe2ce6e0, 0xa3014314, 0x4e0811a1,
-                                   0xf7537e82, 0xbd3af235, 0x2ad7d2bb, 0xeb86d391]
+    private let sines: [UInt32] = [0xD76AA478, 0xE8C7B756, 0x242070DB, 0xC1BDCEEE,
+                                   0xF57C0FAF, 0x4787C62A, 0xA8304613, 0xFD469501,
+                                   0x698098D8, 0x8B44F7AF, 0xFFFF5BB1, 0x895CD7BE,
+                                   0x6B901122, 0xFD987193, 0xA679438E, 0x49B40821,
+                                   0xF61E2562, 0xC040B340, 0x265E5A51, 0xE9B6C7AA,
+                                   0xD62F105D, 0x02441453, 0xD8A1E681, 0xE7D3FBC8,
+                                   0x21E1CDE6, 0xC33707D6, 0xF4D50D87, 0x455A14ED,
+                                   0xA9E3E905, 0xFCEFA3F8, 0x676F02D9, 0x8D2A4C8A,
+                                   0xFFFA3942, 0x8771F681, 0x6D9D6122, 0xFDE5380C,
+                                   0xA4BEEA44, 0x4BDECFA9, 0xF6BB4B60, 0xBEBFBC70,
+                                   0x289B7EC6, 0xEAA127FA, 0xD4EF3085, 0x4881D05,
+                                   0xD9D4D039, 0xE6DB99E5, 0x1FA27CF8, 0xC4AC5665,
+                                   0xF4292244, 0x432AFF97, 0xAB9423A7, 0xFC93A039,
+                                   0x655B59C3, 0x8F0CCC92, 0xFFEFF47D, 0x85845DD1,
+                                   0x6FA87E4F, 0xFE2CE6E0, 0xA3014314, 0x4E0811A1,
+                                   0xF7537E82, 0xBD3AF235, 0x2AD7D2BB, 0xEB86D391]
 
-    private let hashes: [UInt32] = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476]
+    private let hashes: [UInt32] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476]
 
     func calculate() -> [UInt8] {
         var tmpMessage = prepare(64)
@@ -374,24 +373,24 @@ class MD5: HashProtocol {
             var dTemp: UInt32 = 0
 
             // Main loop
-            for j in 0..<self.sines.count {
+            for j in 0 ..< sines.count {
                 var g = 0
                 var F: UInt32 = 0
 
                 switch j {
-                case 0...15:
+                case 0 ... 15:
                     F = (B & C) | ((~B) & D)
                     g = j
                     break
-                case 16...31:
+                case 16 ... 31:
                     F = (D & B) | (~D & C)
                     g = (5 * j + 1) % 16
                     break
-                case 32...47:
+                case 32 ... 47:
                     F = B ^ C ^ D
                     g = (3 * j + 5) % 16
                     break
-                case 48...63:
+                case 48 ... 63:
                     F = C ^ (B | (~D))
                     g = (7 * j) % 16
                     break
@@ -401,7 +400,7 @@ class MD5: HashProtocol {
                 dTemp = D
                 D = C
                 C = B
-                B = B &+ rotateLeft((A &+ F &+ self.sines[j] &+ M[g]), bits: self.shifts[j])
+                B = B &+ rotateLeft((A &+ F &+ sines[j] &+ M[g]), bits: shifts[j])
                 A = dTemp
             }
 
@@ -416,10 +415,10 @@ class MD5: HashProtocol {
 
         hh.forEach {
             let itemLE = $0.littleEndian
-            let r1 = UInt8(itemLE & 0xff)
-            let r2 = UInt8((itemLE >> 8) & 0xff)
-            let r3 = UInt8((itemLE >> 16) & 0xff)
-            let r4 = UInt8((itemLE >> 24) & 0xff)
+            let r1 = UInt8(itemLE & 0xFF)
+            let r2 = UInt8((itemLE >> 8) & 0xFF)
+            let r3 = UInt8((itemLE >> 16) & 0xFF)
+            let r4 = UInt8((itemLE >> 24) & 0xFF)
             result += [r1, r2, r3, r4]
         }
         return result

@@ -9,7 +9,9 @@ target 'XTInputKit' do
   use_frameworks!
 
   # Pods for XTInputKit
-  pod 'HandyJSON', '~> 4.1.1'
-  pod 'Alamofire', '~> 4.7.2'
-
+  pod 'BlocksKit', '~> 2.2.5'
+  pod 'HandyJSON', '~> 4.2.0'
+  pod 'Alamofire', '~> 4.7.3'
+  pod 'SimulateIDFA', '~> 0.0.1'
+  pod 'OpenUDID', '~> 1.0.0'
 end
