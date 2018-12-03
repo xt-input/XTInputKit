@@ -14,22 +14,22 @@ Pod::Spec.new do |s|
 
   s.subspec 'XTILoger' do |ss|
   ss.source_files = 'Source/XTILoger/*.swift'
-  ss.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1'}
+  ss.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2'}
   end
 
   s.subspec 'Extension' do |ss|
   ss.source_files = 'Source/Extension/**/*.swift'
-  ss.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1'}
+  ss.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2'}
   end
 
   s.subspec 'XTITool' do |ss|
   ss.source_files = 'Source/Class/*.swift'
-  ss.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1'}
+  ss.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2'}
   end
 
   s.subspec 'XTINetWork' do |ss|
   ss.source_files = 'Source/Network/*.swift'
-  ss.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1'}
+  ss.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2'}
   ss.dependency 'XTInputKit/XTILoger'
   ss.dependency 'XTInputKit/XTITool'
   ss.dependency 'HandyJSON', '~> 4.2.0'
