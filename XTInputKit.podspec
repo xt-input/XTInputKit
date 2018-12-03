@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "XTInputKit"
-  s.version      = "0.0.7"
+  s.version      = "0.0.8"
   s.summary      = "一些常用的iOS开发代码及扩展集合，例如打印日志的工具XTILoger，用16进制取颜色，keychain，NetWork···"
   s.description  = <<-DESC
                     平时开发积累的代码整合起来的。包括且不限于UINavigationController、UIViewController、UITabBarController的扩展，以及String、Date、DispatchQueue的扩展。
@@ -32,8 +32,8 @@ Pod::Spec.new do |s|
   ss.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.1'}
   ss.dependency 'XTInputKit/XTILoger'
   ss.dependency 'XTInputKit/XTITool'
-  ss.dependency 'HandyJSON', '~> 4.1.1'
-  ss.dependency 'Alamofire', '~> 4.7.2'
+  ss.dependency 'HandyJSON', '~> 4.2.0'
+  ss.dependency 'Alamofire', '~> 4.7.3'
   end
 
   s.requires_arc  = true
