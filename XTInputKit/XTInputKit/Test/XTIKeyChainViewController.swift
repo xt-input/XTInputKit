@@ -8,7 +8,7 @@
 
 import UIKit
 
-class XTIKeyChainViewController: UIViewController {
+class XTIKeyChainViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var keyTextField: UITextField!
     @IBOutlet var valueTextField: UITextField!
     
@@ -21,6 +21,7 @@ class XTIKeyChainViewController: UIViewController {
         keyLabel.text = "键："
         self.keyTextField.leftView = keyLabel
         self.keyTextField.leftViewMode = .always
+        self.keyTextField.delegate = self;
         let valueLabel = UILabel()
         valueLabel.text = "值："
         self.valueTextField.leftView = valueLabel
@@ -64,4 +65,9 @@ class XTIKeyChainViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return true
+    }
+    
 }

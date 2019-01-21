@@ -10,8 +10,8 @@ target 'XTInputKit' do
 
   # Pods for XTInputKit
   pod 'BlocksKit', '~> 2.2.5'
-  pod 'HandyJSON', '~> 4.2.0'
-  pod 'Alamofire', '~> 4.7.3'
+  pod 'HandyJSON', '~> 4.2.1'
+  pod 'Alamofire', '~> 4.8.1'
   pod 'SimulateIDFA', '~> 0.0.1'
   pod 'OpenUDID', '~> 1.0.0'
 end

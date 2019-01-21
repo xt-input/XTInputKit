@@ -9,7 +9,7 @@ import UIKit
 
 public enum UIDeviceType: String {
     public typealias RawValue = String
-    
+
     case iPodTouch4 = "iPod Touch 4"
     case iPodTouch5 = "iPod Touch 5"
     case iPodTouch6 = "iPod Touch 6"
@@ -29,24 +29,34 @@ public enum UIDeviceType: String {
     case iPhone7P = "iPhone 7 Plus"
     case iPhone8P = "iPhone 8 Plus"
     case iPhoneX = "iPhone X"
+    case iPhoneXR = "iPhone XR"
+    case iPhoneXS = "iPhone XS"
+    case iPhoneXSMax = "iPhone XS Max"
 
     case iPad
-    case iPadAir = "iPad Air"
-    case iPadAir2 = "iPad Air 2"
-    case iPadMini = "iPad Mini"
-    case iPadMini2 = "iPad Mini 2"
-    case iPadMini3 = "iPad Mini 3"
-    case iPadMini4 = "iPad Mini 4"
-    case iPadPro12_9 = "iPad Pro 12.9"
-    case iPadPro12_9_2 = "iPad Pro 12.9 2"
-
-    case iPadPro9_7 = "iPad Pro 9.7"
     case iPad2 = "iPad 2"
     case iPad3 = "iPad 3"
     case iPad4 = "iPad 4"
     case iPad5 = "iPad 5"
     case iPad6 = "iPad 6"
+
+    case iPadAir = "iPad Air"
+    case iPadAir2 = "iPad Air 2"
+
+    case iPadPro9_7 = "iPad Pro 9.7"
+    case iPadPro12_9 = "iPad Pro 12.9"
+
     case iPadPro10_5 = "iPad Pro 10.5"
+
+    case iPadPro12_9_2 = "iPad Pro 12.9 2"
+
+    case iPadPro11 = "iPad Pro 11"
+    case iPadPro12_9_3 = "iPad Pro 12.9 3"
+
+    case iPadMini = "iPad Mini"
+    case iPadMini2 = "iPad Mini 2"
+    case iPadMini3 = "iPad Mini 3"
+    case iPadMini4 = "iPad Mini 4"
 
     case Simulator
     case Unkown
@@ -103,6 +113,12 @@ public extension XTITypeWrapperProtocol where WrappedType == UIDevice {
             return .iPhone8P
         case "iPhone10,3", "iPhone10,6":
             return .iPhoneX
+        case "iPhone11,8":
+            return .iPhoneXR
+        case "iPhone11,2":
+            return .iPhoneXS
+        case "iPhone11,6":
+            return .iPhoneXSMax
 
         case "iPad1,1":
             return .iPad
@@ -116,7 +132,7 @@ public extension XTITypeWrapperProtocol where WrappedType == UIDevice {
             return .iPadAir
         case "iPad5,3", "iPad5,4":
             return .iPadAir2
-        
+
         case "iPad2,5", "iPad2,6", "iPad2,7":
             return .iPadMini
         case "iPad4,4", "iPad4,5", "iPad4,6":
@@ -125,7 +141,7 @@ public extension XTITypeWrapperProtocol where WrappedType == UIDevice {
             return .iPadMini3
         case "iPad5,1", "iPad5,2":
             return .iPadMini4
-            
+
         case "iPad6,7", "iPad6,8":
             return .iPadPro12_9
         case "iPad6,3", "iPad6,4":
@@ -138,7 +154,10 @@ public extension XTITypeWrapperProtocol where WrappedType == UIDevice {
             return .iPadPro10_5
         case "iPad7,5", "iPad7,6":
             return .iPad6
-
+        case "iPad8,1", "iPad8,2", "iPad8,3", "iPad8,4":
+            return .iPadPro11
+        case "iPad8,5", "iPad8,6", "iPad8,7", "iPad8,8":
+            return .iPadPro12_9_3
         case "i386", "x86_64":
             return .Simulator
         default:

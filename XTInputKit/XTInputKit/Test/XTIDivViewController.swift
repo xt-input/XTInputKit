@@ -17,7 +17,7 @@ class XTIDivViewController: UIViewController {
         var tempView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         tempView.center = self.view.center
         self.view?.addSubview(tempView)
-        for _ in 0 ... 1000 {
+        for _ in 0 ... 10 {
             let temp1View = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
             tempView.addSubview(temp1View)
             tempView = temp1View

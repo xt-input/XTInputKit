@@ -52,6 +52,7 @@
 		2AF3F3A44C5356F8767A272F /* Pods_XTInputKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XTInputKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A600A70D7327E7F9503916A /* Pods-XTInputKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKit.release.xcconfig"; path = "../Pods/Target Support Files/Pods-XTInputKit/Pods-XTInputKit.release.xcconfig"; sourceTree = "<group>"; };
 		AE15771320B0848B00893F0C /* XTITimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITimer.swift; sourceTree = "<group>"; };
+		AE2046F721B4DF5C00D6F958 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE58C77F205B67A600A45B29 /* XTINetWorkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTINetWorkConfig.swift; sourceTree = "<group>"; };
 		AE58C782205B6E4400A45B29 /* XTIBaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIBaseRequest.swift; sourceTree = "<group>"; };
 		AE58C78A205BCD5E00A45B29 /* XTInputKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XTInputKit.entitlements; sourceTree = "<group>"; };
@@ -69,10 +70,7 @@
 		AE5DC3AB202A9C4100F2D8B7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE66B902201C58E7002E3FFF /* UITabBarController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+.swift"; sourceTree = "<group>"; };
 		AE66B908201F1DCA002E3FFF /* XTITool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITool.swift; sourceTree = "<group>"; };
-		AE67416A219E983300499FE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
-		AE67416C219E983700499FE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Info.plist; sourceTree = "<group>"; };
 		AE67416F219E985100499FE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
-		AE67417A219E997B00499FE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Storyboard.strings; sourceTree = "<group>"; };
 		AE8D709C2012F4CD002E3580 /* XTInputKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XTInputKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE8D70B42012F4EA002E3580 /* XTIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIView+.swift"; sourceTree = "<group>"; };
 		AE8D70B52012F4EA002E3580 /* XTIButton+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIButton+.swift"; sourceTree = "<group>"; };
@@ -142,10 +140,10 @@
 			isa = PBXGroup;
 			children = (
 				AE58C7942060E53800A45B29 /* NetWork */,
+				AEB42893214FB399003483CD /* XTIDivViewController.swift */,
 				AE58C78F205E597700A45B29 /* XTIKeyChainViewController.swift */,
 				AE58C7922060031E00A45B29 /* XTINetWorkViewController.swift */,
 				AEAFA9F520930C99007613B8 /* XTIObserverTest.swift */,
-				AEB42893214FB399003483CD /* XTIDivViewController.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -170,8 +168,8 @@
 				AE5DC3AA202A9C4100F2D8B7 /* Assets.xcassets */,
 				AE5DC3AB202A9C4100F2D8B7 /* AppDelegate.swift */,
 				AE674170219E985100499FE6 /* Storyboard.storyboard */,
-				AE67416B219E983300499FE6 /* Info.plist */,
 				AECFC9882170DD22006C0A35 /* LaunchScreen.storyboard */,
+				AE2046F721B4DF5C00D6F958 /* Info.plist */,
 			);
 			path = XTInputKit;
 			sourceTree = "<group>";
@@ -433,20 +431,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		AE67416B219E983300499FE6 /* Info.plist */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AE67416A219E983300499FE6 /* Base */,
-				AE67416C219E983700499FE6 /* en */,
-			);
-			name = Info.plist;
-			sourceTree = "<group>";
-		};
 		AE674170219E985100499FE6 /* Storyboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AE67416F219E985100499FE6 /* Base */,
-				AE67417A219E997B00499FE6 /* en */,
 			);
 			name = Storyboard.storyboard;
 			sourceTree = "<group>";
@@ -578,11 +566,11 @@
 				INFOPLIST_FILE = "$(SRCROOT)/XTInputKit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = I.XTInputKit;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.tcodoing.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -597,11 +585,11 @@
 				INFOPLIST_FILE = "$(SRCROOT)/XTInputKit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = I.XTInputKit;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.tcodoing.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
