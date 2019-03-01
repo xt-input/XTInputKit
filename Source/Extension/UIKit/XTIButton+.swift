@@ -11,7 +11,7 @@ import UIKit
 // font
 public extension XTITypeWrapperProtocol where WrappedType == UIButton {
     /// 设置按钮字体
-    open func titleFont(_ font: UIFont) {
+    public func titleFont(_ font: UIFont) {
         wrappedValue.titleLabel?.font = font
     }
 }

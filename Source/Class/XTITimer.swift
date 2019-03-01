@@ -74,7 +74,7 @@ open class XTITimerItem: XTIObserverItem {
         self._count += 1
     }
 
-    open func isEnd() -> Bool {
+    public func isEnd() -> Bool {
         return self.sum == 0 ? false : self.count == self.sum
     }
 

@@ -126,7 +126,7 @@ public extension UIViewController {
     ///   - img: 图片
     ///   - titleColor: 文字颜色
     ///   - action: 响应的方法，如果不传值则默认使用xti_toucheLeftBarButtonItem或xti_toucheRightBarButtonItem
-    open func xti_setBarButtonItem(_ position: WTNAVPOSITION,
+    public func xti_setBarButtonItem(_ position: WTNAVPOSITION,
                                      title: String! = nil,
                                      img: UIImage! = nil,
                                      titleColor: UIColor! = nil,
@@ -171,7 +171,7 @@ public extension UIViewController {
     /// - Parameters:
     ///   - VC: 要跳转的VC
     ///   - animated: 是否执行过渡动画
-    open func xti_pushOrPresentVC(_ VC: UIViewController, animated: Bool = true) {
+    public func xti_pushOrPresentVC(_ VC: UIViewController, animated: Bool = true) {
         if let navVC = self.navigationController {
             navVC.pushViewController(VC, animated: animated)
         } else {
@@ -184,7 +184,7 @@ public extension UIViewController {
     /// - Parameters:
     ///   - animated: 是否执行过渡动画
     ///   - completion: 如果是dismiss支持页面消失后闭包回调
-    open func xti_popOrDismiss(_ animated: Bool = true, completion: (() -> Void)? = nil) {
+    public func xti_popOrDismiss(_ animated: Bool = true, completion: (() -> Void)? = nil) {
         if let navVC = self.navigationController {
             navVC.popViewController(animated: animated)
         } else {
@@ -194,7 +194,7 @@ public extension UIViewController {
 
     // MARK: - 弹窗alertController
 
-    open func showMessage(title: String! = "提示", message: String! = nil, cancelTitle: String! = nil, confirmTitle: String! = "确认", action: ((_ index: Int) -> Void)! = nil) {
+    public func showMessage(title: String! = "提示", message: String! = nil, cancelTitle: String! = nil, confirmTitle: String! = "确认", action: ((_ index: Int) -> Void)! = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         if cancelTitle != nil {
             alertController.addAction(UIAlertAction(title: confirmTitle, style: .cancel) { _ in

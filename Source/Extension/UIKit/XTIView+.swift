@@ -13,7 +13,7 @@ public extension XTITypeWrapperProtocol where WrappedType == UIView {
     /// 将View转换成img
     ///
     /// - Returns: 转换的结果
-    open func xt_convertViewToImage() -> UIImage! {
+    public func xt_convertViewToImage() -> UIImage! {
         let scale = UIScreen.main.scale
         let size = __CGSizeApplyAffineTransform(wrappedValue.bounds.size, CGAffineTransform(scaleX: scale, y: scale))
         UIGraphicsBeginImageContextWithOptions(size, false, scale)

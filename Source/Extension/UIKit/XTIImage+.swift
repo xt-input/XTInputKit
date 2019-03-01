@@ -33,7 +33,7 @@ public extension XTITypeWrapperProtocol where WrappedType == UIImage {
     /// 图片中心拉伸，适用于设置圆角渐变的边框
     ///
     /// - Returns: 生成的图片
-    open func stretchImage() -> UIImage {
+    public func stretchImage() -> UIImage {
         let imageSize = wrappedValue.size
         let point = CGPoint(x: imageSize.width / 2, y: imageSize.height / 2)
         return stretchAtPoint(point)
@@ -43,7 +43,7 @@ public extension XTITypeWrapperProtocol where WrappedType == UIImage {
     ///
     /// - Parameter point: 拉伸的点
     /// - Returns: 生成的图片
-    open func stretchAtPoint(_ point: CGPoint) -> UIImage {
+    public func stretchAtPoint(_ point: CGPoint) -> UIImage {
         let edgeInsets = UIEdgeInsets(top: point.y, left: point.x, bottom: wrappedValue.size.height - point.y, right: wrappedValue.size.width - point.x)
         return wrappedValue.resizableImage(withCapInsets: edgeInsets, resizingMode: UIImage.ResizingMode.stretch)
     }

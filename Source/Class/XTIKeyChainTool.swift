@@ -72,7 +72,7 @@ open class XTIKeyChainTool {
     ///   - valueTpye: 值的类型
     ///   - key: 键
     /// - Returns: 值 or nil
-    open func get<ValueType: DataConvertible>(valueTpye: ValueType.Type, forKey key: String) -> ValueType! {
+    public func get<ValueType: DataConvertible>(valueTpye: ValueType.Type, forKey key: String) -> ValueType! {
         var keyChainItem = self.initKeyChainDictionary()
         keyChainItem[kSecAttrAccount] = key
         keyChainItem[kSecMatchLimit] = kSecMatchLimitOne

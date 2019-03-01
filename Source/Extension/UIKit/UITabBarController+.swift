@@ -16,7 +16,7 @@ public extension UITabBarController {
     ///   - tabbarTitle: tabbar标题
     ///   - image: 默认图片
     ///   - selectedImage: 选中图片
-    open func xti_addChildViewController(_ viewController: UIViewController,
+    public func xti_addChildViewController(_ viewController: UIViewController,
                                            tabbarTitle: String! = nil,
                                            image: UIImage,
                                            selectedImage: UIImage! = nil) {

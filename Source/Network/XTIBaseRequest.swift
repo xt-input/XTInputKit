@@ -239,7 +239,7 @@ open class XTIBaseRequest {
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
-    open func send(_ method: HTTPMethod! = nil,
+    public func send(_ method: HTTPMethod! = nil,
                      url: String!,
                      parameters: XTIParameters! = nil,
                      resultClass resultType: HandyJSON.Type! = nil,
@@ -287,7 +287,7 @@ open class XTIBaseRequest {
     ///   - progressCallback: 进度
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
-    open func upload(_ url: String!,
+    public func upload(_ url: String!,
                        parameters: XTIParameters!,
                        resultClass resultType: HandyJSON.Type! = nil,
                        progress progressCallback: XTIProgressCallback! = nil,
@@ -409,7 +409,7 @@ open class XTIBaseRequest {
     /// 打印原始数据，可以在该函数里面读取Cookie的值
     ///
     /// - Parameter result: 原始数据
-    open func outRawData(_ result: DataResponse<String>) {
+    public func outRawData(_ result: DataResponse<String>) {
         if iSLogRawData {
             XTILoger.default.info(result)
         }
