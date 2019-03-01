@@ -13,7 +13,7 @@ public extension XTITypeWrapperProtocol where WrappedType == UIView {
     /// 将View转换成img
     ///
     /// - Returns: 转换的结果
-    public func xt_convertViewToImage() -> UIImage! {
+    open func xt_convertViewToImage() -> UIImage! {
         let scale = UIScreen.main.scale
         let size = __CGSizeApplyAffineTransform(wrappedValue.bounds.size, CGAffineTransform(scaleX: scale, y: scale))
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
@@ -41,7 +41,7 @@ public extension UIView {
             self.layer.borderColor = newValue.cgColor
         }
         get {
-            return self.layer.borderColor == nil ? UIColor.clear : UIColor.init(cgColor: self.layer.borderColor!)
+            return self.layer.borderColor == nil ? UIColor.clear : UIColor(cgColor: self.layer.borderColor!)
         }
     }
 

@@ -14,7 +14,7 @@ public enum XTIVersionCompareResult {
     case less // 小于当前版本
 }
 
-public class XTITool {
+open class XTITool {
     /// 获取当前活动的控制器(忽略tabbar和navigaction)
     public static var currentVC: UIViewController! {
         var current: UIViewController! = keyWindow.rootViewController

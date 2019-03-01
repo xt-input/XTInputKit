@@ -82,7 +82,7 @@ public extension XTITypeWrapperProtocol where WrappedType == Date {
         return fix.appending(dateFormatter.string(from: wrappedValue))
     }
 
-    public func descriptionWithFormat(_ format: String) -> String {
+    open func descriptionWithFormat(_ format: String) -> String {
         let dateFormatter = DateFormatter.XTI.dateFormatter(withFormat: format)
         return dateFormatter.string(from: wrappedValue)
     }
@@ -140,49 +140,49 @@ public extension XTITypeWrapperProtocol where WrappedType == Date {
 
     // MARK: -  Comparing Dates
 
-    public func dateByAddingDays(_ days: Int) -> Date {
+    open func dateByAddingDays(_ days: Int) -> Date {
         let aTimeInterval = wrappedValue.timeIntervalSinceReferenceDate + XTI_DAY * Double(days)
-        return Date.init(timeIntervalSinceReferenceDate: aTimeInterval)
+        return Date(timeIntervalSinceReferenceDate: aTimeInterval)
     }
 
-    public func componentsWithOffset(from fDate: Date) -> DateComponents {
+    open func componentsWithOffset(from fDate: Date) -> DateComponents {
         let dTime = XTI_CURRENT.dateComponents(XTI_COMPONENTS, from: fDate, to: wrappedValue)
         return dTime
     }
 
     // MARK: - Retrieving Intervals
 
-    public func minutes(after aDate: Date) -> Int {
+    open func minutes(after aDate: Date) -> Int {
         let ti = wrappedValue.timeIntervalSince(aDate)
         return (Int)(ti / XTI_MINUTE)
     }
 
-    public func minutes(before bDate: Date) -> Int {
+    open func minutes(before bDate: Date) -> Int {
         let ti = bDate.timeIntervalSince(wrappedValue)
         return (Int)(ti / XTI_MINUTE)
     }
 
-    public func hours(after aDate: Date) -> Int {
+    open func hours(after aDate: Date) -> Int {
         let ti = wrappedValue.timeIntervalSince(aDate)
         return (Int)(ti / XTI_HOUR)
     }
 
-    public func hours(before bDate: Date) -> Int {
+    open func hours(before bDate: Date) -> Int {
         let ti = bDate.timeIntervalSince(wrappedValue)
         return (Int)(ti / XTI_HOUR)
     }
 
-    public func days(before bDate: Date) -> Int {
+    open func days(before bDate: Date) -> Int {
         let temp = wrappedValue.timeIntervalSince(bDate)
         return (Int)(temp / XTI_DAY)
     }
 
-    public func days(after aDate: Date) -> Int {
+    open func days(after aDate: Date) -> Int {
         let temp = aDate.timeIntervalSince(wrappedValue)
         return (Int)(temp / XTI_DAY)
     }
 
-    public func distanceInDays(toDate tDate: Date) -> DateComponents {
+    open func distanceInDays(toDate tDate: Date) -> DateComponents {
         let gregorianCalendar = Calendar(identifier: Calendar.Identifier.gregorian)
         return gregorianCalendar.dateComponents(XTI_COMPONENTS, from: wrappedValue, to: tDate)
     }
@@ -227,7 +227,7 @@ public extension XTITypeWrapperProtocol where WrappedType == Date {
 
     public var nearestHour: Int {
         let aTimeInterval = Date().timeIntervalSinceReferenceDate + XTI_MINUTE * 30
-        let newDate = Date.init(timeIntervalSinceReferenceDate: aTimeInterval)
+        let newDate = Date(timeIntervalSinceReferenceDate: aTimeInterval)
         return XTI_CURRENT.component(XTI_COMPONENT.hour, from: newDate)
     }
 }

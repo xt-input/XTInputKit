@@ -11,7 +11,7 @@ import UIKit
 
 public enum XTILogerLevel: Int {
     public typealias RawValue = Int
-    
+
     case all = 0
     case info = 1
     case debug = 2
@@ -21,19 +21,19 @@ public enum XTILogerLevel: Int {
 }
 
 extension XTILogerLevel: Comparable {
-    public static func <(lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
+    public static func < (lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
-    
-    public static func <=(lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
+
+    public static func <= (lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
         return lhs.rawValue <= rhs.rawValue
     }
-    
-    public static func >=(lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
+
+    public static func >= (lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
         return lhs.rawValue >= rhs.rawValue
     }
-    
-    public static func >(lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
+
+    public static func > (lhs: XTILogerLevel, rhs: XTILogerLevel) -> Bool {
         return lhs.rawValue > rhs.rawValue
     }
 }
@@ -48,36 +48,36 @@ public struct XTILoger {
         }
         return _default!
     }
-    
+
     let dateFormatter = DateFormatter()
     let dateShortFormatter = DateFormatter()
-    
+
     /// 保存到日志文件的等级
     public var saveFileLevel = XTILogerLevel.warning
     /// 文件名字格式，支持Y(year)、WY(weekOfYear)、M(month)、D(day) 例如，以2018/3/21为例 "Y-WY"=>2018Y-12WY "Y-M-D"=>2018Y-3M-21D "Y-M"=>2018Y-3M，通过这类的组合可以构成一个日志文件保存一天、一周、一个月、一年等方式。建议使用"Y-WY" or "Y-M"，一定要用"-"隔开
     public var fileFormatter = "Y-WY"
     /// 是否打印时间戳
     public var isShowLongTime = true
-    
+
     /// 是否打印日志等级
     public var isShowLevel = true
     /// 是否打印线程
     public var isShowThread = true
     /// release模式下默认打印日志的等级
     public var releaseLogLevel: XTILogerLevel!
-    
+
     /// debug模式下默认打印日志的等级
     public var debugLogLevel: XTILogerLevel!
-    
+
     /// 是否打印文件名
     public var isShowFileName = true
-    
+
     /// 是否打印调用所在的函数名字
     public var isShowFunctionName = true
-    
+
     /// 是否打印调用所在的行数
     public var isShowLineNumber = true
-    
+
     private var logLevel: XTILogerLevel! {
         #if DEBUG
             return debugLogLevel
@@ -85,7 +85,7 @@ public struct XTILoger {
             return self.releaseLogLevel
         #endif
     }
-    
+
     public init() {
         self.dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
@@ -94,7 +94,7 @@ public struct XTILoger {
         self.debugLogLevel = XTILogerLevel.all
         self.releaseLogLevel = XTILogerLevel.warning
     }
-    
+
     @discardableResult public func info(format: String,
                                         args: CVarArg...,
                                         function: String = #function,
@@ -105,14 +105,14 @@ public struct XTILoger {
         }
         return ""
     }
-    
+
     @discardableResult public func info(_ value: Any!,
-                                           function: String = #function,
-                                           file: String = #file,
-                                           line: Int = #line) -> String {
+                                        function: String = #function,
+                                        file: String = #file,
+                                        line: Int = #line) -> String {
         return self.info(format: String(describing: value), function: function, file: file, line: line)
     }
-    
+
     @discardableResult public func debug(format: String,
                                          args: CVarArg...,
                                          function: String = #function,
@@ -123,14 +123,14 @@ public struct XTILoger {
         }
         return ""
     }
-    
+
     @discardableResult public func debug(_ value: Any!,
-                                            function: String = #function,
-                                            file: String = #file,
-                                            line: Int = #line) -> String {
+                                         function: String = #function,
+                                         file: String = #file,
+                                         line: Int = #line) -> String {
         return self.debug(format: String(describing: value), function: function, file: file, line: line)
     }
-    
+
     @discardableResult public func warning(format: String,
                                            args: CVarArg...,
                                            function: String = #function,
@@ -141,14 +141,14 @@ public struct XTILoger {
         }
         return ""
     }
-    
+
     @discardableResult public func warning(_ value: Any!,
-                                              function: String = #function,
-                                              file: String = #file,
-                                              line: Int = #line) -> String {
+                                           function: String = #function,
+                                           file: String = #file,
+                                           line: Int = #line) -> String {
         return self.warning(format: String(describing: value), function: function, file: file, line: line)
     }
-    
+
     @discardableResult public func error(format: String,
                                          args: CVarArg...,
                                          function: String = #function,
@@ -159,14 +159,14 @@ public struct XTILoger {
         }
         return ""
     }
-    
+
     @discardableResult public func error(_ value: Any!,
-                                            function: String = #function,
-                                            file: String = #file,
-                                            line: Int = #line) -> String {
+                                         function: String = #function,
+                                         file: String = #file,
+                                         line: Int = #line) -> String {
         return self.error(format: String(describing: value), function: function, file: file, line: line)
     }
-    
+
     /// 打印日志
     ///
     /// - Parameters:
@@ -175,11 +175,11 @@ public struct XTILoger {
     ///   - args: 要打印的数据数组
     /// - Returns: 打印的内容
     fileprivate func log(_ level: XTILogerLevel,
-                                            function: String,
-                                            file: String,
-                                            line: Int,
-                                            format: String,
-                                            args: [CVarArg]) -> String {
+                         function: String,
+                         file: String,
+                         line: Int,
+                         format: String,
+                         args: [CVarArg]) -> String {
         let dateTime = isShowLongTime ? "\(dateFormatter.string(from: Date())) " : "\(dateShortFormatter.string(from: Date())) "
         var levelString = ""
         switch level {
@@ -195,7 +195,7 @@ public struct XTILoger {
             break
         }
         levelString = self.isShowLevel ? levelString : ""
-        
+
         var fileString = ""
         if self.isShowFileName {
             fileString += "[" + (file as NSString).lastPathComponent
@@ -215,17 +215,17 @@ public struct XTILoger {
         } else {
             message = String(format: format, arguments: args)
         }
-        
+
         let threadId = String(unsafeBitCast(Thread.current, to: Int.self), radix: 16, uppercase: false)
         let isMain = isShowThread ? Thread.current.isMainThread ? "[Main] " : "[Global]<0x\(threadId)> " : ""
         let infoString = "\(dateTime)\(levelString)\(fileString)\(isMain)\(functionString)".trimmingCharacters(in: CharacterSet(charactersIn: " "))
         let logString = infoString + (infoString.isEmpty ? "" : " => ") + "\(message)"
-        
+
         self.xt_print(logString)
         self.printToFile(level, log: logString)
         return logString + "\n"
     }
-    
+
     /// 通过日志等级获取当前日志文件的路径
     ///
     /// - Parameter level: 日志等级
@@ -233,12 +233,12 @@ public struct XTILoger {
     public func getCurrentLogFilePath(_ level: XTILogerLevel) -> String {
         let fileName = self.returnFileName(level)
         let logFilePath = self.getLogDirectory() + fileName
-        if !FileManager.default.fileExists(atPath: logFilePath){
+        if !FileManager.default.fileExists(atPath: logFilePath) {
             FileManager.default.createFile(atPath: logFilePath, contents: nil, attributes: nil)
         }
         return logFilePath
     }
-    
+
     /// 获取日志文件夹的路径，没有该文件夹就创建
     ///
     /// - Returns: 日志文件夹的路径
@@ -249,7 +249,7 @@ public struct XTILoger {
         }
         return logDirectoryPath
     }
-    
+
     /// 获取所有日志文件的路径
     ///
     /// - Returns: 所有日志文件的路径
@@ -260,7 +260,7 @@ public struct XTILoger {
         } catch {}
         return filesPath
     }
-    
+
     /// 清理日志文件
     ///
     /// - Returns: 操作结果
@@ -270,13 +270,13 @@ public struct XTILoger {
         }
         return self.getLogFilesPath().isEmpty
     }
-    
+
     fileprivate func xt_print(_ string: String) {
         #if DEBUG
             print(string)
         #endif
     }
-    
+
     fileprivate func printToFile(_ level: XTILogerLevel, log string: String) {
         if self.logLevel > level {
             return
@@ -293,7 +293,7 @@ public struct XTILoger {
             FileManager.default.createFile(atPath: logFilePath, contents: string.data(using: String.Encoding.utf8), attributes: nil)
         }
     }
-    
+
     fileprivate func returnFileName(_ level: XTILogerLevel) -> String {
         var fileNameString = ""
         switch level {

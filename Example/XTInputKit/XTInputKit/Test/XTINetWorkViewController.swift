@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XTInputKit
 
 class XTINetWorkViewController: UIViewController, UITextViewDelegate {
     var request: XTITestRequest!
@@ -24,8 +25,8 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
         // Do any additional setup after loading the view.
         xti_navigationTitle = "网络请求"
 //        XTINetWorkConfig.iSLogRawData = false
-        XTINetWorkConfig.defaultHostName = "design.07coding.com" // 设置默认的网络请求域名
-        XTINetWorkConfig.defaultHttpScheme = .https
+        XTINetWorkConfig.defaultHostName = "design.tcoding.cn" // 设置默认的网络请求域名
+        XTINetWorkConfig.defaultHttpScheme = .http
         XTINetWorkConfig.defaultSignature = { (parameters) -> String in // 设置所有的接口的签名方法
             loger.debug(parameters)
             return "signature=signature"
@@ -73,7 +74,7 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
 //
 //        let p2: [String: Any] = ["bundelID": "22222"]
 //
-//        XTIBaseRequest.default.get(url: "http://design.07coding.com/rxswift/Login/index", parameters: p2, resultClass: XTITestResult.self, completed: { [weak self] _, result in
+//        XTIBaseRequest.default.get(url: "http://design.tcoding.cn/rxswift/Login/index", parameters: p2, resultClass: XTITestResult.self, completed: { [weak self] _, result in
 //            if let res = result as? XTITestResult {
 //                if let strongSelf = self {
 //                    strongSelf.resultString = loger.debug(res.toJSON()!)
@@ -87,7 +88,7 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
 //
 //        let p3: [String: Any] = ["bundelID": "33333"]
 //
-//        XTIBaseRequest.default.post(url: "http://design.07coding.com/rxswift/Login/index", parameters: p3, resultClass: XTITestResult.self, completed: { [weak self] _, result in
+//        XTIBaseRequest.default.post(url: "http://design.tcoding.cn/rxswift/Login/index", parameters: p3, resultClass: XTITestResult.self, completed: { [weak self] _, result in
 //            if let res = result as? XTITestResult {
 //                if let strongSelf = self {
 //                    strongSelf.resultString = loger.debug(res.toJSON()!)

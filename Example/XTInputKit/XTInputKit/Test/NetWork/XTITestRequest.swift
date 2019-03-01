@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XTInputKit
 
 class XTITestRequest: XTIBaseRequest {
     var bundelID: String!

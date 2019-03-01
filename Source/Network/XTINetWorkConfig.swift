@@ -26,31 +26,31 @@ public struct XTINetWorkConfig {
     public static var defaultTimeoutInterval = 30.0
     public static var defaultHttpMaximumConnectionsPerHost = 10
 
-    fileprivate static var _defaultPublicHttpHeader: XTIHTTPHeaders!
+    fileprivate static var _defaultopenHttpHeader: XTIHTTPHeaders!
     /// 公共参数，放置在请求头里
-    public static var defaultPublicHttpHeader: XTIHTTPHeaders! {
+    public static var defaultopenHttpHeader: XTIHTTPHeaders! {
         get {
-            if _defaultPublicHttpHeader == nil {
-                _defaultPublicHttpHeader = XTIHTTPHeaders()
+            if _defaultopenHttpHeader == nil {
+                _defaultopenHttpHeader = XTIHTTPHeaders()
             }
             let bundleInfo = Bundle.main.infoDictionary
 
-            if _defaultPublicHttpHeader["bundelID"] == nil {
-                _defaultPublicHttpHeader["bundelID"] = bundleInfo?["CFBundleIdentifier"] as? String
+            if _defaultopenHttpHeader["bundelID"] == nil {
+                _defaultopenHttpHeader["bundelID"] = bundleInfo?["CFBundleIdentifier"] as? String
             }
-            if _defaultPublicHttpHeader["UUID"] == nil {
-                _defaultPublicHttpHeader["UUID"] = XTIKeyChainTool.default.keyChainUuid
+            if _defaultopenHttpHeader["UUID"] == nil {
+                _defaultopenHttpHeader["UUID"] = XTIKeyChainTool.default.keyChainUuid
             }
-            if _defaultPublicHttpHeader["appVersion"] == nil {
-                _defaultPublicHttpHeader["appVersion"] = bundleInfo?["CFBundleShortVersionString"] as? String
+            if _defaultopenHttpHeader["appVersion"] == nil {
+                _defaultopenHttpHeader["appVersion"] = bundleInfo?["CFBundleShortVersionString"] as? String
             }
-            if _defaultPublicHttpHeader["systemVersion"] == nil {
-                _defaultPublicHttpHeader["systemVersion"] = UIDevice.current.systemVersion
+            if _defaultopenHttpHeader["systemVersion"] == nil {
+                _defaultopenHttpHeader["systemVersion"] = UIDevice.current.systemVersion
             }
-            _defaultPublicHttpHeader["Content-Type"] = defaultContentType
-            return _defaultPublicHttpHeader
+            _defaultopenHttpHeader["Content-Type"] = defaultContentType
+            return _defaultopenHttpHeader
         } set {
-            _defaultPublicHttpHeader = newValue
+            _defaultopenHttpHeader = newValue
         }
     }
 

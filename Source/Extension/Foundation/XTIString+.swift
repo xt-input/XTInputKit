@@ -20,7 +20,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     ///
     /// - Parameter sub: 子串
     /// - Returns: true or false
-    public func hasSubstring(_ sub: String) -> Bool {
+    open func hasSubstring(_ sub: String) -> Bool {
         let range = wrappedValue.range(of: sub)
         if range == nil || (range?.isEmpty)! {
             return false
@@ -28,7 +28,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
         return true
     }
 
-    public func substringIndex(_ sub: String) -> String.Index {
+    open func substringIndex(_ sub: String) -> String.Index {
         let range = wrappedValue.range(of: sub)
         if range == nil {
             return wrappedValue.endIndex
@@ -36,7 +36,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
         return (range?.lowerBound)!
     }
 
-    public func substringBetween(_ startString: String, endString endStr: String) -> String {
+    open func substringBetween(_ startString: String, endString endStr: String) -> String {
         var str = wrappedValue.prefix(upTo: substringIndex(endStr))
         str = str.suffix(from: (wrappedValue.range(of: startString)?.upperBound)!)
         return "\(str)"
@@ -51,7 +51,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     ///   - end: 结束位置
     /// - Returns: 截取后的string字符串
 
-    public func substring(startPosition start: Int, endPosition end: Int) -> String {
+    open func substring(startPosition start: Int, endPosition end: Int) -> String {
         var tempstart = start > length ? length : start - 1
         if tempstart <= 1 {
             tempstart = 0
@@ -71,7 +71,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// 从开始截取到toPosition，如果toPosition超出字符串长度就取最长
     /// - Parameter to: 结束位置
     /// - Returns: 截取后的string字符串
-    public func substring(toPosition to: Int) -> String {
+    open func substring(toPosition to: Int) -> String {
         return substring(startPosition: 1, endPosition: to)
     }
 
@@ -79,7 +79,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// 从fromPosition位置开始截取到字符串尾部，如果fromPosition大于字符串长度就为""
     /// - Parameter fromPosition: 开始位置
     /// - Returns: 截取后的string字符串
-    public func substring(fromPosition from: Int) -> String {
+    open func substring(fromPosition from: Int) -> String {
         return substring(startPosition: from, endPosition: length)
     }
 
@@ -89,7 +89,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     ///   - start: 开始位置
     ///   - length: 子串长度
     /// - Returns: 截取后的string字符串
-    public func substring(startPosition start: Int, rangeLength length: Int) -> String {
+    open func substring(startPosition start: Int, rangeLength length: Int) -> String {
         return substring(startPosition: start, endPosition: start + length - 1)
     }
 
@@ -97,7 +97,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// 取字符串尾部的rangeLength长的子串
     /// - Parameter length: 子串长度
     /// - Returns:
-    public func substringIndexToEnd(rangeLength length: Int) -> String {
+    open func substringIndexToEnd(rangeLength length: Int) -> String {
         return substring(startPosition: self.length - length + 1, endPosition: self.length)
     }
 
@@ -109,7 +109,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     ///   - startPosition: 开始位置
     ///   - endPosition: 结束位置（最大为字符串结束位置）
     /// - Returns: 符合条件的范围
-    public func range(startPosition start: Int, endPosition end: Int) -> Range<String.Index> {
+    open func range(startPosition start: Int, endPosition end: Int) -> Range<String.Index> {
         let tempstart = start > length ? length : start
         let tempend = end > length ? length : end
         return index(toPosition: tempstart) ..< index(toPosition: tempend)
@@ -121,7 +121,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     ///   - startPosition: 开始位置
     ///   - rangeLength: 长度
     /// - Returns: 符合条件的范围
-    public func range(startPosition start: Int, rangeLength length: Int) -> Range<String.Index> {
+    open func range(startPosition start: Int, rangeLength length: Int) -> Range<String.Index> {
         let temp = length + start
         return range(startPosition: start, endPosition: temp)
     }
@@ -130,7 +130,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     ///
     /// - Parameter toPosition: 位置
     /// - Returns: 相对于startIndex的位置
-    public func index(toPosition to: Int) -> String.Index {
+    open func index(toPosition to: Int) -> String.Index {
         let temp = to > length ? length : to
         return wrappedValue.index(wrappedValue.startIndex, offsetBy: temp)
     }

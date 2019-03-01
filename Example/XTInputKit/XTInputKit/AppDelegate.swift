@@ -6,10 +6,9 @@
 //  Copyright © 2018年 input. All rights reserved.
 //
 
-import OpenUDID
-import SimulateIDFA
 import UIKit
 import UserNotifications
+import XTInputKit
 
 var loger = XTILoger.default
 
@@ -20,10 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
 //        loger.saveFileLevel = .all
 //        loger.debug("应用即将启动")
-        // 将广告追加在应用启动后主队列里
-        DispatchQueue.XTI.mainAsyncAfter(0) {
-            self.test()
-        }
+        
         UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil))
 
         if #available(iOS 10.0, *) {
@@ -34,8 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             // Fallback on earlier versions
         }
-        loger.debug("SimulateIDFA==>" + SimulateIDFA.createSimulateIDFA())
-        loger.debug("OpenUDID==>" + OpenUDID.value())
         return true
     }
 
@@ -59,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         vc.xti_addChildViewController(navc3, tabbarTitle: "NetWork", image: UIImage.XTI.imageWithColor(UIColor.red, size: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysOriginal), selectedImage: nil)
         let navc4 = XTINavigationController(rootViewController: XTIDivViewController())
         vc.xti_addChildViewController(navc4, tabbarTitle: "嵌套", image: UIImage.XTI.imageWithColor(UIColor.red, size: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysOriginal), selectedImage: nil)
-        
+
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
     }
@@ -79,26 +73,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         loger.debug("应用即将回到前台<成为第一响应者>")
-        self.test()
-    }
-
-    func test() {
-        self.view?.removeFromSuperview()
-        self.view = UIView(frame: (self.window?.frame)!)
-        self.view?.backgroundColor = UIColor.red
-        let label = UILabel()
-        label.frame = CGRect(x: 0, y: 0, width: 50, height: 20)
-        label.center = (self.view?.center)!
-        self.view?.addSubview(label)
-        self.window?.addSubview(self.view!)
-        label.text = "3"
-        XTITimer.defualt.addObserver(self, repeating: 1, sum: 3) { item in
-            loger.debug(item?.count)
-            label.text = "\(item!.sum - item!.count)"
-            if (item?.isEnd())! {
-                self.view?.removeFromSuperview()
-            }
-        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -123,4 +97,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         loger.debug(notification.userInfo)
     }
 }
-

@@ -10,7 +10,7 @@ import Foundation
 import Security
 
 /// KeyChain的封装，需要开启项目配置的Capabilities->Keychain Sharing
-public class XTIKeyChainTool {
+open class XTIKeyChainTool {
     /// 是否同步到iCloud
     public var synchronizable: Bool!
     /// 应用分组
@@ -20,7 +20,7 @@ public class XTIKeyChainTool {
     /// 同步到iCloud
     public static let iCloud = XTIKeyChainTool(synchronizable: true)
 
-    fileprivate var bundleNmae = Bundle.main.bundleIdentifier == nil ? "com.07coding.XTInputKit" : Bundle.main.bundleIdentifier!
+    fileprivate var bundleNmae = Bundle.main.bundleIdentifier == nil ? "cn.tcoding.XTInputKit" : Bundle.main.bundleIdentifier!
     /// 初始化
     ///
     /// - Parameters:
@@ -72,7 +72,7 @@ public class XTIKeyChainTool {
     ///   - valueTpye: 值的类型
     ///   - key: 键
     /// - Returns: 值 or nil
-    public func get<ValueType: DataConvertible>(valueTpye: ValueType.Type, forKey key: String) -> ValueType! {
+    open func get<ValueType: DataConvertible>(valueTpye: ValueType.Type, forKey key: String) -> ValueType! {
         var keyChainItem = self.initKeyChainDictionary()
         keyChainItem[kSecAttrAccount] = key
         keyChainItem[kSecMatchLimit] = kSecMatchLimitOne

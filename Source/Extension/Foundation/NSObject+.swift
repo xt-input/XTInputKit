@@ -13,7 +13,7 @@ public extension NSObject {
     public var className: String {
         return "\(self.classForCoder)"
     }
-    
+
     public static var className: String {
         return "\(self)"
     }

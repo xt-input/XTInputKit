@@ -10,6 +10,7 @@ import Alamofire
 import UIKit
 import UserNotifications
 import WebKit
+import XTInputKit
 
 var count = 0
 

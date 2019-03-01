@@ -9,7 +9,7 @@
 import Foundation
 
 /// 观察者单元(解决字典强引用导致内存泄露问题)
-public class XTIObserverItem: NSObject {
+open class XTIObserverItem: NSObject {
     fileprivate weak var _observerItem: AnyObject?
     public var observerItem: AnyObject? {
         return _observerItem
@@ -21,17 +21,18 @@ public class XTIObserverItem: NSObject {
 }
 
 /// 观察者管理类
-public class XTIObserver {
+open class XTIObserver {
     fileprivate var _observers: [String: XTIObserverItem] = [:]
 
     public var observers: [String: XTIObserverItem] {
         return _observers
     }
-
+    public init() {
+    }
     /// 添加观察者，只能在子类里调用，保护_observers
     ///
     /// - Parameter Object: 需要添加的观察者单元
-    final public func addObserver(_ item: XTIObserverItem) {
+    public final func addObserver(_ item: XTIObserverItem) {
         if let description = item.observerItem?.description {
             _observers[description] = item
             _observers = observers.filter { (_, value) -> Bool in
@@ -47,14 +48,14 @@ public class XTIObserver {
     /// 移除观察者, 只能在子类里调用，保护_observers
     ///
     /// - Parameter Object: 需要移除的观察者单元
-    final public func removeObserver(_ item: XTIObserverItem) {
+    public final func removeObserver(_ item: XTIObserverItem) {
         if let description = item.observerItem?.description {
             _observers.removeValue(forKey: description)
         }
     }
 
     /// 移除所有观察者
-    public func removeAllObserver() {
+    open func removeAllObserver() {
         _observers.removeAll()
     }
 }

@@ -21,7 +21,7 @@ public typealias XTIProgressCallback = (Progress) -> ()
 /// 文件下载成功的回调
 public typealias XTIDownloadCompletedCallback = (URL?) -> ()
 
-public class XTIBaseRequest {
+open class XTIBaseRequest {
     fileprivate static var _default = XTIBaseRequest()
     /// 单例
     public static var `default`: XTIBaseRequest {
@@ -108,7 +108,7 @@ public class XTIBaseRequest {
     /// 构造请求参数，如果是POST则放在body里面，如果是GET则拼接在URL后面
     ///
     /// - Returns: 参数字典
-    public func buildParameters() -> XTIParameters {
+    open func buildParameters() -> XTIParameters {
         if parameters == nil {
             parameters = XTIParameters()
         }
@@ -119,7 +119,7 @@ public class XTIBaseRequest {
     /// 上传文件请求时重写它，
     /// 有 application/atom+xml, application/ecmascript, application/EDI-X12, application/EDIFACT, application/json, application/javascript, application/octet-stream, application/ogg, application/pdf, application/postscript, application/rdf+xml, application/rss+xml, application/soap+xml, application/font-woff, application/xhtml+xml, application/xml, application/xml-dtd, application/xop+xml, application/zip, application/gzip, audio/mp4, audio/mpeg, audio/ogg, audio/vorbis, audio/vnd.rn-realaudio, audio/vnd.wave, audio/webm, audio/x-flac, image/gif, image/jpeg, image/png, image/webp, image/svg+xml, image/tiff, model/example, model/iges, model/mesh, model/vrml, model/x3d+binary, model/x3d+vrml, model/x3d+xml, text/css, text/csv, text/html, text/plain, text/vcard, text/xml, video/mpeg, video/mp4, video/ogg, video/quicktime, video/webm, video/x-matroska, video/x-ms-wmv, video/x-flv ···等类型
     /// - Returns: 返回文件类型
-    public func getFileType() -> String {
+    open func getFileType() -> String {
         if fileType != nil {
             return fileType
         }
@@ -130,7 +130,7 @@ public class XTIBaseRequest {
     ///     该函数根据自己的需求实现，建议将参数字典转换成json字符串然后取这段字符串的签名
     /// 公共参数放置在请求头里面
     /// - Returns: 返回签名，格式："sign=sign"
-    public func signature(_ parameters: XTIParameters!) -> String {
+    open func signature(_ parameters: XTIParameters!) -> String {
         if XTINetWorkConfig.defaultSignature != nil && isNeedSign {
             return XTINetWorkConfig.defaultSignature(parameters)
         }
@@ -147,7 +147,7 @@ public class XTIBaseRequest {
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
-    public func post(serviceName: String!,
+    open func post(serviceName: String!,
                      parameters: XTIParameters! = nil,
                      resultClass resultType: HandyJSON.Type! = nil,
                      completed completedCallback: XTIRequestCompletedCallback!,
@@ -163,7 +163,7 @@ public class XTIBaseRequest {
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
-    public func post(url: String!,
+    open func post(url: String!,
                      parameters: XTIParameters! = nil,
                      resultClass resultType: HandyJSON.Type! = nil,
                      completed completedCallback: XTIRequestCompletedCallback!,
@@ -179,7 +179,7 @@ public class XTIBaseRequest {
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
-    public func get(serviceName: String!,
+    open func get(serviceName: String!,
                     parameters: XTIParameters! = nil,
                     resultClass resultType: HandyJSON.Type! = nil,
                     completed completedCallback: XTIRequestCompletedCallback!,
@@ -195,7 +195,7 @@ public class XTIBaseRequest {
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
-    public func get(url: String!,
+    open func get(url: String!,
                     parameters: XTIParameters! = nil,
                     resultClass resultType: HandyJSON.Type! = nil,
                     completed completedCallback: XTIRequestCompletedCallback!,
@@ -214,7 +214,7 @@ public class XTIBaseRequest {
     ///   - result: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
-    public func send(_ method: HTTPMethod! = nil,
+    open func send(_ method: HTTPMethod! = nil,
                      httpScheme scheme: XTIHttpScheme! = nil,
                      hostName host: String! = nil,
                      serviceName service: String! = nil,
@@ -239,7 +239,7 @@ public class XTIBaseRequest {
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
-    public func send(_ method: HTTPMethod! = nil,
+    open func send(_ method: HTTPMethod! = nil,
                      url: String!,
                      parameters: XTIParameters! = nil,
                      resultClass resultType: HandyJSON.Type! = nil,
@@ -247,7 +247,7 @@ public class XTIBaseRequest {
                      error errorCallback: XTIRequestErrorCallback!) {
         let tempMethod = method == nil ? httpMethod! : method!
         let tempParameters = parameters == nil ? buildParameters() : parameters!
-        var tempHeaders = XTINetWorkConfig.defaultPublicHttpHeader!
+        var tempHeaders = XTINetWorkConfig.defaultopenHttpHeader!
         let sign = signature(tempParameters)
         if sign != "" {
             tempHeaders["sign"] = sign
@@ -271,7 +271,7 @@ public class XTIBaseRequest {
     ///   - progressCallback: 进度
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
-    public func upload(_ progressCallback: XTIProgressCallback! = nil,
+    open func upload(_ progressCallback: XTIProgressCallback! = nil,
                        completedCallback: XTIRequestCompletedCallback! = nil,
                        errorCallback: XTIRequestErrorCallback! = nil) {
         let url = httpScheme.rawValue + hostName + serviceName
@@ -287,14 +287,14 @@ public class XTIBaseRequest {
     ///   - progressCallback: 进度
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
-    public func upload(_ url: String!,
+    open func upload(_ url: String!,
                        parameters: XTIParameters!,
                        resultClass resultType: HandyJSON.Type! = nil,
                        progress progressCallback: XTIProgressCallback! = nil,
                        completed completedCallback: XTIRequestCompletedCallback! = nil,
                        error errorCallback: XTIRequestErrorCallback! = nil) {
         let sign = signature(parameters)
-        var tempHeaders = XTINetWorkConfig.defaultPublicHttpHeader!
+        var tempHeaders = XTINetWorkConfig.defaultopenHttpHeader!
         if sign != "" {
             tempHeaders["sign"] = sign
         }
@@ -409,7 +409,7 @@ public class XTIBaseRequest {
     /// 打印原始数据，可以在该函数里面读取Cookie的值
     ///
     /// - Parameter result: 原始数据
-    public func outRawData(_ result: DataResponse<String>) {
+    open func outRawData(_ result: DataResponse<String>) {
         if iSLogRawData {
             XTILoger.default.info(result)
         }

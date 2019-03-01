@@ -8,12 +8,12 @@
 
 import UIKit
 
-public typealias XTITimerItemCallback = (XTITimerItem?) -> ()
+public typealias XTITimerItemCallback = (XTITimerItem?) -> Void
 
 /// 计时器任务单元
 /// - 观察者需要实现 @objc func countdown(_ item: XTITimerItem)
 /// - 在“countdown:”函数里，通过设置 item.isCancel 来中途取消该任务
-public class XTITimerItem: XTIObserverItem {
+open class XTITimerItem: XTIObserverItem {
     fileprivate var _count: Int = 0
     /// 本任务是第几次执行
     public var count: Int {
@@ -74,7 +74,7 @@ public class XTITimerItem: XTIObserverItem {
         self._count += 1
     }
 
-    public func isEnd() -> Bool {
+    open func isEnd() -> Bool {
         return self.sum == 0 ? false : self.count == self.sum
     }
 
@@ -84,7 +84,7 @@ public class XTITimerItem: XTIObserverItem {
 }
 
 /// 计时器任务管理
-public class XTITimer: XTIObserver {
+open class XTITimer: XTIObserver {
     fileprivate static var _default: XTITimer!
     public static var defualt: XTITimer {
         if _default == nil {
@@ -101,11 +101,10 @@ public class XTITimer: XTIObserver {
     ///   - interval: 间隔时间
     ///   - sum: 执行次数，0表示无限次
     ///       - block: 尾随闭包
-    public func addObserver(_ object: AnyObject, labelName name: String = "", repeating interval: Double = 1, sum: Int = 0, block: XTITimerItemCallback! = nil) {
+    open func addObserver(_ object: AnyObject, labelName name: String = "", repeating interval: Double = 1, sum: Int = 0, block: XTITimerItemCallback! = nil) {
         if var description = object.description {
             description += name
-            var isNeedAdd: Bool = false
-            isNeedAdd = block != nil || object.responds(to: Selector(("countdown:"))) // 判断是否携带尾随闭包或观察者是否实现"countdown:"函数，如果没有实现就不需要添加该观察者了
+            let isNeedAdd: Bool = block != nil || object.responds(to: Selector(("countdown:"))) // 判断是否携带尾随闭包或观察者是否实现"countdown:"函数，如果没有实现就不需要添加该观察者了
             if isNeedAdd {
                 if let item = self.observers[description] as? XTITimerItem { // 判断该观察者是否已经添加，如果已经添加先取消该观察者的任务，然后在重新添加
                     item.cancel()
@@ -126,7 +125,7 @@ public class XTITimer: XTIObserver {
     /// 移除观察者
     ///
     /// - Parameter object: 观察者
-    public func removeObserver(_ object: AnyObject, labelName name: String = "") {
+    open func removeObserver(_ object: AnyObject, labelName name: String = "") {
         if var description = object.description {
             if name == "" {
                 let keyArray = observers.filter { (key, _) -> Bool in

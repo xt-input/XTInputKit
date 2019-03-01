@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XTInputKit
 
 var i = 0
 

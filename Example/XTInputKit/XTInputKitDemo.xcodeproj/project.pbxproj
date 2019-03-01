@@ -7,92 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		98D7F97AA80D4AEB6361E077 /* Pods_XTInputKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AF3F3A44C5356F8767A272F /* Pods_XTInputKit.framework */; };
-		AE15771420B0848B00893F0C /* XTITimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE15771320B0848B00893F0C /* XTITimer.swift */; };
-		AE58C780205B67A600A45B29 /* XTINetWorkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C77F205B67A600A45B29 /* XTINetWorkConfig.swift */; };
-		AE58C783205B6E4400A45B29 /* XTIBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C782205B6E4400A45B29 /* XTIBaseRequest.swift */; };
-		AE58C78C205BCDDF00A45B29 /* XTIKeyChainTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C78B205BCDDF00A45B29 /* XTIKeyChainTool.swift */; };
 		AE58C790205E597700A45B29 /* XTIKeyChainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C78F205E597700A45B29 /* XTIKeyChainViewController.swift */; };
 		AE58C7932060031E00A45B29 /* XTINetWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C7922060031E00A45B29 /* XTINetWorkViewController.swift */; };
 		AE58C7962060E56600A45B29 /* XTITestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C7952060E56600A45B29 /* XTITestResult.swift */; };
 		AE58C7982060E57C00A45B29 /* XTITest1Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C7972060E57C00A45B29 /* XTITest1Request.swift */; };
 		AE58C79C2060E59300A45B29 /* XTITestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C79B2060E59300A45B29 /* XTITestRequest.swift */; };
-		AE58C7A02060F7F400A45B29 /* XTIHandyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE58C79F2060F7F400A45B29 /* XTIHandyJSON.swift */; };
 		AE5BAB352085E89000702DC4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE5BAB342085E89000702DC4 /* CoreTelephony.framework */; };
 		AE5DC3AE202A9C4100F2D8B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5DC3A7202A9C4100F2D8B7 /* ViewController.swift */; };
 		AE5DC3B0202A9C4100F2D8B7 /* XTINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5DC3A9202A9C4100F2D8B7 /* XTINavigationController.swift */; };
 		AE5DC3B1202A9C4100F2D8B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE5DC3AA202A9C4100F2D8B7 /* Assets.xcassets */; };
 		AE5DC3B2202A9C4100F2D8B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5DC3AB202A9C4100F2D8B7 /* AppDelegate.swift */; };
-		AE66B903201C58E7002E3FFF /* UITabBarController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE66B902201C58E7002E3FFF /* UITabBarController+.swift */; };
-		AE66B909201F1DCA002E3FFF /* XTITool.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE66B908201F1DCA002E3FFF /* XTITool.swift */; };
 		AE67416E219E985100499FE6 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE674170219E985100499FE6 /* Storyboard.storyboard */; };
-		AE8D70CB2012F4EA002E3580 /* XTIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B42012F4EA002E3580 /* XTIView+.swift */; };
-		AE8D70CC2012F4EA002E3580 /* XTIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B52012F4EA002E3580 /* XTIButton+.swift */; };
-		AE8D70CD2012F4EA002E3580 /* XTIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B62012F4EA002E3580 /* XTIColor+.swift */; };
-		AE8D70CE2012F4EA002E3580 /* XTIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B72012F4EA002E3580 /* XTIImage+.swift */; };
-		AE8D70CF2012F4EA002E3580 /* XTIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B82012F4EA002E3580 /* XTIViewController+.swift */; };
-		AE8D70D02012F4EA002E3580 /* XTINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70B92012F4EA002E3580 /* XTINavigationController+.swift */; };
-		AE8D70D12012F4EA002E3580 /* XTIString+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70BB2012F4EA002E3580 /* XTIString+.swift */; };
-		AE8D70D22012F4EA002E3580 /* XTIDate+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70BC2012F4EA002E3580 /* XTIDate+.swift */; };
-		AE8D70D32012F4EA002E3580 /* XTIDevice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70BD2012F4EA002E3580 /* XTIDevice+.swift */; };
-		AE8D70D42012F4EA002E3580 /* XTIDispatchQueue+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70BE2012F4EA002E3580 /* XTIDispatchQueue+.swift */; };
-		AE8D70D52012F4EA002E3580 /* XTIBaseNameNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70BF2012F4EA002E3580 /* XTIBaseNameNamespace.swift */; };
-		AE8D70D62012F4EA002E3580 /* XTILoger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70C12012F4EA002E3580 /* XTILoger.swift */; };
-		AE8D70D72012F4EA002E3580 /* XTIMacros.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70C32012F4EA002E3580 /* XTIMacros.swift */; };
-		AE8D70D82012F4EA002E3580 /* XTIObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D70C42012F4EA002E3580 /* XTIObserver.swift */; };
 		AEAFA9F620930C99007613B8 /* XTIObserverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAFA9F520930C99007613B8 /* XTIObserverTest.swift */; };
-		AEAFA9F820932244007613B8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AEAFA9F720932244007613B8 /* README.md */; };
 		AEB42894214FB399003483CD /* XTIDivViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB42893214FB399003483CD /* XTIDivViewController.swift */; };
-		AECEFFC8201C2C6300B96754 /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECEFFC7201C2C6300B96754 /* NSObject+.swift */; };
 		AECFC9892170DD22006C0A35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AECFC9882170DD22006C0A35 /* LaunchScreen.storyboard */; };
-		AED82BE42099DA2F00AACF24 /* XTIOperator+.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED82BE32099DA2F00AACF24 /* XTIOperator+.swift */; };
+		F8942F01945ED210DBBAEECA /* Pods_XTInputKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F68963AC45162756481C2361 /* Pods_XTInputKitDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2AF3F3A44C5356F8767A272F /* Pods_XTInputKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XTInputKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A600A70D7327E7F9503916A /* Pods-XTInputKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKit.release.xcconfig"; path = "../Pods/Target Support Files/Pods-XTInputKit/Pods-XTInputKit.release.xcconfig"; sourceTree = "<group>"; };
-		AE15771320B0848B00893F0C /* XTITimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITimer.swift; sourceTree = "<group>"; };
+		31BE4B158D814A5C31025B44 /* Pods-XTInputKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKitDemo.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-XTInputKitDemo/Pods-XTInputKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		931995DBFAB373BFAF2BA5A3 /* Pods-XTInputKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKitDemo.release.xcconfig"; path = "../Pods/Target Support Files/Pods-XTInputKitDemo/Pods-XTInputKitDemo.release.xcconfig"; sourceTree = "<group>"; };
 		AE2046F721B4DF5C00D6F958 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AE58C77F205B67A600A45B29 /* XTINetWorkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTINetWorkConfig.swift; sourceTree = "<group>"; };
-		AE58C782205B6E4400A45B29 /* XTIBaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIBaseRequest.swift; sourceTree = "<group>"; };
 		AE58C78A205BCD5E00A45B29 /* XTInputKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XTInputKit.entitlements; sourceTree = "<group>"; };
-		AE58C78B205BCDDF00A45B29 /* XTIKeyChainTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIKeyChainTool.swift; sourceTree = "<group>"; };
 		AE58C78F205E597700A45B29 /* XTIKeyChainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIKeyChainViewController.swift; sourceTree = "<group>"; };
 		AE58C7922060031E00A45B29 /* XTINetWorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTINetWorkViewController.swift; sourceTree = "<group>"; };
 		AE58C7952060E56600A45B29 /* XTITestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITestResult.swift; sourceTree = "<group>"; };
 		AE58C7972060E57C00A45B29 /* XTITest1Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITest1Request.swift; sourceTree = "<group>"; };
 		AE58C79B2060E59300A45B29 /* XTITestRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITestRequest.swift; sourceTree = "<group>"; };
-		AE58C79F2060F7F400A45B29 /* XTIHandyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIHandyJSON.swift; sourceTree = "<group>"; };
 		AE5BAB342085E89000702DC4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		AE5DC3A7202A9C4100F2D8B7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AE5DC3A9202A9C4100F2D8B7 /* XTINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTINavigationController.swift; sourceTree = "<group>"; };
 		AE5DC3AA202A9C4100F2D8B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE5DC3AB202A9C4100F2D8B7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AE66B902201C58E7002E3FFF /* UITabBarController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITabBarController+.swift"; sourceTree = "<group>"; };
-		AE66B908201F1DCA002E3FFF /* XTITool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITool.swift; sourceTree = "<group>"; };
 		AE67416F219E985100499FE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
-		AE8D709C2012F4CD002E3580 /* XTInputKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XTInputKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE8D70B42012F4EA002E3580 /* XTIView+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIView+.swift"; sourceTree = "<group>"; };
-		AE8D70B52012F4EA002E3580 /* XTIButton+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIButton+.swift"; sourceTree = "<group>"; };
-		AE8D70B62012F4EA002E3580 /* XTIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIColor+.swift"; sourceTree = "<group>"; };
-		AE8D70B72012F4EA002E3580 /* XTIImage+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIImage+.swift"; sourceTree = "<group>"; };
-		AE8D70B82012F4EA002E3580 /* XTIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIViewController+.swift"; sourceTree = "<group>"; };
-		AE8D70B92012F4EA002E3580 /* XTINavigationController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTINavigationController+.swift"; sourceTree = "<group>"; };
-		AE8D70BB2012F4EA002E3580 /* XTIString+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIString+.swift"; sourceTree = "<group>"; };
-		AE8D70BC2012F4EA002E3580 /* XTIDate+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIDate+.swift"; sourceTree = "<group>"; };
-		AE8D70BD2012F4EA002E3580 /* XTIDevice+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIDevice+.swift"; sourceTree = "<group>"; };
-		AE8D70BE2012F4EA002E3580 /* XTIDispatchQueue+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XTIDispatchQueue+.swift"; sourceTree = "<group>"; };
-		AE8D70BF2012F4EA002E3580 /* XTIBaseNameNamespace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIBaseNameNamespace.swift; sourceTree = "<group>"; };
-		AE8D70C12012F4EA002E3580 /* XTILoger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTILoger.swift; sourceTree = "<group>"; };
-		AE8D70C32012F4EA002E3580 /* XTIMacros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIMacros.swift; sourceTree = "<group>"; };
-		AE8D70C42012F4EA002E3580 /* XTIObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIObserver.swift; sourceTree = "<group>"; };
+		AE8D709C2012F4CD002E3580 /* XTInputKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XTInputKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEAFA9F520930C99007613B8 /* XTIObserverTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIObserverTest.swift; sourceTree = "<group>"; };
-		AEAFA9F720932244007613B8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		AEB42893214FB399003483CD /* XTIDivViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIDivViewController.swift; sourceTree = "<group>"; };
-		AECEFFC7201C2C6300B96754 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
 		AECFC9882170DD22006C0A35 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		AED82BE32099DA2F00AACF24 /* XTIOperator+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XTIOperator+.swift"; sourceTree = "<group>"; };
-		EEB07AFBD8A4CCF7B477ADE4 /* Pods-XTInputKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKit.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-XTInputKit/Pods-XTInputKit.debug.xcconfig"; sourceTree = "<group>"; };
+		F68963AC45162756481C2361 /* Pods_XTInputKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XTInputKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE5BAB352085E89000702DC4 /* CoreTelephony.framework in Frameworks */,
-				98D7F97AA80D4AEB6361E077 /* Pods_XTInputKit.framework in Frameworks */,
+				F8942F01945ED210DBBAEECA /* Pods_XTInputKitDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,8 +63,8 @@
 		8BEE0E5ED7C9F0D797D2A410 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EEB07AFBD8A4CCF7B477ADE4 /* Pods-XTInputKit.debug.xcconfig */,
-				6A600A70D7327E7F9503916A /* Pods-XTInputKit.release.xcconfig */,
+				31BE4B158D814A5C31025B44 /* Pods-XTInputKitDemo.debug.xcconfig */,
+				931995DBFAB373BFAF2BA5A3 /* Pods-XTInputKitDemo.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -121,19 +73,9 @@
 			isa = PBXGroup;
 			children = (
 				AE5BAB342085E89000702DC4 /* CoreTelephony.framework */,
-				2AF3F3A44C5356F8767A272F /* Pods_XTInputKit.framework */,
+				F68963AC45162756481C2361 /* Pods_XTInputKitDemo.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		AE58C77E205B670D00A45B29 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				AE58C77F205B67A600A45B29 /* XTINetWorkConfig.swift */,
-				AE58C782205B6E4400A45B29 /* XTIBaseRequest.swift */,
-				AE58C79F2060F7F400A45B29 /* XTIHandyJSON.swift */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		AE58C781205B683200A45B29 /* Test */ = {
@@ -177,8 +119,6 @@
 		AE8D70932012F4CD002E3580 = {
 			isa = PBXGroup;
 			children = (
-				AEAFA9F720932244007613B8 /* README.md */,
-				AE8D70B12012F4EA002E3580 /* Source */,
 				AE5DC3A6202A9C4100F2D8B7 /* XTInputKit */,
 				AE8D709D2012F4CD002E3580 /* Products */,
 				8BEE0E5ED7C9F0D797D2A410 /* Pods */,
@@ -189,86 +129,17 @@
 		AE8D709D2012F4CD002E3580 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AE8D709C2012F4CD002E3580 /* XTInputKit.app */,
+				AE8D709C2012F4CD002E3580 /* XTInputKitDemo.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		AE8D70B12012F4EA002E3580 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				AE58C77E205B670D00A45B29 /* Network */,
-				AE8D70B22012F4EA002E3580 /* Extension */,
-				AE8D70C02012F4EA002E3580 /* XTILoger */,
-				AE8D70C22012F4EA002E3580 /* Class */,
-			);
-			name = Source;
-			path = ../Source;
-			sourceTree = "<group>";
-		};
-		AE8D70B22012F4EA002E3580 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				AE8D70BF2012F4EA002E3580 /* XTIBaseNameNamespace.swift */,
-				AE8D70B32012F4EA002E3580 /* UIKit */,
-				AE8D70BA2012F4EA002E3580 /* Foundation */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		AE8D70B32012F4EA002E3580 /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-				AE8D70B42012F4EA002E3580 /* XTIView+.swift */,
-				AE8D70B52012F4EA002E3580 /* XTIButton+.swift */,
-				AE8D70B62012F4EA002E3580 /* XTIColor+.swift */,
-				AE8D70B72012F4EA002E3580 /* XTIImage+.swift */,
-				AE8D70B82012F4EA002E3580 /* XTIViewController+.swift */,
-				AE66B902201C58E7002E3FFF /* UITabBarController+.swift */,
-				AE8D70B92012F4EA002E3580 /* XTINavigationController+.swift */,
-				AE8D70BD2012F4EA002E3580 /* XTIDevice+.swift */,
-			);
-			path = UIKit;
-			sourceTree = "<group>";
-		};
-		AE8D70BA2012F4EA002E3580 /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				AE8D70BB2012F4EA002E3580 /* XTIString+.swift */,
-				AE8D70BC2012F4EA002E3580 /* XTIDate+.swift */,
-				AE8D70BE2012F4EA002E3580 /* XTIDispatchQueue+.swift */,
-				AECEFFC7201C2C6300B96754 /* NSObject+.swift */,
-				AED82BE32099DA2F00AACF24 /* XTIOperator+.swift */,
-			);
-			path = Foundation;
-			sourceTree = "<group>";
-		};
-		AE8D70C02012F4EA002E3580 /* XTILoger */ = {
-			isa = PBXGroup;
-			children = (
-				AE8D70C12012F4EA002E3580 /* XTILoger.swift */,
-			);
-			path = XTILoger;
-			sourceTree = "<group>";
-		};
-		AE8D70C22012F4EA002E3580 /* Class */ = {
-			isa = PBXGroup;
-			children = (
-				AE58C78B205BCDDF00A45B29 /* XTIKeyChainTool.swift */,
-				AE8D70C32012F4EA002E3580 /* XTIMacros.swift */,
-				AE8D70C42012F4EA002E3580 /* XTIObserver.swift */,
-				AE15771320B0848B00893F0C /* XTITimer.swift */,
-				AE66B908201F1DCA002E3FFF /* XTITool.swift */,
-			);
-			path = Class;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AE8D709B2012F4CD002E3580 /* XTInputKit */ = {
+		AE8D709B2012F4CD002E3580 /* XTInputKitDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE8D70AE2012F4CD002E3580 /* Build configuration list for PBXNativeTarget "XTInputKit" */;
+			buildConfigurationList = AE8D70AE2012F4CD002E3580 /* Build configuration list for PBXNativeTarget "XTInputKitDemo" */;
 			buildPhases = (
 				731DBC6DCD60ADA0E2E638AC /* [CP] Check Pods Manifest.lock */,
 				AE8D70982012F4CD002E3580 /* Sources */,
@@ -280,9 +151,9 @@
 			);
 			dependencies = (
 			);
-			name = XTInputKit;
+			name = XTInputKitDemo;
 			productName = XTInputKitDemo;
-			productReference = AE8D709C2012F4CD002E3580 /* XTInputKit.app */;
+			productReference = AE8D709C2012F4CD002E3580 /* XTInputKitDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -308,7 +179,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AE8D70972012F4CD002E3580 /* Build configuration list for PBXProject "XTInputKit" */;
+			buildConfigurationList = AE8D70972012F4CD002E3580 /* Build configuration list for PBXProject "XTInputKitDemo" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -321,7 +192,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AE8D709B2012F4CD002E3580 /* XTInputKit */,
+				AE8D709B2012F4CD002E3580 /* XTInputKitDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -333,7 +204,6 @@
 			files = (
 				AE5DC3B1202A9C4100F2D8B7 /* Assets.xcassets in Resources */,
 				AECFC9892170DD22006C0A35 /* LaunchScreen.storyboard in Resources */,
-				AEAFA9F820932244007613B8 /* README.md in Resources */,
 				AE67416E219E985100499FE6 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,24 +217,20 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-XTInputKit/Pods-XTInputKit-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-XTInputKitDemo/Pods-XTInputKitDemo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework",
 				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/OpenUDID/OpenUDID.framework",
-				"${BUILT_PRODUCTS_DIR}/SimulateIDFA/SimulateIDFA.framework",
+				"${BUILT_PRODUCTS_DIR}/XTInputKit/XTInputKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlocksKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenUDID.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SimulateIDFA.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XTInputKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XTInputKit/Pods-XTInputKit-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XTInputKitDemo/Pods-XTInputKitDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		731DBC6DCD60ADA0E2E638AC /* [CP] Check Pods Manifest.lock */ = {
@@ -378,7 +244,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-XTInputKit-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-XTInputKitDemo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -392,39 +258,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE8D70D42012F4EA002E3580 /* XTIDispatchQueue+.swift in Sources */,
-				AE58C783205B6E4400A45B29 /* XTIBaseRequest.swift in Sources */,
-				AE8D70D52012F4EA002E3580 /* XTIBaseNameNamespace.swift in Sources */,
-				AE8D70D62012F4EA002E3580 /* XTILoger.swift in Sources */,
-				AE8D70D22012F4EA002E3580 /* XTIDate+.swift in Sources */,
-				AE8D70CC2012F4EA002E3580 /* XTIButton+.swift in Sources */,
 				AE58C7932060031E00A45B29 /* XTINetWorkViewController.swift in Sources */,
-				AE8D70D02012F4EA002E3580 /* XTINavigationController+.swift in Sources */,
-				AE8D70D72012F4EA002E3580 /* XTIMacros.swift in Sources */,
-				AE8D70D82012F4EA002E3580 /* XTIObserver.swift in Sources */,
 				AE58C79C2060E59300A45B29 /* XTITestRequest.swift in Sources */,
 				AEB42894214FB399003483CD /* XTIDivViewController.swift in Sources */,
 				AE5DC3B0202A9C4100F2D8B7 /* XTINavigationController.swift in Sources */,
-				AE58C780205B67A600A45B29 /* XTINetWorkConfig.swift in Sources */,
-				AE58C7A02060F7F400A45B29 /* XTIHandyJSON.swift in Sources */,
-				AE8D70CF2012F4EA002E3580 /* XTIViewController+.swift in Sources */,
-				AED82BE42099DA2F00AACF24 /* XTIOperator+.swift in Sources */,
-				AE66B909201F1DCA002E3FFF /* XTITool.swift in Sources */,
 				AE58C7982060E57C00A45B29 /* XTITest1Request.swift in Sources */,
-				AECEFFC8201C2C6300B96754 /* NSObject+.swift in Sources */,
-				AE8D70CD2012F4EA002E3580 /* XTIColor+.swift in Sources */,
-				AE8D70D12012F4EA002E3580 /* XTIString+.swift in Sources */,
 				AE58C7962060E56600A45B29 /* XTITestResult.swift in Sources */,
-				AE8D70D32012F4EA002E3580 /* XTIDevice+.swift in Sources */,
-				AE66B903201C58E7002E3FFF /* UITabBarController+.swift in Sources */,
 				AE58C790205E597700A45B29 /* XTIKeyChainViewController.swift in Sources */,
 				AE5DC3AE202A9C4100F2D8B7 /* ViewController.swift in Sources */,
-				AE8D70CB2012F4EA002E3580 /* XTIView+.swift in Sources */,
-				AE58C78C205BCDDF00A45B29 /* XTIKeyChainTool.swift in Sources */,
 				AEAFA9F620930C99007613B8 /* XTIObserverTest.swift in Sources */,
-				AE8D70CE2012F4EA002E3580 /* XTIImage+.swift in Sources */,
 				AE5DC3B2202A9C4100F2D8B7 /* AppDelegate.swift in Sources */,
-				AE15771420B0848B00893F0C /* XTITimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,16 +400,16 @@
 		};
 		AE8D70AF2012F4CD002E3580 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EEB07AFBD8A4CCF7B477ADE4 /* Pods-XTInputKit.debug.xcconfig */;
+			baseConfigurationReference = 31BE4B158D814A5C31025B44 /* Pods-XTInputKitDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = XTInputKit/XTInputKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6C4663ZX2Y;
+				DEVELOPMENT_TEAM = ZZ2Q79GEK8;
 				INFOPLIST_FILE = "$(SRCROOT)/XTInputKit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.tcodoing.test;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.tcodoing.xtinputdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
@@ -576,16 +419,16 @@
 		};
 		AE8D70B02012F4CD002E3580 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A600A70D7327E7F9503916A /* Pods-XTInputKit.release.xcconfig */;
+			baseConfigurationReference = 931995DBFAB373BFAF2BA5A3 /* Pods-XTInputKitDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = XTInputKit/XTInputKit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6C4663ZX2Y;
+				DEVELOPMENT_TEAM = ZZ2Q79GEK8;
 				INFOPLIST_FILE = "$(SRCROOT)/XTInputKit/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.tcodoing.test;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.tcodoing.xtinputdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
@@ -596,7 +439,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AE8D70972012F4CD002E3580 /* Build configuration list for PBXProject "XTInputKit" */ = {
+		AE8D70972012F4CD002E3580 /* Build configuration list for PBXProject "XTInputKitDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE8D70AC2012F4CD002E3580 /* Debug */,
@@ -605,7 +448,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE8D70AE2012F4CD002E3580 /* Build configuration list for PBXNativeTarget "XTInputKit" */ = {
+		AE8D70AE2012F4CD002E3580 /* Build configuration list for PBXNativeTarget "XTInputKitDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE8D70AF2012F4CD002E3580 /* Debug */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XTInputKit
 
 class XTITest1Request: XTIBaseRequest {
     static var sharedInstance = XTITest1Request()

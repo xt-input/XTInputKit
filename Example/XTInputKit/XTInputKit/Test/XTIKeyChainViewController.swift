@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XTInputKit
 
 class XTIKeyChainViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var keyTextField: UITextField!
