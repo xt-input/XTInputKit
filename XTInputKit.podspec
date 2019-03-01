@@ -13,28 +13,26 @@ Pod::Spec.new do |s|
                      :tag => s.version }
 
   s.subspec 'XTILoger' do |ss|
-  ss.source_files = 'Source/XTILoger/*.swift'
-  ss.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2'}
+    ss.source_files = 'Source/XTILoger/*.swift'
   end
 
   s.subspec 'Extension' do |ss|
-  ss.source_files = 'Source/Extension/**/*.swift'
-  ss.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2'}
+    ss.source_files = 'Source/Extension/**/*.swift'
   end
 
   s.subspec 'XTITool' do |ss|
-  ss.source_files = 'Source/Class/*.swift'
-  ss.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2'}
+    ss.source_files = 'Source/Class/*.swift'
   end
 
   s.subspec 'XTINetWork' do |ss|
-  ss.source_files = 'Source/Network/*.swift'
-  ss.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2'}
-  ss.dependency 'XTInputKit/XTILoger'
-  ss.dependency 'XTInputKit/XTITool'
-  ss.dependency 'HandyJSON'
-  ss.dependency 'Alamofire'
+    ss.source_files = 'Source/Network/*.swift'
+    ss.dependency 'XTInputKit/XTILoger'
+    ss.dependency 'XTInputKit/XTITool'
+    ss.dependency 'HandyJSON'
+    ss.dependency 'Alamofire'
   end
 
+  s.swift_version = '4.2'
   s.requires_arc  = true
+
 end
