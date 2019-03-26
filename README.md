@@ -20,6 +20,8 @@ it, simply add the following line to your Podfile:
 pod 'XTInputKit'
 ```
 
+> 暂时移除网络请求部分，等HandyJSON适配swift5。swift 4请用0.1.1
+
 ## Author
 
 xt-input, input@tcoding.cn
