@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="Ldl-dK-owT">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="QAg-so-iFI" customClass="ViewController" customModule="XTInputKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="QAg-so-iFI" customClass="ViewController" customModule="XTInputKit_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c4g-2d-v8W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -92,7 +92,7 @@
         <!--Key Chain View Controller-->
         <scene sceneID="n9N-IH-XEN">
             <objects>
-                <viewController storyboardIdentifier="XTIKeyChainViewController" id="zuJ-Lu-ezI" customClass="XTIKeyChainViewController" customModule="XTInputKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="XTIKeyChainViewController" id="zuJ-Lu-ezI" customClass="XTIKeyChainViewController" customModule="XTInputKit_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b8I-ds-FyG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -261,7 +261,7 @@
         <!--Net Work View Controller-->
         <scene sceneID="BED-N4-aTy">
             <objects>
-                <viewController storyboardIdentifier="XTINetWorkViewController" id="6nA-0x-ZDr" customClass="XTINetWorkViewController" customModule="XTInputKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="XTINetWorkViewController" id="6nA-0x-ZDr" customClass="XTINetWorkViewController" customModule="XTInputKit_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bYa-Ff-GNo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

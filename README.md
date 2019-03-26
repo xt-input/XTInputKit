@@ -1,5 +1,30 @@
 # XTInputKit
 
+[![CI Status](https://img.shields.io/travis/xt-input/XTInputKit.svg?style=flat)](https://travis-ci.org/xt-input/XTInputKit)
+[![Version](https://img.shields.io/cocoapods/v/XTInputKit.svg?style=flat)](https://cocoapods.org/pods/XTInputKit)
+[![License](https://img.shields.io/cocoapods/l/XTInputKit.svg?style=flat)](https://cocoapods.org/pods/XTInputKit)
+[![Platform](https://img.shields.io/cocoapods/p/XTInputKit.svg?style=flat)](https://cocoapods.org/pods/XTInputKit)
+
+## Example
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+## Requirements
+
+## Installation
+
+XTInputKit is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'XTInputKit'
+```
+
+## Author
+
+xt-input, input@tcoding.cn
+
+
 XTInputKit是一套swift版的代码集，暂时有：
 
 - [XTILoger](#xtiloger)
@@ -21,18 +46,18 @@ XTInputKit是一套swift版的代码集，暂时有：
 示例：
 
 ```swift
-  var log = XTILoger.default	//如果需要修改默认的日志等级不要直接使用XTLoger.default
-  log.debugLogLevel = .debug	//debug模式的日志等级
-  log.releaseLogLevel = .warning	//release模式的日志等级，在release模式下只会构造日志不会打印在控制台，可以自己保存到本地
-  log.info(format: "%@%@", args: self, self)
-  log.debug(format: "%@%@", args: self, self)
-  log.warning(format: "%@%@", args: self, self)
-  log.error(format: "%@%@", args: self, self)
+var log = XTILoger.default    //如果需要修改默认的日志等级不要直接使用XTLoger.default
+log.debugLogLevel = .debug    //debug模式的日志等级
+log.releaseLogLevel = .warning    //release模式的日志等级，在release模式下只会构造日志不会打印在控制台，可以自己保存到本地
+log.info(format: "%@%@", args: self, self)
+log.debug(format: "%@%@", args: self, self)
+log.warning(format: "%@%@", args: self, self)
+log.error(format: "%@%@", args: self, self)
 
-  XTILoger.default.info(1231)
-  XTILoger.default.debug(1231)
-  XTILoger.default.warning(1231)
-  XTILoger.default.error(1231)
+XTILoger.default.info(1231)
+XTILoger.default.debug(1231)
+XTILoger.default.warning(1231)
+XTILoger.default.error(1231)
 ```
 
 >后续会加入写入本地文件的功能
@@ -41,11 +66,11 @@ XTInputKit是一套swift版的代码集，暂时有：
 
 > 整合一些常用的值，例如:
 >
-> ​	取屏幕宽度：XTMacros.SCREEN_WIDTH
+> ​    取屏幕宽度：XTMacros.SCREEN_WIDTH
 >
-> ​	取屏幕高度：XTMacros.SCREEN_HEIGHT
+> ​    取屏幕高度：XTMacros.SCREEN_HEIGHT
 >
-> ​	判断是否是iPhone x：XTMacros.isIphoneX
+> ​    判断是否是iPhone x：XTMacros.isIphoneX
 >
 > ···等等的
 
@@ -56,8 +81,8 @@ XTInputKit是一套swift版的代码集，暂时有：
 > 2018/3/21：添加通过版本号字符串比较版本号的函数
 
 ```swift
-XTITool.keyWindow.rootViewController = ViewController()	//修改根控制器
-XTITool.currentVC.xti_pushOrPresentVC(ViewController())	//从当前活动的控制器调转到ViewController，如果当前控制器在navigetionVC上那么久push，否则present
+XTITool.keyWindow.rootViewController = ViewController()    //修改根控制器
+XTITool.currentVC.xti_pushOrPresentVC(ViewController())    //从当前活动的控制器调转到ViewController，如果当前控制器在navigetionVC上那么久push，否则present
 ```
 
 ## UINavigationController
@@ -78,7 +103,7 @@ UINavigationController.xti_openBackGesture = false
 
 在项目UINavigationController封装的基类里：
 override func xti_openBackGesture() -> Bool {
-  return ture
+return ture
 }
 ```
 ## UIViewController
@@ -120,13 +145,13 @@ override func xti_openBackGesture() -> Bool {
 使用方法：
 
 ```swift
-self.xti_navigationTitle = "navigation标题"	//设置导航栏标题，当导航栏标题和标签栏标题的不一致时使用
+self.xti_navigationTitle = "navigation标题"    //设置导航栏标题，当导航栏标题和标签栏标题的不一致时使用
 self.xti_setBarButtonItem(.right, title: "测试")//通过`title`设置导航栏右边的按钮,也可以通过图片设置
-self.xti_nextBackTitle = "返回"		//设置下一级控制器的导航栏返回按钮的文案
-self.xti_nextBackColor = UIColor.red	//设置下一级控制器的导航栏返回按钮的颜色
-self.xti_navigationBarHidden = true	//隐藏导航栏
-self.xti_disabledBackGesture = true	//禁用右划返回手势
-self.xti_tabbarTitle = "tabbar标题"	//设置标签栏标题，当导航栏标题和标签栏标题的不一致时使用
+self.xti_nextBackTitle = "返回"        //设置下一级控制器的导航栏返回按钮的文案
+self.xti_nextBackColor = UIColor.red    //设置下一级控制器的导航栏返回按钮的颜色
+self.xti_navigationBarHidden = true    //隐藏导航栏
+self.xti_disabledBackGesture = true    //禁用右划返回手势
+self.xti_tabbarTitle = "tabbar标题"    //设置标签栏标题，当导航栏标题和标签栏标题的不一致时使用
 
 //通过Storyboard名字初始化控制器，并使用xti_pushOrPresentVC跳转
 self.xti_pushOrPresentVC(ViewController.initwithstoryboard("Storyboard"))
@@ -143,10 +168,16 @@ self.xti_navigationBarBackgroundColor = UIColor.red
 >
 > xti_addChildViewController(_:tabbarTitle:image:selectedImage)
 
- 
+
 
 ## 最后
 
 有些功能扩展没有写上来，代码里有部分注释，请参考注释。
 
 还有一些其他开发笔记之类的可以到我的博客上查看：[小唐朝的blog](http://blog.07coding.com)
+
+
+
+## License
+
+XTInputKit is available under the MIT license. See the LICENSE file for more info.
