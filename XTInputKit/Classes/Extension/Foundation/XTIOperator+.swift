@@ -9,41 +9,61 @@
 import UIKit
 
 public extension Double {
-    public static func += (left: inout Double, right: Int) {
+    static func += (left: inout Double, right: Int) {
         left = left + Double(right)
     }
 
-    public static func += (left: inout Double, right: Int8) {
+    static func += (left: inout Double, right: Int8) {
         left = left + Double(right)
     }
 
-    public static func += (left: inout Double, right: Int32) {
+    static func += (left: inout Double, right: Int32) {
         left = left + Double(right)
     }
 
-    public static func += (left: inout Double, right: Int64) {
+    static func += (left: inout Double, right: Int64) {
         left = left + Double(right)
     }
 
-    public static func -= (left: inout Double, right: Int) {
+    static func -= (left: inout Double, right: Int) {
         left = left - Double(right)
     }
 
-    public static func -= (left: inout Double, right: Int8) {
+    static func -= (left: inout Double, right: Int8) {
         left = left - Double(right)
     }
 
-    public static func -= (left: inout Double, right: Int32) {
+    static func -= (left: inout Double, right: Int32) {
         left = left - Double(right)
     }
 
-    public static func -= (left: inout Double, right: Int64) {
+    static func -= (left: inout Double, right: Int64) {
         left = left - Double(right)
+    }
+
+    static postfix func ++ (left: inout Double) {
+        left = left + 1
+    }
+
+    static postfix func -- (left: inout Double) {
+        left = left - 1
     }
 }
 
 public extension Int {
-    public static postfix func ++ (left: inout Int) {
+    static postfix func ++ (left: inout Int) {
         left = left + 1
+    }
+
+    static postfix func -- (left: inout Int) {
+        left = left - 1
+    }
+
+    static func += (left: inout Int, right: Int) {
+        left = left + right
+    }
+
+    static func -= (left: inout Int, right: Int) {
+        left = left - right
     }
 }

@@ -13,7 +13,7 @@ public extension XTITypeWrapperProtocol where WrappedType == UIView {
     /// 将View转换成img
     ///
     /// - Returns: 转换的结果
-    public func xt_convertViewToImage() -> UIImage! {
+    func xt_convertViewToImage() -> UIImage! {
         let scale = UIScreen.main.scale
         let size = __CGSizeApplyAffineTransform(wrappedValue.bounds.size, CGAffineTransform(scaleX: scale, y: scale))
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
@@ -26,7 +26,7 @@ public extension XTITypeWrapperProtocol where WrappedType == UIView {
 // layer
 public extension UIView {
     /// 边框宽度
-    @IBInspectable public var xt_borderWidth: CGFloat {
+    @IBInspectable var xt_borderWidth: CGFloat {
         set {
             self.layer.borderWidth = newValue
         }
@@ -36,7 +36,7 @@ public extension UIView {
     }
 
     /// 边框颜色
-    @IBInspectable public var xt_borderColor: UIColor {
+    @IBInspectable var xt_borderColor: UIColor {
         set {
             self.layer.borderColor = newValue.cgColor
         }
@@ -46,7 +46,7 @@ public extension UIView {
     }
 
     /// 设置圆角
-    @IBInspectable public var xt_cornerRadius: CGFloat {
+    @IBInspectable var xt_cornerRadius: CGFloat {
         set {
             self.layer.masksToBounds = true
             self.layer.cornerRadius = newValue

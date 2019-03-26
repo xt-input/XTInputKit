@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.window = UIWindow(frame: XTIMacros.SCREEN_BOUNDS)
         //        UINavigationController.xti_openBackGesture = false
+        loger.debug(UIDevice().xti.modelName.rawValue)
+        loger.debug(XTIMacros.isIphone)
         self.initRootViewController()
         loger.debug("应用完成启动前的准备")
         return true

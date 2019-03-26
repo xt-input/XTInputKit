@@ -14,11 +14,11 @@ public protocol XTIBaseNameNamespace {
 }
 
 public extension XTIBaseNameNamespace {
-    public var xti: XTINamespaceWrapper<Self> {
+    var xti: XTINamespaceWrapper<Self> {
         return XTINamespaceWrapper(value: self)
     }
 
-    public static var XTI: XTINamespaceWrapper<Self>.Type {
+    static var XTI: XTINamespaceWrapper<Self>.Type {
         return XTINamespaceWrapper.self
     }
 }

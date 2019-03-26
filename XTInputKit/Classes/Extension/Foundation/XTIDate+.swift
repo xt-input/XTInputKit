@@ -21,17 +21,17 @@ private let XTI_CURRENT = Calendar.current
 
 extension DateFormatter: XTIBaseNameNamespace {}
 public extension XTITypeWrapperProtocol where WrappedType == DateFormatter {
-    public static var dateFormatter: DateFormatter {
+    static var dateFormatter: DateFormatter {
         return DateFormatter()
     }
 
-    public static var defaultDateFormatter: DateFormatter {
+    static var defaultDateFormatter: DateFormatter {
         let date = DateFormatter()
         date.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return date
     }
 
-    public static func dateFormatter(withFormat: String) -> DateFormatter {
+    static func dateFormatter(withFormat: String) -> DateFormatter {
         let date = DateFormatter()
         date.dateFormat = withFormat
         return date
@@ -41,12 +41,12 @@ public extension XTITypeWrapperProtocol where WrappedType == DateFormatter {
 extension Date: XTIBaseNameNamespace {}
 
 public extension XTITypeWrapperProtocol where WrappedType == Date {
-    public static func dateFromString(_ dateString: String, format formatString: String = "yyyy-MM-dd HH:mm:ss") -> Date {
+    static func dateFromString(_ dateString: String, format formatString: String = "yyyy-MM-dd HH:mm:ss") -> Date {
         DateFormatter.XTI.dateFormatter.dateFormat = formatString
         return DateFormatter.XTI.dateFormatter.date(from: dateString)!
     }
 
-    public var timeIntervalDescription: String {
+    var timeIntervalDescription: String {
         let timeInterval = -wrappedValue.timeIntervalSinceNow
         if timeInterval < XTI_MINUTE {
             return "\(Int(timeInterval))s"
@@ -64,7 +64,7 @@ public extension XTITypeWrapperProtocol where WrappedType == Date {
         }
     }
 
-    public var minuteDescription: String {
+    var minuteDescription: String {
         let dateFormatter = DateFormatter.XTI.dateFormatter(withFormat: "yyyy-MM-dd")
         let theDay = dateFormatter.string(from: wrappedValue)
         let currentDay = dateFormatter.string(from: Date())
@@ -82,12 +82,12 @@ public extension XTITypeWrapperProtocol where WrappedType == Date {
         return fix.appending(dateFormatter.string(from: wrappedValue))
     }
 
-    public func descriptionWithFormat(_ format: String) -> String {
+    func descriptionWithFormat(_ format: String) -> String {
         let dateFormatter = DateFormatter.XTI.dateFormatter(withFormat: format)
         return dateFormatter.string(from: wrappedValue)
     }
 
-    public var formattedDateDescription: String {
+    var formattedDateDescription: String {
         let timeInterval = -wrappedValue.timeIntervalSinceNow
 
         let dateFormatter = DateFormatter.XTI.dateFormatter(withFormat: "yyyy-MM-dd")
@@ -113,26 +113,26 @@ public extension XTITypeWrapperProtocol where WrappedType == Date {
         }
     }
 
-    public var isToday: Bool {
+    var isToday: Bool {
         let dateFormatter = DateFormatter.XTI.dateFormatter(withFormat: "yyyy-MM-dd")
         let theDay = dateFormatter.string(from: wrappedValue)
         let currentDay = dateFormatter.string(from: Date())
         return theDay == currentDay
     }
 
-    public var isThisWeek: Bool {
+    var isThisWeek: Bool {
         let theWeek = self.week
         let currentWeek = Date().xti.week
         return theWeek == currentWeek
     }
 
-    public var isThisMonth: Bool {
+    var isThisMonth: Bool {
         let the = self.month
         let current = Date().xti.month
         return the == current
     }
 
-    public var isThisYear: Bool {
+    var isThisYear: Bool {
         let the = self.year
         let current = Date().xti.year
         return the == current
@@ -140,92 +140,92 @@ public extension XTITypeWrapperProtocol where WrappedType == Date {
 
     // MARK: -  Comparing Dates
 
-    public func dateByAddingDays(_ days: Int) -> Date {
+    func dateByAddingDays(_ days: Int) -> Date {
         let aTimeInterval = wrappedValue.timeIntervalSinceReferenceDate + XTI_DAY * Double(days)
         return Date(timeIntervalSinceReferenceDate: aTimeInterval)
     }
 
-    public func componentsWithOffset(from fDate: Date) -> DateComponents {
+    func componentsWithOffset(from fDate: Date) -> DateComponents {
         let dTime = XTI_CURRENT.dateComponents(XTI_COMPONENTS, from: fDate, to: wrappedValue)
         return dTime
     }
 
     // MARK: - Retrieving Intervals
 
-    public func minutes(after aDate: Date) -> Int {
+    func minutes(after aDate: Date) -> Int {
         let ti = wrappedValue.timeIntervalSince(aDate)
         return (Int)(ti / XTI_MINUTE)
     }
 
-    public func minutes(before bDate: Date) -> Int {
+    func minutes(before bDate: Date) -> Int {
         let ti = bDate.timeIntervalSince(wrappedValue)
         return (Int)(ti / XTI_MINUTE)
     }
 
-    public func hours(after aDate: Date) -> Int {
+    func hours(after aDate: Date) -> Int {
         let ti = wrappedValue.timeIntervalSince(aDate)
         return (Int)(ti / XTI_HOUR)
     }
 
-    public func hours(before bDate: Date) -> Int {
+    func hours(before bDate: Date) -> Int {
         let ti = bDate.timeIntervalSince(wrappedValue)
         return (Int)(ti / XTI_HOUR)
     }
 
-    public func days(before bDate: Date) -> Int {
+    func days(before bDate: Date) -> Int {
         let temp = wrappedValue.timeIntervalSince(bDate)
         return (Int)(temp / XTI_DAY)
     }
 
-    public func days(after aDate: Date) -> Int {
+    func days(after aDate: Date) -> Int {
         let temp = aDate.timeIntervalSince(wrappedValue)
         return (Int)(temp / XTI_DAY)
     }
 
-    public func distanceInDays(toDate tDate: Date) -> DateComponents {
+    func distanceInDays(toDate tDate: Date) -> DateComponents {
         let gregorianCalendar = Calendar(identifier: Calendar.Identifier.gregorian)
         return gregorianCalendar.dateComponents(XTI_COMPONENTS, from: wrappedValue, to: tDate)
     }
 
     // MARK: - 时间分解
 
-    public var year: Int {
+    var year: Int {
         return XTI_CURRENT.component(XTI_COMPONENT.year, from: wrappedValue)
     }
 
-    public var nthWeekday: Int {
+    var nthWeekday: Int {
         return XTI_CURRENT.component(XTI_COMPONENT.weekOfYear, from: wrappedValue)
     }
 
-    public var weekday: Int {
+    var weekday: Int {
         return XTI_CURRENT.component(XTI_COMPONENT.weekday, from: wrappedValue)
     }
 
-    public var week: Int {
+    var week: Int {
         return XTI_CURRENT.component(XTI_COMPONENT.weekOfYear, from: wrappedValue)
     }
 
-    public var month: Int {
+    var month: Int {
         return XTI_CURRENT.component(XTI_COMPONENT.month, from: wrappedValue)
     }
 
-    public var day: Int {
+    var day: Int {
         return XTI_CURRENT.component(XTI_COMPONENT.day, from: wrappedValue)
     }
 
-    public var seconds: Int {
+    var seconds: Int {
         return XTI_CURRENT.component(XTI_COMPONENT.second, from: wrappedValue)
     }
 
-    public var minute: Int {
+    var minute: Int {
         return XTI_CURRENT.component(XTI_COMPONENT.minute, from: wrappedValue)
     }
 
-    public var hour: Int {
+    var hour: Int {
         return XTI_CURRENT.component(XTI_COMPONENT.hour, from: wrappedValue)
     }
 
-    public var nearestHour: Int {
+    var nearestHour: Int {
         let aTimeInterval = Date().timeIntervalSinceReferenceDate + XTI_MINUTE * 30
         let newDate = Date(timeIntervalSinceReferenceDate: aTimeInterval)
         return XTI_CURRENT.component(XTI_COMPONENT.hour, from: newDate)

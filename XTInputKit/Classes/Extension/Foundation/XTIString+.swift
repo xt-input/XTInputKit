@@ -166,9 +166,9 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// 字符串的Md5
     public var md5: String {
         if let data = wrappedValue.data(using: .utf8, allowLossyConversion: true) {
-            let message = data.withUnsafeBytes { bytes -> [UInt8] in
-                return Array(UnsafeBufferPointer(start: bytes, count: data.count))
-            }
+            let message = data.withUnsafeBytes({ (bytes) -> [UInt8] in
+                Array(UnsafeBufferPointer(start: bytes, count: data.count))
+            })
 
             let MD5Calculator = MD5(message)
             let MD5Data = MD5Calculator.calculate()

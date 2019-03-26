@@ -10,11 +10,11 @@ import UIKit
 
 public extension NSObject {
     /// 取类名
-    public var className: String {
+    var className: String {
         return "\(self.classForCoder)"
     }
 
-    public static var className: String {
+    static var className: String {
         return "\(self)"
     }
 }

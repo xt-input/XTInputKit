@@ -42,7 +42,7 @@ Pod::Spec.new do |s|
   #    ss.dependency 'HandyJSON'
   #    ss.dependency 'Alamofire'
   #end
-  
+  s.swift_version = '5'
   s.requires_arc  = true
   
   # s.resource_bundles = {

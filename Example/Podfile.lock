@@ -1,11 +1,11 @@
 PODS:
-  - XTInputKit (0.1.1):
-    - XTInputKit/Extension (= 0.1.1)
-    - XTInputKit/XTILoger (= 0.1.1)
-    - XTInputKit/XTITool (= 0.1.1)
-  - XTInputKit/Extension (0.1.1)
-  - XTInputKit/XTILoger (0.1.1)
-  - XTInputKit/XTITool (0.1.1)
+  - XTInputKit (0.1.2):
+    - XTInputKit/Extension (= 0.1.2)
+    - XTInputKit/XTILoger (= 0.1.2)
+    - XTInputKit/XTITool (= 0.1.2)
+  - XTInputKit/Extension (0.1.2)
+  - XTInputKit/XTILoger (0.1.2)
+  - XTInputKit/XTITool (0.1.2)
 
 DEPENDENCIES:
   - XTInputKit (from `../`)
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  XTInputKit: 19e819c61adf786a9fcf8081353080ab350bcb9e
+  XTInputKit: 2a543181a4ce0cf095b48e4f2a9902b872f0eaf8
 
 PODFILE CHECKSUM: edfd8b01c6bc33920453481c5fd8b9c7495c942d
 

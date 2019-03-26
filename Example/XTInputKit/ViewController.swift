@@ -36,7 +36,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.xti_nextBackColor = UIColor.XTI.random
         self.xti_tabbarTitle = "tabbar标题"
         XTITimer.defualt.addObserver(self, repeating: 1, sum: 20)
-        
+        var i = 10
+        i++
+        loger.debug(i)
         self.tableView = UITableView(frame: self.view.bounds, style: .plain)
         self.tableView.delegate = self
         self.tableView.dataSource = self

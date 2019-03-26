@@ -66,7 +66,7 @@ extension UIDevice: XTIBaseNameNamespace {}
 
 public extension XTITypeWrapperProtocol where WrappedType == UIDevice {
     // 获取设备具体详细的型号
-    public var modelName: UIDeviceType {
+    var modelName: UIDeviceType {
         var systemInfo = utsname()
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)

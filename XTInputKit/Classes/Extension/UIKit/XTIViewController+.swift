@@ -28,7 +28,7 @@ public extension UIViewController {
     // MARK: - 设置下一界面的导航栏back按钮文案和颜色
 
     /// 下一级控制器导航栏返回按钮文案
-    public var xti_nextBackTitle: String! {
+    var xti_nextBackTitle: String! {
         set {
             if xti_nextBackTitle != newValue {
                 objc_setAssociatedObject(self, &XTIViewControllerKey.nextBackTitle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
@@ -47,7 +47,7 @@ public extension UIViewController {
     }
 
     /// 下一级控制器导航栏返回按钮颜色
-    public var xti_nextBackColor: UIColor! {
+    var xti_nextBackColor: UIColor! {
         set {
             if xti_nextBackColor != newValue {
                 objc_setAssociatedObject(self, &XTIViewControllerKey.nextBackColor, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
@@ -69,7 +69,7 @@ public extension UIViewController {
     // MARK: - 设置tabbar和navigation的标题
 
     /// 用于tabbar标题和navigation标题不一致的时候设置tabbar的标题，需要在viewDidLoad之前设置
-    public var xti_tabbarTitle: String! {
+    var xti_tabbarTitle: String! {
         set {
             if xti_tabbarTitle != newValue {
                 objc_setAssociatedObject(self, &XTIViewControllerKey.tabbarTitle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
@@ -85,7 +85,7 @@ public extension UIViewController {
     /**
      用于tabbar标题和navigation标题不一致的时候设置navigation的标题
      */
-    public var xti_navigationTitle: String! {
+    var xti_navigationTitle: String! {
         set {
             if xti_navigationTitle != newValue {
                 objc_setAssociatedObject(self, &XTIViewControllerKey.navigationTitle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
@@ -104,9 +104,9 @@ public extension UIViewController {
     ///
     /// - Parameter storyboardName:storyboard文件的名字
     /// - Returns:
-    public static func initwithstoryboard(_ name: String, withIdentifier: String! = nil) -> UIViewController {
+    static func initwithstoryboard(_ name: String, withIdentifier: String! = nil) -> UIViewController {
         if withIdentifier == nil {
-            return UIStoryboard(name: name, bundle: nil).instantiateViewController(withIdentifier: className)
+            return UIStoryboard(name: name, bundle: nil).instantiateViewController(withIdentifier: self.className)
         } else {
             return UIStoryboard(name: name, bundle: nil).instantiateViewController(withIdentifier: withIdentifier)
         }
@@ -126,7 +126,7 @@ public extension UIViewController {
     ///   - img: 图片
     ///   - titleColor: 文字颜色
     ///   - action: 响应的方法，如果不传值则默认使用xti_toucheLeftBarButtonItem或xti_toucheRightBarButtonItem
-    public func xti_setBarButtonItem(_ position: WTNAVPOSITION,
+    func xti_setBarButtonItem(_ position: WTNAVPOSITION,
                                      title: String! = nil,
                                      img: UIImage! = nil,
                                      titleColor: UIColor! = nil,
@@ -171,7 +171,7 @@ public extension UIViewController {
     /// - Parameters:
     ///   - VC: 要跳转的VC
     ///   - animated: 是否执行过渡动画
-    public func xti_pushOrPresentVC(_ VC: UIViewController, animated: Bool = true) {
+    func xti_pushOrPresentVC(_ VC: UIViewController, animated: Bool = true) {
         if let navVC = self.navigationController {
             navVC.pushViewController(VC, animated: animated)
         } else {
@@ -184,7 +184,7 @@ public extension UIViewController {
     /// - Parameters:
     ///   - animated: 是否执行过渡动画
     ///   - completion: 如果是dismiss支持页面消失后闭包回调
-    public func xti_popOrDismiss(_ animated: Bool = true, completion: (() -> Void)? = nil) {
+    func xti_popOrDismiss(_ animated: Bool = true, completion: (() -> Void)? = nil) {
         if let navVC = self.navigationController {
             navVC.popViewController(animated: animated)
         } else {
@@ -194,7 +194,7 @@ public extension UIViewController {
 
     // MARK: - 弹窗alertController
 
-    public func showMessage(title: String! = "提示", message: String! = nil, cancelTitle: String! = nil, confirmTitle: String! = "确认", action: ((_ index: Int) -> Void)! = nil) {
+    func showMessage(title: String! = "提示", message: String! = nil, cancelTitle: String! = nil, confirmTitle: String! = "确认", action: ((_ index: Int) -> Void)! = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         if cancelTitle != nil {
             alertController.addAction(UIAlertAction(title: confirmTitle, style: .cancel) { _ in
