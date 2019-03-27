@@ -1,0 +1,18 @@
+# references:
+# * http://www.objc.io/issue-6/travis-ci.html
+# * https://github.com/supermarin/xcpretty#usage
+
+osx_image: xcode10
+
+language: swift
+
+cache: cocoapods
+
+podfile: Example/Podfile
+
+before_install:
+- gem install cocoapods
+- pod install --project-directory=Example --repo-update
+
+script:
+- pod lib lint --allow-warnings
