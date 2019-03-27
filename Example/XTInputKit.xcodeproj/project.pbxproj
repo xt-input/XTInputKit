@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E1A4EC7224B1E6000A74EBD /* XTITestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87509E2249FECF00E1A01E /* XTITestRequest.swift */; };
+		5E1A4EC8224B1E6300A74EBD /* XTITestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87509F2249FECF00E1A01E /* XTITestResult.swift */; };
+		5E1A4EC9224B1E6600A74EBD /* XTITest1Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8750A02249FECF00E1A01E /* XTITest1Request.swift */; };
 		5E8750942249FBC500E1A01E /* XTIKeyChainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87508C2249FBC500E1A01E /* XTIKeyChainViewController.swift */; };
-		5E8750992249FBC500E1A01E /* XTIDivViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8750922249FBC500E1A01E /* XTIDivViewController.swift */; };
 		5E87509A2249FBC500E1A01E /* XTIObserverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8750932249FBC500E1A01E /* XTIObserverTest.swift */; };
 		5E87509C2249FBCF00E1A01E /* XTINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87509B2249FBCF00E1A01E /* XTINavigationController.swift */; };
 		5E8750A5224A021A00E1A01E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E8750A4224A021A00E1A01E /* LaunchScreen.storyboard */; };
@@ -25,7 +27,6 @@
 		24F6156339A5984E3FC66216 /* Pods_XTInputKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XTInputKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E87508C2249FBC500E1A01E /* XTIKeyChainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIKeyChainViewController.swift; sourceTree = "<group>"; };
 		5E87508D2249FBC500E1A01E /* XTINetWorkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTINetWorkViewController.swift; sourceTree = "<group>"; };
-		5E8750922249FBC500E1A01E /* XTIDivViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIDivViewController.swift; sourceTree = "<group>"; };
 		5E8750932249FBC500E1A01E /* XTIObserverTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIObserverTest.swift; sourceTree = "<group>"; };
 		5E87509B2249FBCF00E1A01E /* XTINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTINavigationController.swift; sourceTree = "<group>"; };
 		5E87509E2249FECF00E1A01E /* XTITestRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTITestRequest.swift; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 				5E87509D2249FECF00E1A01E /* NetWork */,
 				5E87508C2249FBC500E1A01E /* XTIKeyChainViewController.swift */,
 				5E87508D2249FBC500E1A01E /* XTINetWorkViewController.swift */,
-				5E8750922249FBC500E1A01E /* XTIDivViewController.swift */,
 				5E8750932249FBC500E1A01E /* XTIObserverTest.swift */,
 			);
 			path = Test;
@@ -249,10 +249,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-XTInputKit_Example/Pods-XTInputKit_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/XTInputKit/XTInputKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XTInputKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,8 +274,10 @@
 				5E8750A8224A0F6600E1A01E /* XTINetWorkViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				5E1A4EC8224B1E6300A74EBD /* XTITestResult.swift in Sources */,
 				5E87509A2249FBC500E1A01E /* XTIObserverTest.swift in Sources */,
-				5E8750992249FBC500E1A01E /* XTIDivViewController.swift in Sources */,
+				5E1A4EC7224B1E6000A74EBD /* XTITestRequest.swift in Sources */,
+				5E1A4EC9224B1E6600A74EBD /* XTITest1Request.swift in Sources */,
 				5E87509C2249FBCF00E1A01E /* XTINavigationController.swift in Sources */,
 				5E8750942249FBC500E1A01E /* XTIKeyChainViewController.swift in Sources */,
 			);
@@ -391,7 +397,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = XTInputKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -406,7 +412,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = XTInputKit/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";

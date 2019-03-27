@@ -106,7 +106,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             notification.categoryIdentifier = "UNNotificationRequestUNNotificationRequest"
             loger.debug("发送通知")
             //        UIApplication.shared.presentLocalNotificationNow(notification)
-            let request = UNNotificationRequest(identifier: "UNNotificationRequestUNNotificationRequest", content: notification, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false))
+            let request = UNNotificationRequest(identifier: "UNNotificationRequestUNNotificationRequest", content: notification, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false))
             UNUserNotificationCenter.current().add(request) { error in
                 loger.debug(error)
             }

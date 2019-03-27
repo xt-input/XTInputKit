@@ -11,7 +11,7 @@ import UIKit
 // MARK: - ViewController (UINavigation)
 
 // 导航栏左右两边枚举
-public enum WTNAVPOSITION {
+public enum XTINAVPOSITION {
     case left
     case right
 }
@@ -126,11 +126,11 @@ public extension UIViewController {
     ///   - img: 图片
     ///   - titleColor: 文字颜色
     ///   - action: 响应的方法，如果不传值则默认使用xti_toucheLeftBarButtonItem或xti_toucheRightBarButtonItem
-    func xti_setBarButtonItem(_ position: WTNAVPOSITION,
-                                     title: String! = nil,
-                                     img: UIImage! = nil,
-                                     titleColor: UIColor! = nil,
-                                     action: Selector! = nil) {
+    func xti_setBarButtonItem(_ position: XTINAVPOSITION,
+                              title: String! = nil,
+                              img: UIImage! = nil,
+                              titleColor: UIColor! = nil,
+                              action: Selector! = nil) {
         let color = titleColor == nil ? navTitleColor : titleColor
         let navItem = navigationItem
         let navBtn = UIButton(type: .custom)

@@ -1,21 +1,36 @@
 PODS:
+  - Alamofire (5.0.0-beta.3)
+  - HandyJSON (5.0.0-beta)
   - XTInputKit (0.1.2):
     - XTInputKit/Extension (= 0.1.2)
     - XTInputKit/XTILoger (= 0.1.2)
+    - XTInputKit/XTINetWork (= 0.1.2)
     - XTInputKit/XTITool (= 0.1.2)
   - XTInputKit/Extension (0.1.2)
   - XTInputKit/XTILoger (0.1.2)
+  - XTInputKit/XTINetWork (0.1.2):
+    - Alamofire (= 5.0.0-beta.3)
+    - HandyJSON (= 5.0.0-beta)
+    - XTInputKit/XTILoger
+    - XTInputKit/XTITool
   - XTInputKit/XTITool (0.1.2)
 
 DEPENDENCIES:
   - XTInputKit (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - HandyJSON
 
 EXTERNAL SOURCES:
   XTInputKit:
     :path: "../"
 
 SPEC CHECKSUMS:
-  XTInputKit: 2a543181a4ce0cf095b48e4f2a9902b872f0eaf8
+  Alamofire: 50d6fa7e8cbe7f84559e86ab641ffd029db655f8
+  HandyJSON: b84ac9904050a0897a0802092b7cb8808e0a4e9a
+  XTInputKit: 71f73d9d869abf9cf4abd11bd291e8ed22f450e6
 
 PODFILE CHECKSUM: edfd8b01c6bc33920453481c5fd8b9c7495c942d
 

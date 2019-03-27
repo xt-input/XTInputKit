@@ -10,24 +10,24 @@ import Alamofire
 import HandyJSON
 
 /// 网络请求成功的回调
-public typealias XTIRequestCompletedCallback = (XTIBaseRequest?, Any?) -> ()
+public typealias XTIRequestCompletedCallback = (XTIBaseRequest?, Any?) -> Void
 
 /// 网络请求失败的回调
-public typealias XTIRequestErrorCallback = (XTIBaseRequest?, Error?) -> ()
+public typealias XTIRequestErrorCallback = (XTIBaseRequest?, Error?) -> Void
 
 /// 文件上传下载进度的回调
-public typealias XTIProgressCallback = (Progress) -> ()
+public typealias XTIProgressCallback = (Progress) -> Void
 
 /// 文件下载成功的回调
-public typealias XTIDownloadCompletedCallback = (URL?) -> ()
+public typealias XTIDownloadCompletedCallback = (URL?) -> Void
 
-open class XTIBaseRequest {
+open class XTIBaseRequest: RequestInterceptor {
     fileprivate static var _default = XTIBaseRequest()
     /// 单例
     public static var `default`: XTIBaseRequest {
         return _default
     }
-    
+
     fileprivate var _iSLogRawData: Bool!
     /// 是否打印接口响应的原始数据
     public var iSLogRawData: Bool {
@@ -40,10 +40,10 @@ open class XTIBaseRequest {
             _iSLogRawData = newValue
         }
     }
-    
+
     /// 是否需要签名
     public var isNeedSign: Bool! = true
-    
+
     fileprivate var _httpMethod: HTTPMethod!
     /// HttpMethod，仅支持post or get
     public var httpMethod: HTTPMethod! {
@@ -56,7 +56,7 @@ open class XTIBaseRequest {
             _httpMethod = newValue
         }
     }
-    
+
     fileprivate var _httpScheme: XTIHttpScheme!
     /// http or https
     public var httpScheme: XTIHttpScheme {
@@ -69,7 +69,7 @@ open class XTIBaseRequest {
             _httpScheme = newValue
         }
     }
-    
+
     fileprivate var _hostName: String!
     /// 服务器域名，包括端口号，80、443可以忽略
     public var hostName: String {
@@ -85,26 +85,26 @@ open class XTIBaseRequest {
             _hostName = newValue
         }
     }
-    
+
     /// 具体服务，域名后面的那一串
     public var serviceName: String!
-    
+
     /// 请求响应数据的模型类
     public var resultClass: HandyJSON.Type!
-    
-    fileprivate var httpManager: SessionManager!
+
+    fileprivate var httpManager: Session!
     fileprivate var parameters: XTIParameters!
-    
+
     // MARK: - Method
-    
+
     public init() {
         let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+        configuration.httpHeaders = HTTPHeaders.default
         configuration.timeoutIntervalForRequest = XTINetWorkConfig.defaultTimeoutInterval
         configuration.httpMaximumConnectionsPerHost = XTINetWorkConfig.defaultHttpMaximumConnectionsPerHost
-        httpManager = SessionManager(configuration: configuration)
+        httpManager = Session(configuration: configuration)
     }
-    
+
     /// 构造请求参数，如果是POST则放在body里面，如果是GET则拼接在URL后面
     ///
     /// - Returns: 参数字典
@@ -114,7 +114,7 @@ open class XTIBaseRequest {
         }
         return parameters
     }
-    
+
     public var fileType: String!
     /// 上传文件请求时重写它，
     /// 有 application/atom+xml, application/ecmascript, application/EDI-X12, application/EDIFACT, application/json, application/javascript, application/octet-stream, application/ogg, application/pdf, application/postscript, application/rdf+xml, application/rss+xml, application/soap+xml, application/font-woff, application/xhtml+xml, application/xml, application/xml-dtd, application/xop+xml, application/zip, application/gzip, audio/mp4, audio/mpeg, audio/ogg, audio/vorbis, audio/vnd.rn-realaudio, audio/vnd.wave, audio/webm, audio/x-flac, image/gif, image/jpeg, image/png, image/webp, image/svg+xml, image/tiff, model/example, model/iges, model/mesh, model/vrml, model/x3d+binary, model/x3d+vrml, model/x3d+xml, text/css, text/csv, text/html, text/plain, text/vcard, text/xml, video/mpeg, video/mp4, video/ogg, video/quicktime, video/webm, video/x-matroska, video/x-ms-wmv, video/x-flv ···等类型
@@ -125,7 +125,7 @@ open class XTIBaseRequest {
         }
         return "image/jpeg"
     }
-    
+
     /// 签名，如果继承，可以为每个请求实现不同的签名方式
     ///     该函数根据自己的需求实现，建议将参数字典转换成json字符串然后取这段字符串的签名
     /// 公共参数放置在请求头里面
@@ -136,9 +136,9 @@ open class XTIBaseRequest {
         }
         return ""
     }
-    
+
     // MARK: - 发起请求
-    
+
     /// post网络请求，域名等信息使用XTINetWorkConfig的配置，只需要传入服务名和参数及回调的闭包，适用于一个方法管理一个网络请求
     ///
     /// - Parameters:
@@ -148,13 +148,13 @@ open class XTIBaseRequest {
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
     open func post(serviceName: String!,
-                     parameters: XTIParameters! = nil,
-                     resultClass resultType: HandyJSON.Type! = nil,
-                     completed completedCallback: XTIRequestCompletedCallback!,
-                     error errorCallback: XTIRequestErrorCallback!) {
+                   parameters: XTIParameters! = nil,
+                   resultClass resultType: HandyJSON.Type! = nil,
+                   completed completedCallback: XTIRequestCompletedCallback!,
+                   error errorCallback: XTIRequestErrorCallback!) {
         send(.post, httpScheme: nil, hostName: nil, serviceName: serviceName, parameters: parameters, resultClass: resultType, completed: completedCallback, error: errorCallback)
     }
-    
+
     /// post网络请求，不使用XTINetWorkConfig的域名信息，适用于多台服务器网络请求
     ///
     /// - Parameters:
@@ -164,13 +164,13 @@ open class XTIBaseRequest {
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
     open func post(url: String!,
-                     parameters: XTIParameters! = nil,
-                     resultClass resultType: HandyJSON.Type! = nil,
-                     completed completedCallback: XTIRequestCompletedCallback!,
-                     error errorCallback: XTIRequestErrorCallback!) {
+                   parameters: XTIParameters! = nil,
+                   resultClass resultType: HandyJSON.Type! = nil,
+                   completed completedCallback: XTIRequestCompletedCallback!,
+                   error errorCallback: XTIRequestErrorCallback!) {
         send(.post, url: url, parameters: parameters, resultClass: resultType, completed: completedCallback, error: errorCallback)
     }
-    
+
     /// get网络请求，域名等信息使用XTINetWorkConfig的配置，只需要传入服务名和参数及回调的闭包，适用于一个方法管理一个网络请求
     ///
     /// - Parameters:
@@ -180,13 +180,13 @@ open class XTIBaseRequest {
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
     open func get(serviceName: String!,
-                    parameters: XTIParameters! = nil,
-                    resultClass resultType: HandyJSON.Type! = nil,
-                    completed completedCallback: XTIRequestCompletedCallback!,
-                    error errorCallback: XTIRequestErrorCallback!) {
+                  parameters: XTIParameters! = nil,
+                  resultClass resultType: HandyJSON.Type! = nil,
+                  completed completedCallback: XTIRequestCompletedCallback!,
+                  error errorCallback: XTIRequestErrorCallback!) {
         send(.get, httpScheme: nil, hostName: nil, serviceName: serviceName, parameters: parameters, resultClass: resultType, completed: completedCallback, error: errorCallback)
     }
-    
+
     /// get网络请求，不使用XTINetWorkConfig的域名信息，适用于多台服务器网络请求
     ///
     /// - Parameters:
@@ -196,13 +196,13 @@ open class XTIBaseRequest {
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
     open func get(url: String!,
-                    parameters: XTIParameters! = nil,
-                    resultClass resultType: HandyJSON.Type! = nil,
-                    completed completedCallback: XTIRequestCompletedCallback!,
-                    error errorCallback: XTIRequestErrorCallback!) {
+                  parameters: XTIParameters! = nil,
+                  resultClass resultType: HandyJSON.Type! = nil,
+                  completed completedCallback: XTIRequestCompletedCallback!,
+                  error errorCallback: XTIRequestErrorCallback!) {
         send(.get, url: url, parameters: parameters, resultClass: resultType, completed: completedCallback, error: errorCallback)
     }
-    
+
     /// 汇总的网络请求，除了回调都有默认参数，默认参数取XTINetWorkConfig里的配置，默认参数可以在初始化对象的时候设置，如果一个类管理一个接口可以在子类里设置所有的默认参数
     ///
     /// - Parameters:
@@ -215,21 +215,21 @@ open class XTIBaseRequest {
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
     open func send(_ method: HTTPMethod! = nil,
-                     httpScheme scheme: XTIHttpScheme! = nil,
-                     hostName host: String! = nil,
-                     serviceName service: String! = nil,
-                     parameters: XTIParameters! = nil,
-                     resultClass resultType: HandyJSON.Type! = nil,
-                     completed completedCallback: XTIRequestCompletedCallback!,
-                     error errorCallback: XTIRequestErrorCallback!) {
+                   httpScheme scheme: XTIHttpScheme! = nil,
+                   hostName host: String! = nil,
+                   serviceName service: String! = nil,
+                   parameters: XTIParameters! = nil,
+                   resultClass resultType: HandyJSON.Type! = nil,
+                   completed completedCallback: XTIRequestCompletedCallback!,
+                   error errorCallback: XTIRequestErrorCallback!) {
         let tempScheme = scheme == nil ? httpScheme : scheme!
         let tempHost = host == nil ? hostName : host!
         let tempServiceName = service == nil ? serviceName! : service!
-        
+
         let url = tempScheme.rawValue + tempHost + tempServiceName
         send(method, url: url, parameters: parameters, resultClass: resultType, completed: completedCallback, error: errorCallback)
     }
-    
+
     /// 汇总的网络请求，默认参数取XTINetWorkConfig里的配置
     ///
     /// - Parameters:
@@ -262,9 +262,9 @@ open class XTIBaseRequest {
             }
         }
     }
-    
+
     // MARK: - 文件上传
-    
+
     /// 文件上传，适用于一个类管理一个接口，可以在子类里设置所有的默认参数
     ///
     /// - Parameters:
@@ -272,12 +272,12 @@ open class XTIBaseRequest {
     ///   - completedCallback: 成功的回调
     ///   - errorCallback: 失败的回调
     open func upload(_ progressCallback: XTIProgressCallback! = nil,
-                       completedCallback: XTIRequestCompletedCallback! = nil,
-                       errorCallback: XTIRequestErrorCallback! = nil) {
+                     completedCallback: XTIRequestCompletedCallback! = nil,
+                     errorCallback: XTIRequestErrorCallback! = nil) {
         let url = httpScheme.rawValue + hostName + serviceName
         upload(url, parameters: buildParameters(), progress: progressCallback, completed: completedCallback, error: errorCallback)
     }
-    
+
     /// 文件上传，适用于用单例一个方法管理一个请求
     ///     文件上传时请将文件转成Data放置在parameters里
     /// - Parameters:
@@ -299,7 +299,8 @@ open class XTIBaseRequest {
             tempHeaders["sign"] = sign
         }
         tempHeaders["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
-        httpManager.upload(multipartFormData: { [weak self] data in
+
+        httpManager?.upload(multipartFormData: { [weak self] data in
             if let strongSelf = self {
                 parameters.forEach { key, value in
                     if (value as? Data) == nil {
@@ -309,30 +310,42 @@ open class XTIBaseRequest {
                     }
                 }
             }
-        },
-        usingThreshold: SessionManager.multipartFormDataEncodingMemoryThreshold,
-        to: url,
-        method: .post,
-        headers: tempHeaders) { [weak self] encodingResult in
-            switch encodingResult {
-            case .success(let upload, _, _):
-                upload.uploadProgress(closure: { progress in
-                    if progressCallback != nil {
-                        progressCallback(progress)
-                    }
-                }).responseString { res in
-                    if let strongSelf = self {
-                        strongSelf.requestCallback(res, resultClass: resultType, completed: completedCallback, error: errorCallback)
-                    }
-                }
-            case .failure(let encodingError):
-                if errorCallback != nil {
-                    errorCallback(self, encodingError)
-                }
-            }
-        }
+        }, to: url, method: .post, headers: tempHeaders, interceptor: self)
+
+//        httpManager.upload(multipartFormData: { [weak self] data in
+//            if let strongSelf = self {
+//                parameters.forEach { key, value in
+//                    if (value as? Data) == nil {
+//                        data.append("\(value)".data(using: String.Encoding.utf8, allowLossyConversion: false)!, withName: key)
+//                    } else {
+//                        data.append(value as! Data, withName: key, fileName: key, mimeType: strongSelf.getFileType())
+//                    }
+//                }
+//            }
+//        },
+//        usingThreshold: Session.multipartFormDataEncodingMemoryThreshold,
+//        to: url,
+//        method: .post,
+//        headers: tempHeaders) { [weak self] encodingResult in
+//            switch encodingResult {
+//            case .success(let upload, _, _):
+//                upload.uploadProgress(closure: { progress in
+//                    if progressCallback != nil {
+//                        progressCallback(progress)
+//                    }
+//                }).responseString { res in
+//                    if let strongSelf = self {
+//                        strongSelf.requestCallback(res, resultClass: resultType, completed: completedCallback, error: errorCallback)
+//                    }
+//                }
+//            case let .failure(encodingError):
+//                if errorCallback != nil {
+//                    errorCallback(self, encodingError)
+//                }
+//            }
+//        }
     }
-    
+
     /// 网络请求结束后的结果处理
     ///
     /// - Parameters:
@@ -363,9 +376,9 @@ open class XTIBaseRequest {
             }
         }
     }
-    
+
     // MARK: - 文件下载
-    
+
     /// 文件下载(该方法仅适用于单个文件，如果文件很多推荐使用TYDownloadManager) <比较鸡肋>
     ///
     /// - Parameters:
@@ -379,7 +392,7 @@ open class XTIBaseRequest {
                                 progressCallback: XTIProgressCallback! = nil,
                                 completedCallback: XTIDownloadCompletedCallback! = nil,
                                 errorCallback: XTIRequestErrorCallback! = nil) {
-        let downloadManager = SessionManager.default.download(url) { (_, response) -> (destinationURL: URL, options: DownloadRequest.DownloadOptions) in
+        let downloadManager = Session.default.download(url) { (_, response) -> (destinationURL: URL, options: DownloadRequest.Options) in
             var flieURL: URL
             let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
             flieURL = documentsURL.appendingPathComponent(response.suggestedFilename!)
@@ -388,7 +401,7 @@ open class XTIBaseRequest {
             }
             return (flieURL, [.removePreviousFile, .createIntermediateDirectories])
         }
-        
+
         downloadManager.downloadProgress { progress in
             if progressCallback != nil {
                 progressCallback(progress)
@@ -396,7 +409,7 @@ open class XTIBaseRequest {
         }.responseJSON { res in
             if res.result.isSuccess {
                 if completedCallback != nil {
-                    completedCallback(res.temporaryURL)
+                    completedCallback(res.fileURL)
                 }
             } else {
                 if errorCallback != nil {
@@ -405,7 +418,7 @@ open class XTIBaseRequest {
             }
         }
     }
-    
+
     /// 打印原始数据，可以在该函数里面读取Cookie的值
     ///
     /// - Parameter result: 原始数据
@@ -414,7 +427,7 @@ open class XTIBaseRequest {
             XTILoger.default.info(result)
         }
     }
-    
+
     deinit {
         XTILoger.default.info(self)
     }

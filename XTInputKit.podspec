@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'XTInputKit'
-  s.version          = '0.1.2'
+  s.version          = '0.2'
   s.summary          = '一些常用的iOS开发代码及扩展集合，例如打印日志的工具XTILoger，用16进制取颜色，keychain，NetWork···'
   
   s.description      = <<-DESC
@@ -19,9 +19,8 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'xt-input' => 'input@tcoding.cn' }
   s.source           = { :git => 'https://github.com/xt-input/XTInputKit.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '10.0'
   
   s.subspec 'XTILoger' do |ss|
       ss.source_files = 'XTInputKit/Classes/XTILoger/*.swift'
@@ -35,13 +34,13 @@ Pod::Spec.new do |s|
       ss.source_files = 'XTInputKit/Classes/XTIClass/*.swift'
   end
   
-  #  s.subspec 'XTINetWork' do |ss|
-  #    ss.source_files = 'XTInputKit/Classes/Network/*.swift'
-  #    ss.dependency 'XTInputKit/XTILoger'
-  #    ss.dependency 'XTInputKit/XTITool'
-  #    ss.dependency 'HandyJSON'
-  #    ss.dependency 'Alamofire'
-  #end
+  s.subspec 'XTINetWork' do |ss|
+    ss.source_files = 'XTInputKit/Classes/Network/*.swift'
+    ss.dependency 'XTInputKit/XTILoger'
+    ss.dependency 'XTInputKit/XTITool'
+    ss.dependency 'HandyJSON', '5.0.0-beta'
+    ss.dependency 'Alamofire', '5.0.0-beta.3'
+  end
   s.swift_version = '5'
   s.requires_arc  = true
   
