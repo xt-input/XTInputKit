@@ -176,7 +176,7 @@ self.xti_navigationBarBackgroundColor = UIColor.red
 
 有些功能扩展没有写上来，代码里有部分注释，请参考注释。
 
-还有一些其他开发笔记之类的可以到我的博客上查看：[小唐朝的blog](http://blog.07coding.com)
+还有一些其他开发笔记之类的可以到我的博客上查看：[小唐朝的blog](http://blog.tcoding.cn)
 
 
 
