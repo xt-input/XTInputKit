@@ -28,6 +28,7 @@
 		08B0A159C3C80C3AE45C3E4C /* Pods-XTInputKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKit.release.xcconfig"; path = "Target Support Files/Pods-XTInputKit/Pods-XTInputKit.release.xcconfig"; sourceTree = "<group>"; };
 		08B1832F08A8D5DE5CDBB9C1 /* Pods-XTInputKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKit_Example.debug.xcconfig"; path = "Target Support Files/Pods-XTInputKit_Example/Pods-XTInputKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5E1A4ECC224B5D1B00A74EBD /* 学生.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "学生.swift"; sourceTree = "<group>"; };
+		5E1A4ECE224CA7E800A74EBD /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5E87508C2249FBC500E1A01E /* XTIKeyChainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIKeyChainViewController.swift; sourceTree = "<group>"; };
 		5E87508D2249FBC500E1A01E /* XTINetWorkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTINetWorkViewController.swift; sourceTree = "<group>"; };
 		5E8750932249FBC500E1A01E /* XTIObserverTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIObserverTest.swift; sourceTree = "<group>"; };
@@ -37,7 +38,7 @@
 		5E8750A02249FECF00E1A01E /* XTITest1Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTITest1Request.swift; sourceTree = "<group>"; };
 		5E8750A4224A021A00E1A01E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E8750A6224A022500E1A01E /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		607FACD01AFB9204008FA782 /* XTInputKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XTInputKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACD01AFB9204008FA782 /* XTInputKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XTInputKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,7 +109,7 @@
 		607FACD11AFB9204008FA782 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD01AFB9204008FA782 /* XTInputKit.app */,
+				607FACD01AFB9204008FA782 /* XTInputKitDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,6 +123,7 @@
 				5E87508B2249FBC500E1A01E /* Test */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				5E87509B2249FBCF00E1A01E /* XTINavigationController.swift */,
+				5E1A4ECE224CA7E800A74EBD /* MyPlayground.playground */,
 			);
 			name = "Example for XTInputKit";
 			path = XTInputKit;
@@ -158,9 +160,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		607FACCF1AFB9204008FA782 /* XTInputKit */ = {
+		607FACCF1AFB9204008FA782 /* XTInputKitDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "XTInputKit" */;
+			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "XTInputKitDemo" */;
 			buildPhases = (
 				60D63D75269A1A5A7906AA29 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
@@ -172,9 +174,9 @@
 			);
 			dependencies = (
 			);
-			name = XTInputKit;
+			name = XTInputKitDemo;
 			productName = XTInputKit;
-			productReference = 607FACD01AFB9204008FA782 /* XTInputKit.app */;
+			productReference = 607FACD01AFB9204008FA782 /* XTInputKitDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -197,10 +199,9 @@
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "XTInputKit" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -209,7 +210,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				607FACCF1AFB9204008FA782 /* XTInputKit */,
+				607FACCF1AFB9204008FA782 /* XTInputKitDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -444,7 +445,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "XTInputKit" */ = {
+		607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "XTInputKitDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACF01AFB9204008FA782 /* Debug */,
