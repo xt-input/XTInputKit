@@ -15,7 +15,7 @@ var loger = XTILoger.default
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
-    var view: UIView?
+
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         //        loger.saveFileLevel = .all
         //        loger.debug("应用即将启动")

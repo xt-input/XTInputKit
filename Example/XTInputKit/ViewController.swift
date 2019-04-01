@@ -25,7 +25,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     var tableView: UITableView!
-    var timer: Timer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +43,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: UITableViewCell.className)
-
-        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            loger.debug(self)
-        }
-
         let 大黄 = 学生成绩()
         loger.debug(format: "\n姓名：%@ 身高：%d 体重：%.2lf 语文成绩：%d 数学成绩：%d 英语成绩：%d \n总成绩：%d",
                     args: 大黄.姓名, 大黄.身高, 大黄.体重, 大黄.语文, 大黄.数学, 大黄.英语, 大黄.总成绩())
@@ -66,7 +60,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @objc func countdown(_ item: XTITimerItem) {
-        loger.debug(item.count)
+//        loger.debug(item.count)
         if item.count == 12 {
             //            item.isCancel = true
         }
@@ -120,10 +114,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         XTITimer.defualt.removeObserver(self)
         let labelName: Int = Int(arc4random())
         XTITimer.defualt.addObserver(self, labelName: "\(labelName)", repeating: 1.0, sum: labelName) { item in
-            if item?.count == 12 {
-                item?.isCancel = true
-            }
-            loger.debug(item?.count)
+//            if item?.count == 12 {
+//                item?.isCancel = true
+//            }
+//            loger.debug(item?.count)
         }
     }
 

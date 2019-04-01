@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D549425B5101FC250F1A39B /* libPods-XTInputKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A510940F8D6330D76B7F1D2 /* libPods-XTInputKitDemo.a */; };
 		5E1A4EC7224B1E6000A74EBD /* XTITestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87509E2249FECF00E1A01E /* XTITestRequest.swift */; };
 		5E1A4EC8224B1E6300A74EBD /* XTITestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87509F2249FECF00E1A01E /* XTITestResult.swift */; };
 		5E1A4EC9224B1E6600A74EBD /* XTITest1Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8750A02249FECF00E1A01E /* XTITest1Request.swift */; };
@@ -20,13 +21,10 @@
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
-		DFBF1A8749F26B419CEE9E61 /* Pods_XTInputKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 011A1F0A4E2FF8A116AFEDF1 /* Pods_XTInputKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		011A1F0A4E2FF8A116AFEDF1 /* Pods_XTInputKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XTInputKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B0A159C3C80C3AE45C3E4C /* Pods-XTInputKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKit.release.xcconfig"; path = "Target Support Files/Pods-XTInputKit/Pods-XTInputKit.release.xcconfig"; sourceTree = "<group>"; };
-		08B1832F08A8D5DE5CDBB9C1 /* Pods-XTInputKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKit_Example.debug.xcconfig"; path = "Target Support Files/Pods-XTInputKit_Example/Pods-XTInputKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5E1A4ECC224B5D1B00A74EBD /* 学生.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "学生.swift"; sourceTree = "<group>"; };
 		5E1A4ECE224CA7E800A74EBD /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5E87508C2249FBC500E1A01E /* XTIKeyChainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIKeyChainViewController.swift; sourceTree = "<group>"; };
@@ -44,10 +42,12 @@
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6959DFA608C23AB0699846C7 /* Pods-XTInputKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKit.debug.xcconfig"; path = "Target Support Files/Pods-XTInputKit/Pods-XTInputKit.debug.xcconfig"; sourceTree = "<group>"; };
+		6A510940F8D6330D76B7F1D2 /* libPods-XTInputKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XTInputKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		771B8E86A3EFE61884D57335 /* Pods-XTInputKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKitDemo.release.xcconfig"; path = "Target Support Files/Pods-XTInputKitDemo/Pods-XTInputKitDemo.release.xcconfig"; sourceTree = "<group>"; };
 		9B13885BE100A16B74170D43 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		B5BF9C235C867792CA6F7091 /* Pods-XTInputKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKit_Example.release.xcconfig"; path = "Target Support Files/Pods-XTInputKit_Example/Pods-XTInputKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C2B34039E0DA6B7AB22B75E0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C9AF60AD88E125B9742EAF7A /* XTInputKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = XTInputKit.podspec; path = ../XTInputKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D09433DF774CD8D392E63341 /* Pods-XTInputKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKitDemo.debug.xcconfig"; path = "Target Support Files/Pods-XTInputKitDemo/Pods-XTInputKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFBF1A8749F26B419CEE9E61 /* Pods_XTInputKit.framework in Frameworks */,
+				2D549425B5101FC250F1A39B /* libPods-XTInputKitDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,10 +65,10 @@
 		3E7BEBDE1EB7DF389CE99FC5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				08B1832F08A8D5DE5CDBB9C1 /* Pods-XTInputKit_Example.debug.xcconfig */,
-				B5BF9C235C867792CA6F7091 /* Pods-XTInputKit_Example.release.xcconfig */,
 				6959DFA608C23AB0699846C7 /* Pods-XTInputKit.debug.xcconfig */,
 				08B0A159C3C80C3AE45C3E4C /* Pods-XTInputKit.release.xcconfig */,
+				D09433DF774CD8D392E63341 /* Pods-XTInputKitDemo.debug.xcconfig */,
+				771B8E86A3EFE61884D57335 /* Pods-XTInputKitDemo.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -152,7 +152,7 @@
 		73127C7253E8C533535A74FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				011A1F0A4E2FF8A116AFEDF1 /* Pods_XTInputKit.framework */,
+				6A510940F8D6330D76B7F1D2 /* libPods-XTInputKitDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -168,7 +168,6 @@
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				796806CFD17FBD7B6B0F66DC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -244,33 +243,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-XTInputKit-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-XTInputKitDemo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		796806CFD17FBD7B6B0F66DC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-XTInputKit/Pods-XTInputKit-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/XTInputKit/XTInputKit.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XTInputKit.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-XTInputKit/Pods-XTInputKit-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -403,7 +380,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6959DFA608C23AB0699846C7 /* Pods-XTInputKit.debug.xcconfig */;
+			baseConfigurationReference = D09433DF774CD8D392E63341 /* Pods-XTInputKitDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZZ2Q79GEK8;
@@ -419,7 +396,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08B0A159C3C80C3AE45C3E4C /* Pods-XTInputKit.release.xcconfig */;
+			baseConfigurationReference = 771B8E86A3EFE61884D57335 /* Pods-XTInputKitDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ZZ2Q79GEK8;
