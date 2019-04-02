@@ -77,7 +77,7 @@ public struct XTILoger {
 
     /// 是否打印调用所在的行数
     public var isShowLineNumber = true
-
+    
     private var logLevel: XTILogerLevel! {
         #if DEBUG
             return debugLogLevel

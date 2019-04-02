@@ -10,7 +10,7 @@ import UIKit
 import XTInputKit
 
 class XTITest1Request: XTIBaseRequest {
-    static var sharedInstance = XTITest1Request()
+    static var shared = XTITest1Request()
 
     override init() {
         super.init()

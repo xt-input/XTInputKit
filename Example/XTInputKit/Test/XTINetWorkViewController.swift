@@ -49,7 +49,7 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
         request = XTITestRequest()
         request.bundelID = "1234567890"
         DispatchQueue.XTI.mainAsyncAfter(3) {
-            self.request.send(completed: {[weak self] _, result in
+            self.request.send(success: {[weak self] _, result in
                 if let res = result as? XTITestResult {
                     self?.resultString = loger.debug(res.toJSON()!)
                 }
@@ -59,8 +59,9 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
                 }
             }
         }
+        
         let p1: [String: Any] = ["bundelID": "11111"]
-        XTITest1Request.sharedInstance.get(serviceName:"/rxswift/Login/index", parameters: p1, resultClass: XTITestResult.self, completed: { [weak self] _, result in
+        XTITest1Request.default.get(serviceName:"/rxswift/Login/index", parameters: p1, resultClass: XTITestResult.self, success: { [weak self] _, result in
             if let res = result as? XTITestResult {
                 if let strongSelf = self {
                     strongSelf.resultString = loger.debug(res.toJSON()!)
@@ -74,31 +75,55 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
 
         let p2: [String: Any] = ["bundelID": "22222"]
 
-        XTIBaseRequest.default.get(url: "http://design.tcoding.cn/rxswift/Login/index", parameters: p2, resultClass: XTITestResult.self, completed: { [weak self] _, result in
+//        XTIBaseRequest.default.get(url: "http://design.tcoding.cn/rxswift/Login/index", parameters: p2, resultClass: XTITestResult.self, completed: { [weak self] request, result in
+//            if let res = result as? XTITestResult {
+//                if let strongSelf = self {
+//                    strongSelf.resultString = loger.debug(res.toJSON()!)
+//                }
+//            }
+//        }) { [weak self] _, error in
+//            if let strongSelf = self {
+//                strongSelf.resultString = loger.warning(error?.localizedDescription)
+//            }
+//        }
+
+        XTIBaseRequest.default.get(url: "http://design.21321tcoding.cn/123123123", parameters: p2, resultClass: XTITestResult.self, completed: { [weak self] _, result, error in
             if let res = result as? XTITestResult {
                 if let strongSelf = self {
                     strongSelf.resultString = loger.debug(res.toJSON()!)
                 }
-            }
-        }) { [weak self] _, error in
-            if let strongSelf = self {
-                strongSelf.resultString = loger.warning(error?.localizedDescription)
-            }
-        }
-
-        let p3: [String: Any] = ["bundelID": "33333"]
-
-        XTIBaseRequest.default.post(url: "http://design.tcoding.cn/rxswift/Login/index", parameters: p3, resultClass: XTITestResult.self, completed: { [weak self] _, result in
-            if let res = result as? XTITestResult {
+            } else {
                 if let strongSelf = self {
-                    strongSelf.resultString = loger.debug(res.toJSON()!)
+                    strongSelf.resultString = loger.warning(error?.localizedDescription)
                 }
             }
-        }) { [weak self] _, error in
-            if let strongSelf = self {
-                strongSelf.resultString = loger.warning(error?.localizedDescription)
-            }
-        }
+        })
+//
+//        XTIBaseRequest.default.get(url: "http://design.21321tcoding.cn/123123", parameters: p2, resultClass: XTITestResult.self, success: { [weak self] _, result in
+//            if let res = result as? XTITestResult {
+//                if let strongSelf = self {
+//                    strongSelf.resultString = loger.debug(res.toJSON()!)
+//                }
+//            }
+//        }) { [weak self] _, error in
+//            if let strongSelf = self {
+//                strongSelf.resultString = loger.warning(error?.localizedDescription)
+//            }
+//        }
+
+//        let p3: [String: Any] = ["bundelID": "33333"]
+//
+//        XTIBaseRequest.default.post(url: "http://design.tcoding.cn/rxswift/Login/index", parameters: p3, resultClass: XTITestResult.self, completed: { [weak self] _, result in
+//            if let res = result as? XTITestResult {
+//                if let strongSelf = self {
+//                    strongSelf.resultString = loger.debug(res.toJSON()!)
+//                }
+//            }
+//        }) { [weak self] _, error in
+//            if let strongSelf = self {
+//                strongSelf.resultString = loger.warning(error?.localizedDescription)
+//            }
+//        }
     }
 
     // MARK: -UITextViewDelegate

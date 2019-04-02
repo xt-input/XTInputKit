@@ -10,16 +10,16 @@ import Alamofire
 import HandyJSON
 
 /// 网络请求成功的回调
-public typealias XTIRequestCompletedCallback = (XTIBaseRequest?, Any?) -> Void
+public typealias XTIRequestSuccessCallback = (XTIBaseRequest?, Any?) -> Void
 
 /// 网络请求失败的回调
 public typealias XTIRequestErrorCallback = (XTIBaseRequest?, Error?) -> Void
 
+/// 网络请求完成的回调
+public typealias XTIRequestCompleteCallback = (XTIBaseRequest?, Any?, Error?) -> Void
+
 /// 文件上传下载进度的回调
 public typealias XTIProgressCallback = (Progress) -> Void
-
-/// 文件下载成功的回调
-public typealias XTIDownloadCompletedCallback = (URL?) -> Void
 
 open class XTIBaseRequest: RequestInterceptor {
     fileprivate static var _default = XTIBaseRequest()
@@ -91,18 +91,49 @@ open class XTIBaseRequest: RequestInterceptor {
 
     /// 请求响应数据的模型类
     public var resultClass: HandyJSON.Type!
+    fileprivate static var _httpManager: Session!
+    fileprivate static var httpManager: Session {
+        if _httpManager == nil {
+            let configuration = URLSessionConfiguration.default
+            configuration.httpHeaders = HTTPHeaders.default
+            configuration.timeoutIntervalForRequest = XTINetWorkConfig.defaultTimeoutInterval
+            configuration.httpMaximumConnectionsPerHost = XTINetWorkConfig.defaultHttpMaximumConnectionsPerHost
+            _httpManager = Session(configuration: configuration)
+        }
+        return _httpManager
+    }
 
-    fileprivate var httpManager: Session!
+    fileprivate var _httpManager: Session!
+
+    fileprivate var httpManager: Session {
+        if isUserShared {
+            return XTIBaseRequest.httpManager
+        } else {
+            return _httpManager
+        }
+    }
+
     fileprivate var parameters: XTIParameters!
+    public var result: DataResponse<String>!
+
+    public static var isUserShared: Bool = true
+
+    public var isUserShared: Bool! {
+        didSet {
+            if !oldValue && isUserShared {
+                let configuration = URLSessionConfiguration.default
+                configuration.httpHeaders = HTTPHeaders.default
+                configuration.timeoutIntervalForRequest = XTINetWorkConfig.defaultTimeoutInterval
+                configuration.httpMaximumConnectionsPerHost = XTINetWorkConfig.defaultHttpMaximumConnectionsPerHost
+                _httpManager = Session(configuration: configuration)
+            }
+        }
+    }
 
     // MARK: - Method
 
     public init() {
-        let configuration = URLSessionConfiguration.default
-        configuration.httpHeaders = HTTPHeaders.default
-        configuration.timeoutIntervalForRequest = XTINetWorkConfig.defaultTimeoutInterval
-        configuration.httpMaximumConnectionsPerHost = XTINetWorkConfig.defaultHttpMaximumConnectionsPerHost
-        httpManager = Session(configuration: configuration)
+        self.isUserShared = XTIBaseRequest.isUserShared
     }
 
     /// 构造请求参数，如果是POST则放在body里面，如果是GET则拼接在URL后面
@@ -145,14 +176,16 @@ open class XTIBaseRequest: RequestInterceptor {
     ///   - serviceName: 服务名
     ///   - parameters: 参数
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
-    ///   - completedCallback: 成功的回调
+    ///   - completedCallback: 请求完成的回调
+    ///   - successCallBack: 成功的回调
     ///   - errorCallback: 失败的回调
     open func post(serviceName: String!,
                    parameters: XTIParameters! = nil,
                    resultClass resultType: HandyJSON.Type! = nil,
-                   completed completedCallback: XTIRequestCompletedCallback!,
-                   error errorCallback: XTIRequestErrorCallback!) {
-        send(.post, httpScheme: nil, hostName: nil, serviceName: serviceName, parameters: parameters, resultClass: resultType, completed: completedCallback, error: errorCallback)
+                   completed completedCallback: XTIRequestCompleteCallback! = nil,
+                   success successCallBack: XTIRequestSuccessCallback! = nil,
+                   error errorCallback: XTIRequestErrorCallback! = nil) {
+        send(.post, httpScheme: nil, hostName: nil, serviceName: serviceName, parameters: parameters, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
     }
 
     /// post网络请求，不使用XTINetWorkConfig的域名信息，适用于多台服务器网络请求
@@ -161,14 +194,16 @@ open class XTIBaseRequest: RequestInterceptor {
     ///   - url: 网络请求的地址
     ///   - parameters: 参数
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
-    ///   - completedCallback: 成功的回调
+    ///   - completedCallback: 请求完成的回调
+    ///   - successCallBack: 成功的回调
     ///   - errorCallback: 失败的回调
     open func post(url: String!,
                    parameters: XTIParameters! = nil,
                    resultClass resultType: HandyJSON.Type! = nil,
-                   completed completedCallback: XTIRequestCompletedCallback!,
-                   error errorCallback: XTIRequestErrorCallback!) {
-        send(.post, url: url, parameters: parameters, resultClass: resultType, completed: completedCallback, error: errorCallback)
+                   completed completedCallback: XTIRequestCompleteCallback! = nil,
+                   success successCallBack: XTIRequestSuccessCallback! = nil,
+                   error errorCallback: XTIRequestErrorCallback! = nil) {
+        send(.post, url: url, parameters: parameters, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
     }
 
     /// get网络请求，域名等信息使用XTINetWorkConfig的配置，只需要传入服务名和参数及回调的闭包，适用于一个方法管理一个网络请求
@@ -177,14 +212,16 @@ open class XTIBaseRequest: RequestInterceptor {
     ///   - serviceName: 服务名
     ///   - parameters: 参数
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
-    ///   - completedCallback: 成功的回调
+    ///   - completedCallback: 请求完成的回调
+    ///   - successCallBack: 成功的回调
     ///   - errorCallback: 失败的回调
     open func get(serviceName: String!,
                   parameters: XTIParameters! = nil,
                   resultClass resultType: HandyJSON.Type! = nil,
-                  completed completedCallback: XTIRequestCompletedCallback!,
-                  error errorCallback: XTIRequestErrorCallback!) {
-        send(.get, httpScheme: nil, hostName: nil, serviceName: serviceName, parameters: parameters, resultClass: resultType, completed: completedCallback, error: errorCallback)
+                  completed completedCallback: XTIRequestCompleteCallback! = nil,
+                  success successCallBack: XTIRequestSuccessCallback! = nil,
+                  error errorCallback: XTIRequestErrorCallback! = nil) {
+        send(.get, httpScheme: nil, hostName: nil, serviceName: serviceName, parameters: parameters, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
     }
 
     /// get网络请求，不使用XTINetWorkConfig的域名信息，适用于多台服务器网络请求
@@ -193,14 +230,15 @@ open class XTIBaseRequest: RequestInterceptor {
     ///   - url: 网络请求的地址
     ///   - parameters: 参数
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
-    ///   - completedCallback: 成功的回调
+    ///   - completedCallback: 请求完成的回调
     ///   - errorCallback: 失败的回调
     open func get(url: String!,
                   parameters: XTIParameters! = nil,
                   resultClass resultType: HandyJSON.Type! = nil,
-                  completed completedCallback: XTIRequestCompletedCallback!,
-                  error errorCallback: XTIRequestErrorCallback!) {
-        send(.get, url: url, parameters: parameters, resultClass: resultType, completed: completedCallback, error: errorCallback)
+                  completed completedCallback: XTIRequestCompleteCallback! = nil,
+                  success successCallBack: XTIRequestSuccessCallback! = nil,
+                  error errorCallback: XTIRequestErrorCallback! = nil) {
+        send(.get, url: url, parameters: parameters, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
     }
 
     /// 汇总的网络请求，除了回调都有默认参数，默认参数取XTINetWorkConfig里的配置，默认参数可以在初始化对象的时候设置，如果一个类管理一个接口可以在子类里设置所有的默认参数
@@ -212,7 +250,8 @@ open class XTIBaseRequest: RequestInterceptor {
     ///   - service: 服务名
     ///   - parameters: 参数，可以传递进去，如果使用一个类管理一个接口请在buildParameters方法里构造参数
     ///   - result: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
-    ///   - completedCallback: 成功的回调
+    ///   - completedCallback: 请求完成的回调
+    ///   - successCallBack: 成功的回调
     ///   - errorCallback: 失败的回调
     open func send(_ method: HTTPMethod! = nil,
                    httpScheme scheme: XTIHttpScheme! = nil,
@@ -220,14 +259,15 @@ open class XTIBaseRequest: RequestInterceptor {
                    serviceName service: String! = nil,
                    parameters: XTIParameters! = nil,
                    resultClass resultType: HandyJSON.Type! = nil,
-                   completed completedCallback: XTIRequestCompletedCallback!,
-                   error errorCallback: XTIRequestErrorCallback!) {
+                   completed completedCallback: XTIRequestCompleteCallback! = nil,
+                   success successCallBack: XTIRequestSuccessCallback! = nil,
+                   error errorCallback: XTIRequestErrorCallback! = nil) {
         let tempScheme = scheme == nil ? httpScheme : scheme!
         let tempHost = host == nil ? hostName : host!
         let tempServiceName = service == nil ? serviceName! : service!
 
         let url = tempScheme.rawValue + tempHost + tempServiceName
-        send(method, url: url, parameters: parameters, resultClass: resultType, completed: completedCallback, error: errorCallback)
+        send(method, url: url, parameters: parameters, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
     }
 
     /// 汇总的网络请求，默认参数取XTINetWorkConfig里的配置
@@ -237,14 +277,16 @@ open class XTIBaseRequest: RequestInterceptor {
     ///   - url: 网络地址
     ///   - parameters: 参数
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
-    ///   - completedCallback: 成功的回调
+    ///   - completedCallback: 请求完成的回调
+    ///   - successCallBack: 成功的回调
     ///   - errorCallback: 失败的回调
     public func send(_ method: HTTPMethod! = nil,
                      url: String!,
                      parameters: XTIParameters! = nil,
                      resultClass resultType: HandyJSON.Type! = nil,
-                     completed completedCallback: XTIRequestCompletedCallback!,
-                     error errorCallback: XTIRequestErrorCallback!) {
+                     completed completedCallback: XTIRequestCompleteCallback! = nil,
+                     success successCallBack: XTIRequestSuccessCallback! = nil,
+                     error errorCallback: XTIRequestErrorCallback! = nil) {
         let tempMethod = method == nil ? httpMethod! : method!
         let tempParameters = parameters == nil ? buildParameters() : parameters!
         var tempHeaders = XTINetWorkConfig.defaultopenHttpHeader!
@@ -258,7 +300,7 @@ open class XTIBaseRequest: RequestInterceptor {
                             encoding: URLEncoding.default,
                             headers: tempHeaders).responseString { [weak self] res in
             if let strongSelf = self {
-                strongSelf.requestCallback(res, resultClass: resultType, completed: completedCallback, error: errorCallback)
+                strongSelf.requestCallback(res, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
             }
         }
     }
@@ -269,13 +311,15 @@ open class XTIBaseRequest: RequestInterceptor {
     ///
     /// - Parameters:
     ///   - progressCallback: 进度
-    ///   - completedCallback: 成功的回调
+    ///   - completedCallback: 请求完成的回调
+    ///   - successCallBack: 成功的回调
     ///   - errorCallback: 失败的回调
     open func upload(_ progressCallback: XTIProgressCallback! = nil,
-                     completedCallback: XTIRequestCompletedCallback! = nil,
+                     completed completedCallback: XTIRequestCompleteCallback! = nil,
+                     successCallBack: XTIRequestSuccessCallback! = nil,
                      errorCallback: XTIRequestErrorCallback! = nil) {
         let url = httpScheme.rawValue + hostName + serviceName
-        upload(url, parameters: buildParameters(), progress: progressCallback, completed: completedCallback, error: errorCallback)
+        upload(url, parameters: buildParameters(), progress: progressCallback, completed: completedCallback, success: successCallBack, error: errorCallback)
     }
 
     /// 文件上传，适用于用单例一个方法管理一个请求
@@ -285,13 +329,15 @@ open class XTIBaseRequest: RequestInterceptor {
     ///   - parameters: 参数
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - progressCallback: 进度
-    ///   - completedCallback: 成功的回调
+    ///   - completedCallback: 请求完成的回调
+    ///   - successCallBack: 成功的回调
     ///   - errorCallback: 失败的回调
     public func upload(_ url: String!,
                        parameters: XTIParameters!,
                        resultClass resultType: HandyJSON.Type! = nil,
                        progress progressCallback: XTIProgressCallback! = nil,
-                       completed completedCallback: XTIRequestCompletedCallback! = nil,
+                       completed completedCallback: XTIRequestCompleteCallback! = nil,
+                       success successCallBack: XTIRequestSuccessCallback! = nil,
                        error errorCallback: XTIRequestErrorCallback! = nil) {
         let sign = signature(parameters)
         var tempHeaders = XTINetWorkConfig.defaultopenHttpHeader!
@@ -299,8 +345,7 @@ open class XTIBaseRequest: RequestInterceptor {
             tempHeaders["sign"] = sign
         }
         tempHeaders["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
-
-        httpManager?.upload(multipartFormData: { [weak self] data in
+        httpManager.upload(multipartFormData: { [weak self] data in
             if let strongSelf = self {
                 parameters.forEach { key, value in
                     if (value as? Data) == nil {
@@ -311,39 +356,12 @@ open class XTIBaseRequest: RequestInterceptor {
                 }
             }
         }, to: url, method: .post, headers: tempHeaders, interceptor: self)
-
-//        httpManager.upload(multipartFormData: { [weak self] data in
-//            if let strongSelf = self {
-//                parameters.forEach { key, value in
-//                    if (value as? Data) == nil {
-//                        data.append("\(value)".data(using: String.Encoding.utf8, allowLossyConversion: false)!, withName: key)
-//                    } else {
-//                        data.append(value as! Data, withName: key, fileName: key, mimeType: strongSelf.getFileType())
-//                    }
-//                }
-//            }
-//        },
-//        usingThreshold: Session.multipartFormDataEncodingMemoryThreshold,
-//        to: url,
-//        method: .post,
-//        headers: tempHeaders) { [weak self] encodingResult in
-//            switch encodingResult {
-//            case .success(let upload, _, _):
-//                upload.uploadProgress(closure: { progress in
-//                    if progressCallback != nil {
-//                        progressCallback(progress)
-//                    }
-//                }).responseString { res in
-//                    if let strongSelf = self {
-//                        strongSelf.requestCallback(res, resultClass: resultType, completed: completedCallback, error: errorCallback)
-//                    }
-//                }
-//            case let .failure(encodingError):
-//                if errorCallback != nil {
-//                    errorCallback(self, encodingError)
-//                }
-//            }
-//        }
+            .uploadProgress(closure: progressCallback)
+            .responseString { [weak self] response in
+                if let strongSelf = self {
+                    strongSelf.requestCallback(response, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
+                }
+            }
     }
 
     /// 网络请求结束后的结果处理
@@ -351,28 +369,43 @@ open class XTIBaseRequest: RequestInterceptor {
     /// - Parameters:
     ///   - result: 响应数据
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
-    ///   - completedCallback: 成功的回调
+    ///   - completedCallback: 请求完成的回调
+    ///   - successCallBack: 成功的回调
     ///   - errorCallback: 失败的回调
-    fileprivate func requestCallback(_ result: DataResponse<String>, resultClass resultType: HandyJSON.Type!, completed completedCallback: XTIRequestCompletedCallback!, error errorCallback: XTIRequestErrorCallback!) {
+    fileprivate func requestCallback(_ result: DataResponse<String>,
+                                     resultClass resultType: HandyJSON.Type!,
+                                     completed completedCallback: XTIRequestCompleteCallback! = nil,
+                                     success successCallBack: XTIRequestSuccessCallback! = nil,
+                                     error errorCallback: XTIRequestErrorCallback! = nil) {
         outRawData(result)
-        if result.result.isSuccess {
+        self.result = result
+        let code = result.response == nil ? 0 : result.response!.statusCode
+        if code == 200 {
+            var resultValue: Any!
+            do {
+                resultValue = try JSONSerialization.jsonObject(with: result.data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+            } catch {
+                resultValue = result.value
+            }
+            if resultType != nil {
+                resultValue = resultType?.deserialize(from: result.value) as Any
+            } else if resultClass != nil {
+                resultValue = resultClass?.deserialize(from: result.value) as Any
+            }
+            if successCallBack != nil {
+                successCallBack(self, resultValue)
+            }
             if completedCallback != nil {
-                var resultValue: Any!
-                do {
-                    resultValue = try JSONSerialization.jsonObject(with: result.data!, options: JSONSerialization.ReadingOptions.mutableContainers)
-                } catch {
-                    resultValue = result.result.value
-                }
-                if resultType != nil {
-                    resultValue = resultType.deserialize(from: result.result.value) as Any
-                } else if resultClass != nil {
-                    resultValue = resultClass.deserialize(from: result.result.value) as Any
-                }
-                completedCallback(self, resultValue)
+                completedCallback(self, resultValue, nil)
             }
         } else {
+            let domain = HTTPURLResponse.localizedString(forStatusCode: code)
+            let error = NSError(domain: domain, code: code, userInfo: nil)
             if errorCallback != nil {
-                errorCallback(self, result.result.error)
+                errorCallback(self, error)
+            }
+            if completedCallback != nil {
+                completedCallback(self, nil, error)
             }
         }
     }
@@ -385,12 +418,14 @@ open class XTIBaseRequest: RequestInterceptor {
     ///   - url: 文件地址
     ///   - filePath: 文件存放路径，如果为空则放置在/Library/Caches
     ///   - progressCallback: 下载进度回调
-    ///   - completedCallback: 下载成功的回调
+    ///   - completedCallback: 请求完成的回调
+    ///   - successCallBack: 下载成功的回调
     ///   - errorCallback: 下载失败的回调
     public static func download(_ url: String,
                                 filePath: URL! = nil,
                                 progressCallback: XTIProgressCallback! = nil,
-                                completedCallback: XTIDownloadCompletedCallback! = nil,
+                                completed completedCallback: XTIRequestCompleteCallback! = nil,
+                                successCallBack: XTIRequestSuccessCallback! = nil,
                                 errorCallback: XTIRequestErrorCallback! = nil) {
         let downloadManager = Session.default.download(url) { (_, response) -> (destinationURL: URL, options: DownloadRequest.Options) in
             var flieURL: URL
@@ -401,19 +436,29 @@ open class XTIBaseRequest: RequestInterceptor {
             }
             return (flieURL, [.removePreviousFile, .createIntermediateDirectories])
         }
-
         downloadManager.downloadProgress { progress in
             if progressCallback != nil {
                 progressCallback(progress)
             }
-        }.responseJSON { res in
-            if res.result.isSuccess {
+        }.responseString { result in
+            let code = result.response == nil ? 0 : result.response!.statusCode
+
+            if code == 200 {
+                if successCallBack != nil {
+                    successCallBack(nil, result)
+                }
                 if completedCallback != nil {
-                    completedCallback(res.fileURL)
+                    completedCallback(nil, result, nil)
                 }
             } else {
+                let domain = HTTPURLResponse.localizedString(forStatusCode: code)
+                let error = NSError(domain: domain, code: code, userInfo: nil)
+
                 if errorCallback != nil {
-                    errorCallback(nil, res.result.error)
+                    errorCallback(nil, error)
+                }
+                if completedCallback != nil {
+                    completedCallback(nil, nil, error)
                 }
             }
         }
