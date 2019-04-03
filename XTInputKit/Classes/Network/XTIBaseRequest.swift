@@ -22,12 +22,6 @@ public typealias XTIRequestCompleteCallback = (XTIBaseRequest?, Any?, Error?) ->
 public typealias XTIProgressCallback = (Progress) -> Void
 
 open class XTIBaseRequest: RequestInterceptor {
-    fileprivate static var _default = XTIBaseRequest()
-    /// 单例
-    public static var `default`: XTIBaseRequest {
-        return _default
-    }
-
     fileprivate var _iSLogRawData: Bool!
     /// 是否打印接口响应的原始数据
     public var iSLogRawData: Bool {
@@ -106,7 +100,7 @@ open class XTIBaseRequest: RequestInterceptor {
     fileprivate var _httpManager: Session!
 
     fileprivate var httpManager: Session {
-        if isUserShared {
+        if isUserSharedSession {
             return XTIBaseRequest.httpManager
         } else {
             return _httpManager
@@ -116,11 +110,11 @@ open class XTIBaseRequest: RequestInterceptor {
     fileprivate var parameters: XTIParameters!
     public var result: DataResponse<String>!
 
-    public static var isUserShared: Bool = true
+    public static var isUserSharedSession: Bool = true
 
-    public var isUserShared: Bool! {
+    public var isUserSharedSession: Bool! {
         didSet {
-            if !oldValue && isUserShared {
+            if !oldValue && isUserSharedSession {
                 let configuration = URLSessionConfiguration.default
                 configuration.httpHeaders = HTTPHeaders.default
                 configuration.timeoutIntervalForRequest = XTINetWorkConfig.defaultTimeoutInterval
@@ -133,7 +127,7 @@ open class XTIBaseRequest: RequestInterceptor {
     // MARK: - Method
 
     public init() {
-        self.isUserShared = XTIBaseRequest.isUserShared
+        self.isUserSharedSession = XTIBaseRequest.isUserSharedSession
     }
 
     /// 构造请求参数，如果是POST则放在body里面，如果是GET则拼接在URL后面

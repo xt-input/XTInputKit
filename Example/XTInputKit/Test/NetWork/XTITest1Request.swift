@@ -14,6 +14,6 @@ class XTITest1Request: XTIBaseRequest {
 
     override init() {
         super.init()
-        self.hostName = "design1.tcoding.cn"
+        self.hostName = "design.tcoding.cn"
     }
 }
