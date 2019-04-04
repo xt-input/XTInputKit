@@ -43,9 +43,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: UITableViewCell.className)
-        let 大黄 = 学生成绩()
-        loger.debug(format: "\n姓名：%@ 身高：%d 体重：%.2lf 语文成绩：%d 数学成绩：%d 英语成绩：%d \n总成绩：%d",
-                    args: 大黄.姓名, 大黄.身高, 大黄.体重, 大黄.语文, 大黄.数学, 大黄.英语, 大黄.总成绩())
     }
 
     override func viewDidDisappear(_ animated: Bool) {

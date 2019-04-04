@@ -39,7 +39,8 @@ open class XTIBaseRequest: RequestInterceptor {
     public var isNeedSign: Bool! = true
 
     fileprivate var _httpMethod: HTTPMethod!
-    /// HttpMethod，仅支持post or get
+    
+    /// HttpMethod，仅支持post or get，默认post
     public var httpMethod: HTTPMethod! {
         get {
             if _httpMethod == nil {
@@ -173,7 +174,7 @@ open class XTIBaseRequest: RequestInterceptor {
     ///   - completedCallback: 请求完成的回调
     ///   - successCallBack: 成功的回调
     ///   - errorCallback: 失败的回调
-    open func post(serviceName: String!,
+    open func post(serviceName: String,
                    parameters: XTIParameters! = nil,
                    resultClass resultType: HandyJSON.Type! = nil,
                    completed completedCallback: XTIRequestCompleteCallback! = nil,
@@ -191,7 +192,7 @@ open class XTIBaseRequest: RequestInterceptor {
     ///   - completedCallback: 请求完成的回调
     ///   - successCallBack: 成功的回调
     ///   - errorCallback: 失败的回调
-    open func post(url: String!,
+    open func post(url: String,
                    parameters: XTIParameters! = nil,
                    resultClass resultType: HandyJSON.Type! = nil,
                    completed completedCallback: XTIRequestCompleteCallback! = nil,
@@ -209,7 +210,7 @@ open class XTIBaseRequest: RequestInterceptor {
     ///   - completedCallback: 请求完成的回调
     ///   - successCallBack: 成功的回调
     ///   - errorCallback: 失败的回调
-    open func get(serviceName: String!,
+    open func get(serviceName: String,
                   parameters: XTIParameters! = nil,
                   resultClass resultType: HandyJSON.Type! = nil,
                   completed completedCallback: XTIRequestCompleteCallback! = nil,
@@ -226,7 +227,7 @@ open class XTIBaseRequest: RequestInterceptor {
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - completedCallback: 请求完成的回调
     ///   - errorCallback: 失败的回调
-    open func get(url: String!,
+    open func get(url: String,
                   parameters: XTIParameters! = nil,
                   resultClass resultType: HandyJSON.Type! = nil,
                   completed completedCallback: XTIRequestCompleteCallback! = nil,
@@ -258,7 +259,7 @@ open class XTIBaseRequest: RequestInterceptor {
                    error errorCallback: XTIRequestErrorCallback! = nil) {
         let tempScheme = scheme == nil ? httpScheme : scheme!
         let tempHost = host == nil ? hostName : host!
-        let tempServiceName = service == nil ? serviceName! : service!
+        let tempServiceName = service == nil ? serviceName == nil ? "" : serviceName! : service!
 
         let url = tempScheme.rawValue + tempHost + tempServiceName
         send(method, url: url, parameters: parameters, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
@@ -275,7 +276,7 @@ open class XTIBaseRequest: RequestInterceptor {
     ///   - successCallBack: 成功的回调
     ///   - errorCallback: 失败的回调
     public func send(_ method: HTTPMethod! = nil,
-                     url: String!,
+                     url: String,
                      parameters: XTIParameters! = nil,
                      resultClass resultType: HandyJSON.Type! = nil,
                      completed completedCallback: XTIRequestCompleteCallback! = nil,
@@ -326,7 +327,7 @@ open class XTIBaseRequest: RequestInterceptor {
     ///   - completedCallback: 请求完成的回调
     ///   - successCallBack: 成功的回调
     ///   - errorCallback: 失败的回调
-    public func upload(_ url: String!,
+    public func upload(_ url: String,
                        parameters: XTIParameters!,
                        resultClass resultType: HandyJSON.Type! = nil,
                        progress progressCallback: XTIProgressCallback! = nil,
@@ -461,7 +462,7 @@ open class XTIBaseRequest: RequestInterceptor {
     /// 打印原始数据，可以在该函数里面读取Cookie的值
     ///
     /// - Parameter result: 原始数据
-    public func outRawData(_ result: DataResponse<String>) {
+    open func outRawData(_ result: DataResponse<String>) {
         if iSLogRawData {
             XTILoger.default.info(result)
         }

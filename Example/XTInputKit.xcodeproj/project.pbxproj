@@ -10,7 +10,6 @@
 		5E1A4EC7224B1E6000A74EBD /* XTITestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87509E2249FECF00E1A01E /* XTITestRequest.swift */; };
 		5E1A4EC8224B1E6300A74EBD /* XTITestResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87509F2249FECF00E1A01E /* XTITestResult.swift */; };
 		5E1A4EC9224B1E6600A74EBD /* XTITest1Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8750A02249FECF00E1A01E /* XTITest1Request.swift */; };
-		5E1A4ECD224B5D1B00A74EBD /* 学生.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1A4ECC224B5D1B00A74EBD /* 学生.swift */; };
 		5E8750942249FBC500E1A01E /* XTIKeyChainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87508C2249FBC500E1A01E /* XTIKeyChainViewController.swift */; };
 		5E87509A2249FBC500E1A01E /* XTIObserverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8750932249FBC500E1A01E /* XTIObserverTest.swift */; };
 		5E87509C2249FBCF00E1A01E /* XTINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87509B2249FBCF00E1A01E /* XTINavigationController.swift */; };
@@ -25,7 +24,6 @@
 
 /* Begin PBXFileReference section */
 		53F05304702BDCAF3D48EA71 /* Pods_XTInputKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XTInputKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E1A4ECC224B5D1B00A74EBD /* 学生.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "学生.swift"; sourceTree = "<group>"; };
 		5E1A4ECE224CA7E800A74EBD /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5E87508C2249FBC500E1A01E /* XTIKeyChainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIKeyChainViewController.swift; sourceTree = "<group>"; };
 		5E87508D2249FBC500E1A01E /* XTINetWorkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTINetWorkViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 				5E87509E2249FECF00E1A01E /* XTITestRequest.swift */,
 				5E87509F2249FECF00E1A01E /* XTITestResult.swift */,
 				5E8750A02249FECF00E1A01E /* XTITest1Request.swift */,
-				5E1A4ECC224B5D1B00A74EBD /* 学生.swift */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -276,7 +273,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E1A4ECD224B5D1B00A74EBD /* 学生.swift in Sources */,
 				5E8750A8224A0F6600E1A01E /* XTINetWorkViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
