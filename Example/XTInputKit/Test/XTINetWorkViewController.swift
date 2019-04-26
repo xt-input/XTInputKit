@@ -8,6 +8,7 @@
 
 import UIKit
 import XTInputKit
+import HandyJSON
 
 class XTINetWorkViewController: UIViewController, UITextViewDelegate {
     var request: XTITestRequest!
@@ -38,8 +39,13 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
 //        loger.debug(XTITool.compareAppVersion("1.1.1"))
 //        loger.debug(XTITool.compareAppVersion("1.1"))
 //        loger.debug(XTITool.compareAppVersion("1.1.0"))
+        resultTextView.addObserver(self, forKeyPath: "contentOffset", options: .new, context: nil)
     }
-
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        loger.debug(keyPath)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -49,6 +55,34 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
         request = XTITestRequest()
         request.bundelID = "1234567890"
         DispatchQueue.XTI.mainAsyncAfter(3) {
+            self.request.send(success: {[weak self] _, result in
+                self?.resultString = loger.debug(result)
+                if let res = result as? XTITestResult {
+                    self?.resultString = loger.debug(res.toJSON()!)
+                }
+            }) { [weak self] _, error in
+                if let strongSelf = self {
+                    strongSelf.resultString = loger.warning(error?.localizedDescription)
+                }
+            }
+            self.request.send(success: {[weak self] _, result in
+                if let res = result as? HandyJSON {
+                    self?.resultString = loger.debug(res.toJSON()!)
+                }
+            }) { [weak self] _, error in
+                if let strongSelf = self {
+                    strongSelf.resultString = loger.warning(error?.localizedDescription)
+                }
+            }
+            self.request.send(success: {[weak self] _, result in
+                if let res = result as? XTITestResult {
+                    self?.resultString = loger.debug(res.toJSONString()!)
+                }
+            }) { [weak self] _, error in
+                if let strongSelf = self {
+                    strongSelf.resultString = loger.warning(error?.localizedDescription)
+                }
+            }
             self.request.send(success: {[weak self] _, result in
                 if let res = result as? XTITestResult {
                     self?.resultString = loger.debug(res.toJSON()!)
@@ -61,7 +95,7 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
         }
         
         let p1: [String: Any] = ["test": "\([11111,12312312])"]
-        XTITest1Request.shared.post(serviceName:"/rxswift/Login/index", parameters: p1, resultClass: XTITestResult.self, success: { [weak self] _, result in
+        XTITest1Request.shared.post(serviceName:XTINetWorkServer.User.login.value, parameters: p1, resultClass: XTITestResult.self, success: { [weak self] _, result in
             if let res = result as? XTITestResult {
                 if let strongSelf = self {
                     strongSelf.resultString = loger.debug(res.toJSON()!)
@@ -75,7 +109,7 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
 
         let p2: [String: Any] = ["bundelID": "22222"]
 
-        XTIBaseRequest().get(url: "http://design.tcoding.cn/rxswift/Login/index", parameters: p2, resultClass: XTITestResult.self, success: { [weak self] request, result in
+        XTIBaseRequest().get(url: "http://design.tcoding.cn/rxswift/login/index", parameters: p2, resultClass: XTITestResult.self, success: { [weak self] request, result in
             if let res = result as? XTITestResult {
                 if let strongSelf = self {
                     strongSelf.resultString = loger.debug(res.toJSON()!)

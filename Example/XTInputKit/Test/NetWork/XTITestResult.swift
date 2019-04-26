@@ -20,9 +20,14 @@ struct XTITestResult: HandyJSON {
 struct Result: HandyJSON {
     var currentPage: Int?
     var pageSize: Int?
-    var resultList: [ResultList]?
+//    var resultList: [[ResultList]]?
     var totalCount: Int?
     var totalPage: Int?
+//    required init() {
+//    }
+    func didFinishMapping() {
+        
+    }
 }
 
 struct ResultList: HandyJSON {

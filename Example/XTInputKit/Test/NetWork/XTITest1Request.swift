@@ -11,7 +11,9 @@ import XTInputKit
 
 class XTITest1Request: XTIBaseRequest {
     static var shared = XTITest1Request()
-
+    static func awake(){
+    
+    }
     override init() {
         super.init()
         self.hostName = "design.tcoding.cn"

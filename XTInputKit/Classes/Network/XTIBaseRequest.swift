@@ -10,13 +10,13 @@ import Alamofire
 import HandyJSON
 
 /// 网络请求成功的回调
-public typealias XTIRequestSuccessCallback = (XTIBaseRequest?, Any?) -> Void
+public typealias XTIRequestSuccessCallback = (DataResponse<String>?, Any?) -> Void
 
 /// 网络请求失败的回调
-public typealias XTIRequestErrorCallback = (XTIBaseRequest?, Error?) -> Void
+public typealias XTIRequestErrorCallback = (DataResponse<String>?, Error?) -> Void
 
 /// 网络请求完成的回调
-public typealias XTIRequestCompleteCallback = (XTIBaseRequest?, Any?, Error?) -> Void
+public typealias XTIRequestCompleteCallback = (DataResponse<String>?, Any?, Error?) -> Void
 
 /// 文件上传下载进度的回调
 public typealias XTIProgressCallback = (Progress) -> Void
@@ -39,7 +39,7 @@ open class XTIBaseRequest: RequestInterceptor {
     public var isNeedSign: Bool! = true
 
     fileprivate var _httpMethod: HTTPMethod!
-    
+
     /// HttpMethod，仅支持post or get，默认post
     public var httpMethod: HTTPMethod! {
         get {
@@ -85,7 +85,7 @@ open class XTIBaseRequest: RequestInterceptor {
     public var serviceName: String!
 
     /// 请求响应数据的模型类
-    public var resultClass: HandyJSON.Type!
+    public var resultClass: HandyJSON.Type?
     fileprivate static var _httpManager: Session!
     fileprivate static var httpManager: Session {
         if _httpManager == nil {
@@ -260,8 +260,7 @@ open class XTIBaseRequest: RequestInterceptor {
         let tempScheme = scheme == nil ? httpScheme : scheme!
         let tempHost = host == nil ? hostName : host!
         let tempServiceName = service == nil ? serviceName == nil ? "" : serviceName! : service!
-
-        let url = tempScheme.rawValue + tempHost + tempServiceName
+        let url = tempScheme.rawValue + tempHost.replacingOccurrences(of: "/", with: "") + "/" + tempServiceName.xti.substring(toPosition: 1)
         send(method, url: url, parameters: parameters, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
     }
 
@@ -388,19 +387,19 @@ open class XTIBaseRequest: RequestInterceptor {
                 resultValue = resultClass?.deserialize(from: result.value) as Any
             }
             if successCallBack != nil {
-                successCallBack(self, resultValue)
+                successCallBack(result, resultValue)
             }
             if completedCallback != nil {
-                completedCallback(self, resultValue, nil)
+                completedCallback(result, resultValue, nil)
             }
         } else {
             let domain = HTTPURLResponse.localizedString(forStatusCode: code)
             let error = NSError(domain: domain, code: code, userInfo: nil)
             if errorCallback != nil {
-                errorCallback(self, error)
+                errorCallback(result, error)
             }
             if completedCallback != nil {
-                completedCallback(self, nil, error)
+                completedCallback(result, nil, error)
             }
         }
     }

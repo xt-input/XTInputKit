@@ -16,6 +16,8 @@
 		5E8750A5224A021A00E1A01E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E8750A4224A021A00E1A01E /* LaunchScreen.storyboard */; };
 		5E8750A7224A022500E1A01E /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E8750A6224A022500E1A01E /* Storyboard.storyboard */; };
 		5E8750A8224A0F6600E1A01E /* XTINetWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87508D2249FBC500E1A01E /* XTINetWorkViewController.swift */; };
+		5EB73EE522686B26005740D2 /* XTITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB73EE422686B26005740D2 /* XTITest.m */; };
+		5EB73EE922720116005740D2 /* XTINetWorkServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB73EE822720116005740D2 /* XTINetWorkServer.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -34,6 +36,10 @@
 		5E8750A02249FECF00E1A01E /* XTITest1Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTITest1Request.swift; sourceTree = "<group>"; };
 		5E8750A4224A021A00E1A01E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E8750A6224A022500E1A01E /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		5EB73EE222686B26005740D2 /* XTInputKitDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XTInputKitDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		5EB73EE322686B26005740D2 /* XTITest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTITest.h; sourceTree = "<group>"; };
+		5EB73EE422686B26005740D2 /* XTITest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTITest.m; sourceTree = "<group>"; };
+		5EB73EE822720116005740D2 /* XTINetWorkServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTINetWorkServer.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* XTInputKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XTInputKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +90,7 @@
 				5E87509E2249FECF00E1A01E /* XTITestRequest.swift */,
 				5E87509F2249FECF00E1A01E /* XTITestResult.swift */,
 				5E8750A02249FECF00E1A01E /* XTITest1Request.swift */,
+				5EB73EE822720116005740D2 /* XTINetWorkServer.swift */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -117,6 +124,9 @@
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				5E87509B2249FBCF00E1A01E /* XTINavigationController.swift */,
 				5E1A4ECE224CA7E800A74EBD /* MyPlayground.playground */,
+				5EB73EE322686B26005740D2 /* XTITest.h */,
+				5EB73EE422686B26005740D2 /* XTITest.m */,
+				5EB73EE222686B26005740D2 /* XTInputKitDemo-Bridging-Header.h */,
 			);
 			name = "Example for XTInputKit";
 			path = XTInputKit;
@@ -273,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EB73EE922720116005740D2 /* XTINetWorkServer.swift in Sources */,
 				5E8750A8224A0F6600E1A01E /* XTINetWorkViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
@@ -280,6 +291,7 @@
 				5E87509A2249FBC500E1A01E /* XTIObserverTest.swift in Sources */,
 				5E1A4EC7224B1E6000A74EBD /* XTITestRequest.swift in Sources */,
 				5E1A4EC9224B1E6600A74EBD /* XTITest1Request.swift in Sources */,
+				5EB73EE522686B26005740D2 /* XTITest.m in Sources */,
 				5E87509C2249FBCF00E1A01E /* XTINavigationController.swift in Sources */,
 				5E8750942249FBC500E1A01E /* XTIKeyChainViewController.swift in Sources */,
 			);
@@ -398,6 +410,7 @@
 			baseConfigurationReference = D09433DF774CD8D392E63341 /* Pods-XTInputKitDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = ZZ2Q79GEK8;
 				INFOPLIST_FILE = XTInputKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -405,6 +418,8 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = cn.tcoding.xtinputkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XTInputKit/XTInputKitDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -414,6 +429,7 @@
 			baseConfigurationReference = 771B8E86A3EFE61884D57335 /* Pods-XTInputKitDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = ZZ2Q79GEK8;
 				INFOPLIST_FILE = XTInputKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -421,6 +437,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = cn.tcoding.xtinputkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "XTInputKit/XTInputKitDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

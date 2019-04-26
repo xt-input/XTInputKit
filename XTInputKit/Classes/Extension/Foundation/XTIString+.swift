@@ -47,46 +47,46 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// 字符串的截取
     /// 从startPosition截取到endPosition，如果endPosition超出字符串长度就取最长
     /// - Parameters:
-    ///   - start: 开始位置
-    ///   - end: 结束位置
+    ///   - start: 开始位置(包括)
+    ///   - end: 结束位置(不包括)
     /// - Returns: 截取后的string字符串
 
     public func substring(startPosition start: Int, endPosition end: Int) -> String {
-        var tempstart = start > length ? length : start - 1
-        if tempstart <= 1 {
+        var tempstart = start > length ? length : start
+        if tempstart < 1 {
             tempstart = 0
         }
-        var tempend = end > length ? length : end
+        var tempend = (end + 1) > length ? length : (end + 1)
         tempend = tempend - tempstart
         if tempend < 1 {
             tempend = 0
         }
         var str = wrappedValue
-        str = "\(str.suffix(from: index(toPosition: tempstart)))"
-        str = "\(str.prefix(upTo: index(toPosition: tempend)))"
+        str = "\(str.suffix(from: wrappedValue.xti[tempstart]))"
+        str = "\(str.prefix(upTo: wrappedValue.xti[tempend]))"
         return str
     }
 
     /// 字符串的截取
     /// 从开始截取到toPosition，如果toPosition超出字符串长度就取最长
-    /// - Parameter to: 结束位置
+    /// - Parameter to: 结束位置(不包括)
     /// - Returns: 截取后的string字符串
     public func substring(toPosition to: Int) -> String {
-        return substring(startPosition: 1, endPosition: to)
+        return substring(startPosition: 0, endPosition: to)
     }
 
     /// 字符串的截取
     /// 从fromPosition位置开始截取到字符串尾部，如果fromPosition大于字符串长度就为""
-    /// - Parameter fromPosition: 开始位置
+    /// - Parameter fromPosition: 开始位置(包括)
     /// - Returns: 截取后的string字符串
     public func substring(fromPosition from: Int) -> String {
-        return substring(startPosition: from, endPosition: length)
+        return substring(startPosition: from, endPosition: length - 1)
     }
 
     /// 字符串的截取
     /// 从startPosition开始取rangeLength长度的子串
     /// - Parameters:
-    ///   - start: 开始位置
+    ///   - start: 开始位置(包括)
     ///   - length: 子串长度
     /// - Returns: 截取后的string字符串
     public func substring(startPosition start: Int, rangeLength length: Int) -> String {
@@ -98,43 +98,14 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// - Parameter length: 子串长度
     /// - Returns:
     public func substringIndexToEnd(rangeLength length: Int) -> String {
-        return substring(startPosition: self.length - length + 1, endPosition: self.length)
-    }
-
-    // MARK: 字符串的range相关
-
-    /// 获取字符串指定范围
-    ///
-    /// - Parameters:
-    ///   - startPosition: 开始位置
-    ///   - endPosition: 结束位置（最大为字符串结束位置）
-    /// - Returns: 符合条件的范围
-    public func range(startPosition start: Int, endPosition end: Int) -> Range<String.Index> {
-        let tempstart = start > length ? length : start
-        let tempend = end > length ? length : end
-        return index(toPosition: tempstart) ..< index(toPosition: tempend)
-    }
-
-    /// 获取字符串指定范围
-    ///
-    /// - Parameters:
-    ///   - startPosition: 开始位置
-    ///   - rangeLength: 长度
-    /// - Returns: 符合条件的范围
-    public func range(startPosition start: Int, rangeLength length: Int) -> Range<String.Index> {
-        let temp = length + start
-        return range(startPosition: start, endPosition: temp)
+        return substring(startPosition: self.length - length, endPosition: self.length - 1)
     }
 
     /// 获取字符串指定位置的index
-    ///
-    /// - Parameter toPosition: 位置
-    /// - Returns: 相对于startIndex的位置
-    public func index(toPosition to: Int) -> String.Index {
-        let temp = to > length ? length : to
+    public subscript(_ index: Int) -> String.Index {
+        let temp = index > length ? length : index
         return wrappedValue.index(wrappedValue.startIndex, offsetBy: temp)
     }
-
     // MARK: - 正则验证
 
     public var isPhone: Bool {

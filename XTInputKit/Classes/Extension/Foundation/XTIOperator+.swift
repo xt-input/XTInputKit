@@ -58,12 +58,4 @@ public extension Int {
     static postfix func -- (left: inout Int) {
         left = left - 1
     }
-
-    static func += (left: inout Int, right: Int) {
-        left = left + right
-    }
-
-    static func -= (left: inout Int, right: Int) {
-        left = left - right
-    }
 }

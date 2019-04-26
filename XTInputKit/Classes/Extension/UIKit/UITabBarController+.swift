@@ -7,8 +7,9 @@
 //
 
 import UIKit
+extension UITabBarController: XTIBaseNameNamespace {}
 
-public extension UITabBarController {
+public extension XTITypeWrapperProtocol where WrappedType == UITabBarController {
     /// 添加tabbar的子控制器
     ///
     /// - Parameters:
@@ -16,15 +17,15 @@ public extension UITabBarController {
     ///   - tabbarTitle: tabbar标题
     ///   - image: 默认图片
     ///   - selectedImage: 选中图片
-    func xti_addChildViewController(_ viewController: UIViewController,
-                                           tabbarTitle: String! = nil,
-                                           image: UIImage,
-                                           selectedImage: UIImage! = nil) {
+    public func addChildViewController(_ viewController: UIViewController,
+                                tabbarTitle: String! = nil,
+                                image: UIImage,
+                                selectedImage: UIImage! = nil) {
         if tabbarTitle != nil {
             viewController.xti_tabbarTitle = tabbarTitle
         }
         viewController.tabBarItem.image = image
         viewController.tabBarItem.selectedImage = selectedImage == nil ? image : selectedImage
-        self.addChild(viewController)
+        wrappedValue.addChild(viewController)
     }
 }

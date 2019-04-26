@@ -38,16 +38,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         XTITimer.defualt.addObserver(self, repeating: 1, sum: 20)
         var i = 10
         i++
-        loger.debug(i)
+        loger.debug(format: "%d %p", args: i, i)
         self.tableView = UITableView(frame: self.view.bounds, style: .plain)
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: UITableViewCell.className)
+        self.tableView.addObserver(self, forKeyPath: "tableView", options: .new, context: nil)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        //        XTIObserverTest.default.removeObserver(self)
+//                XTIObserverTest.default.removeObserver(self)
     }
 
     @objc func xti_toucheRightBarButtonItem() {
@@ -57,9 +58,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @objc func countdown(_ item: XTITimerItem) {
-//        loger.debug(item.count)
+        loger.debug(item.count)
         if item.count == 12 {
-            //            item.isCancel = true
+            item.isCancel = true
         }
     }
 
@@ -110,7 +111,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         XTITimer.defualt.removeObserver(self)
         let labelName: Int = Int(arc4random())
-        XTITimer.defualt.addObserver(self, labelName: "\(labelName)", repeating: 1.0, sum: labelName) { item in
+        XTITimer.defualt.addObserver(self, labelName: "\(labelName)", repeating: 1.0, sum: labelName) { _ in
 //            if item?.count == 12 {
 //                item?.isCancel = true
 //            }
@@ -126,5 +127,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     deinit {
         count -= 1
         loger.debug(count)
+        self.tableView.removeObserver(self, forKeyPath: "tableView")
     }
 }
