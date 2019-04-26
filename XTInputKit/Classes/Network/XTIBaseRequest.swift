@@ -90,7 +90,7 @@ open class XTIBaseRequest: RequestInterceptor {
     fileprivate static var httpManager: Session {
         if _httpManager == nil {
             let configuration = URLSessionConfiguration.default
-            configuration.httpHeaders = HTTPHeaders.default
+            configuration.headers = HTTPHeaders.default
             configuration.timeoutIntervalForRequest = XTINetWorkConfig.defaultTimeoutInterval
             configuration.httpMaximumConnectionsPerHost = XTINetWorkConfig.defaultHttpMaximumConnectionsPerHost
             _httpManager = Session(configuration: configuration)
@@ -117,7 +117,7 @@ open class XTIBaseRequest: RequestInterceptor {
         didSet {
             if !oldValue && isUserSharedSession {
                 let configuration = URLSessionConfiguration.default
-                configuration.httpHeaders = HTTPHeaders.default
+                configuration.headers = HTTPHeaders.default
                 configuration.timeoutIntervalForRequest = XTINetWorkConfig.defaultTimeoutInterval
                 configuration.httpMaximumConnectionsPerHost = XTINetWorkConfig.defaultHttpMaximumConnectionsPerHost
                 _httpManager = Session(configuration: configuration)

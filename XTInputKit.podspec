@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
     ss.dependency 'XTInputKit/XTILoger'
     ss.dependency 'XTInputKit/XTITool'
     ss.dependency 'HandyJSON', '~> 5.0.0-beta.1'
-    ss.dependency 'Alamofire', '~> 5.0.0-beta.4'
+    ss.dependency 'Alamofire', '~> 5.0.0-beta.6'
   end
   s.swift_version = '5'
   s.requires_arc  = true
