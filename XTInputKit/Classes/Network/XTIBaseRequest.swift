@@ -259,8 +259,11 @@ open class XTIBaseRequest: RequestInterceptor {
                    error errorCallback: XTIRequestErrorCallback! = nil) {
         let tempScheme = scheme == nil ? httpScheme : scheme!
         let tempHost = host == nil ? hostName : host!
-        let tempServiceName = service == nil ? serviceName == nil ? "" : serviceName! : service!
-        let url = tempScheme.rawValue + tempHost.replacingOccurrences(of: "/", with: "") + "/" + tempServiceName.xti.substring(toPosition: 1)
+        var tempServiceName = service == nil ? serviceName == nil ? "" : serviceName! : service!
+        if(tempServiceName.first == "/"){
+            tempServiceName.removeFirst()
+        }
+        let url = tempScheme.rawValue + tempHost.replacingOccurrences(of: "/", with: "") + "/" + tempServiceName
         send(method, url: url, parameters: parameters, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
     }
 

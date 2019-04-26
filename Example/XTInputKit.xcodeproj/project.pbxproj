@@ -18,14 +18,13 @@
 		5E8750A8224A0F6600E1A01E /* XTINetWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87508D2249FBC500E1A01E /* XTINetWorkViewController.swift */; };
 		5EB73EE522686B26005740D2 /* XTITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB73EE422686B26005740D2 /* XTITest.m */; };
 		5EB73EE922720116005740D2 /* XTINetWorkServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB73EE822720116005740D2 /* XTINetWorkServer.swift */; };
+		5EB73EEB2272E057005740D2 /* Pods_XTInputKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB73EEA2272E057005740D2 /* Pods_XTInputKitDemo.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
-		ACE30115713290C0557444C9 /* Pods_XTInputKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F05304702BDCAF3D48EA71 /* Pods_XTInputKitDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		53F05304702BDCAF3D48EA71 /* Pods_XTInputKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XTInputKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E1A4ECE224CA7E800A74EBD /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5E87508C2249FBC500E1A01E /* XTIKeyChainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIKeyChainViewController.swift; sourceTree = "<group>"; };
 		5E87508D2249FBC500E1A01E /* XTINetWorkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTINetWorkViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +39,7 @@
 		5EB73EE322686B26005740D2 /* XTITest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTITest.h; sourceTree = "<group>"; };
 		5EB73EE422686B26005740D2 /* XTITest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTITest.m; sourceTree = "<group>"; };
 		5EB73EE822720116005740D2 /* XTINetWorkServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTINetWorkServer.swift; sourceTree = "<group>"; };
+		5EB73EEA2272E057005740D2 /* Pods_XTInputKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_XTInputKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* XTInputKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XTInputKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACE30115713290C0557444C9 /* Pods_XTInputKitDemo.framework in Frameworks */,
+				5EB73EEB2272E057005740D2 /* Pods_XTInputKitDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +155,7 @@
 		73127C7253E8C533535A74FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				53F05304702BDCAF3D48EA71 /* Pods_XTInputKitDemo.framework */,
+				5EB73EEA2272E057005740D2 /* Pods_XTInputKitDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
