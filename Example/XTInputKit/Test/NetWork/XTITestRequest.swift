@@ -23,6 +23,7 @@ class XTITestRequest: XTIBaseRequest {
         parameters["bundelId"] = bundelID
         return parameters
     }
+    
     deinit {
         loger.debug(self)
     }

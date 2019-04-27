@@ -10,7 +10,7 @@ import UIKit
 import XTInputKit
 
 class XTITest1Request: XTIBaseRequest {
-    static var shared = XTITest1Request()
+    static let shared = XTITest1Request()
     static func awake(){
     
     }

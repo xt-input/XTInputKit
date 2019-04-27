@@ -260,7 +260,7 @@ open class XTIBaseRequest: RequestInterceptor {
         let tempScheme = scheme == nil ? httpScheme : scheme!
         let tempHost = host == nil ? hostName : host!
         var tempServiceName = service == nil ? serviceName == nil ? "" : serviceName! : service!
-        if(tempServiceName.first == "/"){
+        if tempServiceName.first == "/" {
             tempServiceName.removeFirst()
         }
         let url = tempScheme.rawValue + tempHost.replacingOccurrences(of: "/", with: "") + "/" + tempServiceName

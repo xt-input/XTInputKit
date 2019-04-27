@@ -93,19 +93,6 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
                 }
             }
         }
-        
-        let p1: [String: Any] = ["test": "\([11111,12312312])"]
-        XTITest1Request.shared.post(serviceName:XTINetWorkServer.User.login.value, parameters: p1, resultClass: XTITestResult.self, success: { [weak self] _, result in
-            if let res = result as? XTITestResult {
-                if let strongSelf = self {
-                    strongSelf.resultString = loger.debug(res.toJSON()!)
-                }
-            }
-        }) { [weak self] _, error in
-            if let strongSelf = self {
-                strongSelf.resultString = loger.warning(error?.localizedDescription)
-            }
-        }
 
         let p2: [String: Any] = ["bundelID": "22222"]
 

@@ -17,11 +17,10 @@
 		5E8750A7224A022500E1A01E /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E8750A6224A022500E1A01E /* Storyboard.storyboard */; };
 		5E8750A8224A0F6600E1A01E /* XTINetWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87508D2249FBC500E1A01E /* XTINetWorkViewController.swift */; };
 		5EB73EE522686B26005740D2 /* XTITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB73EE422686B26005740D2 /* XTITest.m */; };
-		5EB73EE922720116005740D2 /* XTINetWorkServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB73EE822720116005740D2 /* XTINetWorkServer.swift */; };
-		5EB73EEB2272E057005740D2 /* Pods_XTInputKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB73EEA2272E057005740D2 /* Pods_XTInputKitDemo.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
+		C275709BECF461A72BC83171 /* Pods_XTInputKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8D872AD2D9F56473E950FDC /* Pods_XTInputKitDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +37,6 @@
 		5EB73EE222686B26005740D2 /* XTInputKitDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XTInputKitDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		5EB73EE322686B26005740D2 /* XTITest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XTITest.h; sourceTree = "<group>"; };
 		5EB73EE422686B26005740D2 /* XTITest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XTITest.m; sourceTree = "<group>"; };
-		5EB73EE822720116005740D2 /* XTINetWorkServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTINetWorkServer.swift; sourceTree = "<group>"; };
-		5EB73EEA2272E057005740D2 /* Pods_XTInputKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_XTInputKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* XTInputKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XTInputKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +47,7 @@
 		C2B34039E0DA6B7AB22B75E0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C9AF60AD88E125B9742EAF7A /* XTInputKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = XTInputKit.podspec; path = ../XTInputKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D09433DF774CD8D392E63341 /* Pods-XTInputKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTInputKitDemo.debug.xcconfig"; path = "Target Support Files/Pods-XTInputKitDemo/Pods-XTInputKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		F8D872AD2D9F56473E950FDC /* Pods_XTInputKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XTInputKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EB73EEB2272E057005740D2 /* Pods_XTInputKitDemo.framework in Frameworks */,
+				C275709BECF461A72BC83171 /* Pods_XTInputKitDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +88,6 @@
 				5E87509E2249FECF00E1A01E /* XTITestRequest.swift */,
 				5E87509F2249FECF00E1A01E /* XTITestResult.swift */,
 				5E8750A02249FECF00E1A01E /* XTITest1Request.swift */,
-				5EB73EE822720116005740D2 /* XTINetWorkServer.swift */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -155,7 +152,7 @@
 		73127C7253E8C533535A74FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5EB73EEA2272E057005740D2 /* Pods_XTInputKitDemo.framework */,
+				F8D872AD2D9F56473E950FDC /* Pods_XTInputKitDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -171,7 +168,7 @@
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				C2AC65372611784081E68348 /* [CP] Embed Pods Frameworks */,
+				99B12FEDC75D51FA83DA47D1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,7 +251,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C2AC65372611784081E68348 /* [CP] Embed Pods Frameworks */ = {
+		99B12FEDC75D51FA83DA47D1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -283,7 +280,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EB73EE922720116005740D2 /* XTINetWorkServer.swift in Sources */,
 				5E8750A8224A0F6600E1A01E /* XTINetWorkViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
