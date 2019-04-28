@@ -1,6 +1,7 @@
 import UIKit
-import HandyJSON
+
 import XTInputKit
+
 
 print("1234567890".xti.substring(fromPosition: 1))
 print("1234567890".xti.substring(toPosition: 10))
@@ -15,11 +16,11 @@ enum XTINetWorkServer {
         static var app: String{
             return "index"
         }
-        
+
         static var realValue: String {
             return "user_me"
         }
-        
+
         var realValue: String {
             return self.rawValue
         }
@@ -28,27 +29,27 @@ enum XTINetWorkServer {
 }
 
 class XTIUserRequest: XTIBaseRequest {
-    
+
     static let shared = XTIUserRequest()
-    
+
     //登录接口的参数
     struct LoginParameter: HandyJSON {
         var username: String!
         var passwd: String!
     }
-    
-    
+
+
     var login = LoginParameter()
-    
+
     override init() {
         super.init()
         // 一些公共的配置可以在这里设置
         hostName = "user.tcoding.cn"
     }
-    
+
     func login(complete: @escaping XTIRequestCompleteCallback) {
         var parameters = buildParameters()
-        
+
         if !self.login.isEmpty() {
             parameters += self.login.toJSON()!
         }
@@ -61,5 +62,5 @@ let userRequest = XTIUserRequest.shared
 userRequest.login.username = "username"
 userRequest.login.passwd = "123456"
 userRequest.login { (_, result, error) in
-    
+
 }

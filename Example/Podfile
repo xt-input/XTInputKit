@@ -5,4 +5,5 @@ use_frameworks!
 
 target 'XTInputKitDemo' do
   pod 'XTInputKit', :path => '../'
+#  pod 'XTILogerManager', :git => 'https://github.com/xt-input/XTILogerManager.git', :tag => '0.0.5'
 end

@@ -26,7 +26,6 @@ struct Result: HandyJSON {
 //    required init() {
 //    }
     func didFinishMapping() {
-        
     }
 }
 
