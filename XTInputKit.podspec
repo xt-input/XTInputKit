@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'XTInputKit/Classes/Network/*.swift'
     ss.dependency 'XTInputKit/XTILoger'
     ss.dependency 'XTInputKit/XTITool'
-    ss.dependency 'HandyJSON', '~> 5.0.0-beta.1'
+    ss.dependency 'HandyJSON', '~> 5.0.0'
     ss.dependency 'Alamofire', '~> 5.0.0-beta.6'
   end
   s.swift_version = '5'
