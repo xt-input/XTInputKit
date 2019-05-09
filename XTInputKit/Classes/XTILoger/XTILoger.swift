@@ -9,6 +9,8 @@
 
 import UIKit
 
+public let xtiloger = XTILoger.default
+
 public enum XTILogerLevel: Int {
     public typealias RawValue = Int
 
@@ -39,7 +41,6 @@ extension XTILogerLevel: Comparable {
 }
 
 /// 请在 "Swift Compiler - Custom Flags" 选项查找 "Other Swift Flags" 然后在DEBUG配置那里添加"-D DEBUG".
-
 public struct XTILoger {
     private static var _default: XTILoger!
     public static var `default`: XTILoger {
@@ -95,76 +96,94 @@ public struct XTILoger {
         self.releaseLogLevel = XTILogerLevel.warning
     }
 
-    @discardableResult public func info(format: String,
-                                        args: CVarArg...,
-                                        function: String = #function,
-                                        file: String = #file,
-                                        line: Int = #line) -> String {
-        if self.logLevel <= .info {
-            return self.log(.info, function: function, file: file, line: line, format: format, args: args)
+    fileprivate func loger(format: String, _ args: [Any?]) -> String {
+        let regex = try! NSRegularExpression(pattern: "%*%", options: [])
+        let matches = regex.matches(in: format, options: [], range: NSRange(format.startIndex..., in: format))
+
+        var value = ""
+        var index = 0
+        if args.count == 0 {
+            return format
         }
-        return ""
+
+        for i in 0 ..< matches.count {
+            let len = (i < matches.count - 1 ? matches[i + 1].range.location : format.count) - matches[i].range.location
+            let range = Range(NSMakeRange(matches[i].range.location, len), in: format)
+            if let tempRange = range {
+                var tempFormat = "\(format[tempRange])"
+                if !tempFormat.hasPrefix("% ") && index < args.count {
+                    var arg = args[index]
+                    index = index + 1
+                    if arg != nil, let cVarArg = arg as? CVarArg {
+                        tempFormat = String(format: tempFormat, cVarArg)
+                    } else {
+                        tempFormat = String(describing: arg)
+                    }
+                }
+                value = value + tempFormat
+            }
+        }
+        return value
     }
 
-    @discardableResult public func info(_ value: Any!,
+    @discardableResult public func info(format: String,
+                                        function: String = #function,
+                                        file: String = #file,
+                                        line: Int = #line,
+                                        _ args: Any?...) -> String {
+        return self.log(.info, function: function, file: file, line: line, value: loger(format: format, args))
+    }
+
+    @discardableResult public func info(_ value: Any?,
                                         function: String = #function,
                                         file: String = #file,
                                         line: Int = #line) -> String {
-        return self.info(format: String(describing: value), function: function, file: file, line: line)
+        return self.log(.info, function: function, file: file, line: line, value: value)
     }
 
     @discardableResult public func debug(format: String,
-                                         args: CVarArg...,
                                          function: String = #function,
                                          file: String = #file,
-                                         line: Int = #line) -> String {
-        if self.logLevel <= .debug {
-            return self.log(.debug, function: function, file: file, line: line, format: format, args: args)
-        }
-        return ""
+                                         line: Int = #line,
+                                         _ args: Any?...) -> String {
+        return self.log(.debug, function: function, file: file, line: line, value: loger(format: format, args))
     }
 
-    @discardableResult public func debug(_ value: Any!,
+    @discardableResult public func debug(_ value: Any?,
                                          function: String = #function,
                                          file: String = #file,
                                          line: Int = #line) -> String {
-        return self.debug(format: String(describing: value), function: function, file: file, line: line)
+        return self.log(.debug, function: function, file: file, line: line, value: value)
     }
 
     @discardableResult public func warning(format: String,
-                                           args: CVarArg...,
                                            function: String = #function,
                                            file: String = #file,
-                                           line: Int = #line) -> String {
-        if self.logLevel <= .warning {
-            return self.log(.warning, function: function, file: file, line: line, format: format, args: args)
-        }
-        return ""
+                                           line: Int = #line,
+                                           _ args: Any?...) -> String {
+        return self.log(.warning, function: function, file: file, line: line, value: loger(format: format, args))
     }
 
-    @discardableResult public func warning(_ value: Any!,
+    @discardableResult public func warning(_ value: Any?,
                                            function: String = #function,
                                            file: String = #file,
                                            line: Int = #line) -> String {
-        return self.warning(format: String(describing: value), function: function, file: file, line: line)
+        return self.log(.warning, function: function, file: file, line: line, value: value)
     }
 
     @discardableResult public func error(format: String,
-                                         args: CVarArg...,
                                          function: String = #function,
                                          file: String = #file,
-                                         line: Int = #line) -> String {
-        if self.logLevel <= .error {
-            return self.log(.error, function: function, file: file, line: line, format: format, args: args)
-        }
-        return ""
+                                         line: Int = #line,
+                                         _ args: Any?...) -> String {
+        return self.log(.error, function: function, file: file, line: line, value: loger(format: format, args))
     }
 
-    @discardableResult public func error(_ value: Any!,
+    @discardableResult public func error(_ value: Any?,
                                          function: String = #function,
                                          file: String = #file,
                                          line: Int = #line) -> String {
-        return self.error(format: String(describing: value), function: function, file: file, line: line)
+        return self.log(.error, function: function, file: file, line: line, value: value)
     }
 
     /// 打印日志
@@ -178,8 +197,11 @@ public struct XTILoger {
                          function: String,
                          file: String,
                          line: Int,
-                         format: String,
-                         args: [CVarArg]) -> String {
+                         value: Any?) -> String {
+        if self.logLevel > level {
+            return ""
+        }
+
         let dateTime = isShowLongTime ? "\(dateFormatter.string(from: Date())) " : "\(dateShortFormatter.string(from: Date())) "
         var levelString = ""
         switch level {
@@ -209,17 +231,17 @@ public struct XTILoger {
         }
         var functionString = isShowFunctionName ? function : ""
         functionString = functionString + " "
-        let message: String
-        if args.count == 0 {
-            message = format
-        } else {
-            message = String(format: format, arguments: args)
-        }
 
         let threadId = String(unsafeBitCast(Thread.current, to: Int.self), radix: 16, uppercase: false)
         let isMain = isShowThread ? Thread.current.isMainThread ? "[Main] " : "[Global]<0x\(threadId)> " : ""
         let infoString = "\(dateTime)\(levelString)\(fileString)\(isMain)\(functionString)".trimmingCharacters(in: CharacterSet(charactersIn: " "))
-        let logString = infoString + (infoString.isEmpty ? "" : " => ") + "\(message)"
+
+        var logString: String
+        if let tempValue = value {
+            logString = infoString + (infoString.isEmpty ? "" : " => ") + "\(tempValue)"
+        } else {
+            logString = infoString + (infoString.isEmpty ? "" : " => ") + String(describing: value)
+        }
 
         self.xt_print(logString)
         self.printToFile(level, log: logString)

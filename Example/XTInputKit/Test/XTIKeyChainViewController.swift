@@ -27,7 +27,7 @@ class XTIKeyChainViewController: UIViewController, UITextFieldDelegate {
         valueLabel.text = "值："
         self.valueTextField.leftView = valueLabel
         self.valueTextField.leftViewMode = .always
-        loger.debug(XTIKeyChainTool.default.keyChainUuid)
+        xtiloger.debug(XTIKeyChainTool.default.keyChainUuid)
     }
     
     @IBAction func clickSaveButton(_ sender: UIButton) {

@@ -29,21 +29,21 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
         XTINetWorkConfig.defaultHostName = "design.tcoding.cn" // 设置默认的网络请求域名
         XTINetWorkConfig.defaultHttpScheme = .http
         XTINetWorkConfig.defaultSignature = { (parameters) -> String in // 设置所有的接口的签名方法
-            loger.debug(parameters)
+            xtiloger.debug(parameters)
             return "signature=signature"
         }
         resultTextView.delegate = self
-//        loger.debug(XTITool.compareAppVersion("2.1.0"))
-//        loger.debug(XTITool.compareAppVersion("1.12.0"))
-//        loger.debug(XTITool.compareAppVersion("1.21.1"))
-//        loger.debug(XTITool.compareAppVersion("1.1.1"))
-//        loger.debug(XTITool.compareAppVersion("1.1"))
-//        loger.debug(XTITool.compareAppVersion("1.1.0"))
+//        xtiloger.debug(XTITool.compareAppVersion("2.1.0"))
+//        xtiloger.debug(XTITool.compareAppVersion("1.12.0"))
+//        xtiloger.debug(XTITool.compareAppVersion("1.21.1"))
+//        xtiloger.debug(XTITool.compareAppVersion("1.1.1"))
+//        xtiloger.debug(XTITool.compareAppVersion("1.1"))
+//        xtiloger.debug(XTITool.compareAppVersion("1.1.0"))
         resultTextView.addObserver(self, forKeyPath: "contentOffset", options: .new, context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        loger.debug(keyPath)
+        xtiloger.debug(keyPath)
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,40 +56,40 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
         request.bundelID = "1234567890"
         DispatchQueue.XTI.mainAsyncAfter(3) {
             self.request.send(success: {[weak self] _, result in
-                self?.resultString = loger.debug(result)
+                self?.resultString = xtiloger.debug(result)
                 if let res = result as? XTITestResult {
-                    self?.resultString = loger.debug(res.toJSON()!)
+                    self?.resultString = xtiloger.debug(res.toJSON()!)
                 }
             }) { [weak self] _, error in
                 if let strongSelf = self {
-                    strongSelf.resultString = loger.warning(error?.localizedDescription)
+                    strongSelf.resultString = xtiloger.warning(error?.localizedDescription)
                 }
             }
             self.request.send(success: {[weak self] _, result in
                 if let res = result as? HandyJSON {
-                    self?.resultString = loger.debug(res.toJSON()!)
+                    self?.resultString = xtiloger.debug(res.toJSON()!)
                 }
             }) { [weak self] _, error in
                 if let strongSelf = self {
-                    strongSelf.resultString = loger.warning(error?.localizedDescription)
+                    strongSelf.resultString = xtiloger.warning(error?.localizedDescription)
                 }
             }
             self.request.send(success: {[weak self] _, result in
                 if let res = result as? XTITestResult {
-                    self?.resultString = loger.debug(res.toJSONString()!)
+                    self?.resultString = xtiloger.debug(res.toJSONString()!)
                 }
             }) { [weak self] _, error in
                 if let strongSelf = self {
-                    strongSelf.resultString = loger.warning(error?.localizedDescription)
+                    strongSelf.resultString = xtiloger.warning(error?.localizedDescription)
                 }
             }
             self.request.send(success: {[weak self] _, result in
                 if let res = result as? XTITestResult {
-                    self?.resultString = loger.debug(res.toJSON()!)
+                    self?.resultString = xtiloger.debug(res.toJSON()!)
                 }
             }) { [weak self] _, error in
                 if let strongSelf = self {
-                    strongSelf.resultString = loger.warning(error?.localizedDescription)
+                    strongSelf.resultString = xtiloger.warning(error?.localizedDescription)
                 }
             }
         }
@@ -99,23 +99,23 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
         XTIBaseRequest().get(url: "http://design.tcoding.cn/rxswift/login/index", parameters: p2, resultClass: XTITestResult.self, success: { [weak self] request, result in
             if let res = result as? XTITestResult {
                 if let strongSelf = self {
-                    strongSelf.resultString = loger.debug(res.toJSON()!)
+                    strongSelf.resultString = xtiloger.debug(res.toJSON()!)
                 }
             }
         }) { [weak self] _, error in
             if let strongSelf = self {
-                strongSelf.resultString = loger.warning(error?.localizedDescription)
+                strongSelf.resultString = xtiloger.warning(error?.localizedDescription)
             }
         }
 
         XTIBaseRequest().get(url: "http://design.21321tcoding.cn/123123123", parameters: p2, resultClass: XTITestResult.self, completed: { [weak self] _, result, error in
             if let res = result as? XTITestResult {
                 if let strongSelf = self {
-                    strongSelf.resultString = loger.debug(res.toJSON()!)
+                    strongSelf.resultString = xtiloger.debug(res.toJSON()!)
                 }
             } else {
                 if let strongSelf = self {
-                    strongSelf.resultString = loger.warning(error?.localizedDescription)
+                    strongSelf.resultString = xtiloger.warning(error?.localizedDescription)
                 }
             }
         })
@@ -128,6 +128,6 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
     }
 
     deinit {
-        loger.debug(self)
+        xtiloger.debug(self)
     }
 }

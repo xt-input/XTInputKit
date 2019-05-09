@@ -28,6 +28,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let s = "123123123"
+
+        print(String(format: "%p", s))
+        xtiloger.debug(format: "%p   %p", s, s)
+        xtiloger.debug(String(format: "%p", s))
+
+        print(String(format: "%p", self))
+        xtiloger.debug(format: "%p   %p", self, nil)
+        xtiloger.debug(String(format: "%p", self))
+
         // Do any additional setup after loading the view, typically from a nib.
         self.view.backgroundColor = UIColor.white
         self.xti_navigationTitle = "navigation标题"
@@ -36,9 +47,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.xti_nextBackColor = UIColor.XTI.random
         self.xti_tabbarTitle = "tabbar标题"
         XTITimer.defualt.addObserver(self, repeating: 1, sum: 20)
-        var i = 10
-        i++
-        loger.debug(format: "%d %p", args: i, i)
         self.tableView = UITableView(frame: self.view.bounds, style: .plain)
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -52,13 +60,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @objc func xti_toucheRightBarButtonItem() {
-        //        loger.debug("点击了导航栏右边的按钮")
-        //        loger.debug(self.xti_nextBackTitle)
+        //        xtiloger.debug("点击了导航栏右边的按钮")
+        //        xtiloger.debug(self.xti_nextBackTitle)
 //        self.xti_pushOrPresentVC(XTINetWorkViewController.initwithstoryboard("Storyboard"))
     }
 
     @objc func countdown(_ item: XTITimerItem) {
-        loger.debug(item.count)
+        xtiloger.debug(item.count)
         if item.count == 12 {
             item.isCancel = true
         }
@@ -97,11 +105,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             notification.userInfo = ["id": "1", "name": "xxxx"]
             notification.title = "测试"
             notification.categoryIdentifier = "UNNotificationRequestUNNotificationRequest"
-            loger.debug("发送通知")
+            xtiloger.debug("发送通知")
             //        UIApplication.shared.presentLocalNotificationNow(notification)
             let request = UNNotificationRequest(identifier: "UNNotificationRequestUNNotificationRequest", content: notification, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false))
             UNUserNotificationCenter.current().add(request) { error in
-                loger.debug(error)
+                xtiloger.debug(error)
             }
         } else {
             // Fallback on earlier versions
@@ -115,7 +123,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //            if item?.count == 12 {
 //                item?.isCancel = true
 //            }
-//            loger.debug(item?.count)
+//            xtiloger.debug(item?.count)
         }
     }
 
@@ -126,7 +134,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     deinit {
         count -= 1
-        loger.debug(count)
+        xtiloger.debug(count)
         self.tableView.removeObserver(self, forKeyPath: "tableView")
     }
 }

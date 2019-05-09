@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="Ldl-dK-owT">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="QAg-so-iFI" customClass="ViewController" customModule="XTInputKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QAg-so-iFI" customClass="ViewController" customModule="XTInputKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c4g-2d-v8W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -60,7 +60,7 @@
                                 <rect key="frame" x="172" y="152" width="31" height="30"/>
                                 <state key="normal" title="推送"/>
                                 <connections>
-                                    <action selector="clickNotificationBtn:" destination="QAg-so-iFI" eventType="touchUpInside" id="Jwy-zw-wFd"/>
+                                    <action selector="clickNotificationBtn:" destination="QAg-so-iFI" eventType="touchUpInside" id="IX4-Qe-lPg"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64u-3S-8hh">
@@ -92,7 +92,7 @@
         <!--Key Chain View Controller-->
         <scene sceneID="n9N-IH-XEN">
             <objects>
-                <viewController storyboardIdentifier="XTIKeyChainViewController" id="zuJ-Lu-ezI" customClass="XTIKeyChainViewController" customModule="XTInputKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="XTIKeyChainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zuJ-Lu-ezI" customClass="XTIKeyChainViewController" customModule="XTInputKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b8I-ds-FyG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -255,7 +255,7 @@
         <!--Net Work View Controller-->
         <scene sceneID="BED-N4-aTy">
             <objects>
-                <viewController storyboardIdentifier="XTINetWorkViewController" id="6nA-0x-ZDr" customClass="XTINetWorkViewController" customModule="XTInputKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="XTINetWorkViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6nA-0x-ZDr" customClass="XTINetWorkViewController" customModule="XTInputKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bYa-Ff-GNo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

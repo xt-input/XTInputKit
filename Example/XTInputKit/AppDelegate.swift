@@ -10,18 +10,16 @@ import UIKit
 import UserNotifications
 import XTInputKit
 
-var loger = XTILoger.default
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-        //        loger.saveFileLevel = .all
-        //        loger.debug("应用即将启动")
+        //        xtiloger.saveFileLevel = .all
+        //        xtiloger.debug("应用即将启动")
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
-            loger.debug("通知授权")
-            loger.debug(granted)
+            xtiloger.debug("通知授权")
+            xtiloger.debug(granted)
         }
         UNUserNotificationCenter.current().delegate = self
         return true
@@ -31,10 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Override point for customization after application launch.
         self.window = UIWindow(frame: XTIMacros.SCREEN_BOUNDS)
         //        UINavigationController.xti_openBackGesture = false
-        loger.debug(UIDevice().xti.modelName.rawValue)
-        loger.debug(XTIMacros.isIphone)
+        xtiloger.debug(UIDevice().xti.modelName.rawValue)
+        xtiloger.debug(XTIMacros.isIphone)
         self.initRootViewController()
-        loger.debug("应用完成启动前的准备")
+        xtiloger.debug("应用完成启动前的准备")
         return true
     }
 
@@ -55,28 +53,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-        loger.debug("应用即将退到后台")
+        xtiloger.debug("应用即将退到后台")
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        loger.debug("应用已经退到后台")
+        xtiloger.debug("应用已经退到后台")
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        loger.debug("应用即将回到前台<成为第一响应者>")
+        xtiloger.debug("应用即将回到前台<成为第一响应者>")
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        loger.debug("应用变成活跃状态<可以是后台回到前台，也可以是启动>")
+        xtiloger.debug("应用变成活跃状态<可以是后台回到前台，也可以是启动>")
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        loger.debug("应用即将被杀死")
+        xtiloger.debug("应用即将被杀死")
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -87,14 +85,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        loger.debug("收到通知")
-        loger.debug(notification.description)
+        xtiloger.debug("收到通知")
+        xtiloger.debug(notification.description)
         completionHandler([.alert, .badge, .sound])
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        loger.debug("点击通知")
-        loger.debug(response.description)
+        xtiloger.debug("点击通知")
+        xtiloger.debug(response.description)
         completionHandler()
     }
 }
