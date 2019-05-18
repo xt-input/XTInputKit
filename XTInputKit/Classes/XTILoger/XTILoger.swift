@@ -41,7 +41,7 @@ extension XTILogerLevel: Comparable {
 }
 
 /// 请在 "Swift Compiler - Custom Flags" 选项查找 "Other Swift Flags" 然后在DEBUG配置那里添加"-D DEBUG".
-public struct XTILoger {
+public class XTILoger {
     private static var _default: XTILoger!
     public static var `default`: XTILoger {
         if _default == nil {
@@ -238,7 +238,7 @@ public struct XTILoger {
 
         var logString: String
         if let tempValue = value {
-            logString = infoString + (infoString.isEmpty ? "" : " => ") + "\(tempValue)"
+            logString = infoString + (infoString.isEmpty ? "" : " => ") + String(describing: tempValue)
         } else {
             logString = infoString + (infoString.isEmpty ? "" : " => ") + String(describing: value)
         }

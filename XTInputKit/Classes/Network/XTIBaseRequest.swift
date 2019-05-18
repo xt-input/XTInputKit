@@ -27,7 +27,7 @@ open class XTIBaseRequest: RequestInterceptor {
     public var iSLogRawData: Bool {
         get {
             if _iSLogRawData == nil {
-                return XTINetWorkConfig.iSLogRawData
+                _iSLogRawData = XTINetWorkConfig.iSLogRawData
             }
             return _iSLogRawData
         } set {
@@ -49,6 +49,18 @@ open class XTIBaseRequest: RequestInterceptor {
             return _httpMethod
         } set {
             _httpMethod = newValue
+        }
+    }
+
+    fileprivate var _encoding: ParameterEncoding!
+    public var encoding: ParameterEncoding! {
+        get {
+            if _encoding == nil {
+                _encoding = XTINetWorkConfig.defaultEncoding
+            }
+            return _encoding
+        } set {
+            _encoding = newValue
         }
     }
 
@@ -291,15 +303,17 @@ open class XTIBaseRequest: RequestInterceptor {
         if sign != "" {
             tempHeaders["sign"] = sign
         }
+
         httpManager.request(url,
                             method: tempMethod,
                             parameters: tempParameters,
-                            encoding: URLEncoding.default,
-                            headers: tempHeaders).responseString { [weak self] res in
-            if let strongSelf = self {
-                strongSelf.requestCallback(res, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
+                            encoding: encoding,
+                            headers: tempHeaders)
+            .responseString { [weak self] res in
+                if let strongSelf = self {
+                    strongSelf.requestCallback(res, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
+                }
             }
-        }
     }
 
     // MARK: - 文件上传
@@ -354,7 +368,7 @@ open class XTIBaseRequest: RequestInterceptor {
             }
         }, to: url, method: .post, headers: tempHeaders, interceptor: self)
             .uploadProgress(closure: progressCallback)
-            .responseString { [weak self] response in
+            .responseString {[weak self] response in
                 if let strongSelf = self {
                     strongSelf.requestCallback(response, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
                 }
@@ -376,33 +390,45 @@ open class XTIBaseRequest: RequestInterceptor {
                                      error errorCallback: XTIRequestErrorCallback! = nil) {
         outRawData(result)
         self.result = result
-        let code = result.response == nil ? 0 : result.response!.statusCode
-        if code == 200 {
-            var resultValue: Any!
-            do {
-                resultValue = try JSONSerialization.jsonObject(with: result.data!, options: JSONSerialization.ReadingOptions.mutableContainers)
-            } catch {
+        var error: Error?
+        var resultValue: Any!
+
+        if let tempResponse = result.response {
+            if tempResponse.statusCode == 200 {
+                do {
+                    resultValue = try JSONSerialization.jsonObject(with: result.data!, options: JSONSerialization.ReadingOptions.mutableContainers)
+                } catch {
+                    resultValue = result.value
+                }
+                if resultType != nil {
+                    resultValue = resultType?.deserialize(from: result.value) as Any
+                } else if resultClass != nil {
+                    resultValue = resultClass?.deserialize(from: result.value) as Any
+                }
+            } else {
                 resultValue = result.value
-            }
-            if resultType != nil {
-                resultValue = resultType?.deserialize(from: result.value) as Any
-            } else if resultClass != nil {
-                resultValue = resultClass?.deserialize(from: result.value) as Any
-            }
-            if successCallBack != nil {
-                successCallBack(result, resultValue)
-            }
-            if completedCallback != nil {
-                completedCallback(result, resultValue, nil)
+                let domain = HTTPURLResponse.localizedString(forStatusCode: tempResponse.statusCode)
+                var info = [String: Any]()
+                if let tempUrl = tempResponse.url {
+                    info["url"] = tempUrl
+                }
+                error = NSError(domain: domain, code: tempResponse.statusCode, userInfo: info)
             }
         } else {
-            let domain = HTTPURLResponse.localizedString(forStatusCode: code)
-            let error = NSError(domain: domain, code: code, userInfo: nil)
+            error = result.error
+        }
+
+        if completedCallback != nil {
+            completedCallback(result, resultValue, error)
+        }
+
+        if let tempError = error {
             if errorCallback != nil {
-                errorCallback(result, error)
+                errorCallback(result, tempError)
             }
-            if completedCallback != nil {
-                completedCallback(result, nil, error)
+        } else {
+            if successCallBack != nil {
+                successCallBack(result, resultValue)
             }
         }
     }
@@ -439,7 +465,6 @@ open class XTIBaseRequest: RequestInterceptor {
             }
         }.responseString { result in
             let code = result.response == nil ? 0 : result.response!.statusCode
-
             if code == 200 {
                 if successCallBack != nil {
                     successCallBack(nil, result)
@@ -466,11 +491,13 @@ open class XTIBaseRequest: RequestInterceptor {
     /// - Parameter result: 原始数据
     open func outRawData(_ result: DataResponse<String>) {
         if iSLogRawData {
-            XTILoger.default.info(result)
+            XTILoger.default.debug(result)
         }
     }
 
     deinit {
-        XTILoger.default.info(self)
+        #if DEBUG
+            XTILoger.default.info(self)
+        #endif
     }
 }

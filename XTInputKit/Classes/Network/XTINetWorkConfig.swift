@@ -83,7 +83,7 @@ public struct XTINetWorkConfig {
     public static var defaultContentType = "multipart/form-data; charset=utf-8"
     public static var defaultTimeoutInterval = 30.0
     public static var defaultHttpMaximumConnectionsPerHost = 10
-
+    public static var defaultEncoding:ParameterEncoding = URLEncoding.default
     fileprivate static var _defaultopenHttpHeader: XTIHTTPHeaders!
     /// 公共参数，放置在请求头里
     public static var defaultopenHttpHeader: XTIHTTPHeaders! {
@@ -114,5 +114,4 @@ public struct XTINetWorkConfig {
 
     /// 网络请求签名，如果设置了该属性，所有的网络请求都会调用，如果某一个网络请求不需要可以继承XTIBaseRequest，然后重写signature方法
     public static var defaultSignature: ((_ parameters: XTIParameters) -> String)!
-//    public static var defaultSignature: ((_ parameters: XTIParameters) -> String)!
 }

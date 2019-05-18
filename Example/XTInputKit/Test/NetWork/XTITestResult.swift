@@ -14,7 +14,7 @@ import UIKit
 struct XTITestResult: HandyJSON {
     var code: String?
     var message: String?
-    var result: Result?
+    var result1: Result?
 }
 
 struct Result: HandyJSON {
@@ -23,6 +23,7 @@ struct Result: HandyJSON {
 //    var resultList: [[ResultList]]?
     var totalCount: Int?
     var totalPage: Int?
+    var int: Int?
 //    required init() {
 //    }
     func didFinishMapping() {

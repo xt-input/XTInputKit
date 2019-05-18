@@ -16,6 +16,7 @@ class XTITestRequest: XTIBaseRequest {
         super.init()
         serviceName = "/rxswift/login/index"
         httpMethod = .post
+        resultClass = XTITestResult.self
     }
 
     override func buildParameters() -> XTIParameters {

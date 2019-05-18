@@ -15,12 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-        //        xtiloger.saveFileLevel = .all
-        //        xtiloger.debug("应用即将启动")
+        xtiloger.saveFileLevel = .all
+        xtiloger.debug("应用即将启动")
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
             xtiloger.debug("通知授权")
             xtiloger.debug(granted)
         }
+
+        NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification, object: nil, queue: OperationQueue.main) { [weak self] _ in
+            xtiloger.debug(self)
+        }
+
         UNUserNotificationCenter.current().delegate = self
         return true
     }

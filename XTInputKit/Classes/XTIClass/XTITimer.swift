@@ -47,7 +47,7 @@ open class XTITimerItem: XTIObserverItem {
         super.init(item)
         self._sum = sum
         self._labelName = name
-        self.timer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.global(qos: .background))
+        self.timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags.strict, queue: DispatchQueue.global(qos: .background))
         self.timer.schedule(wallDeadline: DispatchWallTime.now() + interval, repeating: interval)
         self.timer.setEventHandler { [weak self] in
             if self?.observerItem == nil || (self?.isEnd() != nil && (self?.isEnd())!) {

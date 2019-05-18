@@ -30,7 +30,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
 
         let s = "123123123"
-
         print(String(format: "%p", s))
         xtiloger.debug(format: "%p   %p", s, s)
         xtiloger.debug(String(format: "%p", s))
