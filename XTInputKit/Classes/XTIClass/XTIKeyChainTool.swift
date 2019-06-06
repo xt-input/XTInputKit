@@ -2,7 +2,7 @@
 //  XTIKeyChainTool.swift
 //  XTInputKit
 //
-//  Created by Input on 2018/3/16.
+//  Created by xt-input on 2018/3/16.
 //  Copyright © 2018年 input. All rights reserved.
 //
 

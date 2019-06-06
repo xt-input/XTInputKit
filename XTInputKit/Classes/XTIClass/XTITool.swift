@@ -2,7 +2,7 @@
 //  XTITool.swift
 //  XTInputKitDemo
 //
-//  Created by Input on 2018/1/29.
+//  Created by xt-input on 2018/1/29.
 //  Copyright © 2018年 input. All rights reserved.
 //
 

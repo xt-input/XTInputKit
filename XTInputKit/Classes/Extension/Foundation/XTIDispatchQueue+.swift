@@ -2,7 +2,7 @@
 //  XTIDispatchQueue+.swift
 //  XTInputKit
 //
-//  Created by Input on 2017/7/27.
+//  Created by xt-input on 2017/7/27.
 //  Copyright © 2017年 PeopleHelp. All rights reserved.
 //
 

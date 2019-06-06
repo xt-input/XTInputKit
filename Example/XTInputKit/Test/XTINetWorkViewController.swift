@@ -2,7 +2,7 @@
 //  XTINetWorkViewController.swift
 //  XTInputKit
 //
-//  Created by Input on 2018/3/19.
+//  Created by xt-input on 2018/3/19.
 //  Copyright © 2018年 input. All rights reserved.
 //
 
@@ -117,7 +117,11 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
                 }
             } else {
                 if let strongSelf = self {
-                    strongSelf.resultString = xtiloger.warning(error.debugDescription)
+                    if let afError = error?.asAFError {
+                        strongSelf.resultString = xtiloger.warning(afError.errorDescription)
+                    } else {
+                        strongSelf.resultString = xtiloger.warning(error.debugDescription)
+                    }
                 }
             }
         })
@@ -129,7 +133,11 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
                 }
             } else {
                 if let strongSelf = self {
-                    strongSelf.resultString = xtiloger.warning(error.debugDescription)
+                    if let afError = error?.asAFError {
+                        strongSelf.resultString = xtiloger.warning(afError.errorDescription)
+                    } else {
+                        strongSelf.resultString = xtiloger.warning(error.debugDescription)
+                    }
                 }
             }
         })

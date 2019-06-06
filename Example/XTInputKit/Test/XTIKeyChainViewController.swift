@@ -2,7 +2,7 @@
 //  XTIKeyChainViewController.swift
 //  XTInputKit
 //
-//  Created by Input on 2018/3/18.
+//  Created by xt-input on 2018/3/18.
 //  Copyright © 2018年 input. All rights reserved.
 //
 

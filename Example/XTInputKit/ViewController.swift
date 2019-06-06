@@ -2,15 +2,15 @@
 //  ViewController.swift
 //  XTInputKit
 //
-//  Created by Input on 2018/1/20.
+//  Created by xt-input on 2018/1/20.
 //  Copyright © 2018年 input. All rights reserved.
 //
 
-// import Alamofire
+
 import UIKit
 import UserNotifications
-import WebKit
 import XTInputKit
+import SnapKit
 
 var count = 0
 
@@ -29,28 +29,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let s = "123123123"
-        print(String(format: "%p", s))
-        xtiloger.debug(format: "%p   %p", s, s)
-        xtiloger.debug(String(format: "%p", s))
-
-        print(String(format: "%p", self))
-        xtiloger.debug(format: "%p   %p", self, nil)
-        xtiloger.debug(String(format: "%p", self))
+//        let s = "123123123"
+//        print(String(format: "%p", s))
+//        xtiloger.debug(format: "%p   %p", s, s)
+//        xtiloger.debug(String(format: "%p", s))
+//
+//        print(String(format: "%p", self))
+//        xtiloger.debug(format: "%p   %p", self, nil)
+//        xtiloger.debug(String(format: "%p", self))
 
         // Do any additional setup after loading the view, typically from a nib.
-        self.view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.white
         self.xti_navigationTitle = "navigation标题"
         self.xti_setBarButtonItem(.right, title: "测试")
         self.xti_nextBackTitle = ""
         self.xti_nextBackColor = UIColor.XTI.random
         self.xti_tabbarTitle = "tabbar标题"
-        XTITimer.defualt.addObserver(self, repeating: 1, sum: 20)
-        self.tableView = UITableView(frame: self.view.bounds, style: .plain)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: UITableViewCell.className)
-        self.tableView.addObserver(self, forKeyPath: "tableView", options: .new, context: nil)
+//        XTITimer.defualt.addObserver(self, repeating: 1, sum: 20)
+//        let label = UILabel()
+//        let str = #"<body><div id="main"><div style="text-align: center;"><h1>恭喜您，访问tcoding.cn成功！</h1></div><div style="text-align: center;font-size:80px;"><p>小唐朝的个人站点导航，谢谢访问！</p></div><div style="text-align:center; font-size:36px;"><p><a href="http://blog.tcoding.cn" target="_blank">我的博客</a></p><p><a href="/manager" target="_blank">服务器管理</a></p><p><a href="deviceinfo" target="_blank">获取UDID</a></p></div><br><div style="text-align: center;">联系站长：<a href="mailto:input@tcoding.cn" target="_blank">input</a></div></div></body>"#
+//        let attr = try! NSAttributedString(data: str.data(using: String.Encoding.unicode)!, options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil)
+//        label.attributedText = attr
+//        label.numberOfLines = 0
+//        self.view.addSubview(label)
+//        label.snp.makeConstraints { (make) in
+//            make.centerX.equalToSuperview()
+//            make.top.equalTo(self.view.snp.centerY)
+//            make.right.equalToSuperview()
+//        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -79,6 +85,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+    }
+
+    @IBAction func clickTabBtn(_ sender: UIButton) {
+        self.xti_pushOrPresentVC(TableViewController())
     }
 
     @IBAction func clickPushBtn(_ sender: UIButton) {
@@ -134,6 +144,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     deinit {
         count -= 1
         xtiloger.debug(count)
-        self.tableView.removeObserver(self, forKeyPath: "tableView")
     }
 }

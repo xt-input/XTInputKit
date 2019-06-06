@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QAg-so-iFI" customClass="ViewController" customModule="XTInputKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c4g-2d-v8W">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Le-bI-EGt">
-                                <rect key="frame" x="164" y="60" width="47" height="26"/>
+                                <rect key="frame" x="183.66666666666666" y="60" width="47" height="26"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
                                 <state key="normal" title="跳转"/>
                                 <userDefinedRuntimeAttributes>
@@ -38,7 +38,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wpZ-EL-eCs">
-                                <rect key="frame" x="164" y="106" width="47" height="26"/>
+                                <rect key="frame" x="183.66666666666666" y="106" width="47" height="26"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
                                 <state key="normal" title="关闭"/>
                                 <userDefinedRuntimeAttributes>
@@ -57,26 +57,28 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DvY-Z2-EDh">
-                                <rect key="frame" x="172" y="152" width="31" height="30"/>
+                                <rect key="frame" x="191.66666666666666" y="152" width="31" height="30"/>
                                 <state key="normal" title="推送"/>
                                 <connections>
                                     <action selector="clickNotificationBtn:" destination="QAg-so-iFI" eventType="touchUpInside" id="IX4-Qe-lPg"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64u-3S-8hh">
-                                <rect key="frame" x="174" y="355" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cee-vE-1IZ">
+                                <rect key="frame" x="192" y="194" width="30" height="30"/>
+                                <state key="normal" title="tab"/>
+                                <connections>
+                                    <action selector="clickTabBtn:" destination="QAg-so-iFI" eventType="touchUpInside" id="Tzo-ds-DBu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="DvY-Z2-EDh" firstAttribute="centerX" secondItem="c4g-2d-v8W" secondAttribute="centerX" id="2Kr-Ha-OmT"/>
+                            <constraint firstItem="cee-vE-1IZ" firstAttribute="top" secondItem="DvY-Z2-EDh" secondAttribute="bottom" constant="12" id="OGO-aI-141"/>
                             <constraint firstItem="DvY-Z2-EDh" firstAttribute="top" secondItem="wpZ-EL-eCs" secondAttribute="bottom" constant="20" id="PcO-lA-3oU"/>
                             <constraint firstItem="wpZ-EL-eCs" firstAttribute="centerX" secondItem="c4g-2d-v8W" secondAttribute="centerX" id="hk0-Fh-HQx"/>
                             <constraint firstItem="wpZ-EL-eCs" firstAttribute="top" secondItem="0Le-bI-EGt" secondAttribute="bottom" constant="20" id="jgn-x1-zMX"/>
+                            <constraint firstItem="cee-vE-1IZ" firstAttribute="centerX" secondItem="c4g-2d-v8W" secondAttribute="centerX" id="qnO-46-Sxv"/>
                             <constraint firstItem="0Le-bI-EGt" firstAttribute="top" secondItem="y7w-Fe-Cny" secondAttribute="top" constant="40" id="rU4-JB-pSm"/>
                             <constraint firstItem="wpZ-EL-eCs" firstAttribute="centerX" secondItem="c4g-2d-v8W" secondAttribute="centerX" id="xJH-Bm-AP4"/>
                             <constraint firstItem="0Le-bI-EGt" firstAttribute="centerX" secondItem="c4g-2d-v8W" secondAttribute="centerX" id="xcV-eU-XAo"/>
@@ -87,18 +89,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fTy-kz-gYA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="23"/>
+            <point key="canvasLocation" x="131.8840579710145" y="22.826086956521742"/>
         </scene>
         <!--Key Chain View Controller-->
         <scene sceneID="n9N-IH-XEN">
             <objects>
                 <viewController storyboardIdentifier="XTIKeyChainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zuJ-Lu-ezI" customClass="XTIKeyChainViewController" customModule="XTInputKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b8I-ds-FyG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fra-u5-0oO">
-                                <rect key="frame" x="32" y="109" width="311" height="45"/>
+                                <rect key="frame" x="32" y="109" width="350" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="pdI-pj-3Tv"/>
                                 </constraints>
@@ -107,7 +109,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zfk-Nz-Kpp">
-                                <rect key="frame" x="70.5" y="174" width="47" height="26"/>
+                                <rect key="frame" x="80" y="174" width="47" height="26"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
                                 <state key="normal" title="保存"/>
                                 <userDefinedRuntimeAttributes>
@@ -126,7 +128,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hr9-ae-Ge7">
-                                <rect key="frame" x="32" y="52" width="311" height="45"/>
+                                <rect key="frame" x="32" y="52" width="350" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Ucs-GB-pI0"/>
                                 </constraints>
@@ -135,7 +137,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9J7-BL-rG0">
-                                <rect key="frame" x="258" y="174" width="47" height="26"/>
+                                <rect key="frame" x="287" y="174" width="47" height="26"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
                                 <state key="normal" title="读取"/>
                                 <userDefinedRuntimeAttributes>
@@ -154,7 +156,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AcJ-uV-TQY">
-                                <rect key="frame" x="164" y="174" width="47" height="26"/>
+                                <rect key="frame" x="183.66666666666666" y="174" width="47" height="26"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
                                 <state key="normal" title="删除">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -175,7 +177,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldh-te-nb5">
-                                <rect key="frame" x="148.5" y="220" width="78" height="26"/>
+                                <rect key="frame" x="168" y="220" width="78" height="26"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
                                 <state key="normal" title="删除全部">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -193,28 +195,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="clickDeleteAllButton:" destination="zuJ-Lu-ezI" eventType="touchUpInside" id="sJd-84-Ldl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTf-c1-8wr">
-                                <rect key="frame" x="119" y="379" width="84" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
-                                <state key="normal" title="删除全部1">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="xt_borderColor">
-                                        <color key="value" red="0.62745098040000002" green="0.87058823529999996" blue="0.4823529412" alpha="1" colorSpace="deviceRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="xt_cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="xt_borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="clickDeleteAllButton:" destination="zuJ-Lu-ezI" eventType="touchUpInside" id="D6R-xf-2gH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -257,11 +237,11 @@
             <objects>
                 <viewController storyboardIdentifier="XTINetWorkViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6nA-0x-ZDr" customClass="XTINetWorkViewController" customModule="XTInputKitDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bYa-Ff-GNo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSu-co-WCa">
-                                <rect key="frame" x="148.5" y="40" width="78" height="26"/>
+                                <rect key="frame" x="168" y="40" width="78" height="26"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
                                 <state key="normal" title="网络请求"/>
                                 <userDefinedRuntimeAttributes>
@@ -280,7 +260,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="TaU-Cq-6qE">
-                                <rect key="frame" x="20" y="86" width="335" height="532"/>
+                                <rect key="frame" x="20" y="86" width="374" height="601"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="scrollIndicatorInsets" minX="8" minY="4" maxX="8" maxY="4"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

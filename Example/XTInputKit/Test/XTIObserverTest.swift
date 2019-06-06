@@ -2,7 +2,7 @@
 //  XTObserverTest.swift
 //  XTInputKit
 //
-//  Created by Input on 2018/4/27.
+//  Created by xt-input on 2018/4/27.
 //  Copyright © 2018年 input. All rights reserved.
 //
 

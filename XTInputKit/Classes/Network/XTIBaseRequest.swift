@@ -2,7 +2,7 @@
 //  XTIBaseRequest.swift
 //  XTInputKit
 //
-//  Created by Input on 2018/3/16.
+//  Created by xt-input on 2018/3/16.
 //  Copyright © 2018年 input. All rights reserved.
 //
 
@@ -308,7 +308,7 @@ open class XTIBaseRequest: RequestInterceptor {
                             method: tempMethod,
                             parameters: tempParameters,
                             encoding: encoding,
-                            headers: tempHeaders)
+                            headers: tempHeaders).validate(statusCode: 200 ..< 300)
             .responseString { [weak self] res in
                 if let strongSelf = self {
                     strongSelf.requestCallback(res, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
@@ -367,8 +367,8 @@ open class XTIBaseRequest: RequestInterceptor {
                 }
             }
         }, to: url, method: .post, headers: tempHeaders, interceptor: self)
-            .uploadProgress(closure: progressCallback)
-            .responseString {[weak self] response in
+            .uploadProgress(closure: progressCallback).validate(statusCode: 200 ..< 300)
+            .responseString { [weak self] response in
                 if let strongSelf = self {
                     strongSelf.requestCallback(response, resultClass: resultType, completed: completedCallback, success: successCallBack, error: errorCallback)
                 }
@@ -390,41 +390,34 @@ open class XTIBaseRequest: RequestInterceptor {
                                      error errorCallback: XTIRequestErrorCallback! = nil) {
         outRawData(result)
         self.result = result
-        var error: Error?
+        var tempError: Error?
         var resultValue: Any!
 
-        if let tempResponse = result.response {
-            if tempResponse.statusCode == 200 {
-                do {
-                    resultValue = try JSONSerialization.jsonObject(with: result.data!, options: JSONSerialization.ReadingOptions.mutableContainers)
-                } catch {
-                    resultValue = result.value
-                }
-                if resultType != nil {
-                    resultValue = resultType?.deserialize(from: result.value) as Any
-                } else if resultClass != nil {
-                    resultValue = resultClass?.deserialize(from: result.value) as Any
-                }
-            } else {
-                resultValue = result.value
-                let domain = HTTPURLResponse.localizedString(forStatusCode: tempResponse.statusCode)
-                var info = [String: Any]()
-                if let tempUrl = tempResponse.url {
-                    info["url"] = tempUrl
-                }
-                error = NSError(domain: domain, code: tempResponse.statusCode, userInfo: info)
+        switch result.result {
+        case let .success(value):
+            do {
+                resultValue = try JSONSerialization.jsonObject(with: value.data(using: String.Encoding.utf8) ?? Data(), options: JSONSerialization.ReadingOptions.mutableContainers)
+            } catch {
+                resultValue = value
             }
-        } else {
-            error = result.error
+            if resultType != nil {
+                resultValue = resultType?.deserialize(from: value) as Any
+            } else if resultClass != nil {
+                resultValue = resultClass?.deserialize(from: value) as Any
+            }
+            break
+        case let .failure(error):
+            tempError = result.error
+            break
         }
 
         if completedCallback != nil {
-            completedCallback(result, resultValue, error)
+            completedCallback(result, resultValue, tempError)
         }
 
-        if let tempError = error {
+        if let tempTwoEerror = tempError {
             if errorCallback != nil {
-                errorCallback(result, tempError)
+                errorCallback(result, tempTwoEerror)
             }
         } else {
             if successCallBack != nil {
@@ -463,7 +456,7 @@ open class XTIBaseRequest: RequestInterceptor {
             if progressCallback != nil {
                 progressCallback(progress)
             }
-        }.responseString { result in
+        }.validate(statusCode: 200 ..< 300).responseString { result in
             let code = result.response == nil ? 0 : result.response!.statusCode
             if code == 200 {
                 if successCallBack != nil {

@@ -2,7 +2,7 @@
 //  XTIOperator+.swift
 //  XTInputKit
 //
-//  Created by Input on 2018/5/2.
+//  Created by xt-input on 2018/5/2.
 //  Copyright © 2018年 input. All rights reserved.
 //
 

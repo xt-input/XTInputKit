@@ -2,7 +2,7 @@
 //  XTIViewController+.swift
 //  XTInputKit
 //
-//  Created by Input on 2018/1/19.
+//  Created by xt-input on 2018/1/19.
 //  Copyright © 2018年 Input. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import UIKit
 // MARK: - ViewController (UINavigation)
 
 // 导航栏左右两边枚举
-public enum XTINAVPOSITION {
+public enum XTINAVPOSITION: String {
     case left
     case right
 }
@@ -134,9 +134,9 @@ public extension UIViewController {
         let color = titleColor == nil ? navTitleColor : titleColor
         let navItem = navigationItem
         let navBtn = UIButton(type: .custom)
-
-        navBtn.setTitle(title, for: .normal)
-        navBtn.setTitle(title, for: .highlighted)
+        let tempTitle = title == nil ? position.rawValue : title
+        navBtn.setTitle(tempTitle, for: .normal)
+        navBtn.setTitle(tempTitle, for: .highlighted)
 
         navBtn.setTitleColor(color, for: .normal)
         navBtn.setTitleColor(color, for: .highlighted)

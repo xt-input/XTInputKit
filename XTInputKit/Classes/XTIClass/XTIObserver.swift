@@ -2,8 +2,8 @@
 //  XTObserver.swift
 //  XTInputKit
 //
-//  Created by Input on 2017/4/27.
-//  Copyright © 2017年 xt-hacker.com. All rights reserved.
+//  Created by xt-input on 2017/4/27.
+//  Copyright © 2017年 tcoding.cn. All rights reserved.
 //
 
 import Foundation

@@ -2,14 +2,12 @@
 //  UITabBarController+.swift
 //  XTInputKit
 //
-//  Created by Input on 2018/1/27.
+//  Created by xt-input on 2018/1/27.
 //  Copyright © 2018年 input. All rights reserved.
 //
 
 import UIKit
-extension UITabBarController: XTIBaseNameNamespace {}
-
-public extension XTITypeWrapperProtocol where WrappedType == UITabBarController {
+extension UITabBarController {
     /// 添加tabbar的子控制器
     ///
     /// - Parameters:
@@ -18,14 +16,14 @@ public extension XTITypeWrapperProtocol where WrappedType == UITabBarController 
     ///   - image: 默认图片
     ///   - selectedImage: 选中图片
     public func addChildViewController(_ viewController: UIViewController,
-                                tabbarTitle: String! = nil,
-                                image: UIImage,
-                                selectedImage: UIImage! = nil) {
+                                       tabbarTitle: String! = nil,
+                                       image: UIImage,
+                                       selectedImage: UIImage! = nil) {
         if tabbarTitle != nil {
             viewController.xti_tabbarTitle = tabbarTitle
         }
         viewController.tabBarItem.image = image
         viewController.tabBarItem.selectedImage = selectedImage == nil ? image : selectedImage
-        wrappedValue.addChild(viewController)
+        self.addChild(viewController)
     }
 }

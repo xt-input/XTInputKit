@@ -2,7 +2,7 @@
 //  XTINavigationController.swift
 //  XTInputKitDemo
 //
-//  Created by Input on 2018/1/29.
+//  Created by xt-input on 2018/1/29.
 //  Copyright © 2018年 input. All rights reserved.
 //
 
@@ -22,6 +22,12 @@ class XTINavigationController: UINavigationController {
         self.navigationBar.setBackgroundImage(img, for: UIBarMetrics.default)
     }
 
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        if (self.viewControllers.count > 0){
+            viewController.hidesBottomBarWhenPushed = true
+        }
+         super.pushViewController(viewController, animated: animated)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

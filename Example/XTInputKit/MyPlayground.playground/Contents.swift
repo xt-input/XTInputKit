@@ -2,7 +2,6 @@ import UIKit
 import HandyJSON
 import XTInputKit
 
-
 enum XTINetWorkServer {
     enum User: String, XTIServiceName {
         static var app: String{
@@ -20,65 +19,98 @@ enum XTINetWorkServer {
     }
 }
 
-class XTIUserRequest: XTIBaseRequest {
-    
-    static let shared = XTIUserRequest()
-    
-    //登录接口的参数
-    struct LoginParameter: HandyJSON {
-        var username: String!
-        var passwd: String!
-    }
-    
-    
-    var login = LoginParameter()
-    
-    override init() {
-        super.init()
-        // 一些公共的配置可以在这里设置
-        hostName = "design.tcoding.cn"
-        serviceName = "rxswift/login/index"
-    }
-    
-    func login(complete: @escaping XTIRequestCompleteCallback) {
-        var parameters = buildParameters()
-        
-        if !self.login.isEmpty() {
-            parameters += self.login.toJSON()!
-        }
-        XTILoger.default.debug(parameters)
-        post(serviceName: XTINetWorkServer.User.login.value, parameters: parameters, completed: complete)
-    }
+
+
+var seles = ["1","2","3"]
+let btn = "4"
+
+
+if let index = seles.firstIndex(of: btn){
+    seles.remove(at: index)
+}else{
+    seles.append(btn)
+}
+let flag = seles.allSatisfy {
+    $0.count > 0
 }
 
-var userRequest:XTIUserRequest? = XTIUserRequest()
-userRequest?.iSLogRawData = false
-userRequest?.login.username = "username"
-userRequest?.login.passwd = "123456"
-userRequest?.login {(_, result, error) in
-    print(result as Any)
-    print(error as Any)
-}
 
-userRequest = nil
+//var arr2 = arr1
+//
+//xtiloger.debug(format: "%p", arr1.first)
+//xtiloger.debug(format: "%p", arr2.first)
+//
+//arr1[0] = "0"
+//
+//xtiloger.debug(format: "%p", arr1.first)
+//xtiloger.debug(format: "%p", arr2.first)
 
-struct InvestList:HandyJSON{
+//class XTIUserRequest: XTIBaseRequest {
+//
+//    static let shared = XTIUserRequest()
+//
+//    //登录接口的参数
+//    struct LoginParameter: HandyJSON {
+//        var username: String!
+//        var passwd: String!
+//    }
+//
+//
+//    var login = LoginParameter()
+//
+//    override init() {
+//        super.init()
+//        // 一些公共的配置可以在这里设置
+//        hostName = "design.tcoding.cn"
+//        serviceName = "rxswift/login/index"
+//    }
+//
+//    func login(complete: @escaping XTIRequestCompleteCallback) {
+//        var parameters = buildParameters()
+//
+//        if !self.login.isEmpty() {
+//            parameters += self.login.toJSON()!
+//        }
+//        XTILoger.default.debug(parameters)
+//        post(serviceName: XTINetWorkServer.User.login.value, parameters: parameters, completed: complete)
+//    }
+//}
+//
+//var userRequest:XTIUserRequest? = XTIUserRequest()
+//userRequest?.iSLogRawData = false
+//userRequest?.login.username = "username"
+//userRequest?.login.passwd = "123456"
+//userRequest?.login {(_, result, error) in
+//    print(result as Any)
+//    print(error as Any)
+//}
+//
+//userRequest = nil
+
+class InvestList:NSObject, HandyJSON{
     var InvestUuid: String?
     var Title: String?
     var DayRate: String?
     var InvestNum: String?
+    required override init(){}
 }
 
-struct DataT:HandyJSON{
+class DataT:NSObject, HandyJSON{
     var YesterdayIncome: String?
     var InvestList:[InvestList]?
+    required override init(){}
 }
 
 let data = "{\"YesterdayIncome\": \"暂无收益\", \"InvestList\": [{\"InvestUuid\": \"81de907e9c00130d\", \"Title\": \"尊享孵化-200\", \"DayRate\": \"1\", \"InvestNum\": \"200\"}, {\"InvestUuid\": \"03e752e2cec1cfaa\", \"Title\": \"尊享孵化-500\", \"DayRate\": \"1\", \"InvestNum\": \"500\"}, {\"InvestUuid\": \"f279a573b125f654\", \"Title\": \"尊享孵化-2000\", \"DayRate\": \"1\", \"InvestNum\": \"2000\"} ] }"
 
-let d = DataT.deserialize(from: data)
+let d1 = DataT.deserialize(from: data)
+var d2 = d1
 
-print(d?.InvestList)
+xtiloger.debug(format: "%p", d1)
+xtiloger.debug(format: "%p", d2)
+d1?.InvestList?.first?.Title = "123123"
+xtiloger.debug(format: "%p", d1)
+xtiloger.debug(format: "%p", d2)
 
 public protocol LocalValue{
     var value: String { get }

@@ -2,7 +2,7 @@
 //  XTIHandyJSON.swift
 //  XTInputKit
 //
-//  Created by Input on 2018/3/20.
+//  Created by xt-input on 2018/3/20.
 //  Copyright © 2018年 input. All rights reserved.
 //
 

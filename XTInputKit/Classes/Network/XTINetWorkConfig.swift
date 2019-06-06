@@ -2,7 +2,7 @@
 //  XTINetWorkConfig.swift
 //  XTInputKit
 //
-//  Created by Input on 2018/3/16.
+//  Created by xt-input on 2018/3/16.
 //  Copyright © 2018年 input. All rights reserved.
 //
 import Alamofire
@@ -80,7 +80,7 @@ public struct XTINetWorkConfig {
     public static var iSLogRawData = true
     public static var defaultHostName: String!
     public static var defaultHttpScheme = XTIHttpScheme.http
-    public static var defaultContentType = "multipart/form-data; charset=utf-8"
+    public static var defaultContentType = "application/x-www-form-urlencoded; charset=utf-8"
     public static var defaultTimeoutInterval = 30.0
     public static var defaultHttpMaximumConnectionsPerHost = 10
     public static var defaultEncoding:ParameterEncoding = URLEncoding.default

@@ -3,7 +3,7 @@
 //  XTInputKit
 //    参考代码：https://github.com/honghaoz/Loggerithm
 //    (仿写)
-//  Created by Input on 2018/1/3.
+//  Created by xt-input on 2018/1/3.
 //  Copyright © 2018年 Input. All rights reserved.
 //
 
@@ -112,7 +112,7 @@ public class XTILoger {
             if let tempRange = range {
                 var tempFormat = "\(format[tempRange])"
                 if !tempFormat.hasPrefix("% ") && index < args.count {
-                    var arg = args[index]
+                    let arg = args[index]
                     index = index + 1
                     if arg != nil, let cVarArg = arg as? CVarArg {
                         tempFormat = String(format: tempFormat, cVarArg)
