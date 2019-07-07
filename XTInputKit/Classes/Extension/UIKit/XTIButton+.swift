@@ -7,8 +7,6 @@
 //
 
 import UIKit
-extension UIButton: XTIBaseNameNamespace {
-}
 
 // font
 public extension XTITypeWrapperProtocol where WrappedType == UIButton {

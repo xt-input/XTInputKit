@@ -12,7 +12,7 @@ extension String: XTIBaseNameNamespace {}
 public extension XTITypeWrapperProtocol where WrappedType == String {
     // MARK: 获取字符串的长度
 
-    public var length: Int {
+    var length: Int {
         return (wrappedValue as NSString).length
     }
 
@@ -20,7 +20,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     ///
     /// - Parameter sub: 子串
     /// - Returns: true or false
-    public func hasSubstring(_ sub: String) -> Bool {
+     func hasSubstring(_ sub: String) -> Bool {
         let range = wrappedValue.range(of: sub)
         if range == nil || (range?.isEmpty)! {
             return false
@@ -28,7 +28,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
         return true
     }
 
-    public func substringIndex(_ sub: String) -> String.Index {
+    func substringIndex(_ sub: String) -> String.Index {
         let range = wrappedValue.range(of: sub)
         if range == nil {
             return wrappedValue.endIndex
@@ -36,7 +36,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
         return (range?.lowerBound)!
     }
 
-    public func substringBetween(_ startString: String, endString endStr: String) -> String {
+    func substringBetween(_ startString: String, endString endStr: String) -> String {
         var str = wrappedValue.prefix(upTo: substringIndex(endStr))
         str = str.suffix(from: (wrappedValue.range(of: startString)?.upperBound)!)
         return "\(str)"
@@ -51,7 +51,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     ///   - end: 结束位置(不包括)
     /// - Returns: 截取后的string字符串
 
-    public func substring(startPosition start: Int, endPosition end: Int) -> String {
+    func substring(startPosition start: Int, endPosition end: Int) -> String {
         var tempstart = start > length ? length : start
         if tempstart < 1 {
             tempstart = 0
@@ -71,7 +71,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// 从开始截取到toPosition，如果toPosition超出字符串长度就取最长
     /// - Parameter to: 结束位置(不包括)
     /// - Returns: 截取后的string字符串
-    public func substring(toPosition to: Int) -> String {
+    func substring(toPosition to: Int) -> String {
         return substring(startPosition: 0, endPosition: to)
     }
 
@@ -79,7 +79,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// 从fromPosition位置开始截取到字符串尾部，如果fromPosition大于字符串长度就为""
     /// - Parameter fromPosition: 开始位置(包括)
     /// - Returns: 截取后的string字符串
-    public func substring(fromPosition from: Int) -> String {
+    func substring(fromPosition from: Int) -> String {
         return substring(startPosition: from, endPosition: length - 1)
     }
 
@@ -89,7 +89,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     ///   - start: 开始位置(包括)
     ///   - length: 子串长度
     /// - Returns: 截取后的string字符串
-    public func substring(startPosition start: Int, rangeLength length: Int) -> String {
+    func substring(startPosition start: Int, rangeLength length: Int) -> String {
         return substring(startPosition: start, endPosition: start + length - 1)
     }
 
@@ -97,18 +97,18 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// 取字符串尾部的rangeLength长的子串
     /// - Parameter length: 子串长度
     /// - Returns:
-    public func substringIndexToEnd(rangeLength length: Int) -> String {
+    func substringIndexToEnd(rangeLength length: Int) -> String {
         return substring(startPosition: self.length - length, endPosition: self.length - 1)
     }
 
     /// 获取字符串指定位置的index
-    public subscript(_ index: Int) -> String.Index {
+    subscript(_ index: Int) -> String.Index {
         let temp = index > length ? length : index
         return wrappedValue.index(wrappedValue.startIndex, offsetBy: temp)
     }
     // MARK: - 正则验证
 
-    public var isPhone: Bool {
+    var isPhone: Bool {
         let phone = wrappedValue.replacingOccurrences(of: "-", with: "")
         if phone.xti.length != 11 {
             return false
@@ -135,7 +135,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     }
 
     /// 字符串的Md5
-    public var md5: String {
+    var md5: String {
         if let data = wrappedValue.data(using: .utf8, allowLossyConversion: true) {
             let message = data.withUnsafeBytes({ (bytes) -> [UInt8] in
                 Array(UnsafeBufferPointer(start: bytes, count: data.count))

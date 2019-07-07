@@ -332,12 +332,12 @@ extension XTIBaseRequest {
     ///   - successCallBack: 成功的回调
     ///   - completedCallback: 请求完成的回调
     open func upload(_ url: String,
-                       parameters: XTIParameters?,
-                       resultType: XTIBaseModelProtocol.Type? = nil,
-                       progress progressCallback: XTIProgressCallback? = nil,
-                       success successCallBack: XTIRequestSuccessCallback? = nil,
-                       error errorCallback: XTIRequestErrorCallback? = nil,
-                       completed completedCallback: XTIRequestCompleteCallback? = nil) {
+                     parameters: XTIParameters?,
+                     resultType: XTIBaseModelProtocol.Type? = nil,
+                     progress progressCallback: XTIProgressCallback? = nil,
+                     success successCallBack: XTIRequestSuccessCallback? = nil,
+                     error errorCallback: XTIRequestErrorCallback? = nil,
+                     completed completedCallback: XTIRequestCompleteCallback? = nil) {
         let sign = signature(parameters)
         var tempHeaders = XTINetWorkConfig.defaultopenHttpHeader
         if sign != "" {
@@ -366,11 +366,11 @@ extension XTIBaseRequest {
 
 // MARK: - 请求结果处理
 fileprivate extension XTIBaseRequest {
-    fileprivate func handleRequest(_ result: DataResponse<String>,
-                                   resultType: XTIBaseModelProtocol.Type? = nil,
-                                   success successCallBack: XTIRequestSuccessCallback? = nil,
-                                   error errorCallback: XTIRequestErrorCallback? = nil,
-                                   completed completedCallback: XTIRequestCompleteCallback? = nil) {
+    func handleRequest(_ result: DataResponse<String>,
+                       resultType: XTIBaseModelProtocol.Type? = nil,
+                       success successCallBack: XTIRequestSuccessCallback? = nil,
+                       error errorCallback: XTIRequestErrorCallback? = nil,
+                       completed completedCallback: XTIRequestCompleteCallback? = nil) {
         outRawData(result)
         self.result = result
         var tempError: Error?
@@ -388,7 +388,7 @@ fileprivate extension XTIBaseRequest {
             }
             break
         case let .failure(error):
-            tempError = result.error
+            tempError = error
             break
         }
         requestCallback(resultValue, error: tempError, success: successCallBack, error: errorCallback, completed: completedCallback)
@@ -402,11 +402,11 @@ fileprivate extension XTIBaseRequest {
     ///   - errorCallback: 失败的回调
     ///   - successCallBack: 成功的回调
     ///   - completedCallback: 请求完成的回调
-    fileprivate func requestCallback(_ result: Any?,
-                                     error: Error?,
-                                     success successCallBack: XTIRequestSuccessCallback? = nil,
-                                     error errorCallback: XTIRequestErrorCallback? = nil,
-                                     completed completedCallback: XTIRequestCompleteCallback? = nil) {
+    func requestCallback(_ result: Any?,
+                         error: Error?,
+                         success successCallBack: XTIRequestSuccessCallback? = nil,
+                         error errorCallback: XTIRequestErrorCallback? = nil,
+                         completed completedCallback: XTIRequestCompleteCallback? = nil) {
         if let tempCompletedCallback = completedCallback {
             tempCompletedCallback(result, error)
         }

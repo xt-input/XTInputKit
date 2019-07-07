@@ -11,7 +11,7 @@ public typealias XTIParameters = Parameters
 public typealias XTIHTTPHeaders = HTTPHeaders
 
 public extension XTIParameters {
-    public static func += (left: inout XTIParameters, right: XTIParameters) {
+    static func += (left: inout XTIParameters, right: XTIParameters) {
         right.forEach { key, value in
             left[key] = value
         }
@@ -81,7 +81,7 @@ public struct XTINetWorkConfig {
     #else
         public static var iSLogRawData = false
     #endif
-    
+
     public static var defaultHostName: String!
     public static var defaultHttpScheme = XTIHttpScheme.http
     public static var defaultContentType = "application/x-www-form-urlencoded; charset=utf-8"
