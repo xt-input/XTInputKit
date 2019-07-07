@@ -37,6 +37,7 @@ Pod::Spec.new do |s|
   s.subspec 'XTINetWork' do |ss|
     ss.source_files = 'XTInputKit/Classes/Network/*.swift'
     ss.dependency 'XTInputKit/XTILoger'
+    ss.dependency 'XTInputKit/XTITool'
     ss.dependency 'Alamofire', '~> 5.0.0-beta.6'
     ss.dependency 'XTIObjectMapper'
   end
