@@ -6,20 +6,35 @@
 //  Copyright © 2018年 input. All rights reserved.
 //
 
-
+import Alamofire
 import UIKit
 import UserNotifications
-import XTInputKit
-import SnapKit
+import XTIObjectMapper
 
 var count = 0
+struct T: Mappable {
+    var string: String?
+    var int: Int?
+    var double: Double?
+    var float: Float?
+    var bool: Bool?
+    init?(map: Map) {}
+    mutating func mapping(map: Map) {
+        string <- map["string"]
+        int <- map["int"]
+        double <- map["double"]
+        float <- map["float"]
+        bool <- map["bool"]
+        print(map["double"].value() ?? "123")
+    }
+}
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     private var _testcolor: UIColor!
 
     var testcolor: UIColor! {
         if self._testcolor == nil {
-            self._testcolor = UIColor.XTI.random
+            self._testcolor = UIColor.xti.random
         }
         return self._testcolor
     }
@@ -29,34 +44,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        let s = "123123123"
-//        print(String(format: "%p", s))
-//        xtiloger.debug(format: "%p   %p", s, s)
-//        xtiloger.debug(String(format: "%p", s))
-//
-//        print(String(format: "%p", self))
-//        xtiloger.debug(format: "%p   %p", self, nil)
-//        xtiloger.debug(String(format: "%p", self))
+//        var t = T(JSONString: #"{"bool":true,"string":"string","double":"1.22","int":1,"float":1.2}"#)
+
+//        print(t!.toJSONString()!)
+
+        xtiloger.info(String(format: NSLocalizedString("密码错误，还有%d次", comment: ""), 123))
 
         // Do any additional setup after loading the view, typically from a nib.
         view.backgroundColor = UIColor.white
         self.xti_navigationTitle = "navigation标题"
         self.xti_setBarButtonItem(.right, title: "测试")
         self.xti_nextBackTitle = ""
-        self.xti_nextBackColor = UIColor.XTI.random
+        self.xti_nextBackColor = UIColor.xti.random
         self.xti_tabbarTitle = "tabbar标题"
-//        XTITimer.defualt.addObserver(self, repeating: 1, sum: 20)
-//        let label = UILabel()
-//        let str = #"<body><div id="main"><div style="text-align: center;"><h1>恭喜您，访问tcoding.cn成功！</h1></div><div style="text-align: center;font-size:80px;"><p>小唐朝的个人站点导航，谢谢访问！</p></div><div style="text-align:center; font-size:36px;"><p><a href="http://blog.tcoding.cn" target="_blank">我的博客</a></p><p><a href="/manager" target="_blank">服务器管理</a></p><p><a href="deviceinfo" target="_blank">获取UDID</a></p></div><br><div style="text-align: center;">联系站长：<a href="mailto:input@tcoding.cn" target="_blank">input</a></div></div></body>"#
-//        let attr = try! NSAttributedString(data: str.data(using: String.Encoding.unicode)!, options: [NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil)
-//        label.attributedText = attr
-//        label.numberOfLines = 0
-//        self.view.addSubview(label)
-//        label.snp.makeConstraints { (make) in
-//            make.centerX.equalToSuperview()
-//            make.top.equalTo(self.view.snp.centerY)
-//            make.right.equalToSuperview()
-//        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -78,7 +78,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     // MARK: - UITableViewDelegate, UITableViewDataSource
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 100
     }
@@ -88,7 +87,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @IBAction func clickTabBtn(_ sender: UIButton) {
-        self.xti_pushOrPresentVC(TableViewController())
+        self.xti_pushOrPresentVC(TableViewController.initwithstoryboard("Storyboard"))
     }
 
     @IBAction func clickPushBtn(_ sender: UIButton) {
@@ -126,13 +125,58 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        XTITimer.defualt.removeObserver(self)
-        let labelName: Int = Int(arc4random())
-        XTITimer.defualt.addObserver(self, labelName: "\(labelName)", repeating: 1.0, sum: labelName) { _ in
+//        XTITimer.defualt.removeObserver(self)
+//        let labelName: Int = Int(arc4random())
+//        XTITimer.defualt.addObserver(self, labelName: "\(labelName)", repeating: 1.0, sum: labelName) { _ in
 //            if item?.count == 12 {
 //                item?.isCancel = true
 //            }
 //            xtiloger.debug(item?.count)
+//        }
+//
+//        let group = DispatchGroup()
+//        let p2: [String: Any] = ["bundelID": "22222"]
+//        group.enter()
+//        XTITest1Request.shared().get(serviceName: "rxswift/login/index") { value, error in
+//            xtiloger.debug(value)
+//            xtiloger.debug(error)
+//            xtiloger.debug("任务1")
+//            group.leave()
+//        }
+//
+//        group.enter()
+//        XTITest1Request.shared().get(url: "http://design.tcoding.cn/rxswift/login/index", parameters: p2) { value, error in
+//            xtiloger.debug(value)
+//            xtiloger.debug(error)
+//            xtiloger.debug("任务2")
+//            group.leave()
+//        }
+//
+//        group.enter()
+//        XTITest1Request.shared().get(serviceName: "rxswift/login/index", success: { value in
+//            xtiloger.debug(value)
+//            xtiloger.debug("任务3")
+//            group.leave()
+//        })
+//
+//        group.enter()
+//        XTITest1Request.shared().get(serviceName: "rxswift/login/index", success: { value in
+//            xtiloger.debug(value)
+//            xtiloger.debug("任务4")
+//            group.leave()
+//        }, error: { error in
+//            xtiloger.debug(error)
+//            xtiloger.debug("任务4")
+//            group.leave()
+//        })
+//
+//        group.notify(queue: DispatchQueue.main) {
+//            xtiloger.debug("任务完成")
+//        }
+
+        XTIModelRequest.shared().get { value, error in
+            xtiloger.debug(value)
+            xtiloger.debug(error)
         }
     }
 

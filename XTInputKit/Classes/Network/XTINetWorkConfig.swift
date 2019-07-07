@@ -6,7 +6,6 @@
 //  Copyright © 2018年 input. All rights reserved.
 //
 import Alamofire
-import HandyJSON
 
 public typealias XTIParameters = Parameters
 public typealias XTIHTTPHeaders = HTTPHeaders
@@ -77,16 +76,21 @@ public enum XTIHttpScheme: String {
 /// 网络请求相关的配置，例如：打印网络请求、host(eg: "design.tcoding.cn")、HttpScheme、网络超时时间、Content-Type、最大允许并发、公共参数(eg: bundelID、appVersion、systemVersion、UDID<伪造，真实UDID苹果不允许获取>，取idfv)
 public struct XTINetWorkConfig {
     /// 是否打印网络请求原始数据
-    public static var iSLogRawData = true
+    #if DEBUG
+        public static var iSLogRawData = true
+    #else
+        public static var iSLogRawData = false
+    #endif
+    
     public static var defaultHostName: String!
     public static var defaultHttpScheme = XTIHttpScheme.http
     public static var defaultContentType = "application/x-www-form-urlencoded; charset=utf-8"
     public static var defaultTimeoutInterval = 30.0
     public static var defaultHttpMaximumConnectionsPerHost = 10
-    public static var defaultEncoding:ParameterEncoding = URLEncoding.default
+    public static var defaultEncoding: ParameterEncoding = URLEncoding.default
     fileprivate static var _defaultopenHttpHeader: XTIHTTPHeaders!
     /// 公共参数，放置在请求头里
-    public static var defaultopenHttpHeader: XTIHTTPHeaders! {
+    public static var defaultopenHttpHeader: XTIHTTPHeaders {
         get {
             if _defaultopenHttpHeader == nil {
                 _defaultopenHttpHeader = XTIHTTPHeaders()

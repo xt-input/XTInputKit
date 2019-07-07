@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'XTInputKit'
-  s.version          = '0.2.3'
+  s.version          = '0.2.5'
   s.summary          = '一些常用的iOS开发代码及扩展集合，例如打印日志的工具XTILoger，用16进制取颜色，keychain，NetWork···'
   
   s.description      = <<-DESC
@@ -37,9 +37,8 @@ Pod::Spec.new do |s|
   s.subspec 'XTINetWork' do |ss|
     ss.source_files = 'XTInputKit/Classes/Network/*.swift'
     ss.dependency 'XTInputKit/XTILoger'
-    ss.dependency 'XTInputKit/XTITool'
-    ss.dependency 'HandyJSON', '~> 5.0.0'
     ss.dependency 'Alamofire', '~> 5.0.0-beta.6'
+    ss.dependency 'XTIObjectMapper'
   end
   s.swift_version = '5'
   s.requires_arc  = true

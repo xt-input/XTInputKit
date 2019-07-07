@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import XTInputKit
 
 var i = 0
 
@@ -18,16 +17,17 @@ class XTINavigationController: UINavigationController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         i += 1
-        let img = UIImage.XTI.imageWithColor(UIColor(red: 0.8, green: 0.3, blue: 0.4, alpha: 0.1), size: CGSize(width: XTIMacros.SCREEN_WIDTH, height: 64))
+        let img = UIImage.xti.imageWithColor(UIColor(red: 0.8, green: 0.3, blue: 0.4, alpha: 0.1), size: CGSize(width: XTIMacros.SCREEN_WIDTH, height: 64))
         self.navigationBar.setBackgroundImage(img, for: UIBarMetrics.default)
     }
 
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        if (self.viewControllers.count > 0){
+        if self.viewControllers.count > 0 {
             viewController.hidesBottomBarWhenPushed = true
         }
-         super.pushViewController(viewController, animated: animated)
+        super.pushViewController(viewController, animated: animated)
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

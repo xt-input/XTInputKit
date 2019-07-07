@@ -8,7 +8,7 @@
 
 import UIKit
 import UserNotifications
-import XTInputKit
+@_exported import XTInputKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -17,10 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         xtiloger.saveFileLevel = .all
         xtiloger.debug("应用即将启动")
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in
             xtiloger.debug("通知授权")
         }
-
+        
+        XTINetWorkConfig.iSLogRawData = false
+        XTINetWorkConfig.defaultHostName = "design.tcoding.cn" // 设置默认的网络请求域名
+        XTINetWorkConfig.defaultHttpScheme = .http
+        XTINetWorkConfig.defaultSignature = { (parameters) -> String in // 设置所有的接口的签名方法
+//            xtiloger.debug(parameters)
+            return "signature=signature"
+        }
+        
         UNUserNotificationCenter.current().delegate = self
         return true
     }
@@ -39,12 +47,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func initRootViewController() {
         let vc = XTITabBarController()
         let navc1 = XTINavigationController(rootViewController: ViewController.initwithstoryboard("Storyboard"))
-        vc.addChildViewController(navc1, tabbarTitle: "测试", image: UIImage.XTI.imageWithColor(UIColor.green, size: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysOriginal), selectedImage: nil)
+        vc.addChildViewController(navc1, tabbarTitle: "测试", image: UIImage.xti.imageWithColor(UIColor.green, size: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysOriginal), selectedImage: nil)
         let navc2 = XTINavigationController(rootViewController: XTIKeyChainViewController.initwithstoryboard("Storyboard"))
-        vc.addChildViewController(navc2, tabbarTitle: "KeyChain", image: UIImage.XTI.imageWithColor(UIColor.red, size: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysOriginal), selectedImage: nil)
+        vc.addChildViewController(navc2, tabbarTitle: "KeyChain", image: UIImage.xti.imageWithColor(UIColor.red, size: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysOriginal), selectedImage: nil)
 
         let navc3 = XTINavigationController(rootViewController: XTINetWorkViewController.initwithstoryboard("Storyboard"))
-        vc.addChildViewController(navc3, tabbarTitle: "NetWork", image: UIImage.XTI.imageWithColor(UIColor.red, size: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysOriginal), selectedImage: nil)
+        vc.addChildViewController(navc3, tabbarTitle: "NetWork", image: UIImage.xti.imageWithColor(UIColor.red, size: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysOriginal), selectedImage: nil)
 
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()

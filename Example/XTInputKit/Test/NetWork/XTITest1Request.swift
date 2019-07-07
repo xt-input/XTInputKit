@@ -7,15 +7,18 @@
 //
 
 import UIKit
-import XTInputKit
 
 class XTITest1Request: XTIBaseRequest {
-    static let shared = XTITest1Request()
-    static func awake(){
-    
+    override func buildParameters() -> XTIParameters {
+        var parameters = super.buildParameters()
+        parameters["bundelID"] = 12312312312
+        return parameters
     }
-    override init() {
+
+    required init() {
         super.init()
-        self.hostName = "design.tcoding.cn"
+        hostName = "design.tcoding.cn"
     }
+
+    
 }

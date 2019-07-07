@@ -7,16 +7,14 @@
 //
 
 import UIKit
-import XTInputKit
 
 class XTITestRequest: XTIBaseRequest {
     var bundelID: String!
 
-    override init() {
+    required init() {
         super.init()
         serviceName = "/rxswift/login/index"
         httpMethod = .post
-        resultClass = XTITestResult.self
     }
 
     override func buildParameters() -> XTIParameters {

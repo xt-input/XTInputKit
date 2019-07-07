@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import XTInputKit
 
 class XTITabBar: UITabBar {
     override func sizeThatFits(_ size: CGSize) -> CGSize {

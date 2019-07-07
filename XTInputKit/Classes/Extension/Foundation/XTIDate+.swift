@@ -42,8 +42,8 @@ extension Date: XTIBaseNameNamespace {}
 
 public extension XTITypeWrapperProtocol where WrappedType == Date {
     static func dateFromString(_ dateString: String, format formatString: String = "yyyy-MM-dd HH:mm:ss") -> Date {
-        DateFormatter.XTI.dateFormatter.dateFormat = formatString
-        return DateFormatter.XTI.dateFormatter.date(from: dateString)!
+        DateFormatter.xti.dateFormatter.dateFormat = formatString
+        return DateFormatter.xti.dateFormatter.date(from: dateString)!
     }
 
     var timeIntervalDescription: String {
@@ -57,7 +57,7 @@ public extension XTITypeWrapperProtocol where WrappedType == Date {
         } else if timeInterval < XTI_MONTH {
             return "\(Int(timeInterval / XTI_DAY))天前"
         } else if timeInterval < XTI_YEAR {
-            let dateFormatter = DateFormatter.XTI.dateFormatter(withFormat: "M月d日")
+            let dateFormatter = DateFormatter.xti.dateFormatter(withFormat: "M月d日")
             return dateFormatter.string(from: wrappedValue)
         } else {
             return "\(Int(timeInterval / XTI_YEAR))年前"
@@ -65,7 +65,7 @@ public extension XTITypeWrapperProtocol where WrappedType == Date {
     }
 
     var minuteDescription: String {
-        let dateFormatter = DateFormatter.XTI.dateFormatter(withFormat: "yyyy-MM-dd")
+        let dateFormatter = DateFormatter.xti.dateFormatter(withFormat: "yyyy-MM-dd")
         let theDay = dateFormatter.string(from: wrappedValue)
         let currentDay = dateFormatter.string(from: Date())
         var fix: String = ""
@@ -83,14 +83,14 @@ public extension XTITypeWrapperProtocol where WrappedType == Date {
     }
 
     func descriptionWithFormat(_ format: String) -> String {
-        let dateFormatter = DateFormatter.XTI.dateFormatter(withFormat: format)
+        let dateFormatter = DateFormatter.xti.dateFormatter(withFormat: format)
         return dateFormatter.string(from: wrappedValue)
     }
 
     var formattedDateDescription: String {
         let timeInterval = -wrappedValue.timeIntervalSinceNow
 
-        let dateFormatter = DateFormatter.XTI.dateFormatter(withFormat: "yyyy-MM-dd")
+        let dateFormatter = DateFormatter.xti.dateFormatter(withFormat: "yyyy-MM-dd")
         let theDay = dateFormatter.string(from: wrappedValue)
         let currentDay = dateFormatter.string(from: Date())
         let flag = dateFormatter.date(from: currentDay)?.timeIntervalSince(dateFormatter.date(from: theDay)!)
@@ -114,7 +114,7 @@ public extension XTITypeWrapperProtocol where WrappedType == Date {
     }
 
     var isToday: Bool {
-        let dateFormatter = DateFormatter.XTI.dateFormatter(withFormat: "yyyy-MM-dd")
+        let dateFormatter = DateFormatter.xti.dateFormatter(withFormat: "yyyy-MM-dd")
         let theDay = dateFormatter.string(from: wrappedValue)
         let currentDay = dateFormatter.string(from: Date())
         return theDay == currentDay

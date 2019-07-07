@@ -7,19 +7,23 @@
 //
 
 import UIKit
-import XTInputKit
 
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.tableView = UITableView(frame: self.view.bounds, style: .plain)
+        self.view.backgroundColor = UIColor.red
+//        self.automaticallyAdjustsScrollViewInsets = false
+        self.tableView.backgroundColor = UIColor.xti.random
+        self.tableView.separatorStyle = .none
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: UITableViewCell.className)
-        self.view.addSubview(self.tableView)
+//        self.view.addSubview(self.tableView)
+//        self.tableView.snp.makeConstraints { make in
+//            make.edges.equalTo(UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0))
+//        }
 
         self.xti_setBarButtonItem(.right)
     }

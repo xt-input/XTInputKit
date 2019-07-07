@@ -99,11 +99,12 @@ public extension UIViewController {
     }
 
     // MARK: - 通过StoryBoard初始化控制器
-
-    ///    通过storyboard文件名字初始化控制器
+    
+    /// 通过storyboard文件名字初始化控制器
     ///
-    /// - Parameter storyboardName:storyboard文件的名字
-    /// - Returns:
+    /// - Parameters:
+    ///   - name: storyboard文件的名字
+    ///   - withIdentifier: 控制器的storyboard id (默认，self.className)
     static func initwithstoryboard(_ name: String, withIdentifier: String! = nil) -> UIViewController {
         if withIdentifier == nil {
             return UIStoryboard(name: name, bundle: nil).instantiateViewController(withIdentifier: self.className)

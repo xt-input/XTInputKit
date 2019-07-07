@@ -10,7 +10,7 @@ import UIKit
 public protocol XTIBaseNameNamespace {
     associatedtype WrapperType
     var xti: WrapperType { get }
-    static var XTI: WrapperType.Type { get }
+    static var xti: WrapperType.Type { get }
 }
 
 public extension XTIBaseNameNamespace {
@@ -18,7 +18,7 @@ public extension XTIBaseNameNamespace {
         return XTINamespaceWrapper(value: self)
     }
 
-    static var XTI: XTINamespaceWrapper<Self>.Type {
+    static var xti: XTINamespaceWrapper<Self>.Type {
         return XTINamespaceWrapper.self
     }
 }

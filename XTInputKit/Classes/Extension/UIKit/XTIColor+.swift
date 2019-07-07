@@ -16,7 +16,7 @@ public extension XTITypeWrapperProtocol where WrappedType == UIColor {
     /// - Parameter hex: 颜色的16进制数值
     /// - Returns: 得到的颜色
     static func hex(_ hex: UInt32) -> UIColor {
-        return WrappedType.XTI.hex(hex, alpha: 1)
+        return WrappedType.xti.hex(hex, alpha: 1)
     }
 
     /// 通过16进制的整数及透明度获取颜色

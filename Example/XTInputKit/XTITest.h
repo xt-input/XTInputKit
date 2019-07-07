@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <XTInputKit/XTInputKit-Swift.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XTITest : NSObject

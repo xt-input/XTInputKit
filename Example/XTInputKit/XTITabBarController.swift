@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import XTInputKit
 
 class XTITabBarController: UITabBarController {
     override func viewDidLoad() {

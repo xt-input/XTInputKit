@@ -1,0 +1,8 @@
+/* 
+  Localizable.strings
+  XTInputKit
+
+  Created by xt-input on 2019/6/20.
+  Copyright © 2019 tcoding.cn. All rights reserved.
+*/
+"密码错误，还有%d次" = "Gesture password incorrect, you can try %d times more.";
