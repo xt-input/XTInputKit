@@ -21,14 +21,16 @@ open class XTIObserverItem: NSObject {
 }
 
 /// 观察者管理类
-open class XTIObserver {
+open class XTIObserver: XTISharedProtocol {
     fileprivate var _observers: [String: XTIObserverItem] = [:]
 
     public var observers: [String: XTIObserverItem] {
         return _observers
     }
-    public init() {
+
+    required public init() {
     }
+
     /// 添加观察者，只能在子类里调用，保护_observers
     ///
     /// - Parameter Object: 需要添加的观察者单元

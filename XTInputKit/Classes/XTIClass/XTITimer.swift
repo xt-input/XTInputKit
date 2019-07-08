@@ -85,13 +85,6 @@ open class XTITimerItem: XTIObserverItem {
 
 /// 计时器任务管理
 open class XTITimer: XTIObserver {
-    fileprivate static var _default: XTITimer!
-    public static var defualt: XTITimer {
-        if _default == nil {
-            _default = XTITimer()
-        }
-        return _default!
-    }
 
     /// 添加观察者
     ///     重复添加会覆盖

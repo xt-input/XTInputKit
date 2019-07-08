@@ -43,8 +43,8 @@ extension XTILogerLevel: Comparable {
 /// 请在 "Swift Compiler - Custom Flags" 选项查找 "Other Swift Flags" 然后在DEBUG配置那里添加"-D DEBUG".
 public class XTILoger: XTISharedProtocol {
     
-    let dateFormatter = DateFormatter()
-    let dateShortFormatter = DateFormatter()
+    fileprivate let dateFormatter = DateFormatter()
+    fileprivate let dateShortFormatter = DateFormatter()
 
     /// 保存到日志文件的等级
     public var saveFileLevel = XTILogerLevel.warning
