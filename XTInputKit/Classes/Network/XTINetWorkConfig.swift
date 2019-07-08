@@ -101,7 +101,7 @@ public struct XTINetWorkConfig {
                 _defaultopenHttpHeader["bundelID"] = bundleInfo?["CFBundleIdentifier"] as? String
             }
             if _defaultopenHttpHeader["UUID"] == nil {
-                _defaultopenHttpHeader["UUID"] = XTIKeyChainTool.default.keyChainUuid
+                _defaultopenHttpHeader["UUID"] = XTIKeyChainTool.shared().keyChainUuid
             }
             if _defaultopenHttpHeader["appVersion"] == nil {
                 _defaultopenHttpHeader["appVersion"] = bundleInfo?["CFBundleShortVersionString"] as? String

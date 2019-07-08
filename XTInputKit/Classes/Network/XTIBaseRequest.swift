@@ -115,7 +115,7 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
 
     deinit {
         #if DEBUG
-            XTILoger.default.info(self)
+            XTILoger.shared().info(self)
         #endif
     }
 
@@ -279,7 +279,7 @@ extension XTIBaseRequest {
                      error errorCallback: XTIRequestErrorCallback? = nil,
                      completed completedCallback: XTIRequestCompleteCallback? = nil) {
         guard let tempUrl = url else {
-            xtiloger.warning("链接为空")
+            XTILoger.shared().warning("链接为空")
             return
         }
         let tempMethod = method ?? _httpMethod
@@ -482,7 +482,7 @@ extension XTIBaseRequest {
     /// - Parameter result: 原始数据
     open func outRawData(_ result: DataResponse<String>) {
         if _iSLogRawData {
-            XTILoger.default.debug(result)
+            XTILoger.shared().debug(result)
         }
     }
 }

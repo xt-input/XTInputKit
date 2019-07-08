@@ -6,7 +6,7 @@
 //
 
 import Foundation
-var SharedDict = [String: Any]()
+var xtiSharedDict = [String: Any]()
 
 public protocol XTISharedProtocol {
     init()
@@ -15,10 +15,10 @@ public protocol XTISharedProtocol {
 
 extension XTISharedProtocol {
     public static func shared() -> Self {
-        var shared = SharedDict["\(Self.self)"] as? Self
+        var shared = xtiSharedDict["\(Self.self)"] as? Self
         if shared == nil {
             shared = Self.init()
-            SharedDict["\(Self.self)"] = shared
+            xtiSharedDict["\(Self.self)"] = shared
         }
         return shared!
     }

@@ -26,18 +26,18 @@ class XTIKeyChainViewController: UIViewController, UITextFieldDelegate {
         valueLabel.text = "值："
         self.valueTextField.leftView = valueLabel
         self.valueTextField.leftViewMode = .always
-        xtiloger.debug(XTIKeyChainTool.default.keyChainUuid)
+        xtiloger.debug(XTIKeyChainTool.shared().keyChainUuid)
     }
 
     @IBAction func clickSaveButton(_ sender: UIButton) {
         let value = self.valueTextField.text!
         let key = self.keyTextField.text!
-        XTIKeyChainTool.default.set(value, forKey: key)
+        XTIKeyChainTool.shared().set(value, forKey: key)
     }
 
     @IBAction func clickReadButton(_ sender: UIButton) {
         let key = self.keyTextField.text!
-        if let value = XTIKeyChainTool.default.get(valueTpye: String.self, forKey: key) {
+        if let value = XTIKeyChainTool.shared().get(valueTpye: String.self, forKey: key) {
             self.valueTextField.text = value
         } else {
             self.showMessage(title: "提示", message: "该键值不存在")
@@ -46,7 +46,7 @@ class XTIKeyChainViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func clickDeleteButton(_ sender: UIButton) {
         let key = self.keyTextField.text!
-        if XTIKeyChainTool.default.delete(key) {
+        if XTIKeyChainTool.shared().delete(key) {
             self.showMessage(message: "删除成功！")
         } else {
             self.showMessage(message: "删除失败！")
@@ -54,7 +54,7 @@ class XTIKeyChainViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func clickDeleteAllButton(_ sender: UIButton) {
-        if XTIKeyChainTool.default.delete() {
+        if XTIKeyChainTool.shared().delete() {
             self.showMessage(message: "删除成功！")
         } else {
             self.showMessage(message: "删除失败！")

@@ -10,13 +10,16 @@ import Foundation
 import Security
 
 /// KeyChain的封装，需要开启项目配置的Capabilities->Keychain Sharing
-open class XTIKeyChainTool {
+open class XTIKeyChainTool: XTISharedProtocol {
+    public required init() {
+        
+    }
+    
     /// 是否同步到iCloud
     public var synchronizable: Bool!
     /// 应用分组
     public var accessGroup: String!
-    /// 存储本地
-    public static let `default` = XTIKeyChainTool()
+    
     /// 同步到iCloud
     public static let iCloud = XTIKeyChainTool(synchronizable: true)
 
@@ -36,10 +39,10 @@ open class XTIKeyChainTool {
     public var keyChainUuid: String! {
         guard let tempUuid = _keyChainUuid else {
             let key = "\(bundleNmae)-uuid"
-            var uuid = XTIKeyChainTool.default.get(valueTpye: String.self, forKey: key)
+            var uuid = XTIKeyChainTool.shared().get(valueTpye: String.self, forKey: key)
             if uuid == nil {
                 uuid = UUID().uuidString.replacingOccurrences(of: "-", with: "")
-                XTIKeyChainTool.default.set(uuid!, forKey: key)
+                XTIKeyChainTool.shared().set(uuid!, forKey: key)
             }
             return uuid!
         }

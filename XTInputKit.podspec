@@ -22,10 +22,6 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '10.0'
   
-  s.subspec 'XTILoger' do |ss|
-      ss.source_files = 'XTInputKit/Classes/XTILoger/*.swift'
-  end
-  
   s.subspec 'Extension' do |ss|
       ss.source_files = 'XTInputKit/Classes/Extension/**/*.swift'
   end
@@ -34,10 +30,14 @@ Pod::Spec.new do |s|
       ss.source_files = 'XTInputKit/Classes/XTIClass/*.swift'
   end
   
+  s.subspec 'XTILoger' do |ss|
+      ss.source_files = 'XTInputKit/Classes/XTILoger/*.swift'
+      ss.dependency 'XTInputKit/XTITool'
+  end
+  
   s.subspec 'XTINetWork' do |ss|
     ss.source_files = 'XTInputKit/Classes/Network/*.swift'
     ss.dependency 'XTInputKit/XTILoger'
-    ss.dependency 'XTInputKit/XTITool'
     ss.dependency 'Alamofire', '~> 5.0.0-beta.6'
     ss.dependency 'XTIObjectMapper'
   end

@@ -9,7 +9,7 @@
 
 import UIKit
 
-public let xtiloger = XTILoger.default
+public let xtiloger = XTILoger.shared()
 
 public enum XTILogerLevel: Int {
     public typealias RawValue = Int
@@ -41,15 +41,8 @@ extension XTILogerLevel: Comparable {
 }
 
 /// 请在 "Swift Compiler - Custom Flags" 选项查找 "Other Swift Flags" 然后在DEBUG配置那里添加"-D DEBUG".
-public class XTILoger {
-    private static var _default: XTILoger!
-    public static var `default`: XTILoger {
-        if _default == nil {
-            _default = XTILoger()
-        }
-        return _default!
-    }
-
+public class XTILoger: XTISharedProtocol {
+    
     let dateFormatter = DateFormatter()
     let dateShortFormatter = DateFormatter()
 
@@ -87,7 +80,7 @@ public class XTILoger {
         #endif
     }
 
-    public init() {
+    required public init() {
         self.dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
         self.dateShortFormatter.locale = Locale(identifier: "en_US_POSIX")

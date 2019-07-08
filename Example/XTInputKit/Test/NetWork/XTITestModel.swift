@@ -9,10 +9,8 @@
 import UIKit
 import XTIObjectMapper
 
-struct XTITestModel: XTIBaseModelProtocol {
-//    mutating func didHandleResult() {
-//
-//    }
+struct XTITestModel: XTIBaseModelProtocol, XTISharedProtocol {
+    init() {}
 
     init?(map: Map) {}
 
