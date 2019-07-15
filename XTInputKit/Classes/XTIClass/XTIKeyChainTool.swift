@@ -12,14 +12,13 @@ import Security
 /// KeyChain的封装，需要开启项目配置的Capabilities->Keychain Sharing
 open class XTIKeyChainTool: XTISharedProtocol {
     public required init() {
-        
     }
-    
+
     /// 是否同步到iCloud
     public var synchronizable: Bool!
     /// 应用分组
     public var accessGroup: String!
-    
+
     /// 同步到iCloud
     public static let iCloud = XTIKeyChainTool(synchronizable: true)
 
@@ -41,7 +40,7 @@ open class XTIKeyChainTool: XTISharedProtocol {
             let key = "\(bundleNmae)-uuid"
             var uuid = XTIKeyChainTool.shared().get(valueTpye: String.self, forKey: key)
             if uuid == nil {
-                uuid = UUID().uuidString.replacingOccurrences(of: "-", with: "")
+                uuid = (UIDevice.current.identifierForVendor?.uuidString ?? UUID().uuidString).replacingOccurrences(of: "-", with: "")
                 XTIKeyChainTool.shared().set(uuid!, forKey: key)
             }
             return uuid!
@@ -166,7 +165,7 @@ public protocol SimpleStruct {}
 extension DataConvertible where Self: SimpleStruct {
     public init?(data: Data) {
         guard data.count == MemoryLayout<Self>.size else { return nil }
-        self = data.withUnsafeBytes { $0.pointee }
+        self = data.withUnsafeBytes { $0.load(as: Self.self) }
     }
 
     public var data: Data {

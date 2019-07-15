@@ -88,6 +88,7 @@ public struct XTINetWorkConfig {
     public static var defaultTimeoutInterval = 30.0
     public static var defaultHttpMaximumConnectionsPerHost = 10
     public static var defaultEncoding: ParameterEncoding = URLEncoding.default
+
     fileprivate static var _defaultopenHttpHeader: XTIHTTPHeaders!
     /// 公共参数，放置在请求头里
     public static var defaultopenHttpHeader: XTIHTTPHeaders {

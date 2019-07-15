@@ -6,7 +6,6 @@
 //  Copyright © 2018年 input. All rights reserved.
 //
 
-import Alamofire
 import UIKit
 
 class XTINetWorkViewController: UIViewController, UITextViewDelegate {

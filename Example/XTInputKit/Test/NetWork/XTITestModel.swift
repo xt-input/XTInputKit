@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import XTIObjectMapper
 
 struct XTITestModel: XTIBaseModelProtocol, XTISharedProtocol {
     init() {}

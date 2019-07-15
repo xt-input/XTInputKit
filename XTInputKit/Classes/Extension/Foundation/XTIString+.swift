@@ -20,7 +20,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     ///
     /// - Parameter sub: 子串
     /// - Returns: true or false
-     func hasSubstring(_ sub: String) -> Bool {
+    func hasSubstring(_ sub: String) -> Bool {
         let range = wrappedValue.range(of: sub)
         if range == nil || (range?.isEmpty)! {
             return false
@@ -106,6 +106,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
         let temp = index > length ? length : index
         return wrappedValue.index(wrappedValue.startIndex, offsetBy: temp)
     }
+
     // MARK: - 正则验证
 
     var isPhone: Bool {
@@ -137,9 +138,9 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// 字符串的Md5
     var md5: String {
         if let data = wrappedValue.data(using: .utf8, allowLossyConversion: true) {
-            let message = data.withUnsafeBytes({ (bytes) -> [UInt8] in
-                Array(UnsafeBufferPointer(start: bytes, count: data.count))
-            })
+            let message = data.withUnsafeBytes {
+                $0.load(as: [UInt8].self)
+            }
 
             let MD5Calculator = MD5(message)
             let MD5Data = MD5Calculator.calculate()
@@ -371,7 +372,7 @@ class MD5: HashProtocol {
                 dTemp = D
                 D = C
                 C = B
-                B = B &+ rotateLeft((A &+ F &+ sines[j] &+ M[g]), bits: shifts[j])
+                B = B &+ rotateLeft(A &+ F &+ sines[j] &+ M[g], bits: shifts[j])
                 A = dTemp
             }
 

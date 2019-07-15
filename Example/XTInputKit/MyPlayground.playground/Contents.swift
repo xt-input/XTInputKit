@@ -1,43 +1,72 @@
 import UIKit
 import XTInputKit
 import XTIObjectMapper
+//
+//struct T:Mappable {
+//    var string : String?
+//    var int : Int?
+//    var double : Double?
+//    var float : Float?
+//    var bool :  Bool?
+//    init?(map: Map) { }
+//    mutating func mapping(map: Map) {
+//        string <- map["string"]
+//        int <- map["int"]
+//        double <- map["double"]
+//        float <- map["float"]
+//        bool <- map["bool"]
+//        print( map["double"].value() ?? "123")
+//    }
+//}
+//var t = T(JSONString: #"{"bool":true,"string":"string","double":"1.22","int":1,"float":1.2}"#)
+//
+//print(t!.toJSONString()!)
 
-struct T:Mappable {
-    var string : String?
-    var int : Int?
-    var double : Double?
-    var float : Float?
-    var bool :  Bool?
-    init?(map: Map) { }
-    mutating func mapping(map: Map) {
-        string <- map["string"]
-        int <- map["int"]
-        double <- map["double"]
-        float <- map["float"]
-        bool <- map["bool"]
-        print( map["double"].value() ?? "123")
+protocol XTINetWorkServerProtocol: RawRepresentable where Self.RawValue == String {
+    var path: String { get }
+
+}
+
+extension XTINetWorkServerProtocol{
+    var path: String {
+        print(String(reflecting: self))
+        return self.rawValue
     }
 }
-var t = T(JSONString: #"{"bool":true,"string":"string","double":"1.22","int":1,"float":1.2}"#)
+enum app { }
 
-print(t!.toJSONString()!)
+typealias App = app
 
-enum XTINetWorkServer {
-    enum User: String, XTIServiceName {
-        static var app: String{
-            return "index"
-        }
-        
-        static var realValue: String {
-            return "user_me"
-        }
-        
+extension App {
+    enum User: String, XTINetWorkServerProtocol {
         var realValue: String {
             return self.rawValue
         }
         case login = "loginname"
     }
 }
+print(App.User.login.path)
+
+enum XTINetWorkServer {
+    enum User: String, XTINetWorkServerProtocol {
+        var realValue: String {
+            return self.rawValue
+        }
+        case login = "loginname"
+    }
+}
+print(XTINetWorkServer.User.login.path)
+
+//enum XTINetWorkServer {
+    enum User: String, XTIServiceName {
+        var realValue: String {
+            return self.rawValue
+        }
+        case login = "loginname"
+    }
+//}
+print(User.login)
+print(User.login.value)
 
 public protocol LocalValue{
     var value: String { get }

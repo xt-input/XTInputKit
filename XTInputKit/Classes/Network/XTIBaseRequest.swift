@@ -80,12 +80,12 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
         return _httpManager
     }
 
-    fileprivate var _httpManager: Session!
+    fileprivate var _httpManager: Session?
     fileprivate var httpManager: Session {
         if isUserSharedSession {
             return XTIBaseRequest.httpManager
         } else {
-            return _httpManager
+            return _httpManager!
         }
     }
 

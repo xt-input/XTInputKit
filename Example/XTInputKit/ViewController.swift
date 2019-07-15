@@ -6,12 +6,18 @@
 //  Copyright © 2018年 input. All rights reserved.
 //
 
-import Alamofire
 import UIKit
-import UserNotifications
-import XTIObjectMapper
+
+import ARKit
 
 var count = 0
+
+enum T1 {
+    enum T2 {
+        case str
+    }
+}
+
 struct T: Mappable {
     var string: String?
     var int: Int?
@@ -43,10 +49,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        var t = T(JSONString: #"{"bool":true,"string":"string","double":"1.22","int":1,"float":1.2}"#)
-
-//        print(t!.toJSONString()!)
 
         xtiloger.info(String(format: NSLocalizedString("密码错误，还有%d次", comment: ""), 123))
 
@@ -125,6 +127,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        XTILoger.shared().info(String(reflecting: T1.T2.str))
 //        XTITimer.defualt.removeObserver(self)
 //        let labelName: Int = Int(arc4random())
 //        XTITimer.defualt.addObserver(self, labelName: "\(labelName)", repeating: 1.0, sum: labelName) { _ in
@@ -174,10 +177,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //            xtiloger.debug("任务完成")
 //        }
 
-        XTIModelRequest.shared().get { value, error in
-            xtiloger.debug(value)
-            xtiloger.debug(error)
-        }
+//        XTIModelRequest.shared().get { value, error in
+//            xtiloger.debug(value)
+//            xtiloger.debug(error)
+//        }
     }
 
     override func didReceiveMemoryWarning() {

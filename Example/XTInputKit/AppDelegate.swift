@@ -7,8 +7,11 @@
 //
 
 import UIKit
-import UserNotifications
+
+@_exported import Alamofire
+@_exported import UserNotifications
 @_exported import XTInputKit
+@_exported import XTIObjectMapper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -20,15 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in
             xtiloger.debug("通知授权")
         }
-        
+
         XTINetWorkConfig.iSLogRawData = false
         XTINetWorkConfig.defaultHostName = "design.tcoding.cn" // 设置默认的网络请求域名
         XTINetWorkConfig.defaultHttpScheme = .http
-        XTINetWorkConfig.defaultSignature = { (parameters) -> String in // 设置所有的接口的签名方法
+        XTINetWorkConfig.defaultSignature = { (_) -> String in // 设置所有的接口的签名方法
 //            xtiloger.debug(parameters)
-            return "signature=signature"
+            "signature=signature"
         }
-        
+
         UNUserNotificationCenter.current().delegate = self
         return true
     }
