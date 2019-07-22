@@ -28,6 +28,10 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
     /// 是否需要签名
     public var isNeedSign: Bool = true
 
+    public var isNeedEncrypt: Bool = true
+
+    public var isNeedDecrypt: Bool = true
+
     fileprivate var _httpMethod: HTTPMethod {
         return httpMethod ?? HTTPMethod.post
     }
@@ -50,10 +54,10 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
 
     fileprivate var _hostName: String {
         if hostName == nil || hostName?.count == 0 {
-            if XTINetWorkConfig.defaultHostName == nil || XTINetWorkConfig.defaultHostName.isEmpty {
+            if XTINetWorkConfig.defaultHostName == nil || XTINetWorkConfig.defaultHostName?.count == 0 {
                 fatalError("服务器地址不能为空！")
             }
-            return XTINetWorkConfig.defaultHostName
+            return XTINetWorkConfig.defaultHostName ?? ""
         }
         return hostName ?? ""
     }
@@ -140,16 +144,48 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
     ///     该函数根据自己的需求实现，建议将参数字典转换成json字符串然后取这段字符串的签名
     /// 公共参数放置在请求头里面
     /// - Returns: 返回签名，格式："sign=sign"
-    open func signature(_ parameters: XTIParameters?) -> String {
-        if XTINetWorkConfig.defaultSignature != nil && isNeedSign {
-            return XTINetWorkConfig.defaultSignature(parameters ?? XTIParameters())
+    open func signature(_ parameters: XTIParameters) -> String {
+        if let tempDefaultSignature = XTINetWorkConfig.defaultSignature, isNeedSign {
+            return tempDefaultSignature(parameters)
         }
         return ""
+    }
+
+    /// 参数加密
+    ///
+    /// - Parameter parameters: 要加密的字典
+    /// - Returns: 加密后的字典
+    open func encrypt(_ parameters: XTIParameters) -> XTIParameters {
+        if let tempDefaultEncrypt = XTINetWorkConfig.defaultEncrypt, isNeedEncrypt {
+            return tempDefaultEncrypt(parameters)
+        }
+        return parameters
+    }
+
+    /// 结果解密
+    ///
+    /// - Parameter value: 要解密的字符串
+    /// - Returns: 解密后的字符串
+    open func decrypt(_ value: String) -> String {
+        if let tempDefaultdefaultDecrypt = XTINetWorkConfig.defaultDecrypt, isNeedDecrypt {
+            return tempDefaultdefaultDecrypt(value)
+        }
+        return value
+    }
+
+    /// 过滤请求结果
+    ///
+    /// - Parameters:
+    ///   - value: 请求结果
+    ///   - error: 错误描述
+    open func filterRequestCallback(_ value: inout Any?, _ error: inout Error?) {
+        if let tempFilterRequest = XTINetWorkConfig.defaultFilterRequest {
+            return tempFilterRequest(&value, &error)
+        }
     }
 }
 
 // MARK: - post请求
-
 extension XTIBaseRequest {
     /// post网络请求，域名等信息使用XTINetWorkConfig的配置，只需要传入服务名和参数及回调的闭包，适用于一个方法管理一个网络请求
     ///
@@ -189,7 +225,6 @@ extension XTIBaseRequest {
 }
 
 // MARK: - get请求
-
 extension XTIBaseRequest {
     /// get网络请求，域名等信息使用XTINetWorkConfig的配置，只需要传入服务名和参数及回调的闭包，适用于一个方法管理一个网络请求
     ///
@@ -228,7 +263,6 @@ extension XTIBaseRequest {
 }
 
 // MARK: - 发出网络请求
-
 extension XTIBaseRequest {
     /// 汇总的网络请求，除了回调都有默认参数，默认参数取XTINetWorkConfig里的配置，默认参数可以在初始化对象的时候设置，如果一个类管理一个接口可以在子类里设置所有的默认参数
     ///
@@ -283,7 +317,7 @@ extension XTIBaseRequest {
             return
         }
         let tempMethod = method ?? _httpMethod
-        let tempParameters = parameters ?? buildParameters()
+        let tempParameters = encrypt(parameters ?? buildParameters())
         var tempHeaders = XTINetWorkConfig.defaultopenHttpHeader
         let sign = signature(tempParameters)
         if sign != "" {
@@ -338,7 +372,7 @@ extension XTIBaseRequest {
                      success successCallBack: XTIRequestSuccessCallback? = nil,
                      error errorCallback: XTIRequestErrorCallback? = nil,
                      completed completedCallback: XTIRequestCompleteCallback? = nil) {
-        let sign = signature(parameters)
+        let sign = signature(parameters ?? buildParameters())
         var tempHeaders = XTINetWorkConfig.defaultopenHttpHeader
         if sign != "" {
             tempHeaders["sign"] = sign
@@ -378,12 +412,12 @@ fileprivate extension XTIBaseRequest {
         switch result.result {
         case let .success(value):
             if let tempResultType = (resultType ?? self.resultType) {
-                resultValue = tempResultType.handleResult(value)
+                resultValue = tempResultType.handleResult(decrypt(value))
             } else {
                 do {
-                    resultValue = try JSONSerialization.jsonObject(with: value.data(using: String.Encoding.utf8) ?? Data(), options: JSONSerialization.ReadingOptions.mutableContainers)
+                    resultValue = try JSONSerialization.jsonObject(with: decrypt(value).data(using: String.Encoding.utf8) ?? Data())
                 } catch {
-                    resultValue = value
+                    resultValue = decrypt(value)
                 }
             }
             break
@@ -391,6 +425,7 @@ fileprivate extension XTIBaseRequest {
             tempError = error
             break
         }
+        filterRequestCallback(&resultValue, &tempError)
         requestCallback(resultValue, error: tempError, success: successCallBack, error: errorCallback, completed: completedCallback)
     }
 

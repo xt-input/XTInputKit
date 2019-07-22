@@ -17,7 +17,7 @@ extension XTISharedProtocol {
     public static func shared() -> Self {
         var shared = xtiSharedDict["\(Self.self)"] as? Self
         if shared == nil {
-            shared = Self.init()
+            shared = Self()
             xtiSharedDict["\(Self.self)"] = shared
         }
         return shared!

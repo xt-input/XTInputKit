@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'XTInputKit'
-  s.version          = '0.2.5'
+  s.version          = '0.2.6'
   s.summary          = '一些常用的iOS开发代码及扩展集合，例如打印日志的工具XTILoger，用16进制取颜色，keychain，NetWork···'
   
   s.description      = <<-DESC

@@ -85,7 +85,6 @@ open class XTITimerItem: XTIObserverItem {
 
 /// 计时器任务管理
 open class XTITimer: XTIObserver {
-
     /// 添加观察者
     ///     重复添加会覆盖
     /// - Parameters:

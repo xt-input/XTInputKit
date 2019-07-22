@@ -10,6 +10,7 @@ import XTIObjectMapper
 
 public protocol XTIBaseModelProtocol: Mappable {
     mutating func didHandleResult()
+    mutating func isEmpty() -> Bool
 }
 
 extension XTIBaseModelProtocol {
@@ -20,4 +21,8 @@ extension XTIBaseModelProtocol {
     }
 
     public mutating func didHandleResult() {}
+
+    public mutating func isEmpty() -> Bool {
+        return ["{}", "[]", "", "[:]", "{:}", "nil", "null"].contains(self.toJSONString() ?? "nil")
+    }
 }

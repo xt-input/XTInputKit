@@ -24,5 +24,4 @@ public extension XTITypeWrapperProtocol where WrappedType == UIButton {
             wrappedValue.isHighlighted = newValue
         }
     }
-    
 }

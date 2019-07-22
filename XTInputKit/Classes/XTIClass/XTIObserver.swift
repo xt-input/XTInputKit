@@ -28,7 +28,7 @@ open class XTIObserver: XTISharedProtocol {
         return _observers
     }
 
-    required public init() {
+    public required init() {
     }
 
     /// 添加观察者，只能在子类里调用，保护_observers

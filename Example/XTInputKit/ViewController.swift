@@ -49,7 +49,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         xtiloger.info(String(format: NSLocalizedString("密码错误，还有%d次", comment: ""), 123))
 
         // Do any additional setup after loading the view, typically from a nib.
