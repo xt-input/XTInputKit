@@ -282,7 +282,7 @@ func rotateLeft(_ value: UInt32, bits: UInt32) -> UInt32 {
     return ((value << bits) & 0xFFFFFFFF) | (value >> (32 - bits))
 }
 
-class MD5: HashProtocol {
+fileprivate class MD5: HashProtocol {
     static let size = 16 // 128 / 8
     let message: [UInt8]
 
