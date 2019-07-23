@@ -549,6 +549,7 @@ extension XTIBaseRequest {
             XTICacheManager.shared().setCache(url, value: tempValue, parameters: parameters, exclude: exclude)
             break
         case let .failure(error):
+            xtiloger.error(error)
             break
         }
     }
@@ -570,6 +571,7 @@ extension XTIBaseRequest {
                     resultValue = decrypt(tempValue)
                 }
             }
+            tempCacheCallback(resultValue)
         }
     }
 }
