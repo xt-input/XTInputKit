@@ -15,14 +15,14 @@ open class XTIKeyChainTool: XTISharedProtocol {
     }
 
     /// 是否同步到iCloud
-    public var synchronizable: Bool!
+    public var synchronizable: Bool?
     /// 应用分组
-    public var accessGroup: String!
+    public var accessGroup: String?
 
     /// 同步到iCloud
     public static let iCloud = XTIKeyChainTool(synchronizable: true)
 
-    fileprivate var bundleNmae = Bundle.main.bundleIdentifier == nil ? "cn.tcoding.XTInputKit" : Bundle.main.bundleIdentifier!
+    fileprivate var bundleNmae = Bundle.main.bundleIdentifier ?? "cn.tcoding.XTInputKit"
     /// 初始化
     ///
     /// - Parameters:
@@ -33,7 +33,7 @@ open class XTIKeyChainTool: XTISharedProtocol {
         self.accessGroup = accessGroup
     }
 
-    fileprivate var _keyChainUuid: String!
+    fileprivate var _keyChainUuid: String?
     /// 保存在KeyChain里面的UUID，如果不还原手机数据及设置不会被清理掉，可以用来代替openudid
     public var keyChainUuid: String! {
         guard let tempUuid = _keyChainUuid else {
@@ -74,7 +74,7 @@ open class XTIKeyChainTool: XTISharedProtocol {
     ///   - valueTpye: 值的类型
     ///   - key: 键
     /// - Returns: 值 or nil
-    public func get<ValueType: DataConvertible>(valueTpye: ValueType.Type, forKey key: String) -> ValueType! {
+    public func get<ValueType: DataConvertible>(valueTpye: ValueType.Type, forKey key: String) -> ValueType? {
         var keyChainItem = self.initKeyChainDictionary()
         keyChainItem[kSecAttrAccount] = key
         keyChainItem[kSecMatchLimit] = kSecMatchLimitOne
@@ -147,7 +147,7 @@ open class XTIKeyChainTool: XTISharedProtocol {
             query[kSecClass] = kSecClassGenericPassword
             query[kSecAttrService] = bundleNmae
             query[kSecAttrAccessible] = kSecAttrAccessibleWhenUnlocked
-            query[kSecAttrSynchronizable] = self.synchronizable ? kCFBooleanTrue : kCFBooleanFalse
+            query[kSecAttrSynchronizable] = self.synchronizable ?? false ? kCFBooleanTrue : kCFBooleanFalse
             query[kSecAttrAccessGroup] = accessGroup
             self._query = query
         }

@@ -1,6 +1,7 @@
 import UIKit
 import XTInputKit
-import XTIObjectMapper
+//import XTIObjectMapper
+import SwiftyJSON
 
 Date.xti.dateFromString("20190724 22:56", format: "yyyyMMdd HH:mm")?.xti.minuteDescription
 

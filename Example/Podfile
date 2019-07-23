@@ -5,5 +5,5 @@ use_frameworks!
 
 target 'XTInputKitDemo' do
   pod 'XTInputKit', :path => '../'
-  pod 'XTILogerManager'
+  pod 'SwiftyJSON'
 end
