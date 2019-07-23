@@ -72,9 +72,9 @@ public extension XTITypeWrapperProtocol where WrappedType == Date {
         var fix: String = ""
         if theDay == currentDay {
             dateFormatter.dateFormat = "HH:mm"
-//        } else if Date().timeIntervalSince(wrappedValue).isLess(than: XTI_DAY) {
-//            dateFormatter.dateFormat = "HH:mm"
-//            fix = "昨天 "
+        } else if Date().timeIntervalSince(wrappedValue).isLess(than: XTI_DAY) {
+            dateFormatter.dateFormat = "HH:mm"
+            fix = "昨天 "
         } else if Date().timeIntervalSince(wrappedValue).isLess(than: XTI_WEEK) {
             dateFormatter.dateFormat = "EEEE HH:mm"
         } else if Date().timeIntervalSince(wrappedValue).isLess(than: XTI_MONTH) {
