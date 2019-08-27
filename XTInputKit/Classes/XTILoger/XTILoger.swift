@@ -89,12 +89,15 @@ public class XTILoger: XTISharedProtocol {
     }
 
     fileprivate func loger(format: String, _ args: [Any?]) -> String {
-        let regex = try! NSRegularExpression(pattern: "%*%", options: [])
-        let matches = regex.matches(in: format, options: [], range: NSRange(format.startIndex..., in: format))
+        guard let ranges = try? NSRegularExpression(pattern: "%*%", options: []) else {
+            return ""
+        }
+
+        let matches = ranges.matches(in: format, options: [], range: NSRange(format.startIndex..., in: format))
 
         var value = ""
         var index = 0
-        if args.count == 0 {
+        if args.isEmpty {
             return format
         }
 

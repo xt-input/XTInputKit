@@ -9,16 +9,16 @@
 import Alamofire
 
 /// 网络请求成功的回调
-public typealias XTIRequestSuccessCallback = (Any?) -> Void
+public typealias XTIRequestSuccessCallBack = (Any?) -> Void
 /// 网络请求失败的回调
-public typealias XTIRequestErrorCallback = (Error?) -> Void
+public typealias XTIRequestErrorCallBack = (Error?) -> Void
 
 /// 网络请求缓存的回调
-public typealias XTIRequestCacheCallback = (Any?) -> Void
+public typealias XTIRequestCacheCallBack = (Any?) -> Void
 /// 网络请求完成的回调
-public typealias XTIRequestCompleteCallback = (Any?, Error?) -> Void
+public typealias XTIRequestCompleteCallBack = (Any?, Error?) -> Void
 /// 文件上传下载进度的回调
-public typealias XTIProgressCallback = (Progress) -> Void
+public typealias XTIProgressCallBack = (Progress) -> Void
 
 open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
     fileprivate var _iSLogRawData: Bool {
@@ -58,8 +58,8 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
     public var httpScheme: XTIHttpScheme?
 
     fileprivate var _hostName: String {
-        if hostName == nil || hostName?.count == 0 {
-            if XTINetWorkConfig.defaultHostName == nil || XTINetWorkConfig.defaultHostName?.count == 0 {
+        if hostName == nil || hostName?.isEmpty == true {
+            if XTINetWorkConfig.defaultHostName == nil || XTINetWorkConfig.defaultHostName?.isEmpty == true {
                 fatalError("服务器地址不能为空！")
             }
             return XTINetWorkConfig.defaultHostName ?? ""
@@ -102,7 +102,8 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
 
     public var resultType: XTIBaseModelProtocol.Type?
 
-    public var result: DataResponse<String>!
+    public var result: DataResponse<String>?
+    public var request: Request?
 
     public static var isUserSharedSession: Bool = true
     public var isUserSharedSession: Bool! {
@@ -183,7 +184,7 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
     /// - Parameters:
     ///   - value: 请求结果
     ///   - error: 错误描述
-    open func filterRequestCallback(_ value: inout Any?, _ error: inout Error?) {
+    open func filterRequestCallBack(_ value: inout Any?, _ error: inout Error?) {
         if let tempFilterRequest = XTINetWorkConfig.defaultFilterRequest {
             return tempFilterRequest(&value, &error)
         }
@@ -199,18 +200,18 @@ extension XTIBaseRequest {
     ///   - parameters: 参数
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - successCallBack: 成功的回调
-    ///   - errorCallback: 失败的回调
-    ///   - cachaCallback: 缓存的回调
-    ///   - completedCallback: 请求完成的回调
+    ///   - errorCallBack: 失败的回调
+    ///   - cachaCallBack: 缓存的回调
+    ///   - completedCallBack: 请求完成的回调
     open func post(serviceName: String,
                    parameters: XTIParameters? = nil,
                    excludeKeys: [String]? = nil,
                    resultType: XTIBaseModelProtocol.Type? = nil,
-                   success successCallBack: XTIRequestSuccessCallback? = nil,
-                   error errorCallback: XTIRequestErrorCallback? = nil,
-                   cache cacheCallback: XTIRequestCacheCallback? = nil,
-                   completed completedCallback: XTIRequestCompleteCallback? = nil) {
-        send(.post, httpScheme: nil, hostName: nil, serviceName: serviceName, parameters: parameters, resultType: resultType, success: successCallBack, error: errorCallback, cache: cacheCallback, completed: completedCallback)
+                   success successCallBack: XTIRequestSuccessCallBack? = nil,
+                   error errorCallBack: XTIRequestErrorCallBack? = nil,
+                   cache cacheCallBack: XTIRequestCacheCallBack? = nil,
+                   completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
+        send(.post, httpScheme: nil, hostName: nil, serviceName: serviceName, parameters: parameters, resultType: resultType, success: successCallBack, error: errorCallBack, cache: cacheCallBack, completed: completedCallBack)
     }
 
     /// post网络请求，不使用XTINetWorkConfig的域名信息，适用于多台服务器网络请求
@@ -220,18 +221,18 @@ extension XTIBaseRequest {
     ///   - parameters: 参数
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - successCallBack: 成功的回调
-    ///   - errorCallback: 失败的回调
-    ///   - cachaCallback: 缓存的回调
-    ///   - completedCallback: 请求完成的回调
+    ///   - errorCallBack: 失败的回调
+    ///   - cachaCallBack: 缓存的回调
+    ///   - completedCallBack: 请求完成的回调
     open func post(url: String,
                    parameters: XTIParameters? = nil,
                    excludeKeys: [String]? = nil,
                    resultType: XTIBaseModelProtocol.Type? = nil,
-                   success successCallBack: XTIRequestSuccessCallback? = nil,
-                   error errorCallback: XTIRequestErrorCallback? = nil,
-                   cache cacheCallback: XTIRequestCacheCallback? = nil,
-                   completed completedCallback: XTIRequestCompleteCallback? = nil) {
-        send(.post, url: url, parameters: parameters, resultType: resultType, success: successCallBack, error: errorCallback, cache: cacheCallback, completed: completedCallback)
+                   success successCallBack: XTIRequestSuccessCallBack? = nil,
+                   error errorCallBack: XTIRequestErrorCallBack? = nil,
+                   cache cacheCallBack: XTIRequestCacheCallBack? = nil,
+                   completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
+        send(.post, url: url, parameters: parameters, resultType: resultType, success: successCallBack, error: errorCallBack, cache: cacheCallBack, completed: completedCallBack)
     }
 }
 
@@ -244,18 +245,18 @@ extension XTIBaseRequest {
     ///   - parameters: 参数
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - successCallBack: 成功的回调
-    ///   - errorCallback: 失败的回调
-    ///   - cachaCallback: 缓存的回调
-    ///   - completedCallback: 请求完成的回调
+    ///   - errorCallBack: 失败的回调
+    ///   - cachaCallBack: 缓存的回调
+    ///   - completedCallBack: 请求完成的回调
     open func get(serviceName: String? = nil,
                   parameters: XTIParameters? = nil,
                   excludeKeys: [String]? = nil,
                   resultType: XTIBaseModelProtocol.Type? = nil,
-                  success successCallBack: XTIRequestSuccessCallback? = nil,
-                  error errorCallback: XTIRequestErrorCallback? = nil,
-                  cache cacheCallback: XTIRequestCacheCallback? = nil,
-                  completed completedCallback: XTIRequestCompleteCallback? = nil) {
-        send(.get, httpScheme: nil, hostName: nil, serviceName: serviceName, parameters: parameters, resultType: resultType, success: successCallBack, error: errorCallback, cache: cacheCallback, completed: completedCallback)
+                  success successCallBack: XTIRequestSuccessCallBack? = nil,
+                  error errorCallBack: XTIRequestErrorCallBack? = nil,
+                  cache cacheCallBack: XTIRequestCacheCallBack? = nil,
+                  completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
+        send(.get, httpScheme: nil, hostName: nil, serviceName: serviceName, parameters: parameters, resultType: resultType, success: successCallBack, error: errorCallBack, cache: cacheCallBack, completed: completedCallBack)
     }
 
     /// get网络请求，不使用XTINetWorkConfig的域名信息，适用于多台服务器网络请求
@@ -265,18 +266,18 @@ extension XTIBaseRequest {
     ///   - parameters: 参数
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - successCallBack: 成功的回调
-    ///   - errorCallback: 失败的回调
-    ///   - cachaCallback: 缓存的回调
-    ///   - completedCallback: 请求完成的回调
+    ///   - errorCallBack: 失败的回调
+    ///   - cachaCallBack: 缓存的回调
+    ///   - completedCallBack: 请求完成的回调
     open func get(url: String,
                   parameters: XTIParameters? = nil,
                   excludeKeys: [String]? = nil,
                   resultType: XTIBaseModelProtocol.Type? = nil,
-                  success successCallBack: XTIRequestSuccessCallback? = nil,
-                  error errorCallback: XTIRequestErrorCallback? = nil,
-                  cache cacheCallback: XTIRequestCacheCallback? = nil,
-                  completed completedCallback: XTIRequestCompleteCallback? = nil) {
-        send(.get, url: url, parameters: parameters, resultType: resultType, success: successCallBack, error: errorCallback, cache: cacheCallback, completed: completedCallback)
+                  success successCallBack: XTIRequestSuccessCallBack? = nil,
+                  error errorCallBack: XTIRequestErrorCallBack? = nil,
+                  cache cacheCallBack: XTIRequestCacheCallBack? = nil,
+                  completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
+        send(.get, url: url, parameters: parameters, resultType: resultType, success: successCallBack, error: errorCallBack, cache: cacheCallBack, completed: completedCallBack)
     }
 }
 
@@ -292,9 +293,9 @@ extension XTIBaseRequest {
     ///   - parameters: 参数，可以传递进去，如果使用一个类管理一个接口请在buildParameters方法里构造参数
     ///   - result: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - successCallBack: 成功的回调
-    ///   - errorCallback: 失败的回调
-    ///   - cachaCallback: 缓存的回调
-    ///   - completedCallback: 请求完成的回调
+    ///   - errorCallBack: 失败的回调
+    ///   - cachaCallBack: 缓存的回调
+    ///   - completedCallBack: 请求完成的回调
     open func send(_ method: HTTPMethod? = nil,
                    httpScheme scheme: XTIHttpScheme? = nil,
                    hostName host: String? = nil,
@@ -302,10 +303,10 @@ extension XTIBaseRequest {
                    parameters: XTIParameters? = nil,
                    excludeKeys: [String]? = nil,
                    resultType: XTIBaseModelProtocol.Type? = nil,
-                   success successCallBack: XTIRequestSuccessCallback? = nil,
-                   error errorCallback: XTIRequestErrorCallback? = nil,
-                   cache cacheCallback: XTIRequestCacheCallback? = nil,
-                   completed completedCallback: XTIRequestCompleteCallback? = nil) {
+                   success successCallBack: XTIRequestSuccessCallBack? = nil,
+                   error errorCallBack: XTIRequestErrorCallBack? = nil,
+                   cache cacheCallBack: XTIRequestCacheCallBack? = nil,
+                   completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
         let tempScheme = scheme ?? _httpScheme
         let tempHost = host ?? _hostName
         var tempServiceName = service ?? _serviceName
@@ -313,7 +314,7 @@ extension XTIBaseRequest {
             tempServiceName.removeFirst()
         }
         let url = tempScheme.rawValue + tempHost.replacingOccurrences(of: "/", with: "") + "/" + tempServiceName
-        send(method, url: url, parameters: parameters, resultType: resultType, success: successCallBack, error: errorCallback, cache: cacheCallback, completed: completedCallback)
+        send(method, url: url, parameters: parameters, resultType: resultType, success: successCallBack, error: errorCallBack, cache: cacheCallBack, completed: completedCallBack)
     }
 
     /// 汇总的网络请求，默认参数取XTINetWorkConfig里的配置
@@ -324,18 +325,18 @@ extension XTIBaseRequest {
     ///   - parameters: 参数
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - successCallBack: 成功的回调
-    ///   - errorCallback: 失败的回调
-    ///   - cachaCallback: 缓存的回调
-    ///   - completedCallback: 请求完成的回调
+    ///   - errorCallBack: 失败的回调
+    ///   - cachaCallBack: 缓存的回调
+    ///   - completedCallBack: 请求完成的回调
     public func send(_ method: HTTPMethod? = nil,
                      url: String? = nil,
                      parameters: XTIParameters? = nil,
                      excludeKeys: [String]? = nil,
                      resultType: XTIBaseModelProtocol.Type? = nil,
-                     success successCallBack: XTIRequestSuccessCallback? = nil,
-                     error errorCallback: XTIRequestErrorCallback? = nil,
-                     cache cacheCallback: XTIRequestCacheCallback? = nil,
-                     completed completedCallback: XTIRequestCompleteCallback? = nil) {
+                     success successCallBack: XTIRequestSuccessCallBack? = nil,
+                     error errorCallBack: XTIRequestErrorCallBack? = nil,
+                     cache cacheCallBack: XTIRequestCacheCallBack? = nil,
+                     completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
         guard let tempUrl = url else {
             XTILoger.shared().warning("链接为空")
             return
@@ -344,23 +345,26 @@ extension XTIBaseRequest {
         let tempParameters = encrypt(parameters ?? buildParameters())
         var tempHeaders = XTINetWorkConfig.defaultopenHttpHeader
         let sign = signature(tempParameters)
-        if sign.count > 0 {
+        if !sign.isEmpty {
             tempHeaders["sign"] = sign
         }
 
-        read(tempUrl, parameters: tempParameters, exclude: excludeKeys, resultType: resultType, cache: cacheCallback)
+        read(tempUrl, parameters: tempParameters, exclude: excludeKeys, resultType: resultType, cache: cacheCallBack)
 
-        httpManager.request(tempUrl,
-                            method: tempMethod,
-                            parameters: tempParameters,
-                            encoding: _encoding,
-                            headers: tempHeaders).validate(statusCode: 200 ..< 300)
+        let sendRequest = httpManager.request(tempUrl,
+                                              method: tempMethod,
+                                              parameters: tempParameters,
+                                              encoding: _encoding,
+                                              headers: tempHeaders)
+
+        sendRequest.validate(statusCode: 200 ..< 300)
             .responseString { [weak self] res in
                 self?.save(tempUrl, value: res, parameters: tempParameters, exclude: excludeKeys)
                 if let strongSelf = self {
-                    strongSelf.handleRequest(res, resultType: resultType, success: successCallBack, error: errorCallback, completed: completedCallback)
+                    strongSelf.handleRequest(res, resultType: resultType, success: successCallBack, error: errorCallBack, completed: completedCallBack)
                 }
             }
+        self.request = sendRequest
     }
 }
 
@@ -370,17 +374,17 @@ extension XTIBaseRequest {
     ///
     /// - Parameters:
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
-    ///   - progressCallback: 进度
+    ///   - progressCallBack: 进度
     ///   - successCallBack: 成功的回调
-    ///   - errorCallback: 失败的回调
-    ///   - completedCallback: 请求完成的回调
+    ///   - errorCallBack: 失败的回调
+    ///   - completedCallBack: 请求完成的回调
     open func upload(_ resultType: XTIBaseModelProtocol.Type,
-                     progressCallback: XTIProgressCallback? = nil,
-                     successCallBack: XTIRequestSuccessCallback? = nil,
-                     errorCallback: XTIRequestErrorCallback? = nil,
-                     completed completedCallback: XTIRequestCompleteCallback? = nil) {
+                     progressCallBack: XTIProgressCallBack? = nil,
+                     successCallBack: XTIRequestSuccessCallBack? = nil,
+                     errorCallBack: XTIRequestErrorCallBack? = nil,
+                     completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
         let url = _httpScheme.rawValue + _hostName + _serviceName
-        upload(url, parameters: buildParameters(), resultType: resultType, progress: progressCallback, success: successCallBack, error: errorCallback, completed: completedCallback)
+        upload(url, parameters: buildParameters(), resultType: resultType, progress: progressCallBack, success: successCallBack, error: errorCallBack, completed: completedCallBack)
     }
 
     /// 文件上传，适用于用单例一个方法管理一个请求
@@ -389,24 +393,24 @@ extension XTIBaseRequest {
     ///   - url: 上传的地址
     ///   - parameters: 参数
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
-    ///   - progressCallback: 进度
+    ///   - progressCallBack: 进度
     ///   - successCallBack: 成功的回调
-    ///   - errorCallback: 失败的回调
-    ///   - completedCallback: 请求完成的回调
+    ///   - errorCallBack: 失败的回调
+    ///   - completedCallBack: 请求完成的回调
     open func upload(_ url: String,
                      parameters: XTIParameters?,
                      resultType: XTIBaseModelProtocol.Type? = nil,
-                     progress progressCallback: XTIProgressCallback? = nil,
-                     success successCallBack: XTIRequestSuccessCallback? = nil,
-                     error errorCallback: XTIRequestErrorCallback? = nil,
-                     completed completedCallback: XTIRequestCompleteCallback? = nil) {
+                     progress progressCallBack: XTIProgressCallBack? = nil,
+                     success successCallBack: XTIRequestSuccessCallBack? = nil,
+                     error errorCallBack: XTIRequestErrorCallBack? = nil,
+                     completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
         let sign = signature(parameters ?? buildParameters())
         var tempHeaders = XTINetWorkConfig.defaultopenHttpHeader
         if sign != "" {
             tempHeaders["sign"] = sign
         }
         tempHeaders["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
-        httpManager.upload(multipartFormData: { [weak self] data in
+        let uploadRequest = httpManager.upload(multipartFormData: { [weak self] data in
             if let strongSelf = self {
                 parameters?.forEach { key, value in
                     if (value as? Data) == nil {
@@ -417,22 +421,41 @@ extension XTIBaseRequest {
                 }
             }
         }, to: url, method: .post, headers: tempHeaders, interceptor: self)
-            .uploadProgress(closure: progressCallback ?? { _ in }).validate(statusCode: 200 ..< 300)
+
+        uploadRequest.uploadProgress(closure: progressCallBack ?? { _ in }).validate(statusCode: 200 ..< 300)
             .responseString { [weak self] response in
                 if let strongSelf = self {
-                    strongSelf.handleRequest(response, resultType: resultType, success: successCallBack, error: errorCallback, completed: completedCallback)
+                    strongSelf.handleRequest(response, resultType: resultType, success: successCallBack, error: errorCallBack, completed: completedCallBack)
                 }
             }
+
+        self.request = uploadRequest
+    }
+}
+
+extension XTIBaseRequest {
+    /// 取消当前的请求
+    public func cancel() {
+        self.request?.cancel()
+    }
+
+    /// 取消所有的请求，慎用
+    public static func cancelAll() {
+        self.httpManager.session.getTasksWithCompletionHandler { sessionDataTask, uploadData, downloadData in
+            sessionDataTask.forEach { $0.cancel() }
+            uploadData.forEach { $0.cancel() }
+            downloadData.forEach { $0.cancel() }
+        }
     }
 }
 
 // MARK: - 请求结果处理
-fileprivate extension XTIBaseRequest {
+private extension XTIBaseRequest {
     func handleRequest(_ result: DataResponse<String>,
                        resultType: XTIBaseModelProtocol.Type? = nil,
-                       success successCallBack: XTIRequestSuccessCallback? = nil,
-                       error errorCallback: XTIRequestErrorCallback? = nil,
-                       completed completedCallback: XTIRequestCompleteCallback? = nil) {
+                       success successCallBack: XTIRequestSuccessCallBack? = nil,
+                       error errorCallBack: XTIRequestErrorCallBack? = nil,
+                       completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
         outRawData(result)
         self.result = result
         var tempError: Error?
@@ -448,13 +471,11 @@ fileprivate extension XTIBaseRequest {
                     resultValue = decrypt(value)
                 }
             }
-            break
         case let .failure(error):
             tempError = error
-            break
         }
-        filterRequestCallback(&resultValue, &tempError)
-        requestCallback(resultValue, error: tempError, success: successCallBack, error: errorCallback, completed: completedCallback)
+        filterRequestCallBack(&resultValue, &tempError)
+        requestCallBack(resultValue, error: tempError, success: successCallBack, error: errorCallBack, completed: completedCallBack)
     }
 
     /// 网络请求结束后的结果处理
@@ -463,19 +484,19 @@ fileprivate extension XTIBaseRequest {
     ///   - result: 响应数据
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - successCallBack: 成功的回调
-    ///   - errorCallback: 失败的回调
-    ///   - completedCallback: 请求完成的回调
-    func requestCallback(_ result: Any?,
+    ///   - errorCallBack: 失败的回调
+    ///   - completedCallBack: 请求完成的回调
+    func requestCallBack(_ result: Any?,
                          error: Error?,
-                         success successCallBack: XTIRequestSuccessCallback? = nil,
-                         error errorCallback: XTIRequestErrorCallback? = nil,
-                         completed completedCallback: XTIRequestCompleteCallback? = nil) {
-        if let tempCompletedCallback = completedCallback {
-            tempCompletedCallback(result, error)
+                         success successCallBack: XTIRequestSuccessCallBack? = nil,
+                         error errorCallBack: XTIRequestErrorCallBack? = nil,
+                         completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
+        if let tempCompletedCallBack = completedCallBack {
+            tempCompletedCallBack(result, error)
         }
         if let tempError = error {
-            if let tempErrorCallback = errorCallback {
-                tempErrorCallback(tempError)
+            if let tempErrorCallBack = errorCallBack {
+                tempErrorCallBack(tempError)
             }
         } else {
             if let tempSuccessCallBack = successCallBack {
@@ -492,16 +513,16 @@ extension XTIBaseRequest {
     /// - Parameters:
     ///   - url: 文件地址
     ///   - filePath: 文件存放路径，如果为空则放置在/Library/Caches
-    ///   - progressCallback: 下载进度回调
-    ///   - errorCallback: 失败的回调
+    ///   - progressCallBack: 下载进度回调
+    ///   - errorCallBack: 失败的回调
     ///   - successCallBack: 下载成功的回调
-    ///   - errorCallback: 下载失败的回调
+    ///   - errorCallBack: 下载失败的回调
     public static func download(_ url: String,
                                 filePath: URL? = nil,
-                                progressCallback: XTIProgressCallback? = nil,
-                                successCallBack: XTIRequestSuccessCallback? = nil,
-                                error errorCallback: XTIRequestErrorCallback? = nil,
-                                completed completedCallback: XTIRequestCompleteCallback? = nil) {
+                                progressCallBack: XTIProgressCallBack? = nil,
+                                successCallBack: XTIRequestSuccessCallBack? = nil,
+                                error errorCallBack: XTIRequestErrorCallBack? = nil,
+                                completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
         let downloadManager = Session.default.download(url) { (_, response) -> (destinationURL: URL, options: DownloadRequest.Options) in
             var flieURL: URL
             let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
@@ -512,8 +533,8 @@ extension XTIBaseRequest {
             return (flieURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         downloadManager.downloadProgress { progress in
-            if let tempProgressCallback = progressCallback {
-                tempProgressCallback(progress)
+            if let tempProgressCallBack = progressCallBack {
+                tempProgressCallBack(progress)
             }
         }.validate(statusCode: 200 ..< 300).responseString { result in
             let code = result.response?.statusCode ?? 0
@@ -521,17 +542,17 @@ extension XTIBaseRequest {
                 if let tempSuccessCallBack = successCallBack {
                     tempSuccessCallBack(result)
                 }
-                if let tempCompletedCallback = completedCallback {
-                    tempCompletedCallback(result, nil)
+                if let tempCompletedCallBack = completedCallBack {
+                    tempCompletedCallBack(result, nil)
                 }
             } else {
                 let domain = HTTPURLResponse.localizedString(forStatusCode: code)
                 let error = NSError(domain: domain, code: code, userInfo: nil)
-                if let tempErrorCallback = errorCallback {
-                    tempErrorCallback(error)
+                if let tempErrorCallBack = errorCallBack {
+                    tempErrorCallBack(error)
                 }
-                if let tempCompletedCallback = completedCallback {
-                    tempCompletedCallback(nil, error)
+                if let tempCompletedCallBack = completedCallBack {
+                    tempCompletedCallBack(nil, error)
                 }
             }
         }
@@ -547,10 +568,8 @@ extension XTIBaseRequest {
         case let .success(tempValue):
             // 缓存
             XTICacheManager.shared().setCache(url, value: tempValue, parameters: parameters, exclude: exclude)
-            break
         case let .failure(error):
             xtiloger.error(error)
-            break
         }
     }
 
@@ -558,9 +577,9 @@ extension XTIBaseRequest {
                      parameters: XTIParameters? = nil,
                      exclude: [String]? = nil,
                      resultType: XTIBaseModelProtocol.Type? = nil,
-                     cache cacheCallback: XTIRequestCacheCallback? = nil) {
+                     cache cacheCallBack: XTIRequestCacheCallBack? = nil) {
         let value = XTICacheManager.shared().getCache(url, parameters: parameters, exclude: exclude)
-        if let tempCacheCallback = cacheCallback, let tempValue = value {
+        if let tempCacheCallBack = cacheCallBack, let tempValue = value {
             var resultValue: Any?
             if let tempResultType = (resultType ?? self.resultType) {
                 resultValue = tempResultType.handleResult(decrypt(tempValue))
@@ -571,7 +590,7 @@ extension XTIBaseRequest {
                     resultValue = decrypt(tempValue)
                 }
             }
-            tempCacheCallback(resultValue)
+            tempCacheCallBack(resultValue)
         }
     }
 }

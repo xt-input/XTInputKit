@@ -152,13 +152,13 @@ extension XTICacheManager {
         var sortParams = ""
         if let params = parameters {
             let sortArr = params.keys.sorted { $0 < $1 }
-            sortArr.forEach({ str in
+            sortArr.forEach { str in
                 if let value = params[str] {
                     sortParams = sortParams.appending("\(str)=\(value)")
                 } else {
                     sortParams = sortParams.appending("\(str)=")
                 }
-            })
+            }
         }
         return sortParams
     }

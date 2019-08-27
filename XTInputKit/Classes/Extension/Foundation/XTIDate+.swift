@@ -17,6 +17,7 @@ private let XTI_YEAR = 31556926.0
 
 private let XTI_COMPONENT = Calendar.Component.self
 private let XTI_COMPONENTS = Set<Calendar.Component>.init(arrayLiteral: .era, .year, .month, .day, .hour, .minute, .second, .weekday, .weekdayOrdinal, .quarter, .weekOfMonth, .weekOfYear, .yearForWeekOfYear, .nanosecond, .calendar, .timeZone)
+
 private let XTI_CURRENT = Calendar.current
 
 private class XTIDateFormatter: DateFormatter {

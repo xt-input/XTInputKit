@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="Ldl-dK-owT">
             <objects>
-                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QAg-so-iFI" customClass="ViewController" customModule="XTInputKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QAg-so-iFI" customClass="ViewController" customModule="Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c4g-2d-v8W">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -94,7 +94,7 @@
         <!--Key Chain View Controller-->
         <scene sceneID="n9N-IH-XEN">
             <objects>
-                <viewController storyboardIdentifier="XTIKeyChainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zuJ-Lu-ezI" customClass="XTIKeyChainViewController" customModule="XTInputKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="XTIKeyChainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zuJ-Lu-ezI" customClass="XTIKeyChainViewController" customModule="Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b8I-ds-FyG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,7 +235,7 @@
         <!--Net Work View Controller-->
         <scene sceneID="BED-N4-aTy">
             <objects>
-                <viewController storyboardIdentifier="XTINetWorkViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6nA-0x-ZDr" customClass="XTINetWorkViewController" customModule="XTInputKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="XTINetWorkViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6nA-0x-ZDr" customClass="XTINetWorkViewController" customModule="Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bYa-Ff-GNo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -301,7 +301,7 @@
         <!--Table View Controller-->
         <scene sceneID="awT-vg-HWg">
             <objects>
-                <viewController storyboardIdentifier="TableViewController" id="21p-Oe-cVn" customClass="TableViewController" customModule="XTInputKitDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TableViewController" id="21p-Oe-cVn" customClass="TableViewController" customModule="Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wlp-IV-Fck">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

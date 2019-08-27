@@ -20,7 +20,7 @@ public extension XTITypeWrapperProtocol where WrappedType == DispatchQueue {
     ///   - qos: 优先级别
     ///   - time: 时间
     ///   - block: 闭包
-    static func mainAsyncAfter(_ time: Float, block: @escaping () -> Swift.Void) {
+    static func mainAsyncAfter(_ time: Float, block: @escaping () -> Void) {
         WrappedType.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(Int(time * 1000)), execute: block)
     }
 
@@ -30,7 +30,7 @@ public extension XTITypeWrapperProtocol where WrappedType == DispatchQueue {
     ///   - qos: 优先级别
     ///   - time: 时间
     ///   - block: 闭包
-    static func globalAsyncAfter(_ qos: DispatchQoS.QoSClass = .default, time: Float, block: @escaping () -> Swift.Void) {
+    static func globalAsyncAfter(_ qos: DispatchQoS.QoSClass = .default, time: Float, block: @escaping () -> Void) {
         WrappedType.global(qos: qos).asyncAfter(deadline: DispatchTime.now() + .milliseconds(Int(time * 1000)), execute: block)
     }
 
@@ -39,7 +39,7 @@ public extension XTITypeWrapperProtocol where WrappedType == DispatchQueue {
     /// - Parameters:
     ///   - label: 闭包的标记，一定要保证其唯一性
     ///   - block: 闭包
-    static func onceSync(_ label: String, block: () -> Swift.Void) {
+    static func onceSync(_ label: String, block: () -> Void) {
         objc_sync_enter(self)
         defer {
             objc_sync_exit(self)

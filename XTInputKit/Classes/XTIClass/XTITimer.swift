@@ -26,6 +26,8 @@ open class XTITimerItem: XTIObserverItem {
         return self._sum
     }
 
+    let t = CADisplayLink()
+    
     /// 是否取消
     public var isCancel: Bool! {
         didSet {
@@ -45,6 +47,7 @@ open class XTITimerItem: XTIObserverItem {
 
     public init(_ item: AnyObject, labelName name: String = "", sum: Int = 0, interval: Double = 1, block: XTITimerItemCallback! = nil) {
         super.init(item)
+        t.add(to: RunLoop.current, forMode: RunLoop.Mode.common)
         self._sum = sum
         self._labelName = name
         self.timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags.strict, queue: DispatchQueue.global(qos: .background))

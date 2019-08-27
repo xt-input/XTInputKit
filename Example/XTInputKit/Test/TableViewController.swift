@@ -8,12 +8,12 @@
 
 import UIKit
 
-class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, XTINavigationItemDelegate {
     @IBOutlet var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.red
+        self.view.backgroundColor = UIColor.cyan
 //        self.automaticallyAdjustsScrollViewInsets = false
         self.tableView.backgroundColor = UIColor.xti.random
         self.tableView.separatorStyle = .none
@@ -26,10 +26,15 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        }
 
         self.xti_setBarButtonItem(.right)
+        self.xti_setBarButtonItem(.backLeft)
     }
 
-    @objc func xti_toucheRightBarButtonItem() {
-        self.tableView.reloadData()
+    func toucheNavigationBarButtonItem(_ position: XTINAVPOSITION) {
+        xtiloger.debug(position.rawValue)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
     // MARK: - Table view data source

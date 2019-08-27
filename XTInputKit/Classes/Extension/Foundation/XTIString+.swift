@@ -22,7 +22,7 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     /// - Returns: true or false
     func hasSubstring(_ sub: String) -> Bool {
         let range = wrappedValue.range(of: sub)
-        if range == nil || (range?.isEmpty)! {
+        if range?.isEmpty ?? true {
             return false
         }
         return true
@@ -30,15 +30,12 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
 
     func substringIndex(_ sub: String) -> String.Index {
         let range = wrappedValue.range(of: sub)
-        if range == nil {
-            return wrappedValue.endIndex
-        }
-        return (range?.lowerBound)!
+        return range?.lowerBound ?? wrappedValue.endIndex
     }
 
     func substringBetween(_ startString: String, endString endStr: String) -> String {
         var str = wrappedValue.prefix(upTo: substringIndex(endStr))
-        str = str.suffix(from: (wrappedValue.range(of: startString)?.upperBound)!)
+        str = str.suffix(from: wrappedValue.range(of: startString)?.upperBound ?? wrappedValue.startIndex)
         return "\(str)"
     }
 
@@ -207,14 +204,14 @@ extension NSMutableData {
 }
 
 protocol HashProtocol {
-    var message: Array<UInt8> { get }
+    var message: [UInt8] { get }
 
     /** Common part for hash calculation. Prepare header data. */
-    func prepare(_ len: Int) -> Array<UInt8>
+    func prepare(_ len: Int) -> [UInt8]
 }
 
 extension HashProtocol {
-    func prepare(_ len: Int) -> Array<UInt8> {
+    func prepare(_ len: Int) -> [UInt8] {
         var tmpMessage = message
 
         // Step 1. Append Padding Bits
@@ -229,13 +226,13 @@ extension HashProtocol {
             msgLength += 1
         }
 
-        tmpMessage += Array<UInt8>(repeating: 0, count: counter)
+        tmpMessage += [UInt8](repeating: 0, count: counter)
         return tmpMessage
     }
 }
 
-func toUInt32Array(_ slice: ArraySlice<UInt8>) -> Array<UInt32> {
-    var result = Array<UInt32>()
+func toUInt32Array(_ slice: ArraySlice<UInt8>) -> [UInt32] {
+    var result = [UInt32]()
     result.reserveCapacity(16)
 
     for idx in stride(from: slice.startIndex, to: slice.endIndex, by: MemoryLayout<UInt32>.size) {
@@ -265,7 +262,7 @@ struct BytesIterator: IteratorProtocol {
         let end = min(chunkSize, data.count - offset)
         let result = data[offset ..< offset + end]
         offset += result.count
-        return result.count > 0 ? result : nil
+        return !result.isEmpty ? result : nil
     }
 }
 
@@ -282,7 +279,7 @@ func rotateLeft(_ value: UInt32, bits: UInt32) -> UInt32 {
     return ((value << bits) & 0xFFFFFFFF) | (value >> (32 - bits))
 }
 
-fileprivate class MD5: HashProtocol {
+private class MD5: HashProtocol {
     static let size = 16 // 128 / 8
     let message: [UInt8]
 
@@ -353,19 +350,15 @@ fileprivate class MD5: HashProtocol {
                 case 0 ... 15:
                     F = (B & C) | ((~B) & D)
                     g = j
-                    break
                 case 16 ... 31:
                     F = (D & B) | (~D & C)
                     g = (5 * j + 1) % 16
-                    break
                 case 32 ... 47:
                     F = B ^ C ^ D
                     g = (3 * j + 5) % 16
-                    break
                 case 48 ... 63:
                     F = C ^ (B | (~D))
                     g = (7 * j) % 16
-                    break
                 default:
                     break
                 }

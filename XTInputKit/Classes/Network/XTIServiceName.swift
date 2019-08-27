@@ -48,7 +48,7 @@ public extension XTIServiceName {
 
     /// return "\(Self.self)"       eg:  User.originalValue ==> "User"
     static var originalValue: String {
-        return (self.app.count > 0 ? "\(self.app)/" : "") + "\(self.realValue)"
+        return (!self.app.isEmpty ? "\(self.app)/" : "") + "\(self.realValue)"
     }
 
     /// return "\(Self.self)"的小写        eg: User.value ==> "User"

@@ -12,9 +12,9 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
     var request: XTITestRequest?
 
     @IBOutlet var resultTextView: UITextView!
-    var resultString: String! {
+    var resultString: String? {
         didSet {
-            resultTextView.text = resultTextView.text + resultString
+            resultTextView.text = resultTextView.text + (resultString ?? "")
         }
     }
 
@@ -32,7 +32,7 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
 
     @IBAction func clickRequestButton(_ sender: UIButton) {
         let group = DispatchGroup()
-        let p2: [String: Any] = ["bundelID": "22222"]
+        let p2: [String: Any] = ["bundelID": "22222","list":[1,2,3,4,5]]
         group.enter()
         XTITest1Request.shared().get(serviceName: "rxswift/login/index") { value, error in
             xtiloger.debug(value)
@@ -42,7 +42,7 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
         }
 
         group.enter()
-        XTITest1Request.shared().get(url: "http://design.tcoding.cn/rxswift/login/index", parameters: p2) { value, error in
+        XTITest1Request.shared().post(url: "http://design.tcoding.cn/rxswift/login/index", parameters: p2) { value, error in
             xtiloger.debug(value)
             xtiloger.debug(error)
             xtiloger.debug("任务2")
@@ -71,7 +71,7 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
             xtiloger.debug("任务完成")
         }
 
-        XTIModelRequest.shared().get { value, error in
+        XTIModelRequest().get { value, error in
             xtiloger.debug(value)
             xtiloger.debug(error)
         }

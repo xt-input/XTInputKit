@@ -8,10 +8,16 @@
 
 import UIKit
 
+/// 导航栏左右按钮点击回调
+public protocol XTINavigationItemDelegate {
+    func toucheNavigationBarButtonItem(_ position: XTINAVPOSITION)
+}
+
 // MARK: - ViewController (UINavigation)
 
 // 导航栏左右两边枚举
 public enum XTINAVPOSITION: String {
+    case backLeft
     case left
     case right
 }
@@ -26,9 +32,8 @@ public extension UIViewController {
     }
 
     // MARK: - 设置下一界面的导航栏back按钮文案和颜色
-
     /// 下一级控制器导航栏返回按钮文案
-    var xti_nextBackTitle: String! {
+    var xti_nextBackTitle: String? {
         set {
             if xti_nextBackTitle != newValue {
                 objc_setAssociatedObject(self, &XTIViewControllerKey.nextBackTitle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
@@ -47,7 +52,7 @@ public extension UIViewController {
     }
 
     /// 下一级控制器导航栏返回按钮颜色
-    var xti_nextBackColor: UIColor! {
+    var xti_nextBackColor: UIColor? {
         set {
             if xti_nextBackColor != newValue {
                 objc_setAssociatedObject(self, &XTIViewControllerKey.nextBackColor, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
@@ -67,9 +72,8 @@ public extension UIViewController {
     }
 
     // MARK: - 设置tabbar和navigation的标题
-
     /// 用于tabbar标题和navigation标题不一致的时候设置tabbar的标题，需要在viewDidLoad之前设置
-    var xti_tabbarTitle: String! {
+    var xti_tabbarTitle: String? {
         set {
             if xti_tabbarTitle != newValue {
                 objc_setAssociatedObject(self, &XTIViewControllerKey.tabbarTitle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
@@ -78,14 +82,14 @@ public extension UIViewController {
         }
         get {
             let title = objc_getAssociatedObject(self, &XTIViewControllerKey.tabbarTitle)
-            return (title == nil ? self.title : title) as? String
+            return title as? String ?? self.title
         }
     }
 
     /**
      用于tabbar标题和navigation标题不一致的时候设置navigation的标题
      */
-    var xti_navigationTitle: String! {
+    var xti_navigationTitle: String? {
         set {
             if xti_navigationTitle != newValue {
                 objc_setAssociatedObject(self, &XTIViewControllerKey.navigationTitle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY_NONATOMIC)
@@ -94,30 +98,43 @@ public extension UIViewController {
         }
         get {
             let title = objc_getAssociatedObject(self, &XTIViewControllerKey.navigationTitle)
-            return (title == nil ? self.title : title) as? String
+            return title as? String ?? self.title
         }
     }
 
     // MARK: - 通过StoryBoard初始化控制器
-
     /// 通过storyboard文件名字初始化控制器
     ///
     /// - Parameters:
     ///   - name: storyboard文件的名字
     ///   - withIdentifier: 控制器的storyboard id (默认，self.className)
-    static func initwithstoryboard(_ name: String, withIdentifier: String! = nil) -> UIViewController {
-        if withIdentifier == nil {
-            return UIStoryboard(name: name, bundle: nil).instantiateViewController(withIdentifier: self.className)
-        } else {
-            return UIStoryboard(name: name, bundle: nil).instantiateViewController(withIdentifier: withIdentifier)
-        }
+    static func initwithstoryboard(_ name: String, withIdentifier: String? = nil) -> UIViewController {
+        return UIStoryboard(name: name, bundle: nil).instantiateViewController(withIdentifier: withIdentifier ?? self.className)
     }
 
     fileprivate var navTitleColor: UIColor {
-        return navigationController?.navigationBar.tintColor == nil ? UIColor.black : navigationController!.navigationBar.tintColor
+        return navigationController?.navigationBar.tintColor ?? UIColor.black
     }
 
     // MARK: - 设置导航栏的左右两个按钮
+    @objc private func toucheLeftBarButtonItem() {
+        (self as? XTINavigationItemDelegate)?.toucheNavigationBarButtonItem(.left)
+    }
+
+    @objc private func toucheRightBarButtonItem() {
+        (self as? XTINavigationItemDelegate)?.toucheNavigationBarButtonItem(.right)
+    }
+
+    func xti_setBarButtonItem(_ position: XTINAVPOSITION,
+                              title: String? = nil,
+                              img: UIImage? = nil,
+                              titleColor: UIColor? = nil) {
+        if position == .left {
+            self.xti_setBarButtonItem(position, title: title, img: img, titleColor: titleColor, action: #selector(toucheLeftBarButtonItem))
+        } else {
+            self.xti_setBarButtonItem(position, title: title, img: img, titleColor: titleColor, action: #selector(toucheRightBarButtonItem))
+        }
+    }
 
     /// 设置导航栏左右两边的按钮
     ///     图片和文字两个参数至少需要一个
@@ -126,16 +143,16 @@ public extension UIViewController {
     ///   - title: 标题
     ///   - img: 图片
     ///   - titleColor: 文字颜色
-    ///   - action: 响应的方法，如果不传值则默认使用xti_toucheLeftBarButtonItem或xti_toucheRightBarButtonItem
+    ///   - action: 响应的方法
     func xti_setBarButtonItem(_ position: XTINAVPOSITION,
-                              title: String! = nil,
-                              img: UIImage! = nil,
-                              titleColor: UIColor! = nil,
-                              action: Selector! = nil) {
-        let color = titleColor == nil ? navTitleColor : titleColor
+                              title: String? = nil,
+                              img: UIImage? = nil,
+                              titleColor: UIColor? = nil,
+                              action: Selector) {
+        let color = titleColor ?? navTitleColor
         let navItem = navigationItem
         let navBtn = UIButton(type: .custom)
-        let tempTitle = title == nil ? position.rawValue : title
+        let tempTitle = title ?? position.rawValue
         navBtn.setTitle(tempTitle, for: .normal)
         navBtn.setTitle(tempTitle, for: .highlighted)
 
@@ -148,25 +165,21 @@ public extension UIViewController {
         navBtn.setImage(img, for: .highlighted)
         navBtn.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         navBtn.sizeToFit()
+
         let btnItem = UIBarButtonItem(customView: navBtn)
-        var sel: Selector!
-        if position == .left {
-            sel = Selector(("xti_toucheLeftBarButtonItem"))
+        if position != .right {
+            navItem.leftItemsSupplementBackButton = position == .backLeft
             navItem.leftBarButtonItem = btnItem
         } else {
-            sel = Selector(("xti_toucheRightBarButtonItem"))
             navItem.rightBarButtonItem = btnItem
         }
-        if action != nil {
-            sel = action
-        }
-        if responds(to: sel) {
-            navBtn.addTarget(self, action: sel, for: .touchUpInside)
+
+        if responds(to: action) {
+            navBtn.addTarget(self, action: action, for: .touchUpInside)
         }
     }
 
     // MARK: - ViewController (push、present, pop、dismiss)
-
     /// 跳转到VC，自动选择push或present
     /// 如果能push，就使用push
     /// - Parameters:
@@ -194,7 +207,6 @@ public extension UIViewController {
     }
 
     // MARK: - 弹窗alertController
-
     func showMessage(title: String! = "提示", message: String! = nil, cancelTitle: String! = nil, confirmTitle: String! = "确认", action: ((_ index: Int) -> Void)! = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         if cancelTitle != nil {

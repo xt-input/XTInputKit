@@ -6,9 +6,9 @@
 //  Copyright © 2018年 input. All rights reserved.
 //
 
+import Alamofire
+import Kingfisher
 import UIKit
-
-import ARKit
 
 var count = 0
 
@@ -58,6 +58,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.xti_nextBackTitle = ""
         self.xti_nextBackColor = UIColor.xti.random
         self.xti_tabbarTitle = "tabbar标题"
+
+        let imageView = UIImageView()
+        imageView.kf.setImage(with: URL(string: ""), placeholder: UIImage())
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -106,7 +109,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let notification = UNMutableNotificationContent()
             // 通知上显示的主题内容
             notification.body = "通知上显示的提示内容"
-            notification.subtitle = "通知上显示的提示内容1"
+            notification.subtitle = "通知上显示的提示内容"
 
             // 收到通知时播放的声音，默认消息声音
             notification.sound = UNNotificationSound.default
