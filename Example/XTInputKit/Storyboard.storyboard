@@ -71,7 +71,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.57647058819999997" green="0.40000000000000002" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="DvY-Z2-EDh" firstAttribute="centerX" secondItem="ALt-9T-VJc" secondAttribute="centerX" id="2Kr-Ha-OmT"/>
                             <constraint firstItem="cee-vE-1IZ" firstAttribute="top" secondItem="DvY-Z2-EDh" secondAttribute="bottom" constant="12" id="OGO-aI-141"/>

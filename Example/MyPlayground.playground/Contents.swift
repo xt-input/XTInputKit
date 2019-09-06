@@ -1,10 +1,16 @@
+import CoreTelephony
 import Foundation
 import XTInputKit
-import CoreTelephony
 
-let array1 = ["123", "234"]
-let array2 = ["123", "234"]
-print(array1 + array2)
-print("\(array1 + array2)")
+//let array1 = ["123", "234"]
+//let array2 = ["123", "234"]
+//print(array1 + array2)
+//print("\(array1 + array2)")
 
-array2.xti.toString()
+//array2.xti.toString()
+var str = ""
+for i in 0 ... 20 {
+    str.append("\(i)")
+    if i == 11 { str.append("--\(i)--") }
+}
+print(str)

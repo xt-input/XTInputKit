@@ -49,11 +49,21 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return 3
     }
 
+    var height = 65
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(self.height)
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableView.className, for: indexPath)
 
         xtiloger.debug(indexPath)
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.height = self.height + 10
+        self.tableView.reloadData()
     }
 }

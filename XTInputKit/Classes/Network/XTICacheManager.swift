@@ -104,14 +104,7 @@ public struct XTICacheManager: XTISharedProtocol {
     ///   - object: model
     ///   - key: key
     fileprivate func setObject(_ object: String, forKey key: String) {
-        storage?.async.setObject(object, forKey: key, expiry: nil, completion: { result in
-            switch result {
-            case .value:
-                xtiloger.info("缓存成功")
-            case let .error(error):
-                xtiloger.info("缓存失败：\(error)")
-            }
-        })
+        storage?.async.setObject(object, forKey: key, expiry: nil, completion: { _ in })
     }
 
     func setCache(_ url: String,

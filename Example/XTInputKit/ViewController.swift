@@ -138,51 +138,53 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //            }
 //            xtiloger.debug(item?.count)
 //        }
-//
-//        let group = DispatchGroup()
-//        let p2: [String: Any] = ["bundelID": "22222"]
-//        group.enter()
-//        XTITest1Request.shared().get(serviceName: "rxswift/login/index") { value, error in
-//            xtiloger.debug(value)
-//            xtiloger.debug(error)
-//            xtiloger.debug("任务1")
-//            group.leave()
-//        }
-//
-//        group.enter()
-//        XTITest1Request.shared().get(url: "http://design.tcoding.cn/rxswift/login/index", parameters: p2) { value, error in
-//            xtiloger.debug(value)
-//            xtiloger.debug(error)
-//            xtiloger.debug("任务2")
-//            group.leave()
-//        }
-//
-//        group.enter()
-//        XTITest1Request.shared().get(serviceName: "rxswift/login/index", success: { value in
-//            xtiloger.debug(value)
-//            xtiloger.debug("任务3")
-//            group.leave()
-//        })
-//
-//        group.enter()
-//        XTITest1Request.shared().get(serviceName: "rxswift/login/index", success: { value in
-//            xtiloger.debug(value)
-//            xtiloger.debug("任务4")
-//            group.leave()
-//        }, error: { error in
-//            xtiloger.debug(error)
-//            xtiloger.debug("任务4")
-//            group.leave()
-//        })
-//
-//        group.notify(queue: DispatchQueue.main) {
-//            xtiloger.debug("任务完成")
-//        }
 
-//        XTIModelRequest.shared().get { value, error in
-//            xtiloger.debug(value)
-//            xtiloger.debug(error)
-//        }
+        let group = DispatchGroup()
+        let p2: [String: Any] = ["bundelID": "22222"]
+        group.enter()
+        XTITest1Request.shared().get(serviceName: "rxswift/login/index", cache: { value in
+            xtiloger.debug("----------\(String(describing: value))")
+        }) { value, error in
+            xtiloger.debug(value)
+            xtiloger.debug(error)
+            xtiloger.debug("任务1")
+            group.leave()
+        }
+
+        group.enter()
+        XTITest1Request.shared().get(url: "http://design.tcoding.cn/rxswift/login/index", parameters: p2) { value, error in
+            xtiloger.debug(value)
+            xtiloger.debug(error)
+            xtiloger.debug("任务2")
+            group.leave()
+        }
+
+        group.enter()
+        XTITest1Request.shared().get(serviceName: "rxswift/login/index", success: { value in
+            xtiloger.debug(value)
+            xtiloger.debug("任务3")
+            group.leave()
+        })
+
+        group.enter()
+        XTITest1Request.shared().get(serviceName: "rxswift/login/index", success: { value in
+            xtiloger.debug(value)
+            xtiloger.debug("任务4")
+            group.leave()
+        }, error: { error in
+            xtiloger.debug(error)
+            xtiloger.debug("任务4")
+            group.leave()
+        })
+
+        group.notify(queue: DispatchQueue.main) {
+            xtiloger.debug("任务完成")
+        }
+
+        XTIModelRequest.shared().get { value, error in
+            xtiloger.debug(value)
+            xtiloger.debug(error)
+        }
     }
 
     override func didReceiveMemoryWarning() {
