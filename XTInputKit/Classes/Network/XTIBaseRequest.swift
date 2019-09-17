@@ -102,7 +102,7 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
 
     public var resultType: XTIBaseModelProtocol.Type?
 
-    public var result: DataResponse<String>?
+    public var result: AFDataResponse<String>?
     public var request: Request?
 
     public static var isUserSharedSession: Bool = true
@@ -451,7 +451,7 @@ extension XTIBaseRequest {
 
 // MARK: - 请求结果处理
 private extension XTIBaseRequest {
-    func handleRequest(_ result: DataResponse<String>,
+    func handleRequest(_ result: AFDataResponse<String>,
                        resultType: XTIBaseModelProtocol.Type? = nil,
                        success successCallBack: XTIRequestSuccessCallBack? = nil,
                        error errorCallBack: XTIRequestErrorCallBack? = nil,
@@ -560,7 +560,7 @@ extension XTIBaseRequest {
 }
 
 extension XTIBaseRequest {
-    public func save(_ url: String, value: DataResponse<String>, parameters: XTIParameters? = nil, exclude: [String]? = nil) {
+    public func save(_ url: String, value: AFDataResponse<String>, parameters: XTIParameters? = nil, exclude: [String]? = nil) {
         if !isUserCache {
             return
         }
@@ -600,7 +600,7 @@ extension XTIBaseRequest {
     /// 打印原始数据，可以在该函数里面读取Cookie的值
     ///
     /// - Parameter result: 原始数据
-    open func outRawData(_ result: DataResponse<String>) {
+    open func outRawData(_ result: AFDataResponse<String>) {
         if _iSLogRawData {
             XTILoger.shared().debug(result)
         }
