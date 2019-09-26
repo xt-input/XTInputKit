@@ -91,7 +91,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @IBAction func clickTabBtn(_ sender: UIButton) {
-        self.xti_pushOrPresentVC(TableViewController.initwithstoryboard("Storyboard"))
+//        self.xti_pushOrPresentVC(TableViewController.initwithstoryboard("Storyboard"))
     }
 
     @IBAction func clickPushBtn(_ sender: UIButton) {

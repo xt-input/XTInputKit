@@ -59,6 +59,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
+
+//        if #available(iOS 13.0, *) {
+//            self.window?.overrideUserInterfaceStyle = .light
+//        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

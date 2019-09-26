@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -104,7 +102,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="pdI-pj-3Tv"/>
                                 </constraints>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
@@ -132,7 +129,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Ucs-GB-pI0"/>
                                 </constraints>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                             </textField>
@@ -305,24 +301,9 @@
                     <view key="view" contentMode="scaleToFill" id="Wlp-IV-Fck">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z21-BP-o5p">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="XKr-Xw-fCL" firstAttribute="trailing" secondItem="z21-BP-o5p" secondAttribute="trailing" id="2aC-X3-izX"/>
-                            <constraint firstItem="z21-BP-o5p" firstAttribute="leading" secondItem="XKr-Xw-fCL" secondAttribute="leading" id="Qpz-M7-Ayc"/>
-                            <constraint firstItem="z21-BP-o5p" firstAttribute="top" secondItem="XKr-Xw-fCL" secondAttribute="top" id="Xkw-0o-Ojv"/>
-                            <constraint firstItem="XKr-Xw-fCL" firstAttribute="bottom" secondItem="z21-BP-o5p" secondAttribute="bottom" id="hmS-Zr-pWa"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="XKr-Xw-fCL"/>
                     </view>
-                    <connections>
-                        <outlet property="tableView" destination="z21-BP-o5p" id="7cP-Ip-pVc"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fA-0G-AuF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

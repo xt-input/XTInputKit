@@ -12,7 +12,6 @@
 		5E1FB93C229FC2210069FBC6 /* XTITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1FB93B229FC2210069FBC6 /* XTITabBarController.swift */; };
 		5E1FB93E229FC5360069FBC6 /* XTITabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1FB93D229FC5360069FBC6 /* XTITabBar.swift */; };
 		5E7041F222BB3E20004AC6D9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E7041F422BB3E20004AC6D9 /* Localizable.strings */; };
-		5E872D7922954F8200303479 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E872D7822954F8200303479 /* TableViewController.swift */; };
 		5E8750942249FBC500E1A01E /* XTIKeyChainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87508C2249FBC500E1A01E /* XTIKeyChainViewController.swift */; };
 		5E87509A2249FBC500E1A01E /* XTIObserverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8750932249FBC500E1A01E /* XTIObserverTest.swift */; };
 		5E87509C2249FBCF00E1A01E /* XTINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87509B2249FBCF00E1A01E /* XTINavigationController.swift */; };
@@ -34,7 +33,6 @@
 		5E225A2022F80B0F00218E5E /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5E7041F322BB3E20004AC6D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5E7041F522BB3E22004AC6D9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		5E872D7822954F8200303479 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5E87508C2249FBC500E1A01E /* XTIKeyChainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIKeyChainViewController.swift; sourceTree = "<group>"; };
 		5E87508D2249FBC500E1A01E /* XTINetWorkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTINetWorkViewController.swift; sourceTree = "<group>"; };
 		5E8750932249FBC500E1A01E /* XTIObserverTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIObserverTest.swift; sourceTree = "<group>"; };
@@ -85,7 +83,6 @@
 				5E87508C2249FBC500E1A01E /* XTIKeyChainViewController.swift */,
 				5E87508D2249FBC500E1A01E /* XTINetWorkViewController.swift */,
 				5E8750932249FBC500E1A01E /* XTIObserverTest.swift */,
-				5E872D7822954F8200303479 /* TableViewController.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -306,7 +303,6 @@
 				5E1FB93C229FC2210069FBC6 /* XTITabBarController.swift in Sources */,
 				5E1A4EC7224B1E6000A74EBD /* XTITestRequest.swift in Sources */,
 				5E1FB93E229FC5360069FBC6 /* XTITabBar.swift in Sources */,
-				5E872D7922954F8200303479 /* TableViewController.swift in Sources */,
 				5E1A4EC9224B1E6600A74EBD /* XTITest1Request.swift in Sources */,
 				5E87509C2249FBCF00E1A01E /* XTINavigationController.swift in Sources */,
 				5E8750942249FBC500E1A01E /* XTIKeyChainViewController.swift in Sources */,
