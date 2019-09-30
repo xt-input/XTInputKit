@@ -37,6 +37,11 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
 
     public var isUserCache: Bool = true
 
+    /// 如果只需要读取缓存重写该函数返回false，isUserCache为true时有效
+    open func isNeedNetworkRequest() -> Bool {
+        return true
+    }
+
     fileprivate var _httpMethod: HTTPMethod {
         return httpMethod ?? HTTPMethod.post
     }
@@ -119,8 +124,13 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
     }
 
     public var fileType: String?
+
+    public var cacheManager: XTICacheManager
+
     public required init() {
         self.isUserSharedSession = XTIBaseRequest.isUserSharedSession
+        cacheManager = XTICacheManager()
+        cacheManager.expiry = .seconds(XTINetWorkConfig.cacheSecondsTime)
     }
 
     deinit {
@@ -351,6 +361,10 @@ extension XTIBaseRequest {
 
         read(tempUrl, parameters: tempParameters, exclude: excludeKeys, resultType: resultType, cache: cacheCallBack)
 
+        if !isNeedNetworkRequest() && isUserCache {
+            return
+        }
+
         let sendRequest = httpManager.request(tempUrl,
                                               method: tempMethod,
                                               parameters: tempParameters,
@@ -559,6 +573,7 @@ extension XTIBaseRequest {
     }
 }
 
+// MARK: - 网络请求缓存处理
 extension XTIBaseRequest {
     public func save(_ url: String, value: AFDataResponse<String>, parameters: XTIParameters? = nil, exclude: [String]? = nil) {
         if !isUserCache {
@@ -567,7 +582,7 @@ extension XTIBaseRequest {
         switch value.result {
         case let .success(tempValue):
             // 缓存
-            XTICacheManager.shared().setCache(url, value: tempValue, parameters: parameters, exclude: exclude)
+            cacheManager.setCache(url, value: tempValue, parameters: parameters, exclude: exclude)
         case let .failure(error):
             xtiloger.error(error)
         }
@@ -578,7 +593,7 @@ extension XTIBaseRequest {
                      exclude: [String]? = nil,
                      resultType: XTIBaseModelProtocol.Type? = nil,
                      cache cacheCallBack: XTIRequestCacheCallBack? = nil) {
-        let value = XTICacheManager.shared().getCache(url, parameters: parameters, exclude: exclude)
+        let value = cacheManager.getCache(url, parameters: parameters, exclude: exclude)
         if let tempCacheCallBack = cacheCallBack, let tempValue = value {
             var resultValue: Any?
             if let tempResultType = (resultType ?? self.resultType) {

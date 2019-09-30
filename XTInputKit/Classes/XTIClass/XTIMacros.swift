@@ -14,14 +14,17 @@ public struct XTIMacros {
         return UIScreen.main.bounds
     }
 
+    /// 屏幕大小
     public static var SCREEN_SIZE: CGSize {
         return UIScreen.main.bounds.size
     }
 
+    /// 屏幕宽度
     public static var SCREEN_WIDTH: CGFloat {
         return SCREEN_SIZE.width
     }
 
+    /// 屏幕高度
     public static var SCREEN_HEIGHT: CGFloat {
         return SCREEN_SIZE.height
     }

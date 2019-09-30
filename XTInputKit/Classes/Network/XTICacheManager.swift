@@ -30,24 +30,24 @@ public enum DaisyExpiry {
 
 public struct XTICacheManager: XTISharedProtocol {
     fileprivate var storage: Storage<String>?
-    var expiry: DaisyExpiry = .never
 
-    public init() {
-        expiryConfiguration()
+    var expiry: DaisyExpiry {
+        didSet {
+            let diskConfig = DiskConfig(
+                name: "XTIDaisyCache",
+                expiry: expiry.expiry
+            )
+            let memoryConfig = MemoryConfig(expiry: expiry.expiry)
+            do {
+                storage = try Storage(diskConfig: diskConfig, memoryConfig: memoryConfig, transformer: TransformerFactory.forCodable(ofType: String.self))
+            } catch {
+                xtiloger.error(error)
+            }
+        }
     }
 
-    mutating func expiryConfiguration(expiry: DaisyExpiry = .never) {
-        self.expiry = expiry
-        let diskConfig = DiskConfig(
-            name: "DaisyCache",
-            expiry: expiry.expiry
-        )
-        let memoryConfig = MemoryConfig(expiry: expiry.expiry)
-        do {
-            storage = try Storage(diskConfig: diskConfig, memoryConfig: memoryConfig, transformer: TransformerFactory.forCodable(ofType: String.self))
-        } catch {
-            xtiloger.error(error)
-        }
+    public init() {
+        self.expiry = .never
     }
 
     /// 清除所有缓存
