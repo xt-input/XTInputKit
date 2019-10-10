@@ -13,6 +13,7 @@ public enum UIDeviceType: String {
     case iPodTouch4 = "iPod Touch 4"
     case iPodTouch5 = "iPod Touch 5"
     case iPodTouch6 = "iPod Touch 6"
+    case iPodTouch7 = "iPod Touch 7"
 
     case iPhone4 = "iPhone 4"
     case iPhone4s = "iPhone 4s"
@@ -32,6 +33,9 @@ public enum UIDeviceType: String {
     case iPhoneXR = "iPhone XR"
     case iPhoneXS = "iPhone XS"
     case iPhoneXSMax = "iPhone XS Max"
+    case iPhone11 = "iPhone 11"
+    case iPhone11Pro = "iPhone 11 Pro"
+    case iPhone11ProMax = "iPhone 11 Pro Max"
 
     case iPad
     case iPad2 = "iPad 2"
@@ -82,6 +86,8 @@ public extension XTITypeWrapperProtocol where WrappedType == UIDevice {
             return .iPodTouch5
         case "iPod7,1":
             return .iPodTouch6
+        case "iPod9,1":
+            return .iPodTouch7
 
         case "iPhone3,1", "iPhone3,2", "iPhone3,3":
             return .iPhone4
@@ -117,8 +123,14 @@ public extension XTITypeWrapperProtocol where WrappedType == UIDevice {
             return .iPhoneXR
         case "iPhone11,2":
             return .iPhoneXS
-        case "iPhone11,6":
+        case "iPhone11,6", "iPhone11,4":
             return .iPhoneXSMax
+        case "iPhone12,1":
+            return .iPhone11
+        case "iPhone12,3":
+            return .iPhone11Pro
+        case "iPhone12,5":
+            return .iPhone11ProMax
 
         case "iPad1,1":
             return .iPad
@@ -158,6 +170,7 @@ public extension XTITypeWrapperProtocol where WrappedType == UIDevice {
             return .iPadPro11
         case "iPad8,5", "iPad8,6", "iPad8,7", "iPad8,8":
             return .iPadPro12_9_3
+
         case "i386", "x86_64":
             return .Simulator
         default:

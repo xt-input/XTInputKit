@@ -28,11 +28,9 @@ open class XTIObserver: XTISharedProtocol {
         return _observers
     }
 
-    public required init() {
-    }
+    public required init() {}
 
     /// 添加观察者，只能在子类里调用，保护_observers
-    ///
     /// - Parameter Object: 需要添加的观察者单元
     public final func addObserver(_ item: XTIObserverItem) {
         if let description = item.observerItem?.description {
@@ -48,7 +46,6 @@ open class XTIObserver: XTISharedProtocol {
     }
 
     /// 移除观察者, 只能在子类里调用，保护_observers
-    ///
     /// - Parameter Object: 需要移除的观察者单元
     public final func removeObserver(_ item: XTIObserverItem) {
         if let description = item.observerItem?.description {

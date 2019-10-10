@@ -11,8 +11,7 @@ import Security
 
 /// KeyChain的封装，需要开启项目配置的Capabilities->Keychain Sharing
 open class XTIKeyChainTool: XTISharedProtocol {
-    public required init() {
-    }
+    public required init() {}
 
     /// 是否同步到iCloud
     public var synchronizable: Bool?
@@ -24,7 +23,6 @@ open class XTIKeyChainTool: XTISharedProtocol {
 
     fileprivate var bundleNmae = Bundle.main.bundleIdentifier ?? "cn.tcoding.XTInputKit"
     /// 初始化
-    ///
     /// - Parameters:
     ///   - synchronizable: 是否同步到iCloud
     ///   - accessGroup: 应用分组，如果需要使用应用分组可以使用它
@@ -49,7 +47,6 @@ open class XTIKeyChainTool: XTISharedProtocol {
     }
 
     /// 将value保存到KeyChain里面去
-    ///
     /// - Parameters:
     ///   - value: 值
     ///   - key: 键
@@ -69,7 +66,6 @@ open class XTIKeyChainTool: XTISharedProtocol {
     }
 
     /// 获取保存在KeyChain里面的值
-    ///
     /// - Parameters:
     ///   - valueTpye: 值的类型
     ///   - key: 键
@@ -96,7 +92,6 @@ open class XTIKeyChainTool: XTISharedProtocol {
     }
 
     /// 删除KeyChain里面的数据
-    ///
     /// - Parameter key: 键，如果没有键则将该应用保存在KeyChain里所以的值都清理掉(不包括keyChainUuid)
     /// - Returns: 操作结果
     @discardableResult public func delete(_ key: String! = nil) -> Bool {

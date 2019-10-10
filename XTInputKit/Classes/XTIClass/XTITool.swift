@@ -51,7 +51,6 @@ open class XTITool {
     }
 
     /// 版本号比较，一般的项目版本号用float类型不能满足要求，而字符串直接比较当版本号某一块大于9的时候就不能直接用字符串比较
-    ///
     /// - Parameter version: 需要比较的版本号，用"."分割版本号 1.12.3 > 1.2.3
     /// - Returns: 比较结果
     public static func compareAppVersion(_ version: String) -> XTIVersionCompareResult {

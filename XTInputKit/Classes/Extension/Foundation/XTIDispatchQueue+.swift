@@ -15,7 +15,6 @@ private var labelArray = [String]()
 
 public extension XTITypeWrapperProtocol where WrappedType == DispatchQueue {
     /// 在主队列延时异步执行闭包
-    ///
     /// - Parameters:
     ///   - qos: 优先级别
     ///   - time: 时间
@@ -25,7 +24,6 @@ public extension XTITypeWrapperProtocol where WrappedType == DispatchQueue {
     }
 
     /// 在非主队列延时异步执行闭包
-    ///
     /// - Parameters:
     ///   - qos: 优先级别
     ///   - time: 时间
@@ -35,7 +33,6 @@ public extension XTITypeWrapperProtocol where WrappedType == DispatchQueue {
     }
 
     /// 在应用生命周期里同步执行一次闭包
-    ///
     /// - Parameters:
     ///   - label: 闭包的标记，一定要保证其唯一性
     ///   - block: 闭包

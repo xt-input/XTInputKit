@@ -30,7 +30,6 @@
 		2C25AE76ABAA6ABDF43542C5 /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E1FB93B229FC2210069FBC6 /* XTITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITabBarController.swift; sourceTree = "<group>"; };
 		5E1FB93D229FC5360069FBC6 /* XTITabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITabBar.swift; sourceTree = "<group>"; };
-		5E225A2022F80B0F00218E5E /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5E7041F322BB3E20004AC6D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5E7041F522BB3E22004AC6D9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5E87508C2249FBC500E1A01E /* XTIKeyChainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTIKeyChainViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +42,7 @@
 		5E8750A6224A022500E1A01E /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		5E9FC81822D2421800F85ADE /* XTITestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITestModel.swift; sourceTree = "<group>"; };
 		5E9FC81A22D2433A00F85ADE /* XTIModelRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIModelRequest.swift; sourceTree = "<group>"; };
+		5EE5016B234F6B4700005E75 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		607FACD01AFB9204008FA782 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				5E225A2022F80B0F00218E5E /* MyPlayground.playground */,
+				5EE5016B234F6B4700005E75 /* MyPlayground.playground */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for XTInputKit */,
 				607FACD11AFB9204008FA782 /* Products */,

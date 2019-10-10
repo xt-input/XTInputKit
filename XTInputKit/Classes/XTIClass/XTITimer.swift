@@ -27,7 +27,7 @@ open class XTITimerItem: XTIObserverItem {
     }
 
     let t = CADisplayLink()
-    
+
     /// 是否取消
     public var isCancel: Bool! {
         didSet {
@@ -118,7 +118,6 @@ open class XTITimer: XTIObserver {
     }
 
     /// 移除观察者
-    ///
     /// - Parameter object: 观察者
     open func removeObserver(_ object: AnyObject, labelName name: String = "") {
         if var description = object.description {

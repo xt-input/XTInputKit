@@ -140,7 +140,6 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
     }
 
     /// 构造请求参数，如果是POST则放在body里面，如果是GET则拼接在URL后面
-    ///
     /// - Returns: 参数字典
     open func buildParameters() -> XTIParameters {
         if parameters == nil {
@@ -168,7 +167,6 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
     }
 
     /// 参数加密
-    ///
     /// - Parameter parameters: 要加密的字典
     /// - Returns: 加密后的字典
     open func encrypt(_ parameters: XTIParameters) -> XTIParameters {
@@ -179,7 +177,6 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
     }
 
     /// 结果解密
-    ///
     /// - Parameter value: 要解密的字符串
     /// - Returns: 解密后的字符串
     open func decrypt(_ value: String) -> String {
@@ -190,7 +187,6 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
     }
 
     /// 过滤请求结果
-    ///
     /// - Parameters:
     ///   - value: 请求结果
     ///   - error: 错误描述
@@ -216,7 +212,6 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
 // MARK: - post请求
 extension XTIBaseRequest {
     /// post网络请求，域名等信息使用XTINetWorkConfig的配置，只需要传入服务名和参数及回调的闭包，适用于一个方法管理一个网络请求
-    ///
     /// - Parameters:
     ///   - serviceName: 服务名
     ///   - parameters: 参数
@@ -237,7 +232,6 @@ extension XTIBaseRequest {
     }
 
     /// post网络请求，不使用XTINetWorkConfig的域名信息，适用于多台服务器网络请求
-    ///
     /// - Parameters:
     ///   - url: 网络请求的地址
     ///   - parameters: 参数
@@ -261,7 +255,6 @@ extension XTIBaseRequest {
 // MARK: - get请求
 extension XTIBaseRequest {
     /// get网络请求，域名等信息使用XTINetWorkConfig的配置，只需要传入服务名和参数及回调的闭包，适用于一个方法管理一个网络请求
-    ///
     /// - Parameters:
     ///   - serviceName: 服务名
     ///   - parameters: 参数
@@ -282,7 +275,6 @@ extension XTIBaseRequest {
     }
 
     /// get网络请求，不使用XTINetWorkConfig的域名信息，适用于多台服务器网络请求
-    ///
     /// - Parameters:
     ///   - url: 网络请求的地址
     ///   - parameters: 参数
@@ -306,7 +298,6 @@ extension XTIBaseRequest {
 // MARK: - 发出网络请求
 extension XTIBaseRequest {
     /// 汇总的网络请求，除了回调都有默认参数，默认参数取XTINetWorkConfig里的配置，默认参数可以在初始化对象的时候设置，如果一个类管理一个接口可以在子类里设置所有的默认参数
-    ///
     /// - Parameters:
     ///   - method: HttpMethod，仅支持post or get
     ///   - scheme: HttpScheme, http or https
@@ -340,7 +331,6 @@ extension XTIBaseRequest {
     }
 
     /// 汇总的网络请求，默认参数取XTINetWorkConfig里的配置
-    ///
     /// - Parameters:
     ///   - method: HttpMethod，仅支持post or get
     ///   - url: 网络地址
@@ -397,7 +387,6 @@ extension XTIBaseRequest {
 // MARK: - 文件上传
 extension XTIBaseRequest {
     /// 文件上传，适用于一个类管理一个接口，可以在子类里设置所有的默认参数
-    ///
     /// - Parameters:
     ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
     ///   - progressCallBack: 进度
@@ -512,7 +501,6 @@ private extension XTIBaseRequest {
     }
 
     /// 网络请求结束后的结果处理
-    ///
     /// - Parameters:
     ///   - result: 响应数据
     ///   - error: 错误信息
@@ -544,7 +532,6 @@ private extension XTIBaseRequest {
 // MARK: - 文件下载
 extension XTIBaseRequest {
     /// 文件下载(该方法仅适用于单个文件，如果文件很多推荐使用TYDownloadManager) <比较鸡肋>
-    ///
     /// - Parameters:
     ///   - url: 文件地址
     ///   - filePath: 文件存放路径，如果为空则放置在/Library/Caches
@@ -639,7 +626,6 @@ extension XTIBaseRequest {
 // MARK: - 打印日志
 extension XTIBaseRequest {
     /// 打印原始数据，可以在该函数里面读取Cookie的值
-    ///
     /// - Parameter result: 原始数据
     open func outRawData(_ result: AFDataResponse<String>) {
         if _iSLogRawData {

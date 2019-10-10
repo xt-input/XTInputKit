@@ -51,7 +51,6 @@ public struct XTICacheManager: XTISharedProtocol {
     }
 
     /// 清除所有缓存
-    ///
     /// - Parameter completion: completion
     public func removeAllCache(completion: @escaping (_ isSuccess: Bool) -> Void) {
         storage?.async.removeAll(completion: { result in
@@ -65,7 +64,6 @@ public struct XTICacheManager: XTISharedProtocol {
     }
 
     /// 根据key值清除缓存
-    ///
     /// - Parameters:
     ///   - cacheKey: cacheKey
     ///   - completion: completion
@@ -81,7 +79,6 @@ public struct XTICacheManager: XTISharedProtocol {
     }
 
     /// 读取缓存
-    ///
     /// - Parameter key: key
     /// - Returns: model
     fileprivate func objectSync(forKey key: String) -> String? {
@@ -99,7 +96,6 @@ public struct XTICacheManager: XTISharedProtocol {
     }
 
     /// 异步缓存
-    ///
     /// - Parameters:
     ///   - object: model
     ///   - key: key

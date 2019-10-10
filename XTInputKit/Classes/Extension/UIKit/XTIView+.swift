@@ -11,7 +11,6 @@ extension UIView: XTIBaseNameNamespace {}
 
 public extension XTITypeWrapperProtocol where WrappedType == UIView {
     /// 将View转换成img
-    ///
     /// - Returns: 转换的结果
     func xt_convertViewToImage() -> UIImage! {
         let scale = UIScreen.main.scale

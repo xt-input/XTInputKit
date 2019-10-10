@@ -104,7 +104,6 @@ public extension UIViewController {
 
     // MARK: - 通过StoryBoard初始化控制器
     /// 通过storyboard文件名字初始化控制器
-    ///
     /// - Parameters:
     ///   - name: storyboard文件的名字
     ///   - withIdentifier: 控制器的storyboard id (默认，self.className)
@@ -194,7 +193,6 @@ public extension UIViewController {
     }
 
     /// 关闭当前控制器，无需考虑当前控制器出现的方式(push or present)
-    ///
     /// - Parameters:
     ///   - animated: 是否执行过渡动画
     ///   - completion: 如果是dismiss支持页面消失后闭包回调

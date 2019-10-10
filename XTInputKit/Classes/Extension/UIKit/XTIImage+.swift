@@ -12,7 +12,6 @@ extension UIImage: XTIBaseNameNamespace {}
 
 public extension XTITypeWrapperProtocol where WrappedType == UIImage {
     /// 通过颜色和大小获取图片
-    ///
     /// - Parameters:
     ///   - color: 图片的颜色
     ///   - size: 图片的大小
@@ -31,7 +30,6 @@ public extension XTITypeWrapperProtocol where WrappedType == UIImage {
     }
 
     /// 图片中心拉伸，适用于设置圆角渐变的边框
-    ///
     /// - Returns: 生成的图片
     func stretchImage() -> UIImage {
         let imageSize = wrappedValue.size
@@ -40,7 +38,6 @@ public extension XTITypeWrapperProtocol where WrappedType == UIImage {
     }
 
     /// 图片从指定的点拉伸
-    ///
     /// - Parameter point: 拉伸的点
     /// - Returns: 生成的图片
     func stretchAtPoint(_ point: CGPoint) -> UIImage {

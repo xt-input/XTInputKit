@@ -182,8 +182,7 @@ public class XTILoger: XTISharedProtocol {
     }
 
     /// 打印日志
-    ///
-    /// - Parameters:
+     /// - Parameters:
     ///   - level: 日志等级
     ///   - format: 要打印的数据的结构
     ///   - args: 要打印的数据数组
@@ -244,8 +243,7 @@ public class XTILoger: XTISharedProtocol {
     }
 
     /// 通过日志等级获取当前日志文件的路径
-    ///
-    /// - Parameter level: 日志等级
+     /// - Parameter level: 日志等级
     /// - Returns: 文件路径
     public func getCurrentLogFilePath(_ level: XTILogerLevel) -> String {
         let fileName = self.returnFileName(level)
@@ -257,8 +255,7 @@ public class XTILoger: XTISharedProtocol {
     }
 
     /// 获取日志文件夹的路径，没有该文件夹就创建
-    ///
-    /// - Returns: 日志文件夹的路径
+     /// - Returns: 日志文件夹的路径
     public func getLogDirectory() -> String {
         let logDirectoryPath = NSHomeDirectory() + "/Documents/XTILoger/"
         if !FileManager.default.fileExists(atPath: logDirectoryPath) {
@@ -268,8 +265,7 @@ public class XTILoger: XTISharedProtocol {
     }
 
     /// 获取所有日志文件的路径
-    ///
-    /// - Returns: 所有日志文件的路径
+     /// - Returns: 所有日志文件的路径
     public func getLogFilesPath() -> [String] {
         var filesPath = [String]()
         do {
@@ -279,8 +275,7 @@ public class XTILoger: XTISharedProtocol {
     }
 
     /// 清理日志文件
-    ///
-    /// - Returns: 操作结果
+     /// - Returns: 操作结果
     @discardableResult public func cleanLogFiles() -> Bool {
         self.getLogFilesPath().forEach { path in
             do { try FileManager.default.removeItem(atPath: path) } catch {}

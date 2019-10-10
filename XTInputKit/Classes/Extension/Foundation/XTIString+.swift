@@ -17,7 +17,6 @@ public extension XTITypeWrapperProtocol where WrappedType == String {
     }
 
     /// 判断是否存在子串
-    ///
     /// - Parameter sub: 子串
     /// - Returns: true or false
     func hasSubstring(_ sub: String) -> Bool {

@@ -16,3 +16,4 @@ target 'Demo' do
   pod 'XTInputKit', :path => '../'
   pod 'Kingfisher'
 end
+pod install

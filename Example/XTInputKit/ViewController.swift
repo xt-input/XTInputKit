@@ -36,15 +36,6 @@ struct T: Mappable {
 }
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    private var _testcolor: UIColor!
-
-    var testcolor: UIColor! {
-        if self._testcolor == nil {
-            self._testcolor = UIColor.xti.random
-        }
-        return self._testcolor
-    }
-
     var tableView: UITableView!
 
     override func viewDidLoad() {
@@ -56,7 +47,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.xti_navigationTitle = "navigation标题"
         self.xti_setBarButtonItem(.right, title: "测试")
         self.xti_nextBackTitle = ""
-        self.xti_nextBackColor = UIColor.xti.random
+        var color = UIColor.xti.hex("0x00ffff")
+        self.xti_nextBackColor = UIColor.xti.hex("0x00ffff44")
         self.xti_tabbarTitle = "tabbar标题"
 
         let imageView = UIImageView()
