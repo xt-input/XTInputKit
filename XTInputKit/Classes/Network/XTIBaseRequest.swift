@@ -194,9 +194,19 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
     /// - Parameters:
     ///   - value: 请求结果
     ///   - error: 错误描述
-    open func filterRequestCallBack(_ value: inout Any?, _ error: inout Error?) {
+    open func filterRequest(_ value: inout Any?, _ error: inout Error?) {
         if let tempFilterRequest = XTINetWorkConfig.defaultFilterRequest {
             return tempFilterRequest(&value, &error)
+        }
+    }
+
+    /// 网络请求结果解析后的前置操作，可以在这里再次修改网络请求的结果
+    /// - Parameter value:请求结果
+    /// - Parameter error:错误描述
+    /// - Parameter isCache:是否是缓存
+    open func preOperationCallBack(_ value: inout Any?, _ error: inout Error?, _ isCache: Bool = false) {
+        if let preOperationCallBack = XTINetWorkConfig.defaultPreOperationCallBack {
+            return preOperationCallBack(&value, &error, isCache)
         }
     }
 }
@@ -488,7 +498,8 @@ private extension XTIBaseRequest {
         case let .failure(error):
             tempError = error
         }
-        filterRequestCallBack(&resultValue, &tempError)
+        filterRequest(&resultValue, &tempError)
+        preOperationCallBack(&resultValue, &tempError)
         requestCallBack(resultValue, error: tempError, success: successCallBack, error: errorCallBack, completed: completedCallBack)
     }
 
@@ -496,7 +507,7 @@ private extension XTIBaseRequest {
     ///
     /// - Parameters:
     ///   - result: 响应数据
-    ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
+    ///   - error: 错误信息
     ///   - successCallBack: 成功的回调
     ///   - errorCallBack: 失败的回调
     ///   - completedCallBack: 请求完成的回调
@@ -596,6 +607,8 @@ extension XTIBaseRequest {
         let value = cacheManager.getCache(url, parameters: parameters, exclude: exclude)
         if let tempCacheCallBack = cacheCallBack, let tempValue = value {
             var resultValue: Any?
+            var tempError: Error?
+
             if let tempResultType = (resultType ?? self.resultType) {
                 resultValue = tempResultType.handleResult(decrypt(tempValue))
             } else {
@@ -605,6 +618,7 @@ extension XTIBaseRequest {
                     resultValue = decrypt(tempValue)
                 }
             }
+            preOperationCallBack(&resultValue, &tempError, true)
             tempCacheCallBack(resultValue)
         }
     }

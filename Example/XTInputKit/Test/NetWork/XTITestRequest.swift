@@ -23,6 +23,10 @@ class XTITestRequest: XTIBaseRequest {
         return parameters
     }
 
+    override func preOperationCallBack(_ value: inout Any?, _ error: inout Error?, _ isCache: Bool = false) {
+        
+    }
+
     deinit {
         xtiloger.debug(self)
     }

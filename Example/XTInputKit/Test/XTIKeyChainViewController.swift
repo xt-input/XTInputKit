@@ -18,12 +18,12 @@ class XTIKeyChainViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         self.xti_navigationTitle = "KeyChain"
         let keyLabel = UILabel()
-        keyLabel.text = "键："
+        keyLabel.text = " 键："
         self.keyTextField.leftView = keyLabel
         self.keyTextField.leftViewMode = .always
         self.keyTextField.delegate = self
         let valueLabel = UILabel()
-        valueLabel.text = "值："
+        valueLabel.text = " 值："
         self.valueTextField.leftView = valueLabel
         self.valueTextField.leftViewMode = .always
         xtiloger.debug(XTIKeyChainTool.shared().keyChainUuid)

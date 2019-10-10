@@ -39,8 +39,10 @@ public struct XTINetWorkConfig {
     public static var defaultHttpMaximumConnectionsPerHost = 10
     public static var defaultEncoding: ParameterEncoding = URLEncoding.default
     public static var serverTrustPolicies: [String: ServerTrustEvaluating] = ["": DisabledEvaluator()]
+
     /// 默认缓存7天的网络请求
     public static var cacheSecondsTime: TimeInterval = 60 * 60 * 24 * 7
+
     fileprivate static var _defaultopenHttpHeader: XTIHTTPHeaders!
     /// 公共参数，放置在请求头里
     public static var defaultopenHttpHeader: XTIHTTPHeaders {
@@ -78,4 +80,7 @@ public struct XTINetWorkConfig {
 
     /// 结果回调过滤操作
     public static var defaultFilterRequest: ((_ value: inout Any?, _ error: inout Error?) -> Void)?
+
+    /// 所有的网络请求结果解析后的前置操作，可以在这里再次修改网络请求的结果
+    public static var defaultPreOperationCallBack: ((_ value: inout Any?, _ error: inout Error?, _ isCache: Bool) -> Void)?
 }
