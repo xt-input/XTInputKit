@@ -79,8 +79,8 @@ public struct XTINetWorkConfig {
     public static var defaultDecrypt: ((_ value: String) -> String)?
 
     /// 结果回调过滤操作
-    public static var defaultFilterRequest: ((_ value: inout Any?, _ error: inout Error?) -> Void)?
+    public static var defaultFilterRequest: ((_ value: Any?, _ error: Error?) -> (value: Any?, error: Error?))?
 
     /// 所有的网络请求结果解析后的前置操作，可以在这里再次修改网络请求的结果
-    public static var defaultPreOperationCallBack: ((_ value: inout Any?, _ error: inout Error?, _ isCache: Bool) -> Void)?
+    public static var defaultPreOperationCallBack: ((_ value: Any?, _ error: Error?, _ isCache: Bool) -> (value: Any?, error: Error?))?
 }

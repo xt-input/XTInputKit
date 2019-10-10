@@ -194,20 +194,22 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
     /// - Parameters:
     ///   - value: 请求结果
     ///   - error: 错误描述
-    open func filterRequest(_ value: inout Any?, _ error: inout Error?) {
+    open func filterRequest(_ value: Any?, _ error: Error?) -> (value: Any?, error: Error?) {
         if let tempFilterRequest = XTINetWorkConfig.defaultFilterRequest {
-            return tempFilterRequest(&value, &error)
+            return tempFilterRequest(value, error)
         }
+        return (value, error)
     }
 
     /// 网络请求结果解析后的前置操作，可以在这里再次修改网络请求的结果
     /// - Parameter value:请求结果
     /// - Parameter error:错误描述
     /// - Parameter isCache:是否是缓存
-    open func preOperationCallBack(_ value: inout Any?, _ error: inout Error?, _ isCache: Bool = false) {
+    open func preOperationCallBack(_ value: Any?, _ error: Error?, _ isCache: Bool = false) -> (value: Any?, error: Error?) {
         if let preOperationCallBack = XTINetWorkConfig.defaultPreOperationCallBack {
-            return preOperationCallBack(&value, &error, isCache)
+            return preOperationCallBack(value, error, isCache)
         }
+        return (value, error)
     }
 }
 
@@ -498,8 +500,14 @@ private extension XTIBaseRequest {
         case let .failure(error):
             tempError = error
         }
-        filterRequest(&resultValue, &tempError)
-        preOperationCallBack(&resultValue, &tempError)
+
+        let filterValue = filterRequest(resultValue, tempError)
+        if let tempValue = filterValue.value {
+            resultValue = tempValue
+        }
+        if let tempFilterError = filterValue.error {
+            tempError = tempFilterError
+        }
         requestCallBack(resultValue, error: tempError, success: successCallBack, error: errorCallBack, completed: completedCallBack)
     }
 
@@ -516,16 +524,18 @@ private extension XTIBaseRequest {
                          success successCallBack: XTIRequestSuccessCallBack? = nil,
                          error errorCallBack: XTIRequestErrorCallBack? = nil,
                          completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
+        let preOperationValue = preOperationCallBack(result, error)
+
         if let tempCompletedCallBack = completedCallBack {
-            tempCompletedCallBack(result, error)
+            tempCompletedCallBack(preOperationValue.value, preOperationValue.error)
         }
-        if let tempError = error {
+        if let tempError = preOperationValue.error {
             if let tempErrorCallBack = errorCallBack {
                 tempErrorCallBack(tempError)
             }
         } else {
             if let tempSuccessCallBack = successCallBack {
-                tempSuccessCallBack(result)
+                tempSuccessCallBack(preOperationValue.value)
             }
         }
     }
@@ -618,7 +628,9 @@ extension XTIBaseRequest {
                     resultValue = decrypt(tempValue)
                 }
             }
-            preOperationCallBack(&resultValue, &tempError, true)
+            if let tempValue = preOperationCallBack(resultValue, tempError, true).value {
+                resultValue = tempValue
+            }
             tempCacheCallBack(resultValue)
         }
     }
