@@ -132,7 +132,7 @@ extension XTICacheManager {
         if let filterParams = parameters?.filter({ (key, _) -> Bool in
             exclude?.contains(where: { (value) -> Bool in
                 key != value
-            }) ?? false
+            }) ?? true
         }) {
             let str = "\(url)" + "\(sort(filterParams))"
             return MD5(str)
