@@ -12,28 +12,28 @@ import UIKit
 
 var count = 0
 
-enum T1 {
-    enum T2 {
-        case str
-    }
-}
+// enum T1 {
+//    enum T2 {
+//        case str
+//    }
+// }
 
-struct T: Mappable {
-    var string: String?
-    var int: Int?
-    var double: Double?
-    var float: Float?
-    var bool: Bool?
-    init?(map: Map) {}
-    mutating func mapping(map: Map) {
-        string <- map["string"]
-        int <- map["int"]
-        double <- map["double"]
-        float <- map["float"]
-        bool <- map["bool"]
-        print(map["double"].value() ?? "123")
-    }
-}
+// struct T: Mappable {
+//    var string: String?
+//    var int: Int?
+//    var double: Double?
+//    var float: Float?
+//    var bool: Bool?
+//    init?(map: Map) {}
+//    mutating func mapping(map: Map) {
+//        string <- map["string"]
+//        int <- map["int"]
+//        double <- map["double"]
+//        float <- map["float"]
+//        bool <- map["bool"]
+//        print(map["double"].value() ?? "123")
+//    }
+// }
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var tableView: UITableView!
@@ -47,7 +47,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.xti_navigationTitle = "navigation标题"
         self.xti_setBarButtonItem(.right, title: "测试")
         self.xti_nextBackTitle = ""
-        var color = UIColor.xti.hex("0x00ffff")
         self.xti_nextBackColor = UIColor.xti.hex("0x00ffff44")
         self.xti_tabbarTitle = "tabbar标题"
 
@@ -111,7 +110,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             notification.categoryIdentifier = "UNNotificationRequestUNNotificationRequest"
             xtiloger.debug("发送通知")
             //        UIApplication.shared.presentLocalNotificationNow(notification)
-            let request = UNNotificationRequest(identifier: "UNNotificationRequestUNNotificationRequest", content: notification, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false))
+            let request = UNNotificationRequest(identifier: "UNNotificationRequestUNNotificationRequest", content: notification, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false))
             UNUserNotificationCenter.current().add(request) { error in
                 xtiloger.debug(error)
             }
@@ -121,7 +120,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        XTILoger.shared().info(String(reflecting: T1.T2.str))
+//        XTILoger.shared().info(String(reflecting: T1.T2.str))
 //        XTITimer.defualt.removeObserver(self)
 //        let labelName: Int = Int(arc4random())
 //        XTITimer.defualt.addObserver(self, labelName: "\(labelName)", repeating: 1.0, sum: labelName) { _ in
@@ -132,7 +131,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //        }
 
         let group = DispatchGroup()
-        let p2: [String: Any] = ["bundelID": "22222"]
+        
+        var map = XTITestModel()
+        let p2: [String: Any] = ["bundelID": "22222", "map": map.toJsonString() ?? ""]
+
         group.enter()
         XTITest1Request.shared().get(serviceName: "rxswift/login/index", cache: { value in
             xtiloger.debug("----------\(String(describing: value))")

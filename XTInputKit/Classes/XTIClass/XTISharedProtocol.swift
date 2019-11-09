@@ -6,11 +6,12 @@
 //
 
 import Foundation
-var xtiSharedDict = [String: Any]()
+private var xtiSharedDict = [String: Any]()
 
 public protocol XTISharedProtocol {
     init()
     static func shared() -> Self
+    static func deShared()
 }
 
 extension XTISharedProtocol {
@@ -21,5 +22,9 @@ extension XTISharedProtocol {
             xtiSharedDict["\(Self.self)"] = shared
         }
         return shared!
+    }
+
+    public static func deShared() {
+        xtiSharedDict.removeValue(forKey: "\(Self.self)")
     }
 }

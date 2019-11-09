@@ -20,7 +20,9 @@ public typealias XTIRequestCompleteCallBack = (Any?, Error?) -> Void
 /// 文件上传下载进度的回调
 public typealias XTIProgressCallBack = (Progress) -> Void
 
-open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
+public typealias XTIDataResponse = DataResponse<String>
+
+open class XTIBaseRequest: XTISharedProtocol {
     fileprivate var _iSLogRawData: Bool {
         return iSLogRawData ?? XTINetWorkConfig.iSLogRawData
     }
@@ -82,20 +84,20 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
         return serviceName ?? ""
     }
 
-    fileprivate static var _httpManager: Session!
-    fileprivate static var httpManager: Session {
+    fileprivate static var _httpManager: SessionManager!
+    fileprivate static var httpManager: SessionManager {
         if _httpManager == nil {
             let configuration = URLSessionConfiguration.default
-            configuration.headers = HTTPHeaders.default
+//            configuration.headers = HTTPHeaders.default
             configuration.timeoutIntervalForRequest = XTINetWorkConfig.defaultTimeoutInterval
             configuration.httpMaximumConnectionsPerHost = XTINetWorkConfig.defaultHttpMaximumConnectionsPerHost
-            _httpManager = Session(configuration: configuration)
+            _httpManager = SessionManager(configuration: configuration)
         }
         return _httpManager
     }
 
-    fileprivate var _httpManager: Session?
-    fileprivate var httpManager: Session {
+    fileprivate var _httpManager: SessionManager?
+    fileprivate var httpManager: SessionManager {
         if isUserSharedSession {
             return XTIBaseRequest.httpManager
         } else {
@@ -107,7 +109,7 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
 
     public var resultType: XTIBaseModelProtocol.Type?
 
-    public var result: AFDataResponse<String>?
+    public var result: XTIDataResponse?
     public var request: Request?
 
     public static var isUserSharedSession: Bool = true
@@ -115,10 +117,10 @@ open class XTIBaseRequest: RequestInterceptor, XTISharedProtocol {
         didSet {
             if !oldValue && isUserSharedSession {
                 let configuration = URLSessionConfiguration.default
-                configuration.headers = HTTPHeaders.default
+//                configuration.headers = HTTPHeaders.default
                 configuration.timeoutIntervalForRequest = XTINetWorkConfig.defaultTimeoutInterval
                 configuration.httpMaximumConnectionsPerHost = XTINetWorkConfig.defaultHttpMaximumConnectionsPerHost
-                _httpManager = Session(configuration: configuration)
+                _httpManager = SessionManager(configuration: configuration)
             }
         }
     }
@@ -384,69 +386,69 @@ extension XTIBaseRequest {
     }
 }
 
-// MARK: - 文件上传
-extension XTIBaseRequest {
-    /// 文件上传，适用于一个类管理一个接口，可以在子类里设置所有的默认参数
-    /// - Parameters:
-    ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
-    ///   - progressCallBack: 进度
-    ///   - successCallBack: 成功的回调
-    ///   - errorCallBack: 失败的回调
-    ///   - completedCallBack: 请求完成的回调
-    open func upload(_ resultType: XTIBaseModelProtocol.Type,
-                     progressCallBack: XTIProgressCallBack? = nil,
-                     successCallBack: XTIRequestSuccessCallBack? = nil,
-                     errorCallBack: XTIRequestErrorCallBack? = nil,
-                     completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
-        let url = _httpScheme.rawValue + _hostName + _serviceName
-        upload(url, parameters: buildParameters(), resultType: resultType, progress: progressCallBack, success: successCallBack, error: errorCallBack, completed: completedCallBack)
-    }
-
-    /// 文件上传，适用于用单例一个方法管理一个请求
-    ///     文件上传时请将文件转成Data放置在parameters里
-    /// - Parameters:
-    ///   - url: 上传的地址
-    ///   - parameters: 参数
-    ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
-    ///   - progressCallBack: 进度
-    ///   - successCallBack: 成功的回调
-    ///   - errorCallBack: 失败的回调
-    ///   - completedCallBack: 请求完成的回调
-    open func upload(_ url: String,
-                     parameters: XTIParameters?,
-                     resultType: XTIBaseModelProtocol.Type? = nil,
-                     progress progressCallBack: XTIProgressCallBack? = nil,
-                     success successCallBack: XTIRequestSuccessCallBack? = nil,
-                     error errorCallBack: XTIRequestErrorCallBack? = nil,
-                     completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
-        let sign = signature(parameters ?? buildParameters())
-        var tempHeaders = XTINetWorkConfig.defaultopenHttpHeader
-        if sign != "" {
-            tempHeaders["sign"] = sign
-        }
-        tempHeaders["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
-        let uploadRequest = httpManager.upload(multipartFormData: { [weak self] data in
-            if let strongSelf = self {
-                parameters?.forEach { key, value in
-                    if (value as? Data) == nil {
-                        data.append("\(value)".data(using: String.Encoding.utf8, allowLossyConversion: false)!, withName: key)
-                    } else {
-                        data.append(value as! Data, withName: key, fileName: key, mimeType: strongSelf.getFileType())
-                    }
-                }
-            }
-        }, to: url, method: .post, headers: tempHeaders, interceptor: self)
-
-        uploadRequest.uploadProgress(closure: progressCallBack ?? { _ in }).validate(statusCode: 200 ..< 300)
-            .responseString { [weak self] response in
-                if let strongSelf = self {
-                    strongSelf.handleRequest(response, resultType: resultType, success: successCallBack, error: errorCallBack, completed: completedCallBack)
-                }
-            }
-
-        self.request = uploadRequest
-    }
-}
+//// MARK: - 文件上传
+//extension XTIBaseRequest {
+//    /// 文件上传，适用于一个类管理一个接口，可以在子类里设置所有的默认参数
+//    /// - Parameters:
+//    ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
+//    ///   - progressCallBack: 进度
+//    ///   - successCallBack: 成功的回调
+//    ///   - errorCallBack: 失败的回调
+//    ///   - completedCallBack: 请求完成的回调
+//    open func upload(_ resultType: XTIBaseModelProtocol.Type,
+//                     progressCallBack: XTIProgressCallBack? = nil,
+//                     successCallBack: XTIRequestSuccessCallBack? = nil,
+//                     errorCallBack: XTIRequestErrorCallBack? = nil,
+//                     completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
+//        let url = _httpScheme.rawValue + _hostName + _serviceName
+//        upload(url, parameters: buildParameters(), resultType: resultType, progress: progressCallBack, success: successCallBack, error: errorCallBack, completed: completedCallBack)
+//    }
+//
+//    /// 文件上传，适用于用单例一个方法管理一个请求
+//    ///     文件上传时请将文件转成Data放置在parameters里
+//    /// - Parameters:
+//    ///   - url: 上传的地址
+//    ///   - parameters: 参数
+//    ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
+//    ///   - progressCallBack: 进度
+//    ///   - successCallBack: 成功的回调
+//    ///   - errorCallBack: 失败的回调
+//    ///   - completedCallBack: 请求完成的回调
+//    open func upload(_ url: String,
+//                     parameters: XTIParameters?,
+//                     resultType: XTIBaseModelProtocol.Type? = nil,
+//                     progress progressCallBack: XTIProgressCallBack? = nil,
+//                     success successCallBack: XTIRequestSuccessCallBack? = nil,
+//                     error errorCallBack: XTIRequestErrorCallBack? = nil,
+//                     completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
+//        let sign = signature(parameters ?? buildParameters())
+//        var tempHeaders = XTINetWorkConfig.defaultopenHttpHeader
+//        if sign != "" {
+//            tempHeaders["sign"] = sign
+//        }
+//        tempHeaders["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
+//        let uploadRequest = httpManager.upload(multipartFormData: { [weak self] data in
+//            if let strongSelf = self {
+//                parameters?.forEach { key, value in
+//                    if (value as? Data) == nil {
+//                        data.append("\(value)".data(using: String.Encoding.utf8, allowLossyConversion: false)!, withName: key)
+//                    } else {
+//                        data.append(value as! Data, withName: key, fileName: key, mimeType: strongSelf.getFileType())
+//                    }
+//                }
+//            }
+//        }, to: url, method: .post, headers: tempHeaders, interceptor: self)
+//
+//        uploadRequest.uploadProgress(closure: progressCallBack ?? { _ in }).validate(statusCode: 200 ..< 300)
+//            .responseString { [weak self] response in
+//                if let strongSelf = self {
+//                    strongSelf.handleRequest(response, resultType: resultType, success: successCallBack, error: errorCallBack, completed: completedCallBack)
+//                }
+//            }
+//
+//        self.request = uploadRequest
+//    }
+//}
 
 extension XTIBaseRequest {
     /// 取消当前的请求
@@ -466,7 +468,7 @@ extension XTIBaseRequest {
 
 // MARK: - 请求结果处理
 private extension XTIBaseRequest {
-    func handleRequest(_ result: AFDataResponse<String>,
+    func handleRequest(_ result: XTIDataResponse,
                        resultType: XTIBaseModelProtocol.Type? = nil,
                        success successCallBack: XTIRequestSuccessCallBack? = nil,
                        error errorCallBack: XTIRequestErrorCallBack? = nil,
@@ -529,61 +531,61 @@ private extension XTIBaseRequest {
     }
 }
 
-// MARK: - 文件下载
-extension XTIBaseRequest {
-    /// 文件下载(该方法仅适用于单个文件，如果文件很多推荐使用TYDownloadManager) <比较鸡肋>
-    /// - Parameters:
-    ///   - url: 文件地址
-    ///   - filePath: 文件存放路径，如果为空则放置在/Library/Caches
-    ///   - progressCallBack: 下载进度回调
-    ///   - errorCallBack: 失败的回调
-    ///   - successCallBack: 下载成功的回调
-    ///   - errorCallBack: 下载失败的回调
-    public static func download(_ url: String,
-                                filePath: URL? = nil,
-                                progressCallBack: XTIProgressCallBack? = nil,
-                                successCallBack: XTIRequestSuccessCallBack? = nil,
-                                error errorCallBack: XTIRequestErrorCallBack? = nil,
-                                completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
-        let downloadManager = Session.default.download(url) { (_, response) -> (destinationURL: URL, options: DownloadRequest.Options) in
-            var flieURL: URL
-            let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-            flieURL = documentsURL.appendingPathComponent(response.suggestedFilename!)
-            if filePath != nil {
-                flieURL = filePath!
-            }
-            return (flieURL, [.removePreviousFile, .createIntermediateDirectories])
-        }
-        downloadManager.downloadProgress { progress in
-            if let tempProgressCallBack = progressCallBack {
-                tempProgressCallBack(progress)
-            }
-        }.validate(statusCode: 200 ..< 300).responseString { result in
-            let code = result.response?.statusCode ?? 0
-            if code == 200 {
-                if let tempSuccessCallBack = successCallBack {
-                    tempSuccessCallBack(result)
-                }
-                if let tempCompletedCallBack = completedCallBack {
-                    tempCompletedCallBack(result, nil)
-                }
-            } else {
-                let domain = HTTPURLResponse.localizedString(forStatusCode: code)
-                let error = NSError(domain: domain, code: code, userInfo: nil)
-                if let tempErrorCallBack = errorCallBack {
-                    tempErrorCallBack(error)
-                }
-                if let tempCompletedCallBack = completedCallBack {
-                    tempCompletedCallBack(nil, error)
-                }
-            }
-        }
-    }
-}
+//// MARK: - 文件下载
+//extension XTIBaseRequest {
+//    /// 文件下载(该方法仅适用于单个文件，如果文件很多推荐使用TYDownloadManager) <比较鸡肋>
+//    /// - Parameters:
+//    ///   - url: 文件地址
+//    ///   - filePath: 文件存放路径，如果为空则放置在/Library/Caches
+//    ///   - progressCallBack: 下载进度回调
+//    ///   - errorCallBack: 失败的回调
+//    ///   - successCallBack: 下载成功的回调
+//    ///   - errorCallBack: 下载失败的回调
+//    public static func download(_ url: String,
+//                                filePath: URL? = nil,
+//                                progressCallBack: XTIProgressCallBack? = nil,
+//                                successCallBack: XTIRequestSuccessCallBack? = nil,
+//                                error errorCallBack: XTIRequestErrorCallBack? = nil,
+//                                completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
+//        let downloadManager = Session.default.download(url) { (_, response) -> (destinationURL: URL, options: DownloadRequest.Options) in
+//            var flieURL: URL
+//            let documentsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+//            flieURL = documentsURL.appendingPathComponent(response.suggestedFilename!)
+//            if filePath != nil {
+//                flieURL = filePath!
+//            }
+//            return (flieURL, [.removePreviousFile, .createIntermediateDirectories])
+//        }
+//        downloadManager.downloadProgress { progress in
+//            if let tempProgressCallBack = progressCallBack {
+//                tempProgressCallBack(progress)
+//            }
+//        }.validate(statusCode: 200 ..< 300).responseString { result in
+//            let code = result.response?.statusCode ?? 0
+//            if code == 200 {
+//                if let tempSuccessCallBack = successCallBack {
+//                    tempSuccessCallBack(result)
+//                }
+//                if let tempCompletedCallBack = completedCallBack {
+//                    tempCompletedCallBack(result, nil)
+//                }
+//            } else {
+//                let domain = HTTPURLResponse.localizedString(forStatusCode: code)
+//                let error = NSError(domain: domain, code: code, userInfo: nil)
+//                if let tempErrorCallBack = errorCallBack {
+//                    tempErrorCallBack(error)
+//                }
+//                if let tempCompletedCallBack = completedCallBack {
+//                    tempCompletedCallBack(nil, error)
+//                }
+//            }
+//        }
+//    }
+//}
 
 // MARK: - 网络请求缓存处理
 extension XTIBaseRequest {
-    public func save(_ url: String, value: AFDataResponse<String>, parameters: XTIParameters? = nil, exclude: [String]? = nil) {
+    public func save(_ url: String, value: XTIDataResponse, parameters: XTIParameters? = nil, exclude: [String]? = nil) {
         if !isUserCache {
             return
         }
@@ -627,7 +629,7 @@ extension XTIBaseRequest {
 extension XTIBaseRequest {
     /// 打印原始数据，可以在该函数里面读取Cookie的值
     /// - Parameter result: 原始数据
-    open func outRawData(_ result: AFDataResponse<String>) {
+    open func outRawData(_ result: XTIDataResponse) {
         if _iSLogRawData {
             XTILoger.shared().debug(result)
         }

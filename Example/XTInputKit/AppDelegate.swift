@@ -8,10 +8,13 @@
 
 import UIKit
 
+#if canImport(XTIObjectMapper)
+    @_exported import XTIObjectMapper
+#endif
+
 @_exported import Alamofire
 @_exported import UserNotifications
 @_exported import XTInputKit
-@_exported import XTIObjectMapper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -33,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
 
         UNUserNotificationCenter.current().delegate = self
+        xtiloger.debug(launchOptions)
         return true
     }
 

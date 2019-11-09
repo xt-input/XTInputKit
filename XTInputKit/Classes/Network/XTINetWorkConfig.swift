@@ -38,7 +38,6 @@ public struct XTINetWorkConfig {
     public static var defaultTimeoutInterval = 30.0
     public static var defaultHttpMaximumConnectionsPerHost = 10
     public static var defaultEncoding: ParameterEncoding = URLEncoding.default
-    public static var serverTrustPolicies: [String: ServerTrustEvaluating] = ["": DisabledEvaluator()]
 
     /// 默认缓存7天的网络请求
     public static var cacheSecondsTime: TimeInterval = 60 * 60 * 24 * 7

@@ -9,9 +9,9 @@
 import UIKit
 
 struct XTITestModel: XTIBaseModelProtocol, XTISharedProtocol {
-    init() {}
+//    init() {}
 
-    init?(map: Map) {}
+//    init?(map: Map) {}
 
     var name: String?
     var sex: String?
@@ -26,15 +26,15 @@ struct XTITestModel: XTIBaseModelProtocol, XTISharedProtocol {
 
     var stringNumber: String?
 
-    mutating func mapping(map: Map) {
-        double <- map["double"]
-        doubleStr <- map["doubleStr"]
-        float <- map["float"]
-        floatStr <- map["floatStr"]
-        int <- map["int"]
-        intStr <- map["intStr"]
-        name <- map["name"]
-        sex <- map["sex"]
-        stringNumber <- map["stringNumber"]
-    }
+//    mutating func mapping(map: Map) {
+//        double <- map["double"]
+//        doubleStr <- map["doubleStr"]
+//        float <- map["float"]
+//        floatStr <- map["floatStr"]
+//        int <- map["int"]
+//        intStr <- map["intStr"]
+//        name <- map["name"]
+//        sex <- map["sex"]
+//        stringNumber <- map["stringNumber"]
+//    }
 }
