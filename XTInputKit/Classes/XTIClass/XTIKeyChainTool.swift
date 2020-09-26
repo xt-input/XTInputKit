@@ -56,12 +56,12 @@ open class XTIKeyChainTool: XTISharedProtocol {
         keyChainItem[kSecAttrAccount] = key
         keyChainItem[kSecValueData] = value.data
         switch SecItemAdd(keyChainItem as CFDictionary, nil) {
-        case errSecSuccess:
-            return true
-        case errSecDuplicateItem:
-            return SecItemUpdate(keyChainItem as CFDictionary, [kSecValueData: value.data] as CFDictionary) == errSecSuccess
-        default:
-            return false
+            case errSecSuccess:
+                return true
+            case errSecDuplicateItem:
+                return SecItemUpdate(keyChainItem as CFDictionary, [kSecValueData: value.data] as CFDictionary) == errSecSuccess
+            default:
+                return false
         }
     }
 
@@ -81,13 +81,13 @@ open class XTIKeyChainTool: XTISharedProtocol {
             SecItemCopyMatching(keyChainItem as CFDictionary, UnsafeMutablePointer($0))
         }
         switch status {
-        case errSecSuccess:
-            guard let data = result as? Data else {
+            case errSecSuccess:
+                guard let data = result as? Data else {
+                    return nil
+                }
+                return ValueType(data: data)
+            default:
                 return nil
-            }
-            return ValueType(data: data)
-        default:
-            return nil
         }
     }
 
@@ -105,30 +105,30 @@ open class XTIKeyChainTool: XTISharedProtocol {
                 SecItemCopyMatching(keyChainItem as CFDictionary, UnsafeMutablePointer($0))
             }
             switch status {
-            case errSecSuccess:
-                var keys = [String]()
-                if let results = result as? [[AnyHashable: Any]] {
-                    for attributes in results {
-                        if let account = attributes[kSecAttrAccount as String] as? String {
-                            if account != "\(self.bundleNmae)-uuid" { keys.append(account) }
+                case errSecSuccess:
+                    var keys = [String]()
+                    if let results = result as? [[AnyHashable: Any]] {
+                        for attributes in results {
+                            if let account = attributes[kSecAttrAccount as String] as? String {
+                                if account != "\(self.bundleNmae)-uuid" { keys.append(account) }
+                            }
                         }
                     }
-                }
-                var count = 0
-                keys.forEach { value in
-                    count += self.delete(value) ? 1 : 0
-                }
-                return count == keys.count
-            default:
-                return false
+                    var count = 0
+                    keys.forEach { value in
+                        count += self.delete(value) ? 1 : 0
+                    }
+                    return count == keys.count
+                default:
+                    return false
             }
         } else {
             keyChainItem[kSecAttrAccount] = key
             switch SecItemDelete(keyChainItem as CFDictionary) {
-            case errSecSuccess:
-                return true
-            default:
-                return false
+                case errSecSuccess:
+                    return true
+                default:
+                    return false
             }
         }
     }

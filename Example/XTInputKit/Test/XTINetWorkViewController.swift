@@ -34,20 +34,20 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
         let group = DispatchGroup()
         let p2: [String: Any] = ["bundelID": "22222","list":[1,2,3,4,5]]
         group.enter()
-        XTITest1Request.shared().get(serviceName: "rxswift/login/index") { value, error in
+        XTITest1Request.shared().get(serviceName: "rxswift/login/index", completed: { value, error in
             xtiloger.debug(value)
             xtiloger.debug(error)
             xtiloger.debug("任务1")
             group.leave()
-        }
+        })
 
         group.enter()
-        XTITest1Request.shared().post(url: "http://design.tcoding.cn/rxswift/login/index", parameters: p2) { value, error in
+        XTITest1Request.shared().post(url: "http://design.tcoding.cn/rxswift/login/index", parameters: p2,completed: { value, error in
             xtiloger.debug(value)
             xtiloger.debug(error)
             xtiloger.debug("任务2")
             group.leave()
-        }
+        })
 
         group.enter()
         XTITest1Request.shared().get(serviceName: "rxswift/login/index", success: { value in
@@ -71,10 +71,10 @@ class XTINetWorkViewController: UIViewController, UITextViewDelegate {
             xtiloger.debug("任务完成")
         }
 
-        XTIModelRequest().get { value, error in
+        XTIModelRequest().get(completed:  { value, error in
             xtiloger.debug(value)
             xtiloger.debug(error)
-        }
+        })
     }
 
     // MARK: -UITextViewDelegate

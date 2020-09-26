@@ -206,6 +206,7 @@ public extension UIViewController {
 
     // MARK: - 弹窗alertController
     func showMessage(title: String! = "提示", message: String! = nil, cancelTitle: String! = nil, confirmTitle: String! = "确认", action: ((_ index: Int) -> Void)! = nil) {
+        
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         if cancelTitle != nil {
             alertController.addAction(UIAlertAction(title: confirmTitle, style: .cancel) { _ in

@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		5E1A4EC7224B1E6000A74EBD /* XTITestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87509E2249FECF00E1A01E /* XTITestRequest.swift */; };
 		5E1A4EC9224B1E6600A74EBD /* XTITest1Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8750A02249FECF00E1A01E /* XTITest1Request.swift */; };
+		5E1D5089237AEF96005A2896 /* XTIUploadFileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1D5088237AEF96005A2896 /* XTIUploadFileRequest.swift */; };
 		5E1FB93C229FC2210069FBC6 /* XTITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1FB93B229FC2210069FBC6 /* XTITabBarController.swift */; };
 		5E1FB93E229FC5360069FBC6 /* XTITabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1FB93D229FC5360069FBC6 /* XTITabBar.swift */; };
 		5E7041F222BB3E20004AC6D9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E7041F422BB3E20004AC6D9 /* Localizable.strings */; };
 		5E8750942249FBC500E1A01E /* XTIKeyChainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87508C2249FBC500E1A01E /* XTIKeyChainViewController.swift */; };
 		5E87509A2249FBC500E1A01E /* XTIObserverTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8750932249FBC500E1A01E /* XTIObserverTest.swift */; };
 		5E87509C2249FBCF00E1A01E /* XTINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87509B2249FBCF00E1A01E /* XTINavigationController.swift */; };
-		5E8750A5224A021A00E1A01E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E8750A4224A021A00E1A01E /* LaunchScreen.storyboard */; };
 		5E8750A7224A022500E1A01E /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E8750A6224A022500E1A01E /* Storyboard.storyboard */; };
 		5E8750A8224A0F6600E1A01E /* XTINetWorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E87508D2249FBC500E1A01E /* XTINetWorkViewController.swift */; };
 		5E9FC81922D2421800F85ADE /* XTITestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9FC81822D2421800F85ADE /* XTITestModel.swift */; };
@@ -24,10 +24,12 @@
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		95C40EF0F1BA166D51251AFD /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C25AE76ABAA6ABDF43542C5 /* Pods_Demo.framework */; };
+		CFF67830251ED4A400AE19F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF6782F251ED4A400AE19F5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2C25AE76ABAA6ABDF43542C5 /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E1D5088237AEF96005A2896 /* XTIUploadFileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIUploadFileRequest.swift; sourceTree = "<group>"; };
 		5E1FB93B229FC2210069FBC6 /* XTITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITabBarController.swift; sourceTree = "<group>"; };
 		5E1FB93D229FC5360069FBC6 /* XTITabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITabBar.swift; sourceTree = "<group>"; };
 		5E7041F322BB3E20004AC6D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -38,7 +40,6 @@
 		5E87509B2249FBCF00E1A01E /* XTINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTINavigationController.swift; sourceTree = "<group>"; };
 		5E87509E2249FECF00E1A01E /* XTITestRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTITestRequest.swift; sourceTree = "<group>"; };
 		5E8750A02249FECF00E1A01E /* XTITest1Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTITest1Request.swift; sourceTree = "<group>"; };
-		5E8750A4224A021A00E1A01E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E8750A6224A022500E1A01E /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		5E9FC81822D2421800F85ADE /* XTITestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTITestModel.swift; sourceTree = "<group>"; };
 		5E9FC81A22D2433A00F85ADE /* XTIModelRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XTIModelRequest.swift; sourceTree = "<group>"; };
@@ -51,6 +52,7 @@
 		9B13885BE100A16B74170D43 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C2B34039E0DA6B7AB22B75E0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C9AF60AD88E125B9742EAF7A /* XTInputKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = XTInputKit.podspec; path = ../XTInputKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		CFF6782F251ED4A400AE19F5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC5FFD8D141C14BC96859858 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		E4F4D0435DFCA6D07DF03676 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +96,7 @@
 				5E9FC81A22D2433A00F85ADE /* XTIModelRequest.swift */,
 				5E8750A02249FECF00E1A01E /* XTITest1Request.swift */,
 				5E9FC81822D2421800F85ADE /* XTITestModel.swift */,
+				5E1D5088237AEF96005A2896 /* XTIUploadFileRequest.swift */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -140,7 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD41AFB9204008FA782 /* Info.plist */,
-				5E8750A4224A021A00E1A01E /* LaunchScreen.storyboard */,
+				CFF6782F251ED4A400AE19F5 /* LaunchScreen.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -193,7 +196,7 @@
 			attributes = {
 				CLASSPREFIX = XTI;
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = tcoding.cn;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
@@ -228,8 +231,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				CFF67830251ED4A400AE19F5 /* LaunchScreen.storyboard in Resources */,
 				5E7041F222BB3E20004AC6D9 /* Localizable.strings in Resources */,
-				5E8750A5224A021A00E1A01E /* LaunchScreen.storyboard in Resources */,
 				5E8750A7224A022500E1A01E /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +306,7 @@
 				5E1FB93E229FC5360069FBC6 /* XTITabBar.swift in Sources */,
 				5E1A4EC9224B1E6600A74EBD /* XTITest1Request.swift in Sources */,
 				5E87509C2249FBCF00E1A01E /* XTINavigationController.swift in Sources */,
+				5E1D5089237AEF96005A2896 /* XTIUploadFileRequest.swift in Sources */,
 				5E8750942249FBC500E1A01E /* XTIKeyChainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,6 +349,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -400,6 +405,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

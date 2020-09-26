@@ -11,7 +11,7 @@ import UIKit
 class XTITest1Request: XTIBaseRequest {
     override func buildParameters() -> XTIParameters {
         var parameters = super.buildParameters()
-        parameters["bundelID"] = 12312312312
+        parameters["bundelID"] = 123123123
         return parameters
     }
 

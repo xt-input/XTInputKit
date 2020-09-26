@@ -38,3 +38,4 @@ struct XTITestModel: XTIBaseModelProtocol, XTISharedProtocol {
 //        stringNumber <- map["stringNumber"]
 //    }
 }
+

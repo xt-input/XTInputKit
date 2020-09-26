@@ -39,9 +39,9 @@ import Foundation
     extension XTIBaseModelProtocol {
         static func handleResult(_ value: String) -> Self? {
             let data = value.data(using: .utf8) ?? Data()
-
             do {
-                let result = try JSONDecoder().decode(self, from: data)
+                var result = try JSONDecoder().decode(self, from: data)
+                result.didHandleResult()
                 return result
             } catch {
                 return nil

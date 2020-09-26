@@ -20,7 +20,7 @@ public typealias XTIRequestCompleteCallBack = (Any?, Error?) -> Void
 /// 文件上传下载进度的回调
 public typealias XTIProgressCallBack = (Progress) -> Void
 
-public typealias XTIDataResponse = DataResponse<String>
+public typealias XTIDataResponse = AFDataResponse<String>
 
 open class XTIBaseRequest: XTISharedProtocol {
     fileprivate var _iSLogRawData: Bool {
@@ -84,20 +84,20 @@ open class XTIBaseRequest: XTISharedProtocol {
         return serviceName ?? ""
     }
 
-    fileprivate static var _httpManager: SessionManager!
-    fileprivate static var httpManager: SessionManager {
+    fileprivate static var _httpManager: Session!
+    fileprivate static var httpManager: Session {
         if _httpManager == nil {
             let configuration = URLSessionConfiguration.default
 //            configuration.headers = HTTPHeaders.default
             configuration.timeoutIntervalForRequest = XTINetWorkConfig.defaultTimeoutInterval
             configuration.httpMaximumConnectionsPerHost = XTINetWorkConfig.defaultHttpMaximumConnectionsPerHost
-            _httpManager = SessionManager(configuration: configuration)
+            _httpManager = Session(configuration: configuration)
         }
         return _httpManager
     }
 
-    fileprivate var _httpManager: SessionManager?
-    fileprivate var httpManager: SessionManager {
+    fileprivate var _httpManager: Session?
+    fileprivate var httpManager: Session {
         if isUserSharedSession {
             return XTIBaseRequest.httpManager
         } else {
@@ -120,19 +120,21 @@ open class XTIBaseRequest: XTISharedProtocol {
 //                configuration.headers = HTTPHeaders.default
                 configuration.timeoutIntervalForRequest = XTINetWorkConfig.defaultTimeoutInterval
                 configuration.httpMaximumConnectionsPerHost = XTINetWorkConfig.defaultHttpMaximumConnectionsPerHost
-                _httpManager = SessionManager(configuration: configuration)
+                _httpManager = Session(configuration: configuration)
             }
         }
     }
 
     public var fileType: String?
-
-    public var cacheManager: XTICacheManager
-
+    #if canImport(Cache)
+        public var cacheManager: XTICacheManager
+    #endif
     public required init() {
         self.isUserSharedSession = XTIBaseRequest.isUserSharedSession
-        cacheManager = XTICacheManager()
-        cacheManager.expiry = .seconds(XTINetWorkConfig.cacheSecondsTime)
+        #if canImport(Cache)
+            cacheManager = XTICacheManager()
+            cacheManager.expiry = .seconds(XTINetWorkConfig.cacheSecondsTime)
+        #endif
     }
 
     deinit {
@@ -155,6 +157,10 @@ open class XTIBaseRequest: XTISharedProtocol {
     /// - Returns: 返回文件类型
     open func getFileType() -> String {
         return fileType ?? "image/jpeg"
+    }
+
+    open func getFileName(_ key: String) -> String {
+        return key + ".jpg"
     }
 
     /// 签名，如果继承，可以为每个请求实现不同的签名方式
@@ -222,7 +228,7 @@ extension XTIBaseRequest {
     ///   - errorCallBack: 失败的回调
     ///   - cachaCallBack: 缓存的回调
     ///   - completedCallBack: 请求完成的回调
-    open func post(serviceName: String,
+    open func post(serviceName: String? = nil,
                    parameters: XTIParameters? = nil,
                    excludeKeys: [String]? = nil,
                    resultType: XTIBaseModelProtocol.Type? = nil,
@@ -362,8 +368,9 @@ extension XTIBaseRequest {
         if !sign.isEmpty {
             tempHeaders["sign"] = sign
         }
-
-        read(tempUrl, parameters: tempParameters, exclude: excludeKeys, resultType: resultType, cache: cacheCallBack)
+        #if canImport(Cache)
+            read(tempUrl, parameters: tempParameters, exclude: excludeKeys, resultType: resultType, cache: cacheCallBack)
+        #endif
 
         if !isNeedNetworkRequest() && isUserCache {
             return
@@ -377,7 +384,9 @@ extension XTIBaseRequest {
 
         sendRequest.validate(statusCode: 200 ..< 300)
             .responseString { [weak self] res in
-                self?.save(tempUrl, value: res, parameters: tempParameters, exclude: excludeKeys)
+                #if canImport(Cache)
+                    self?.save(tempUrl, value: res, parameters: tempParameters, exclude: excludeKeys)
+                #endif
                 if let strongSelf = self {
                     strongSelf.handleRequest(res, resultType: resultType, success: successCallBack, error: errorCallBack, completed: completedCallBack)
                 }
@@ -386,69 +395,84 @@ extension XTIBaseRequest {
     }
 }
 
-//// MARK: - 文件上传
-//extension XTIBaseRequest {
-//    /// 文件上传，适用于一个类管理一个接口，可以在子类里设置所有的默认参数
-//    /// - Parameters:
-//    ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
-//    ///   - progressCallBack: 进度
-//    ///   - successCallBack: 成功的回调
-//    ///   - errorCallBack: 失败的回调
-//    ///   - completedCallBack: 请求完成的回调
-//    open func upload(_ resultType: XTIBaseModelProtocol.Type,
-//                     progressCallBack: XTIProgressCallBack? = nil,
-//                     successCallBack: XTIRequestSuccessCallBack? = nil,
-//                     errorCallBack: XTIRequestErrorCallBack? = nil,
-//                     completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
-//        let url = _httpScheme.rawValue + _hostName + _serviceName
-//        upload(url, parameters: buildParameters(), resultType: resultType, progress: progressCallBack, success: successCallBack, error: errorCallBack, completed: completedCallBack)
-//    }
-//
-//    /// 文件上传，适用于用单例一个方法管理一个请求
-//    ///     文件上传时请将文件转成Data放置在parameters里
-//    /// - Parameters:
-//    ///   - url: 上传的地址
-//    ///   - parameters: 参数
-//    ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
-//    ///   - progressCallBack: 进度
-//    ///   - successCallBack: 成功的回调
-//    ///   - errorCallBack: 失败的回调
-//    ///   - completedCallBack: 请求完成的回调
-//    open func upload(_ url: String,
-//                     parameters: XTIParameters?,
-//                     resultType: XTIBaseModelProtocol.Type? = nil,
-//                     progress progressCallBack: XTIProgressCallBack? = nil,
-//                     success successCallBack: XTIRequestSuccessCallBack? = nil,
-//                     error errorCallBack: XTIRequestErrorCallBack? = nil,
-//                     completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
-//        let sign = signature(parameters ?? buildParameters())
-//        var tempHeaders = XTINetWorkConfig.defaultopenHttpHeader
-//        if sign != "" {
-//            tempHeaders["sign"] = sign
-//        }
-//        tempHeaders["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
-//        let uploadRequest = httpManager.upload(multipartFormData: { [weak self] data in
-//            if let strongSelf = self {
-//                parameters?.forEach { key, value in
-//                    if (value as? Data) == nil {
-//                        data.append("\(value)".data(using: String.Encoding.utf8, allowLossyConversion: false)!, withName: key)
-//                    } else {
-//                        data.append(value as! Data, withName: key, fileName: key, mimeType: strongSelf.getFileType())
-//                    }
-//                }
-//            }
-//        }, to: url, method: .post, headers: tempHeaders, interceptor: self)
-//
-//        uploadRequest.uploadProgress(closure: progressCallBack ?? { _ in }).validate(statusCode: 200 ..< 300)
-//            .responseString { [weak self] response in
-//                if let strongSelf = self {
-//                    strongSelf.handleRequest(response, resultType: resultType, success: successCallBack, error: errorCallBack, completed: completedCallBack)
-//                }
-//            }
-//
-//        self.request = uploadRequest
-//    }
-//}
+// MARK: - 文件上传
+extension XTIBaseRequest {
+    /// 文件上传，适用于一个类管理一个接口，可以在子类里设置所有的默认参数
+    /// - Parameters:
+    ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
+    ///   - progressCallBack: 进度
+    ///   - successCallBack: 成功的回调
+    ///   - errorCallBack: 失败的回调
+    ///   - completedCallBack: 请求完成的回调
+    open func upload(_ resultType: XTIBaseModelProtocol.Type,
+                     progressCallBack: XTIProgressCallBack? = nil,
+                     successCallBack: XTIRequestSuccessCallBack? = nil,
+                     errorCallBack: XTIRequestErrorCallBack? = nil,
+                     completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
+        let url = _httpScheme.rawValue + _hostName + _serviceName
+        upload(url, parameters: buildParameters(), resultType: resultType, progress: progressCallBack, success: successCallBack, error: errorCallBack, completed: completedCallBack)
+    }
+
+    /// 文件上传，适用于用单例一个方法管理一个请求
+    ///     文件上传时请将文件转成Data放置在parameters里
+    /// - Parameters:
+    ///   - url: 上传的地址
+    ///   - parameters: 参数
+    ///   - resultType: 返回数据的模型，如果没有该参数则返回数据类型将优先解析成JSON对象，解析失败则是字符串
+    ///   - progressCallBack: 进度
+    ///   - successCallBack: 成功的回调
+    ///   - errorCallBack: 失败的回调
+    ///   - completedCallBack: 请求完成的回调
+    open func upload(_ url: String? = nil,
+                     parameters: XTIParameters? = nil,
+                     resultType: XTIBaseModelProtocol.Type? = nil,
+                     progress progressCallBack: XTIProgressCallBack? = nil,
+                     success successCallBack: XTIRequestSuccessCallBack? = nil,
+                     error errorCallBack: XTIRequestErrorCallBack? = nil,
+                     completed completedCallBack: XTIRequestCompleteCallBack? = nil) {
+        let tempParameters = encrypt(parameters ?? buildParameters())
+
+        let sign = signature(tempParameters)
+        var tempHeaders = XTINetWorkConfig.defaultopenHttpHeader
+        if sign != "" {
+            tempHeaders["sign"] = sign
+        }
+
+        let tempScheme = _httpScheme
+        let tempHost = _hostName
+        var tempServiceName = _serviceName
+        if tempServiceName.first == "/" {
+            tempServiceName.removeFirst()
+        }
+
+        let tempUrl = url ?? tempScheme.rawValue + tempHost.replacingOccurrences(of: "/", with: "") + "/" + tempServiceName
+
+
+        let upRequest = httpManager.upload(multipartFormData: { [weak self] multipartFormData in
+            if let strongSelf = self {
+                tempParameters.forEach { key, value in
+                    if (value as? Data) == nil {
+                        multipartFormData.append("\(value)".data(using: String.Encoding.utf8, allowLossyConversion: false)!, withName: key)
+                    } else {
+                        multipartFormData.append(value as! Data, withName: key, fileName: strongSelf.getFileName(key), mimeType: strongSelf.getFileType())
+                    }
+                }
+            }
+
+        }, to: tempUrl)
+
+        upRequest.uploadProgress { (progress) in
+            if let tempProgressCallBack = progressCallBack {
+                tempProgressCallBack(progress)
+            }
+        }.validate(statusCode: 200 ..< 300)
+        .responseString { [weak self] response in
+            if let strongSelf = self {
+                strongSelf.handleRequest(response, resultType: resultType, success: successCallBack, error: errorCallBack, completed: completedCallBack)
+            }
+        }
+    }
+}
 
 extension XTIBaseRequest {
     /// 取消当前的请求
@@ -478,18 +502,18 @@ private extension XTIBaseRequest {
         var tempError: Error?
         var resultValue: Any?
         switch result.result {
-        case let .success(value):
-            if let tempResultType = (resultType ?? self.resultType) {
-                resultValue = tempResultType.handleResult(decrypt(value))
-            } else {
-                do {
-                    resultValue = try JSONSerialization.jsonObject(with: decrypt(value).data(using: String.Encoding.utf8) ?? Data())
-                } catch {
-                    resultValue = decrypt(value)
+            case let .success(value):
+                if let tempResultType = (resultType ?? self.resultType) {
+                    resultValue = tempResultType.handleResult(decrypt(value))
+                } else {
+                    do {
+                        resultValue = try JSONSerialization.jsonObject(with: decrypt(value).data(using: String.Encoding.utf8) ?? Data())
+                    } catch {
+                        resultValue = decrypt(value)
+                    }
                 }
-            }
-        case let .failure(error):
-            tempError = error
+            case let .failure(error):
+                tempError = error
         }
 
         let filterValue = filterRequest(resultValue, tempError)
@@ -532,7 +556,7 @@ private extension XTIBaseRequest {
 }
 
 //// MARK: - 文件下载
-//extension XTIBaseRequest {
+// extension XTIBaseRequest {
 //    /// 文件下载(该方法仅适用于单个文件，如果文件很多推荐使用TYDownloadManager) <比较鸡肋>
 //    /// - Parameters:
 //    ///   - url: 文件地址
@@ -581,50 +605,51 @@ private extension XTIBaseRequest {
 //            }
 //        }
 //    }
-//}
+// }
 
 // MARK: - 网络请求缓存处理
-extension XTIBaseRequest {
-    public func save(_ url: String, value: XTIDataResponse, parameters: XTIParameters? = nil, exclude: [String]? = nil) {
-        if !isUserCache {
-            return
+#if canImport(Cache)
+    extension XTIBaseRequest {
+        public func save(_ url: String, value: XTIDataResponse, parameters: XTIParameters? = nil, exclude: [String]? = nil) {
+            if !isUserCache {
+                return
+            }
+            switch value.result {
+                case let .success(tempValue):
+                    // 缓存
+                    cacheManager.setCache(url, value: tempValue, parameters: parameters, exclude: exclude)
+                case let .failure(error):
+                    xtiloger.error(error)
+            }
         }
-        switch value.result {
-        case let .success(tempValue):
-            // 缓存
-            cacheManager.setCache(url, value: tempValue, parameters: parameters, exclude: exclude)
-        case let .failure(error):
-            xtiloger.error(error)
-        }
-    }
 
-    public func read(_ url: String,
-                     parameters: XTIParameters? = nil,
-                     exclude: [String]? = nil,
-                     resultType: XTIBaseModelProtocol.Type? = nil,
-                     cache cacheCallBack: XTIRequestCacheCallBack? = nil) {
-        let value = cacheManager.getCache(url, parameters: parameters, exclude: exclude)
-        if let tempCacheCallBack = cacheCallBack, let tempValue = value {
-            var resultValue: Any?
-            var tempError: Error?
+        public func read(_ url: String,
+                         parameters: XTIParameters? = nil,
+                         exclude: [String]? = nil,
+                         resultType: XTIBaseModelProtocol.Type? = nil,
+                         cache cacheCallBack: XTIRequestCacheCallBack? = nil) {
+            let value = cacheManager.getCache(url, parameters: parameters, exclude: exclude)
+            if let tempCacheCallBack = cacheCallBack, let tempValue = value {
+                var resultValue: Any?
+                var tempError: Error?
 
-            if let tempResultType = (resultType ?? self.resultType) {
-                resultValue = tempResultType.handleResult(decrypt(tempValue))
-            } else {
-                do {
-                    resultValue = try JSONSerialization.jsonObject(with: decrypt(tempValue).data(using: String.Encoding.utf8) ?? Data())
-                } catch {
-                    resultValue = decrypt(tempValue)
+                if let tempResultType = (resultType ?? self.resultType) {
+                    resultValue = tempResultType.handleResult(decrypt(tempValue))
+                } else {
+                    do {
+                        resultValue = try JSONSerialization.jsonObject(with: decrypt(tempValue).data(using: String.Encoding.utf8) ?? Data())
+                    } catch {
+                        resultValue = decrypt(tempValue)
+                    }
                 }
+                if let tempValue = preOperationCallBack(resultValue, tempError, true).value {
+                    resultValue = tempValue
+                }
+                tempCacheCallBack(resultValue)
             }
-            if let tempValue = preOperationCallBack(resultValue, tempError, true).value {
-                resultValue = tempValue
-            }
-            tempCacheCallBack(resultValue)
         }
     }
-}
-
+#endif
 // MARK: - 打印日志
 extension XTIBaseRequest {
     /// 打印原始数据，可以在该函数里面读取Cookie的值

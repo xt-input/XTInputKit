@@ -146,12 +146,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
 
         group.enter()
-        XTITest1Request.shared().get(url: "http://design.tcoding.cn/rxswift/login/index", parameters: p2) { value, error in
+        XTITest1Request.shared().get(url: "http://design.tcoding.cn/rxswift/login/index", parameters: p2, completed:  { value, error in
             xtiloger.debug(value)
             xtiloger.debug(error)
             xtiloger.debug("任务2")
             group.leave()
-        }
+        })
 
         group.enter()
         XTITest1Request.shared().get(serviceName: "rxswift/login/index", success: { value in
@@ -175,10 +175,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             xtiloger.debug("任务完成")
         }
 
-        XTIModelRequest.shared().get { value, error in
+        XTIModelRequest.shared().get(completed:  { value, error in
             xtiloger.debug(value)
             xtiloger.debug(error)
-        }
+        })
     }
 
     override func didReceiveMemoryWarning() {

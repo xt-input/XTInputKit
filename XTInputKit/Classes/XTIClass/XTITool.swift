@@ -8,8 +8,8 @@
 
 import UIKit
 
-public enum XTIVersionCompareResult {
-    case equal // 等于当前版本
+public enum XTIVersionCompareResult: Int {
+    case equal = 0 // 等于当前版本
     case greater // 大于当前版本
     case less // 小于当前版本
 }
@@ -40,9 +40,9 @@ open class XTITool {
     /// 获取当前应用活动的窗口
     public static var keyWindow: UIWindow! {
         var keyWindow = UIApplication.shared.keyWindow
-        if keyWindow?.windowLevel == UIWindow.Level.normal {
+        if keyWindow?.windowLevel == .normal {
             UIApplication.shared.windows.forEach { window in
-                if window.windowLevel == UIWindow.Level.normal {
+                if window.windowLevel == .normal {
                     keyWindow = window
                 }
             }

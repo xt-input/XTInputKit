@@ -26,13 +26,11 @@ open class XTITimerItem: XTIObserverItem {
         return self._sum
     }
 
-    let t = CADisplayLink()
-
     /// 是否取消
     public var isCancel: Bool! {
         didSet {
             if self.isCancel != nil && (self.isCancel)! {
-                self.timer.cancel()
+                self.gcdTimer.cancel()
             }
         }
     }
@@ -43,18 +41,21 @@ open class XTITimerItem: XTIObserverItem {
         return self._labelName
     }
 
-    fileprivate var timer: DispatchSourceTimer!
+    fileprivate var gcdTimer: DispatchSourceTimer!
+    fileprivate var nsTimer: Timer!
+    fileprivate var catimer: CADisplayLink!
 
     public init(_ item: AnyObject, labelName name: String = "", sum: Int = 0, interval: Double = 1, block: XTITimerItemCallback! = nil) {
         super.init(item)
-        t.add(to: RunLoop.current, forMode: RunLoop.Mode.common)
         self._sum = sum
         self._labelName = name
-        self.timer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags.strict, queue: DispatchQueue.global(qos: .background))
-        self.timer.schedule(wallDeadline: DispatchWallTime.now() + interval, repeating: interval)
-        self.timer.setEventHandler { [weak self] in
+
+
+        self.gcdTimer = DispatchSource.makeTimerSource(flags: DispatchSource.TimerFlags.strict, queue: DispatchQueue.global(qos: .background))
+        self.gcdTimer.schedule(wallDeadline: DispatchWallTime.now() + interval, repeating: interval)
+        self.gcdTimer.setEventHandler { [weak self] in
             if self?.observerItem == nil || (self?.isEnd() != nil && (self?.isEnd())!) {
-                self?.timer.cancel()
+                self?.gcdTimer.cancel()
             } else {
                 self?.addCount()
                 if block != nil {
@@ -70,7 +71,7 @@ open class XTITimerItem: XTIObserverItem {
                 }
             }
         }
-        self.timer.resume()
+        self.gcdTimer.resume()
     }
 
     fileprivate func addCount() {
@@ -82,7 +83,7 @@ open class XTITimerItem: XTIObserverItem {
     }
 
     fileprivate func cancel() {
-        self.timer.cancel()
+        self.gcdTimer.cancel()
     }
 }
 
